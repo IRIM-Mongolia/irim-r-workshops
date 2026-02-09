@@ -9,5 +9,5 @@
 "learners/extra-challenges.Rmd" "42636e00a3950aaf116f5280082a450e" "site/built/extra-challenges.md" "2026-02-09"
 "learners/reference.md" "d64102b12c29b96d29ace337ac32746d" "site/built/reference.md" "2026-02-09"
 "learners/setup.md" "e323158aa8fdb82dd0a0c49f5684fd3c" "site/built/setup.md" "2026-02-09"
-"profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2026-02-09"
+"profiles/learner-profiles.md" "512a453c6852a5cb29ab5eaa23aa0987" "site/built/learner-profiles.md" "2026-02-09"
 "renv/profiles/lesson-requirements/renv.lock" "d122fc0adc7e95c3ed2228c962d35501" "site/built/renv.lock" "2026-02-09"
