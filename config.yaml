@@ -73,6 +73,9 @@ episodes:
 #instructors:
 #- instructor-notes.md
 
+# Learner Profiles
+#profiles:
+
 # Customisation ---------------------------------------------
 #
 # This space below is where custom yaml items (e.g. pinning
