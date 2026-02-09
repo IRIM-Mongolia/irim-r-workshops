@@ -34,7 +34,7 @@ source: 'https://github.com/kathrynnapier/irim-r-workshops/'
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'Napier.k@irim.mn'
+contact: 'Naier.k@irim.mn'
 
 # Navigation ------------------------------------------------
 #
@@ -66,15 +66,15 @@ episodes:
 #- working-with-data.Rmd
 
 # Information for Learners
-#learners:
-#- reference.md
+learners:
+- reference.md
 
 # Information for Instructors
-#instructors:
+instructors:
 #- instructor-notes.md
 
 # Learner Profiles
-#profiles:
+profiles:
 
 # Customisation ---------------------------------------------
 #
