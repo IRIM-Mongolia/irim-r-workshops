@@ -1,5 +1,5 @@
 ---
-title: "Placeholder"
+title: FIXME
 ---
 
-<!-- This file exists only to satisfy the build system -->
+This is a placeholder file. Please add content here. 
