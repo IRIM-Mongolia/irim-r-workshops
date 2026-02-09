@@ -320,14 +320,14 @@ programming experience.</p>
 
 
       <section id="setup"><section><h2 class="section-heading" id="preparations">Preparations<a class="anchor" aria-label="anchor" href="#preparations"></a></h2>
-<hr class="half-width"><p>Data Carpentry’s teaching is hands-on, and to follow this lesson
-learners must have R and RStudio installed on their computers. They also
-need to be able to install a number of R packages, create directories,
-and download files.</p>
-<p>To avoid troubleshooting during the lesson, learners should follow
-the instructions below to download and install everything beforehand. If
-the computer is managed by their organization’s IT department they might
-need help from an IT administrator.</p>
+<hr class="half-width"><p>This series of workshops are designed to be hands-on, so learners
+must have R and RStudio installed on their computers. They also need to
+be able to install a number of R packages, create directories, and
+download files.</p>
+<!--
+If the computer is managed by their organization's IT department
+they might need help from an IT administrator.
+-->
 <div class="section level3">
 <h3 id="install-r-and-rstudio">Install R and RStudio<a class="anchor" aria-label="anchor" href="#install-r-and-rstudio"></a></h3>
 <p>R and RStudio are two separate pieces of software:</p>
@@ -336,7 +336,7 @@ need help from an IT administrator.</p>
 run code written in R.</li>
 <li>
 <strong>RStudio</strong> is an integrated development environment
-(IDE) that makes using R easier. In this course we use RStudio to
+(IDE) that makes using R easier. In these workshops, we use RStudio to
 interact with R.</li>
 </ul><p>If you don’t already have R and RStudio installed, follow the
 instructions for your operating system below. You have to install R
@@ -429,9 +429,9 @@ version is up to date:</p>
 <ul><li>When you open RStudio your R version will be printed in the console
 on the bottom left. Alternatively, you can type
 <code>sessionInfo()</code> into the console. If your R version is 4.0.0
-or later, you don’t need to update R for this lesson. If your version of
-R is older than that, download and install the latest version of R from
-the R project website <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">for Windows</a>, <a href="https://cran.r-project.org/bin/macosx/" class="external-link">for MacOS</a>, or <a href="https://cran.r-project.org/bin/linux/" class="external-link">for Linux</a>
+or later, you don’t need to update R for this workshop. If your version
+of R is older than that, download and install the latest version of R
+from the R project website <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">for Windows</a>, <a href="https://cran.r-project.org/bin/macosx/" class="external-link">for MacOS</a>, or <a href="https://cran.r-project.org/bin/linux/" class="external-link">for Linux</a>
 </li>
 <li>It is not necessary to remove old versions of R from your system,
 but if you wish to do so you can check <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f" class="external-link">How
@@ -469,9 +469,9 @@ regularly use is a good practice.</p>
 </div>
 <div class="section level3">
 <h3 id="install-required-r-packages">Install required R packages<a class="anchor" aria-label="anchor" href="#install-required-r-packages"></a></h3>
-<p>During the course we will need a number of R packages. Packages
-contain useful R code written by other people. We will use the packages
-<code>tidyverse</code>, and <code>ratdat</code>.</p>
+<p>During the workshops we will need a number of R packages. Packages
+contain useful R code written by other people. We will use the
+<code>tidyverse</code> package.</p>
 <p>To try to install these packages, open RStudio and copy and paste the
 following command into the console window (look for a blinking cursor on
 the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or
@@ -480,7 +480,7 @@ the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"ratdat"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Alternatively, you can install the packages using RStudio’s graphical
 user interface by going to <code>Tools &gt; Install Packages</code> and
@@ -492,8 +492,7 @@ by pasting the following code into the console:</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
-<span><span class="kw">library</span><span class="op">(</span><span class="va">ratdat</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span></code></pre>
 </div>
 <p>If you do not see an error like
 <code>there is no package called ‘...’</code> you are good to go!</p>
@@ -506,28 +505,24 @@ bugfixes. To update the packages that you have installed, click
 <code>Update</code> in the <code>Packages</code> tab in the bottom right
 panel of RStudio, or go to
 <code>Tools &gt; Check for Package Updates...</code></p>
-<p>You should update <strong>all of the packages</strong> required for
-the lesson, even if you installed them relatively recently.</p>
 <p>Sometimes, package updates introduce changes that break your old
 code, which can be very frustrating. To avoid this problem, you can use
 a package called <code>renv</code>. It locks the package versions you
 have used for a given project and makes it straightforward to reinstall
 those exact package version in a new environment, for example after
-updating your R version or on another computer. However, the details are
-outside of the scope of this lesson.</p>
+updating your R version or on another computer. We will introduce the
+<code>renv</code> package at a future workshop.</p>
+<!--
+### Download the data
+
+We will download the data we need during the workshopss. However, if you are expecting problems with the network, it may be better to download the data beforehand and store it on your machine.
+
+The data files for the lesson can be downloaded from:
+
+ - [cleaned data](../episodes/data/cleaned/surveys_complete_77_89.csv) and
+ - [zip file of raw data](../episodes/data/new_data.zip).
+-->
 </div>
-<div class="section level3">
-<h3 id="download-the-data">Download the data<a class="anchor" aria-label="anchor" href="#download-the-data"></a></h3>
-<p>We will download the data we need during the lessons. However, if you
-are expecting problems with the network, it may be better to download
-the data beforehand and store it on your machine.</p>
-<p>The data files for the lesson can be downloaded from:</p>
-<ul><li>
-<a href="data/cleaned/surveys_complete_77_89.csv">cleaned data</a>
-and</li>
-<li>
-<a href="data/new_data.zip">zip file of raw data</a>.</li>
-</ul></div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="introduction-r-rstudio.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
