@@ -31,8 +31,8 @@ You have to install R before you install RStudio.
 * Download R from the [CRAN website](https://cran.r-project.org/bin/windows/base/release.htm).
 * Run the `.exe` file that was just downloaded
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-* Under *Installers* select **Windows Vista 10/11 - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
-* Double click the file to install it
+* Click **INSTALL RSTUDIO DESKTOP FOR WINDOWS**
+* Run the `.exe` file that was just downloaded
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
   
 :::::::::::::::::::::::::
