@@ -97,7 +97,7 @@ Anyone can inspect the source code to see how R works. Because of this transpare
 
 ## Navigating RStudio
 
-We will use the RStudio integrated development environment (IDE) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in R, and look at the plots we make. RStudio has many other features that can help with things like version control, developing R packages, and writing Shiny apps, but we won't cover those in the workshop.
+We will use the RStudio integrated development environment (IDE) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in R, and look at the plots we make. RStudio has many other features that can help with things like version control, developing R packages, and writing Shiny apps, but we won't cover those in this workshop.
 
 ![](fig/rstudio_screenshot.png){alt='Screenshot of RStudio showing the 4 "panes".'}
 
@@ -126,7 +126,7 @@ RStudio provides a "Projects" feature that can make it easier to work on individ
 2. In the top right, you will see a blue 3D cube and the words "Project: (None)". Click on this icon.
 3. Click **New Project** from the dropdown menu.
 4. Click **New Directory**, then **New Project**.
-5. Type out a name for the project, we recommend `R-Ecology-Workshop`.
+5. Type out a name for the project, such as `intro_r"
 6. Put it in a convenient location using the "Create project as a subdirectory of:" section. We recommend your `Desktop`. You can always move the project somewhere else later, because it will be self-contained.
 7. Click **Create Project** and your new project will open.
 
@@ -148,10 +148,10 @@ If you are teaching remotely and sharing only the RStudio window, the new window
 
 Using a consistent folder structure across all your new projects will help keep a growing project organized, and make it easy to find files in the future. This is especially beneficial if you are working on multiple projects, since you will know where to look for particular kinds of files.
 
-We will use a basic structure for this workshop, which is often a good place to start, and can be extended to meet your specific needs. Here is a diagram describing the structure:
+We will use a basic structure for this workshop, which is often a good place to start, and can be extended to meet your specific needs. Here is a diagram describing the structure that we will end up with as we progress  through the workshops:
 
 ```
-R-Ecology-Workshop
+intro_r
 │
 └── scripts
 │
@@ -164,15 +164,13 @@ R-Ecology-Workshop
 └─── documents
 ```
 
-Within our project folder (`R-Ecology-Workshop`), we first have a `scripts` folder to hold any scripts we write. We also have a `data` folder containing `cleaned` and `raw` subfolders. In general, you want to keep your `raw` data completely untouched, so once you put data into that folder, you do not modify it. Instead, you read it into R, and if you make any modifications, you write that modified file into the `cleaned` folder. We also have an `images` folder for plots we make, and a `documents` folder for any other documents you might produce.
+Within our project folder (`intro_r`), we first have a `scripts` folder to hold any scripts we write. We will also have a `data` folder containing `cleaned` and `raw` subfolders. In general, you want to keep your `raw` data completely untouched, so once you put data into that folder, you do not modify it. Instead, you read it into R, and if you make any modifications, you write that modified file into the `cleaned` folder. We also have an `images` folder for plots we make, and a `documents` folder for any other documents you might produce.
 
-Let's start making our new folders. Go to the **Files** pane (bottom right), and check the current directory, highlighted in yellow below. You should be in the directory for the project you just made, in our case `R-Ecology-Workshop`. You shouldn't see any folders in here yet.
+Let's start making our new script folder. Go to the **Files** pane (bottom right), and check the current directory. You should be in the directory for the project you just made, in our case "intro_r`. You shouldn't see any folders in here yet.
 
-![](fig/files_pane.png){alt='RStudio Files pane with current directory path highlighted.'}
+![](fig/files_pane.png){alt='RStudio Files pane.'}
 
-Next, click the **New Folder** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. Repeat the process to make your `data`, `images`, and `documents` folders. Then, click on the `data` folder in the Files pane. This will take you into the `data` folder, which will be empty. Use the **New Folder** button to create `raw` and `cleaned` folders. To return to the `R-Ecology-Workshop` folder, click on it in the file path, which is highlighted in yellow in the previous image. It's worth noting that the **Files** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
-
-We have prepared a cleaned dataset that you will use towards the end of the workshop. Since you're setting up your project directory now, it's a good time to download it and add it to your directory. Click this link to download the file:  [cleaned data](data/cleaned/surveys_complete_77_89.csv). You may be prompted to save the file on your computer somewhere, or it might download automatically to a Downloads folder. If you are prompted, save it inside the `cleaned` data folder, which is in the `data` folder you just created. If you are not prompted choose a location, wait until it has downloaded and then move it from its current location to the `cleaned` folder using whatever method you would normally use to move files.
+Next, click the **New Folder** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. It's worth noting that the **Files** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
 
 ## Working in R and RStudio
 
