@@ -19,6 +19,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Other Materials
+
+[See Workshop 1 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQC2QIi5hSalQ4WFU1qTaduaAdYxB4Gd0f7Y7wTtaKn6AnQ?e=gjZViL)
+
 ## What are R and RStudio?
 
 R refers to a programming language as well as the software that runs R code.
