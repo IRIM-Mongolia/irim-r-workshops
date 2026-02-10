@@ -302,7 +302,7 @@
         
 <section id="aio-introduction-r-rstudio"><p>Content from <a href="introduction-r-rstudio.html">Introduction to R and RStudio</a></p>
 <hr>
-<p>Last updated on 2026-02-09 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://github.com/kathrynnapier/irim-r-workshops/edit/main/episodes/introduction-r-rstudio.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -510,7 +510,7 @@ write code into scripts, run code in R, navigate files on our computer,
 inspect objects we create in R, and look at the plots we make. RStudio
 has many other features that can help with things like version control,
 developing R packages, and writing Shiny apps, but we won’t cover those
-in the workshop.</p>
+in this workshop.</p>
 <figure><img src="../fig/rstudio_screenshot.png" alt='Screenshot of RStudio showing the 4 "panes".' class="figure mx-auto d-block"></figure><p>In the above screenshot, we can see 4 “panes” in the default
 layout:</p>
 <ul>
@@ -570,8 +570,7 @@ above).</li>
 <li>Click <strong>New Project</strong> from the dropdown menu.</li>
 <li>Click <strong>New Directory</strong>, then <strong>New
 Project</strong>.</li>
-<li>Type out a name for the project, we recommend
-<code>R-Ecology-Workshop</code>.</li>
+<li>Type out a name for the project, such as `intro_r”</li>
 <li>Put it in a convenient location using the “Create project as a
 subdirectory of:” section. We recommend your <code>Desktop</code>. You
 can always move the project somewhere else later, because it will be
@@ -631,8 +630,9 @@ projects, since you will know where to look for particular kinds of
 files.</p>
 <p>We will use a basic structure for this workshop, which is often a
 good place to start, and can be extended to meet your specific needs.
-Here is a diagram describing the structure:</p>
-<pre><code>R-Ecology-Workshop
+Here is a diagram describing the structure that we will end up with as
+we progress through the workshops:</p>
+<pre><code>intro_r
 │
 └── scripts
 │
@@ -643,8 +643,8 @@ Here is a diagram describing the structure:</p>
 └─── images
 │
 └─── documents</code></pre>
-<p>Within our project folder (<code>R-Ecology-Workshop</code>), we first
-have a <code>scripts</code> folder to hold any scripts we write. We also
+<p>Within our project folder (<code>intro_r</code>), we first have a
+<code>scripts</code> folder to hold any scripts we write. We will also
 have a <code>data</code> folder containing <code>cleaned</code> and
 <code>raw</code> subfolders. In general, you want to keep your
 <code>raw</code> data completely untouched, so once you put data into
@@ -653,35 +653,16 @@ you make any modifications, you write that modified file into the
 <code>cleaned</code> folder. We also have an <code>images</code> folder
 for plots we make, and a <code>documents</code> folder for any other
 documents you might produce.</p>
-<p>Let’s start making our new folders. Go to the <strong>Files</strong>
-pane (bottom right), and check the current directory, highlighted in
-yellow below. You should be in the directory for the project you just
-made, in our case <code>R-Ecology-Workshop</code>. You shouldn’t see any
-folders in here yet.</p>
-<figure><img src="../fig/files_pane.png" alt="RStudio Files pane with current directory path highlighted." class="figure mx-auto d-block"></figure><p>Next, click the <strong>New Folder</strong> button, and type in
+<p>Let’s start making our new script folder. Go to the
+<strong>Files</strong> pane (bottom right), and check the current
+directory. You should be in the directory for the project you just made,
+in our case “intro_r`. You shouldn’t see any folders in here yet.</p>
+<figure><img src="../fig/files_pane.png" alt="RStudio Files pane." class="figure mx-auto d-block"></figure><p>Next, click the <strong>New Folder</strong> button, and type in
 <code>scripts</code> to generate your <code>scripts</code> folder. It
-should appear in the Files list now. Repeat the process to make your
-<code>data</code>, <code>images</code>, and <code>documents</code>
-folders. Then, click on the <code>data</code> folder in the Files pane.
-This will take you into the <code>data</code> folder, which will be
-empty. Use the <strong>New Folder</strong> button to create
-<code>raw</code> and <code>cleaned</code> folders. To return to the
-<code>R-Ecology-Workshop</code> folder, click on it in the file path,
-which is highlighted in yellow in the previous image. It’s worth noting
-that the <strong>Files</strong> pane helps you create, find, and open
-files, but moving through your files won’t change where the
-<strong>working directory</strong> of your project is.</p>
-<p>We have prepared a cleaned dataset that you will use towards the end
-of the workshop. Since you’re setting up your project directory now,
-it’s a good time to download it and add it to your directory. Click this
-link to download the file: <a href="../data/cleaned/surveys_complete_77_89.csv">cleaned data</a>. You may
-be prompted to save the file on your computer somewhere, or it might
-download automatically to a Downloads folder. If you are prompted, save
-it inside the <code>cleaned</code> data folder, which is in the
-<code>data</code> folder you just created. If you are not prompted
-choose a location, wait until it has downloaded and then move it from
-its current location to the <code>cleaned</code> folder using whatever
-method you would normally use to move files.</p>
+should appear in the Files list now. It’s worth noting that the
+<strong>Files</strong> pane helps you create, find, and open files, but
+moving through your files won’t change where the <strong>working
+directory</strong> of your project is.</p>
 </section><section><h2 class="section-heading" id="working-in-r-and-rstudio">Working in R and RStudio<a class="anchor" aria-label="anchor" href="#working-in-r-and-rstudio"></a>
 </h2>
 <hr class="half-width">
