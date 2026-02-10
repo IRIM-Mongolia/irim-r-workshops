@@ -27,7 +27,7 @@ exercises: 0
 
 R refers to a programming language as well as the software that runs R code.
 
-[RStudio](https://rstudio.com) is a software interface that can make it easier to write R scripts and interact with the R software. It's a very popular platform, and RStudio also maintains the [`tidyverse`](https://www.tidyverse.org/) series of packages we will use in this lesson.
+[RStudio](https://posit.co/download/rstudio-desktop/) is a software interface that can make it easier to write R scripts and interact with the R software. It's a very popular platform, and RStudio also maintains the [`tidyverse`](https://www.tidyverse.org/) series of packages we will use in these workshops.
 
 ## Why learn R?
 
@@ -87,7 +87,7 @@ R can read data from many different file types, including geospatial data, and c
 
 ### R produces high-quality graphics
 
-R has well-developed plotting capabilities, and the `ggplot2` package is one of, if not the most powerful pieces of plotting software available today. We will begin learning to use `ggplot2` in the next episode.
+R has well-developed plotting capabilities, and the `ggplot2` package is one of, if not the most powerful pieces of plotting software available today. We can learn to use `ggplot2` in future workshops if you wish.
 
 ### R has a large and welcoming community
 
