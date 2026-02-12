@@ -422,11 +422,6 @@ curly braces (`{}`). After the `r` you can add a name for the code chunk
 unique, and only contain alphanumeric characters and `-`.
 
 
-``` error
-Error:
-! 'data/raw/SAFI_clean.csv' does not exist in current working directory:
-  '/__w/irim-r-workshops/irim-r-workshops/site/built'.
-```
 
 To load **tidyverse** and our `SAFI_clean.csv` file, we will insert a
 chunk and call it 'setup'. Since we don't want this code or the output
@@ -485,10 +480,18 @@ interviews %>%
                              "Mean Number of Members"))
 ```
 
-``` error
-Error:
-! object 'interviews' not found
-```
+
+
+Table: We can also add a caption.
+
+|Village  |Member Association | Mean Number of Members|
+|:--------|:------------------|----------------------:|
+|Chirodzo |no                 |               8.062500|
+|Chirodzo |yes                |               7.818182|
+|God      |no                 |               7.133333|
+|God      |yes                |               8.000000|
+|Ruaca    |no                 |               7.178571|
+|Ruaca    |yes                |               9.500000|
 
 Many different R packages can be used to generate tables. Some of the
 more commonly used options are listed in the table below.
@@ -576,22 +579,10 @@ size in a village.
 mean_household <- interviews %>%
     group_by(village) %>%
     summarize(mean_no_membrs = mean(no_membrs))
-```
 
-``` error
-Error:
-! object 'interviews' not found
-```
-
-``` r
 # and select the village we want to use
 mean_chirodzo <- mean_household %>%
   filter(village == "Chirodzo")
-```
-
-``` error
-Error:
-! object 'mean_household' not found
 ```
 
 Now we can make an informative statement on the means of each village,
@@ -633,11 +624,6 @@ interviews_plotting <- interviews %>%
   mutate(number_items = rowSums(select(., bicycle:car)))
 ```
 
-``` error
-Error:
-! object 'interviews' not found
-```
-
 
 ``` r
 interviews_plotting %>%
@@ -645,10 +631,7 @@ interviews_plotting %>%
   geom_bar(aes(fill = village))
 ```
 
-``` error
-Error:
-! object 'interviews_plotting' not found
-```
+<img src="fig/introduction-r-packages-markdown-rendered-my-fancy-plot-1.png" alt="" style="display: block; margin: auto;" />
 
 We can also create a caption with the chunk option `fig.cap`.
 
@@ -661,10 +644,10 @@ interviews_plotting %>%
   scale_fill_viridis_d() # add colour deficient friendly palette
 ```
 
-``` error
-Error:
-! object 'interviews_plotting' not found
-```
+<div class="figure" style="text-align: center">
+<img src="fig/introduction-r-packages-markdown-rendered-caption-plot-1.png" alt="I made this plot!"  />
+<p class="caption">I made this plot!</p>
+</div>
 
 ## Other output options
 
