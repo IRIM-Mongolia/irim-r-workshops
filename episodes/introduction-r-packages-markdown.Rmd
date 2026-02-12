@@ -476,7 +476,7 @@ Many different R packages can be used to generate tables. Some of the
 more commonly used options are listed in the table below.
 
 | Name | Creator(s) | Description |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | [condformat](https://condformat.sergioller.com/index.html) | [Oller Moreno (2022)](https://cran.rstudio.com/web/packages/condformat/index.html) | Apply and visualize conditional formatting to data frames in R. It renders a data frame with cells formatted according to criteria defined by rules, using a tidy evaluation syntax. |
 | [DT](https://rstudio.github.io/DT/) | [Xie et al. (2023)](https://cran.r-project.org/web/packages/DT/index.html) | Data objects in R can be rendered as HTML tables using the JavaScript library 'DataTables' (typically via R Markdown or Shiny). The 'DataTables' library has been included in this R package. |
 | [formattable](https://github.com/renkun-ken/formattable) | [Ren and Russell (2021)](https://cran.r-project.org/web/packages/formattable/index.html) | Provides functions to create formattable vectors and data frames. 'Formattable' vectors are printed with text formatting, and formattable data frames are printed with multiple types of formatting in HTML to improve the readability of data presented in tabular form rendered on web pages. |
@@ -503,7 +503,7 @@ output document. The options are entered in the code chunk after
 `{r chunk-name, eval = FALSE, echo = TRUE}`.
 
 | Option | Options | Output |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | `eval` | `TRUE` or `FALSE` | Whether or not the code within the code chunk should be run. |
 | `echo` | `TRUE` or `FALSE` | Choose if you want to show your code chunk in the output document. `echo = TRUE` will show the code chunk. |
 | `include` | `TRUE` or `FALSE` | Choose if the output of a code chunk should be included in the document. `FALSE` means that your code will run, but will not show up in the document. |
@@ -569,10 +569,6 @@ and include the mean values as in-line R-code. For example:
 The average household size in the village of Chirodzo is
 ``` ``r "r round(mean_chirodzo$mean_no_membrs, 2)"`` ```
 
-becomes...
-
-The average household size in the village of Chirodzo is
-`r round(mean_chirodzo$mean_no_membrs, 2)`.
 
 Because we are using in-line R code instead of the actual values, we
 have created a dynamic document that will automatically update if we
