@@ -422,7 +422,7 @@ that this happens.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Scroll through packages tab down to ‘tidyverse’. You can also type a
 few characters into the searchbox. The ‘tidyverse’ package is really a
@@ -666,26 +666,19 @@ inside of the curly braces (<code>{}</code>). After the <code>r</code>
 you can add a name for the code chunk . Naming a chunk is optional, but
 recommended. Each chunk name must be unique, and only contain
 alphanumeric characters and <code>-</code>.</p>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! 'data/raw/SAFI_clean.csv' does not exist in current working directory:
-  '/__w/irim-r-workshops/irim-r-workshops/site/built'.</code></pre>
-</div>
 <p>To load <strong>tidyverse</strong> and our
 <code>SAFI_clean.csv</code> file, we will insert a chunk and call it
 ‘setup’. Since we don’t want this code or the output to show in our
 knitted HTML document, we add an <code>include = FALSE</code> option
 after the code chunk name (<code>{r setup, include = FALSE}</code>).</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="in">library(here)</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="in">interviews &lt;- read_csv(here("data/raw/SAFI_clean.csv"), na = "NULL")</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="in">```</span></span></code></pre>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="in">library(here)</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="in">interviews &lt;- read_csv(here("data/raw/SAFI_clean.csv"), na = "NULL")</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="in">```</span></span></code></pre>
 </div>
 <div id="important-note" class="callout">
 <div class="callout-square">
@@ -723,7 +716,7 @@ the output of your R code and knits it into a nice looking HTML table.
 You can also specify different aspects of the table, e.g. the column
 names, a caption, etc.</p>
 <p>Run the code chunk to make sure you get the desired output.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -735,13 +728,29 @@ names, a caption, etc.</p>
 <span>               col.names <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="st">"Village"</span>, <span class="st">"Member Association"</span>, </span>
 <span>                             <span class="st">"Mean Number of Members"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'interviews' not found</code></pre>
-</div>
-<p>Many different R packages can be used to generate tables. Some of the
+<table class="table"><caption>We can also add a caption.</caption>
+<thead><tr><th align="left">Village</th>
+<th align="left">Member Association</th>
+<th align="right">Mean Number of Members</th>
+</tr></thead><tbody><tr><td align="left">Chirodzo</td>
+<td align="left">no</td>
+<td align="right">8.062500</td>
+</tr><tr><td align="left">Chirodzo</td>
+<td align="left">yes</td>
+<td align="right">7.818182</td>
+</tr><tr><td align="left">God</td>
+<td align="left">no</td>
+<td align="right">7.133333</td>
+</tr><tr><td align="left">God</td>
+<td align="left">yes</td>
+<td align="right">8.000000</td>
+</tr><tr><td align="left">Ruaca</td>
+<td align="left">no</td>
+<td align="right">7.178571</td>
+</tr><tr><td align="left">Ruaca</td>
+<td align="left">yes</td>
+<td align="right">9.500000</td>
+</tr></tbody></table><p>Many different R packages can be used to generate tables. Some of the
 more commonly used options are listed in the table below.</p>
 <table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Name</th>
 <th>Creator(s)</th>
@@ -912,7 +921,7 @@ the table, and see what each option does to the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.
@@ -943,34 +952,18 @@ technically the date the document was last knitted).</p>
 you need to produce the in-line output by preparing the output in code
 chunks. Let’s say we’re interested in presenting the average household
 size in a village.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a summary data frame with the mean household size by village</span></span>
 <span><span class="va">mean_household</span> <span class="op">&lt;-</span> <span class="va">interviews</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">village</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>    <span class="fu">summarize</span><span class="op">(</span>mean_no_membrs <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">no_membrs</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'interviews' not found</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># and select the village we want to use</span></span>
+<span>    <span class="fu">summarize</span><span class="op">(</span>mean_no_membrs <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">no_membrs</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># and select the village we want to use</span></span>
 <span><span class="va">mean_chirodzo</span> <span class="op">&lt;-</span> <span class="va">mean_household</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">filter</span><span class="op">(</span><span class="va">village</span> <span class="op">==</span> <span class="st">"Chirodzo"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'mean_household' not found</code></pre>
 </div>
 <p>Now we can make an informative statement on the means of each
 village, and include the mean values as in-line R-code. For example:</p>
@@ -984,7 +977,7 @@ make changes to the dataset and/or code chunks.</p>
 <hr class="half-width"><p>Finally, we will also include a plot, so our document is a little
 more colourful and a little less boring. We will create some code to use
 in the plotting.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1007,13 +1000,7 @@ in the plotting.</p>
 <span>  <span class="fu">mutate</span><span class="op">(</span>number_months_lack_food <span class="op">=</span> <span class="fu">rowSums</span><span class="op">(</span><span class="fu">select</span><span class="op">(</span><span class="va">.</span>, <span class="va">Jan</span><span class="op">:</span><span class="va">May</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>number_items <span class="op">=</span> <span class="fu">rowSums</span><span class="op">(</span><span class="fu">select</span><span class="op">(</span><span class="va">.</span>, <span class="va">bicycle</span><span class="op">:</span><span class="va">car</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'interviews' not found</code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1021,15 +1008,9 @@ in the plotting.</p>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">respondent_wall_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">village</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'interviews_plotting' not found</code></pre>
-</div>
-<p>We can also create a caption with the chunk option
+<figure><img src="fig/introduction-r-packages-markdown-rendered-my-fancy-plot-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We can also create a caption with the chunk option
 <code>fig.cap</code>.</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1039,13 +1020,9 @@ in the plotting.</p>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of Wall in Home"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Village Name"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_viridis_d</span><span class="op">(</span><span class="op">)</span> <span class="co"># add colour deficient friendly palette</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="error" tabindex="0"><code>Error:
-! object 'interviews_plotting' not found</code></pre>
-</div>
-</section><section><h2 class="section-heading" id="other-output-options">Other output options<a class="anchor" aria-label="anchor" href="#other-output-options"></a></h2>
+<figure style="text-align: center"><img src="fig/introduction-r-packages-markdown-rendered-caption-plot-1.png" alt="I made this plot!" class="figure mx-auto d-block"><figcaption>
+I made this plot!
+</figcaption></figure></section><section><h2 class="section-heading" id="other-output-options">Other output options<a class="anchor" aria-label="anchor" href="#other-output-options"></a></h2>
 <hr class="half-width"><p>You can convert R Markdown to a PDF or a Word document (among
 others). Click the little triangle next to the <strong>Preview</strong>
 button to get a drop-down menu. Or you could put
