@@ -61,6 +61,7 @@ contact: 'Napier.k@irim.mn'
 # Order of episodes in your lesson
 episodes:
 - introduction-r-rstudio.Rmd
+- introduction-r-packages-markdown.Rmd
 #- visualizing-ggplot.Rmd
 #- how-r-thinks-about-data.Rmd
 #- working-with-data.Rmd
