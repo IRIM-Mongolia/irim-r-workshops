@@ -90,7 +90,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 26 milliseconds.
+Successfully installed 1 package in 5.8 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -118,8 +118,8 @@ that this happens.
 :::: challenge
 ## Exercise
 
-Use both the Packages tab to confirm that you have the `tidyverse` and
-`here` installed.
+Use the Packages tab to confirm that you have both the `tidyverse` and
+`here` packages installed.
 
 ::: solution
 ## Solution
@@ -164,15 +164,6 @@ transcription error, or you are able to add more data to your analysis,
 you will be able to recompile the report without making any changes in
 the actual document.
 
-<figure>
-
-<img src="fig/rmarkdown_wizards.png" alt="R Markdown wizard monsters creating a R Markdown document from a recipe. Art by Allison Horst" width="100%" style="display: block; margin: auto;" />
-
-<figcaption>Image credit:
-<a href="https://github.com/allisonhorst/stats-illustrations">Allison
-Horst</a></figcaption>
-
-</figure>
 
 ## Creating an R Notebook file
 
@@ -258,12 +249,12 @@ To create `code-type` font, surround the word with backticks,
 Code chunks are blocks where you write and execute R code. They start
 with ```` ```{r} and end with ``` ````.
 
-To insert a Chunk, Click the small arrow next to the Insert button in
+To insert a Chunk, click the small arrow next to the Insert button in
 the editor toolbar and select R.
 
-To run a Chunk, Click the small green play arrow on the right side of
-the chunk, or use the keyboard shortcut Ctrl + Shift + Enter (or Cmd +
-Shift + Enter on Mac).
+To run a Chunk, click the small green play arrow on the right side of
+the chunk, or use the keyboard shortcut Ctrl + Alt + I (or Cmd +
+Option + I on Mac).
 
 #### Viewing output
 
