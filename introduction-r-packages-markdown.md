@@ -90,7 +90,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.9 milliseconds.
+Successfully installed 1 package in 26 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -425,8 +425,8 @@ unique, and only contain alphanumeric characters and `-`.
 
 To load **tidyverse** and our `SAFI_clean.csv` file, we will insert a
 chunk and call it 'setup'. Since we don't want this code or the output
-to show in our knitted HTML document, we add an `include = FALSE` option
-after the code chunk name (`{r setup, include = FALSE}`).
+to show in our rendered HTML document, we add an `include = FALSE`
+option after the code chunk name (`{r setup, include = FALSE}`).
 
 
 ```` markdown
@@ -564,7 +564,7 @@ is the number of backticks. In-line R code uses one backtick
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-02-12.\
+rendered as: today's date is 2026-02-13.\
 The code will display today's date in the output document (well,
 technically the date the document was last knitted).
 
@@ -591,6 +591,10 @@ and include the mean values as in-line R-code. For example:
 The average household size in the village of Chirodzo is
 ``` `r round(mean_chirodzo$mean_no_membrs, 2)` ```
 
+becomes...
+
+The average household size in the village of Chirodzo is
+7.08.
 
 Because we are using in-line R code instead of the actual values, we
 have created a dynamic document that will automatically update if we
@@ -685,10 +689,10 @@ It is possible to insert citations into an R Markdown file using the
 editor toolbar. The editor toolbar includes commonly seen formatting
 buttons generally seen in text editors (e.g., bold and italic buttons).
 The toolbar is accessible by using the settings dropdown menu (next to
-the 'Knit' dropdown menu) to select 'Use Visual Editor', also accessible
-through the shortcut 'Crtl+Shift+F4'. From here, clicking 'Insert'
-allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8'). For
-example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and
+the 'Preview' dropdown menu) to select 'Use Visual Editor', also
+accessible through the shortcut 'Crtl+Shift+F4'. From here, clicking
+'Insert' allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8').
+For example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and
 inserting will provide the citation for `ggplot2` [@wickham2016]. This
 will also save the citation(s) in 'references.bib' in the current
 working directory. Visit the [R Studio
