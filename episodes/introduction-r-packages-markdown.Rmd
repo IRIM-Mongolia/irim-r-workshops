@@ -419,8 +419,8 @@ interviews <- read_csv("data/raw/SAFI_clean.csv", na = "NULL")
 
 To load **tidyverse** and our `SAFI_clean.csv` file, we will insert a
 chunk and call it 'setup'. Since we don't want this code or the output
-to show in our knitted HTML document, we add an `include = FALSE` option
-after the code chunk name (`{r setup, include = FALSE}`).
+to show in our rendered HTML document, we add an `include = FALSE`
+option after the code chunk name (`{r setup, include = FALSE}`).
 
 ````{verbatim, lang = "markdown"}
 ```{r setup, include = FALSE}
@@ -569,6 +569,10 @@ and include the mean values as in-line R-code. For example:
 The average household size in the village of Chirodzo is
 ``` ``r "r round(mean_chirodzo$mean_no_membrs, 2)"`` ```
 
+becomes...
+
+The average household size in the village of Chirodzo is
+`r round(mean_chirodzo$mean_no_membrs, 2)`.
 
 Because we are using in-line R code instead of the actual values, we
 have created a dynamic document that will automatically update if we
@@ -653,10 +657,10 @@ It is possible to insert citations into an R Markdown file using the
 editor toolbar. The editor toolbar includes commonly seen formatting
 buttons generally seen in text editors (e.g., bold and italic buttons).
 The toolbar is accessible by using the settings dropdown menu (next to
-the 'Knit' dropdown menu) to select 'Use Visual Editor', also accessible
-through the shortcut 'Crtl+Shift+F4'. From here, clicking 'Insert'
-allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8'). For
-example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and
+the 'Preview' dropdown menu) to select 'Use Visual Editor', also
+accessible through the shortcut 'Crtl+Shift+F4'. From here, clicking
+'Insert' allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8').
+For example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and
 inserting will provide the citation for `ggplot2` [@wickham2016]. This
 will also save the citation(s) in 'references.bib' in the current
 working directory. Visit the [R Studio
