@@ -90,7 +90,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.5 milliseconds.
+Successfully installed 1 package in 6.8 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -555,7 +555,7 @@ is the number of backticks. In-line R code uses one backtick
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-02-24.\
+rendered as: today's date is 2026-03-09.\
 The code will display today's date in the output document (well,
 technically the date the document was last knitted).
 
