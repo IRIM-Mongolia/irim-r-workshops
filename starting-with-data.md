@@ -1,7 +1,7 @@
 ---
 title: Starting with Data
-teaching: 50
-exercises: 30
+teaching: 70
+exercises: 2
 source: Rmd
 editor_options: 
   markdown: 
@@ -55,7 +55,8 @@ specifically
 [See Workshop 3 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK)
 
-<!-- [See Workshop 3 recording here]() -->
+[See Workshop 3 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha)
+
 
 ## Set up
 
@@ -104,7 +105,7 @@ encoded as "NULL", each row holds information for a single interview
 respondent, and the columns represent:
 
 | column_name | description |
-|-----------------------|------------------------------------------------|
+|------------------------|------------------------------------------------|
 | key_id | Added to provide a unique Id for each observation. (The InstanceID field does this as well but it is not as convenient to use) |
 | village | Village name |
 | interview_date | Date of interview |
