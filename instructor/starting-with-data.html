@@ -227,6 +227,7 @@
       <div class="accordion-body">
         <ul><li><a href="#acknowledgement">Acknowledgement</a></li>
 <li><a href="#other-materials">Other Materials</a></li>
+<li><a href="#set-up">Set up</a></li>
 <li><a href="#what-are-data-frames">What are data frames?</a></li>
 <li><a href="#presentation-of-the-safi-data">Presentation of the SAFI Data</a></li>
 <li><a href="#importing-data">Importing data</a></li>
@@ -377,6 +378,14 @@ Ecologists</a>, specifically <a href="https://datacarpentry.github.io/R-ecology-
 <hr class="half-width"><p><a href="https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK" class="external-link">See
 Workshop 3 Slides here</a></p>
 <!-- [See Workshop 3 recording here]() -->
+</section><section><h2 class="section-heading" id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a></h2>
+<hr class="half-width"><p>Start by opening up your RStudio project that you created in a <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio" class="external-link">previous
+lesson</a> (called intro_r). Open a new R notebook: Click File -&gt; New
+File -&gt; R Notebook. Save your R notebook with a filename that makes
+sense, such as <code>starting_with_data.Rmd</code>, in the
+<code>scripts</code> folder.</p>
+<p>When you open a new R Notebook, some explanatory text is provided.
+This can be deleted so you can enter your own text and code.</p>
 </section><section><h2 class="section-heading" id="what-are-data-frames">What are data frames?<a class="anchor" aria-label="anchor" href="#what-are-data-frames"></a></h2>
 <hr class="half-width"><p>Data frames are the <em>de facto</em> data structure for tabular data
 in <code>R</code>, and what we use for data processing, statistics, and
@@ -404,7 +413,7 @@ description</a>.</p>
 (<code>data/raw/SAFI_clean.csv</code>). In this dataset, the missing
 data is encoded as “NULL”, each row holds information for a single
 interview respondent, and the columns represent:</p>
-<table class="table"><colgroup><col width="31%"><col width="68%"></colgroup><thead><tr><th>column_name</th>
+<table class="table"><colgroup><col width="32%"><col width="67%"></colgroup><thead><tr><th>column_name</th>
 <th>description</th>
 </tr></thead><tbody><tr><td>key_id</td>
 <td>Added to provide a unique Id for each observation. (The InstanceID
@@ -521,13 +530,10 @@ subdirectories. This is an important contrast to using
 <code>setwd()</code>, which depends on the way you order your files on
 your computer.</p>
 <p>Before we can use the <code>read_csv()</code> and <code>here()</code>
-functions, we need to load the tidyverse and here packages. Let’s do
-this in a new R notebook that we’ll save in our <code>scripts</code>
-folder. Save your R notebook with a filename that makes sense, such as
-<code>starting_with_data.Rmd</code>.</p>
-<p>Add a new code chunk, load the tidyverse and here packages, and read
-in the SAFI dataset. We’ll <strong>assign</strong> the dataset to an
-object called <code>interviews</code>.</p>
+functions, we need to load the tidyverse and here packages.</p>
+<p>Add a new code chunk in your notebook, load the tidyverse and here
+packages, and read in the SAFI dataset. We’ll <strong>assign</strong>
+the dataset to an object called <code>interviews</code>.</p>
 <p>If you recall, the missing data is encoded as “NULL” in the dataset.
 We’ll tell this to the <code>read_csv()</code> function, so R will
 automatically convert all the “NULL” entries in the dataset into
