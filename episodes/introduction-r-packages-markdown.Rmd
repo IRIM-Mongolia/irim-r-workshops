@@ -35,10 +35,9 @@ specifically [lesson
 
 ## Other Materials
 
-[See Workshop 2 Slides
-here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
+[See Workshop 2 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
 
-[See workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
+[See Workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
 
 ## What are R packages?
 
