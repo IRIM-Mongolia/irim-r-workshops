@@ -38,6 +38,8 @@ specifically [lesson
 [See Workshop 2 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
 
+[See workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
+
 ## What are R packages?
 
 [R Packages](https://r-pkgs.org/) are the fundamental units of
@@ -90,7 +92,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 6.8 milliseconds.
+Successfully installed 1 package in 5.9 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -555,7 +557,7 @@ is the number of backticks. In-line R code uses one backtick
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-03-09.\
+rendered as: today's date is 2026-03-10.\
 The code will display today's date in the output document (well,
 technically the date the document was last knitted).
 
