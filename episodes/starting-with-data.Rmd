@@ -11,8 +11,7 @@ editor_options:
 ::: instructor
 The main goals for this lessons are:
 
--   To make sure that learners are comfortable with working with data
-    frames, and can use the bracket notation to select slices/columns.
+-   To make sure that learners understand the structure of a dataframe
 -   To expose learners to factors. Their behavior is not necessarily
     intuitive, and so it is important that they are guided through it
     the first time they are exposed to it. The content of the lesson
@@ -20,18 +19,17 @@ The main goals for this lessons are:
 :::
 
 ::: objectives
--   Describe what a data frame is.
 -   Load external data from a .csv file into a data frame.
--   Summarize the contents of a data frame.
--   Subset values from data frames.
+-   Explore the structure and content of data.frames
+-   Understand how R assigns values to objects
+-   Understand vector types and missing data
 -   Describe the difference between a factor and a string.
--   Convert between strings and factors.
--   Reorder and rename factors.
--   Change how character strings are handled in a data frame.
+-   Create and convert factors
 -   Examine and change date formats.
 :::
 
 ::: questions
+-   How does R store data?
 -   What is a data.frame?
 -   How can I read a complete csv file into R?
 -   How can I get basic summary information about my dataset?
@@ -46,12 +44,18 @@ This workshop was adapted using material from the Data Carpentry lessons
 [R for Social
 Scientists](https://datacarpentry.github.io/r-socialsci/index.html),
 specifically [lesson
-02-starting-with-data](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html).
+02-starting-with-data](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html),
+and [R for
+Ecologists](https://datacarpentry.github.io/R-ecology-lesson/index.html),
+specifically
+[how-r-thinks-about-data](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html).
 
 ## Other Materials
 
 [See Workshop 3 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK)
+
+<!-- [See Workshop 3 recording here]() -->
 
 ## What are data frames?
 
@@ -89,7 +93,7 @@ encoded as "NULL", each row holds information for a single interview
 respondent, and the columns represent:
 
 | column_name | description |
-|------------------|------------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | key_id | Added to provide a unique Id for each observation. (The InstanceID field does this as well but it is not as convenient to use) |
 | village | Village name |
 | interview_date | Date of interview |
@@ -198,7 +202,8 @@ that we'll save in our `scripts` folder. Save your R notebook with a
 filename that makes sense, such as `starting_with_data.Rmd`.
 
 Add a new code chunk, load the tidyverse and here packages, and read in
-the SAFI dataset.
+the SAFI dataset. We'll **assign** the dataset to an object called
+`interviews`.
 
 If you recall, the missing data is encoded as "NULL" in the dataset.
 We'll tell this to the `read_csv()` function, so R will automatically
@@ -226,27 +231,20 @@ names. The two methods are equivalent, so that
 produce the same result. (The slash is used on all operating systems;
 backslashes are not used.)
 
-If you were to type in the code above, it is likely that the
-`read.csv()` function would appear in the automatically populated list
-of functions. This function is different from the `read_csv()` function,
-as it is included in the "base" packages that come pre-installed with R.
-Overall, `read.csv()` behaves similar to `read_csv()`, with a few
-notable differences. First, `read.csv()` coerces column names with
-spaces and/or special characters to different names (e.g.
-`interview date` becomes `interview.date`). Second, `read.csv()` stores
-data as a `data.frame`, where `read_csv()` stores data as a different
-kind of data frame called a `tibble`.
+## Assigning objects
 
-We prefer tibbles because they have nice printing properties among other
-desirable qualities. Read more about tibbles
-[here](https://tibble.tidyverse.org/).
+In R, we can **assign** inputs to a named **object**. We do this using
+the **assignment arrow** `<-`, <kbd>Alt+-</kbd> (Windows) or
+<kbd>Option+-</kbd> (Mac).What we are doing here is taking the result of
+the code on the right side of the arrow (reading in the csv file), and
+assigning it to an object whose name is on the left side of the arrow
+(`interviews`).
 
-The second statement in the code above creates a data frame but doesn't
-output any data because, as you might recall, assignments (`<-`) don't
-display anything. (Note, however, that `read_csv` may show informational
-text about the data frame that is created.) If we want to check that our
-data has been loaded, we can see the contents of the data frame by
-typing its name: `interviews` into a new code chunk.
+You may notice that the contents of the interviews data frame do not
+display below the code cell. This is because assignments (`<-`) don't
+display anything. If we want to check that our data has been loaded, we
+can see the contents of the data frame by typing its name: `interviews`
+into a new code chunk.
 
 ```{r, results="hold", purl=FALSE}
 interviews
@@ -254,6 +252,61 @@ interviews
 ## view(interviews)
 ## head(interviews)
 ```
+
+## Exploring data frames
+
+When working with the output of a new function, it's often a good idea
+to check the `class()`:
+
+```{r class-tibble}
+class(interviews)
+```
+
+Whoa! What is this thing? It has multiple classes`spec_tbl_df`,
+`tbl_df`, `tbl`, and `data.frame`? Well, it's called a `tibble`, and it
+is the `tidyverse` version of a data.frame. It *is* a data.frame, but
+with some added perks. It prints out a little more nicely, it highlights
+`NA` values and negative values in red, and it will generally
+communicate with you more (in terms of warnings and errors, which is a
+good thing).
+
+As a `tibble`, the type of data included in each column is listed in an
+abbreviated fashion below the column names. For instance, here `key_ID`
+is a column of floating point numbers (abbreviated `<dbl>` for the word
+'double'),
+``` respondent_wall_type`` is a column of characters ( ```<chr>`) and the`interview_date`is a column in the "date and time" format (`<dttm>\`).
+
+::: callout
+**`tidyverse` vs. base R**
+
+As we begin to delve more deeply into the `tidyverse`, we should briefly
+pause to mention some of the reasons for focusing on the `tidyverse` set
+of tools. In R, there are often many ways to get a job done, and there
+are other approaches that can accomplish tasks similar to the
+`tidyverse`.
+
+The phrase **base R** is used to refer to approaches that utilize
+functions contained in R's default packages. We will use some base R
+functions, such as `str()`, `head()`, and `nrow()`, and we will be using
+more scattered throughout this workshop. However, there are some key
+base R approaches we will not be teaching. These include square bracket
+subsetting. You may come across code written by other people that looks
+like `interviews[1:10, 2]`, which is a base R command. If you're
+interested in learning more about these approaches, you can check out
+other Carpentries lessons like the [Software Carpentry Programming with
+R](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
+
+We choose to teach the `tidyverse` set of packages because they share a
+similar syntax and philosophy, making them consistent and producing
+highly readable code. They are also very flexible and powerful, with a
+growing number of packages designed according to similar principles and
+to work well with the rest of the packages. The `tidyverse` packages
+tend to have very clear documentation and wide array of learning
+materials that tend to be written with novice users in mind. Finally,
+the `tidyverse` has only continued to grow, and has strong support from
+RStudio, which implies that these approaches will be relevant into the
+future.
+:::
 
 ::: callout
 ## Note
@@ -270,30 +323,14 @@ tab-separated data files, and `read_delim()` allows you to specify more
 details about the structure of your file.
 :::
 
-Note that `read_csv()` actually loads the data as a tibble. A tibble is
-an extension of `R` data frames used by the **`tidyverse`**. When the
-data is read using `read_csv()`, it is stored in an object of class
-`tbl_df`, `tbl`, and `data.frame`. You can see the class of an object
-with
-
-```{r, results="hold", purl=FALSE}
-class(interviews)
-```
-
-As a `tibble`, the type of data included in each column is listed in an
-abbreviated fashion below the column names. For instance, here `key_ID`
-is a column of floating point numbers (abbreviated `<dbl>` for the word
-'double'), `village` is a column of characters (`<chr>`) and the
-`interview_date` is a column in the "date and time" format (`<dttm>`).
-
 ## Inspecting data frames
 
-When calling a `tbl_df` object (like `interviews` here), there is
-already a lot of information about our data frame being displayed such
-as the number of rows, the number of columns, the names of the columns,
-and as we just saw the class of data stored in each column. However,
-there are functions to extract this information from data frames. Here
-is a non-exhaustive list of some of these functions. Let's try them out!
+When calling a `tbl_df` object (like `interviews`), there is already a
+lot of information about our data frame being displayed such as the
+number of rows, the number of columns, the names of the columns, and as
+we just saw the class of data stored in each column. However, there are
+functions to extract this information from data frames. Here is a
+non-exhaustive list of some of these functions. Let's try them out!
 
 Size:
 
@@ -322,129 +359,327 @@ Summary:
     the tibble, the names and class of each column, and previews as many
     values will fit on the screen. Unlike the other inspecting functions
     listed above, `glimpse()` is not a "base R" function so you need to
-    have the `dplyr` or `tibble` packages loaded to be able to execute
-    it.
+    have the `tidyverse` package loaded to be able to execute it.
 
 Note: most of these functions are "generic." They can be used on other
 types of objects besides data frames or tibbles.
 
-## Subsetting data frames
+### Using functions
 
-Our `interviews` data frame has rows and columns (it has 2 dimensions).
-In practice, we may not need the entire data frame; for instance, we may
-only be interested in a subset of the observations (the rows) or a
-particular set of variables (the columns). If we want to access some
-specific data from it, we need to specify the "coordinates" (i.e.,
-indices) we want from it. Row numbers come first, followed by column
-numbers.
+We can view the first few rows with the `head()` function, and the last
+few rows with the `tail()` function:
 
-::: callout
-## Tip
-
-Subsetting a `tibble` with `[` always results in a `tibble`. However,
-note this is not true in general for data frames, so be careful!
-Different ways of specifying these coordinates can lead to results with
-different classes. This is covered in the Software Carpentry lesson [R
-for Reproducible Scientific
-Analysis](https://swcarpentry.github.io/r-novice-gapminder/).
-:::
-
-```{r, purl=FALSE}
-## first element in the first column of the tibble
-interviews[1, 1]
-
-## first element in the 6th column of the tibble 
-interviews[1, 6]
-
-## first column of the tibble (as a vector)
-interviews[[1]]
-
-## first column of the tibble
-interviews[1]
-
-## first three elements in the 7th column of the tibble
-interviews[1:3, 7]
-
-## the 3rd row of the tibble
-interviews[3, ]
-
-## equivalent to head_interviews <- head(interviews)
-head_interviews <- interviews[1:6, ]
+```{r head}
+head(interviews)
+tail(interviews)
 ```
 
-`:` is a special function that creates numeric vectors of integers in
-increasing or decreasing order, test `1:10` and `10:1` for instance.
+We used these functions with just one argument, the object `interviews`,
+and we didn't give the argument a name. In R, a function's arguments
+come in a particular order, and if you put them in the correct order,
+you don't need to name them. In this case, the name of the argument is
+`x`, so we can name it if we want, but since we know it's the first
+argument, we don't need to.
 
-You can also exclude certain indices of a data frame using the "`-`"
-sign:
+Some arguments are optional. For example, the `n` argument in `head()`
+specifies the number of rows to print. It defaults to 6, but we can
+override that by specifying a different number:
 
-```{r, purl=FALSE}
-interviews[, -1]          # The whole tibble, except the first column
-
-interviews[-c(7:131), ]   # Equivalent to head(interviews)
+```{r head-n}
+head(interviews, n = 10)
 ```
 
-`tibble`s can be subset by calling indices (as shown previously), but
-also by calling their column names directly:
+If we order them correctly, we don't have to name either:
 
-```{r, eval=FALSE, purl=FALSE}
-interviews["village"]       # Result is a tibble
-
-interviews[, "village"]     # Result is a tibble
-
-interviews[["village"]]     # Result is a vector
-
-interviews$village          # Result is a vector
+```{r head-n-noname}
+head(interviews, 10)
 ```
 
-In RStudio, you can use the autocompletion feature to get the full and
-correct names of the columns.
+Additionally, if we name them, we can put them in any order we want:
 
-:::: challenge
-## Exercise
+```{r head-reverse}
+head(n = 10, x = interviews)
+```
 
-1.  Create a tibble (`interviews_100`) containing only the data in row
-    100 of the `interviews` dataset.
+Generally, it's good practice to start with the required arguments, like
+the data.frame whose rows you want to see, and then to name the optional
+arguments. If you are ever unsure, it never hurts to explicitly name an
+argument.
 
-Now, continue using `interviews` for each of the following activities:
+### Aside: Getting Help
 
-2.  Notice how `nrow()` gave you the number of rows in the tibble?
+To learn more about a function, you can type a `?` in front of the name
+of the function, which will bring up the official documentation for that
+function:
 
--   Use that number to pull out just that last row in the tibble.
--   Compare that with what you see as the last row using `tail()` to
-    make sure it's meeting expectations.
--   Pull out that last row using `nrow()` instead of the row number.
--   Create a new tibble (`interviews_last`) from that last row.
+```{r, head-help}
+?head
+```
 
-3.  Using the number of rows in the interviews dataset that you found in
-    question 2, extract the row that is in the middle of the dataset.
-    Store the content of this middle row in an object named
-    `interviews_middle`. (hint: This dataset has an odd number of rows,
-    so finding the middle is a bit trickier than dividing n_rows by 2.
-    Use the median( ) function and what you've learned about sequences
-    in R to extract the middle row!
+Function documentation is written by the authors of the functions, so
+they can vary pretty widely in their style and readability. The first
+section, **Description**, gives you a concise description of what the
+function does, but it may not always be enough. The **Arguments**
+section defines all the arguments for the function and is usually worth
+reading thoroughly. Finally, the **Examples** section at the end will
+often have some helpful examples that you can run to get a sense of what
+the function is doing.
 
-4.  Combine `nrow()` with the `-` notation above to reproduce the
-    behavior of `head(interviews)`, keeping just the first through 6th
-    rows of the interviews dataset.
+Another great source of information is **package vignettes**. Many
+packages have vignettes, which are like tutorials that introduce the
+package, specific functions, or general methods. You can run
+`vignette(package = "package_name")` to see a list of vignettes in that
+package. Once you have a name, you can run
+`vignette("vignette_name", "package_name")` to view that vignette. You
+can also use a web browser to go to
+`https://cran.r-project.org/web/packages/package_name/vignettes/` where
+you will find a list of links to each vignette. Some packages will have
+their own websites, which often have nicely formatted vignettes and
+tutorials.
 
-::: solution
-## Solution
+Finally, learning to search for help is probably the most useful skill
+for any R user. The key skill is figuring out what you should actually
+search for. It's often a good idea to start your search with `R` or
+`R programming`. If you have the name of a package you want to use,
+start with `R package_name`.
+
+Let's investigate `str` a bit more.
 
 ```{r}
-## 1.
-interviews_100 <- interviews[100, ]
-## 2.
-# Saving `n_rows` to improve readability and reduce duplication
-n_rows <- nrow(interviews)
-interviews_last <- interviews[n_rows, ]
-## 3.
-interviews_middle <- interviews[median(1:n_rows), ]
-## 4.
-interviews_head <- interviews[-(7:n_rows), ]
+str(interviews)
 ```
+
+We get quite a bit of useful information here. First, we are told that
+we have a data.frame of `r nrow(interviews)` observations, or rows, and
+`r ncol(interviews)` variables, or columns.
+
+Next, we get a bit of information on each variable, including its type
+(`int` or `chr`) and a quick peek at the first 10 values. You might ask
+why there is a `$` in front of each variable. This is because the `$` is
+an operator that allows us to select individual columns from a
+data.frame.
+
+The `$` operator also allows you to use tab-completion to quickly select
+which variable you want from a given data.frame. For example, to get the
+`village` variable, we can type `interviews$` and then hit
+<kbd>Tab</kbd>. We get a list of the variables that we can move through
+with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach `year`,
+which should finish this code:
+
+```{r dollar-subsetting}
+interviews$village
+
+```
+
+## Vectors: the building block of data
+
+You might have noticed that our last result looked different from when
+we printed out the `interviews` data.frame itself. That's because it is
+not a data.frame, it is a **vector**. A vector is a 1-dimensional series
+of values, in this case a vector of numbers representing years.
+
+Data.frames are made up of vectors; each column in a data.frame is a
+vector. Vectors are the basic building blocks of all data in R.
+Basically, everything in R is a vector, a bunch of vectors stitched
+together in some way, or a function. Understanding how vectors work is
+crucial to understanding how R treats data, so we will spend some time
+learning about them.
+
+There are 4 main types of vectors (also known as *atomic vectors*):
+
+1.  `"character"` for strings of characters, like our `village` or
+    `respondent_wall_type` columns. Each entry in a character vector is
+    wrapped in quotes. In other programming languages, this type of data
+    may be referred to as "strings".
+
+2.  `"integer"` for integers. All the numeric values in `interviews` are
+    integers. You may sometimes see integers represented like `2L` or
+    `20L`. The `L` indicates to R that it is an integer, instead of the
+    next data type, `"numeric"`.
+
+3.  `"numeric"`, aka `"double"`, vectors can contain numbers including
+    decimals. Other languages may refer to these as "float" or "floating
+    point" numbers.
+
+4.  `"logical"` for `TRUE` and `FALSE`, which can also be represented as
+    `T` and `F`. In other contexts, these may be referred to as
+    "Boolean" data.
+
+Vectors can only be of a **single type**. Since each column in a
+data.frame is a vector, this means an accidental character following a
+number, like `29,` can change the type of the whole vector. Mixing up
+vector types is one of the most common mistakes in R, and it can be
+tricky to figure out. It's often very useful to check the types of
+vectors.
+
+To create a vector from scratch, we can use the `c()` function, putting
+values inside, separated by commas.
+
+```{r c-vector}
+c(1, 2, 5, 12, 4)
+```
+
+As you can see, those values get printed out in the console, just like
+with `interviews$village`. To store this vector so we can continue to
+work with it, we need to assign it to an object.
+
+```{r assign-vector}
+num <- c(1, 2, 5, 12, 4)
+```
+
+You can check what kind of object `num` is with the `class()` function.
+
+```{r}
+class(num)
+```
+
+We see that `num` is a `numeric` vector.
+
+Let's try making a character vector:
+
+```{r}
+char <- c("apple", "pear", "grape")
+class(char)
+```
+
+Remember that each entry, like `"apple"`, needs to be surrounded by
+quotes, and entries are separated with commas. If you do something like
+`"apple, pear, grape"`, you will have only a single entry containing
+that whole string.
+
+Finally, let's make a logical vector:
+
+```{r}
+logi <- c(TRUE, FALSE, TRUE, TRUE)
+class(logi)
+```
+
+:::::: challenge
+## Challenge 1: Coercion
+
+Since vectors can only hold one type of data, something has to be done
+when we try to combine different types of data into one vector.
+
+1.  What type will each of these vectors be? Try to guess without
+    running any code at first, then run the code and use `class()` to
+    verify your answers.
+
+```{r coercion-challenge}
+num_logi <- c(1, 4, 6, TRUE)
+num_char <- c(1, 3, "10", 6)
+char_logi <- c("a", "b", TRUE)
+
+
+tricky <- c("a", "b", "1", FALSE)
+```
+
+::: solution
+```{r coercion-challenge-answer}
+class(num_logi)
+class(num_char)
+class(char_logi)
+class(tricky)
+```
+
+R will automatically convert values in a vector so that they are all the
+same type, a process called **coercion**.
 :::
-::::
+
+2.  How many values in `combined_logical` are `"TRUE"` (as a character)?
+
+```{r combined-logical-challenge}
+combined_logical <- c(num_logi, char_logi)
+```
+
+::: solution
+```{r combined-logical-challenge-answer}
+combined_logical
+class(combined_logical)
+```
+
+Only one value is `"TRUE"`. Coercion happens when each vector is
+created, so the `TRUE` in `num_logi` becomes a `1`, while the `TRUE` in
+`char_logi` becomes `"TRUE"`. When these two vectors are combined, R
+doesn't remember that the `1` in `num_logi` used to be a `TRUE`, it will
+just coerce the `1` to `"1"`.
+:::
+
+3.  Now that you've seen a few examples of coercion, you might have
+    started to see that there are some rules about how types get
+    converted. There is a hierarchy to coercion. Can you draw a diagram
+    that represents the hierarchy of what types get converted to other
+    types?
+
+::: solution
+logical → integer → numeric → character
+
+Logical vectors can only take on two values: `TRUE` or `FALSE`. Integer
+vectors can only contain integers, so `TRUE` and `FALSE` can be coerced
+to `1` and `0`. Numeric vectors can contain numbers with decimals, so
+integers can be coerced from, say, `6` to `6.0` (though R will still
+display a numeric `6` as `6`.). Finally, any string of characters can be
+represented as a character vector, so any of the other types can be
+coerced to a character vector.
+:::
+::::::
+
+Coercion is not something you will often do intentionally; rather, when
+combining vectors or reading data into R, a stray character that you
+missed may change an entire numeric vector into a character vector. It
+is a good idea to check the `class()` of your results frequently,
+particularly if you are running into confusing error messages.
+
+## Missing data
+
+One of the great things about R is how it handles missing data, which
+can be tricky in other programming languages. R represents missing data
+as `NA`, without quotes, in vectors of any type. Let's make a numeric
+vector with an `NA` value:
+
+```{r na-vec}
+weights <- c(25, 34, 12, NA, 42)
+```
+
+R doesn't make assumptions about how you want to handle missing data, so
+if we pass this vector to a numeric function like `min()`, it won't know
+what to do, so it returns `NA`:
+
+```{r func-na}
+min(weights)
+```
+
+This is a very good thing, since we won't accidentally forget to
+consider our missing data. If we decide to exclude our missing values,
+many basic math functions have an argument to **r**e**m**ove them:
+
+```{r func-na-rm}
+min(weights, na.rm = TRUE)
+```
+
+## Building with vectors
+
+We have now seen vectors in a few different forms: as columns in a
+data.frame and as single vectors. However, they can be manipulated into
+lots of other shapes and forms. Some other common forms are:
+
+-   matrices
+    -   2-dimensional numeric representations
+-   arrays
+    -   many-dimensional numeric
+-   lists
+    -   lists are very flexible ways to store vectors
+    -   a list can contain vectors of many different types and lengths
+    -   an entry in a list can be another list, so lists can get deeply
+        nested
+    -   a data.frame is a type of list where each column is an
+        individual vector and each vector has to be the same length,
+        since a data.frame has an entry in every column for each row
+-   factors
+    -   a way to represent categorical data
+    -   factors can be ordered or unordered
+    -   they often *look* like character vectors, but behave differently
+    -   under the hood, they are integers with character labels, called
+        **levels**, for each integer
 
 ## Factors
 
@@ -659,9 +894,9 @@ columns.
 str(interviews)
 ```
 
-We are going to use the package **`lubridate`**, , which is included in
+We are going to use the package **`lubridate`**, which is included in
 the **`tidyverse`** installation and should be loaded by default.
-However, if we deal with older versions of tidyverse (2022 and ealier),
+However, if we deal with older versions of tidyverse (2022 and earlier),
 we can manually load it by typing `library(lubridate)`.
 
 If necessary, start by loading the required package:
