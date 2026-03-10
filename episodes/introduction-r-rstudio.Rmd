@@ -23,6 +23,8 @@ This workshop was adapted using material from the Data Carpentry lessons [R for 
 
 [See Workshop 1 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQC2QIi5hSalQ4WFU1qTaduaAdYxB4Gd0f7Y7wTtaKn6AnQ?e=gjZViL)
 
+[See workshop 1 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQBf8NThi-iKQ4Et5uw4_-b9ATUDqsI7om6Dp0YSSVZBXBI?e=A4d0fQ)
+
 ## What are R and RStudio?
 
 R refers to a programming language as well as the software that runs R code.
