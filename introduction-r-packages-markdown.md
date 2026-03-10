@@ -35,10 +35,9 @@ specifically [lesson
 
 ## Other Materials
 
-[See Workshop 2 Slides
-here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
+[See Workshop 2 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
 
-[See workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
+[See Workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
 
 ## What are R packages?
 
@@ -92,7 +91,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.9 milliseconds.
+Successfully installed 1 package in 6 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`

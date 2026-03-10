@@ -93,7 +93,7 @@ encoded as "NULL", each row holds information for a single interview
 respondent, and the columns represent:
 
 | column_name | description |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | key_id | Added to provide a unique Id for each observation. (The InstanceID field does this as well but it is not as convenient to use) |
 | village | Village name |
 | interview_date | Date of interview |
@@ -622,7 +622,7 @@ The `$` operator also allows you to use tab-completion to quickly select
 which variable you want from a given data.frame. For example, to get the
 `village` variable, we can type `interviews$` and then hit
 <kbd>Tab</kbd>. We get a list of the variables that we can move through
-with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach `year`,
+with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach `village`,
 which should finish this code:
 
 
@@ -660,7 +660,7 @@ interviews$village
 You might have noticed that our last result looked different from when
 we printed out the `interviews` data.frame itself. That's because it is
 not a data.frame, it is a **vector**. A vector is a 1-dimensional series
-of values, in this case a vector of numbers representing years.
+of values, in this case a vector of characters representing the village name.
 
 Data.frames are made up of vectors; each column in a data.frame is a
 vector. Vectors are the basic building blocks of all data in R.
@@ -1281,15 +1281,6 @@ str(interviews)
 
 We are going to use the package **`lubridate`**, which is included in
 the **`tidyverse`** installation and should be loaded by default.
-However, if we deal with older versions of tidyverse (2022 and earlier),
-we can manually load it by typing `library(lubridate)`.
-
-If necessary, start by loading the required package:
-
-
-``` r
-library(lubridate)
-```
 
 The lubridate function `ymd()` takes a vector representing year, month,
 and day, and converts it to a `Date` vector. `Date` is a class of data
