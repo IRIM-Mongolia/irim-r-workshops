@@ -63,9 +63,7 @@ episodes:
 - introduction-r-rstudio.Rmd
 - introduction-r-packages-markdown.Rmd
 - starting-with-data.Rmd
-#- visualizing-ggplot.Rmd
-#- how-r-thinks-about-data.Rmd
-#- working-with-data.Rmd
+- manipulating_data.Rmd
 
 # Information for Learners
 learners:
