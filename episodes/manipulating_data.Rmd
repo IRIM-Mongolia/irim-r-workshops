@@ -1,5 +1,5 @@
 ---
-title: Manipulating data with dplyr and tidyr
+title: Manipulating Data with dplyr and tidyr
 teaching: 60
 exercises: 30
 source: Rmd
@@ -71,11 +71,11 @@ free to use the regional variant for where you are teaching.
 
 To learn more about **`dplyr`** after this workshop, you may want to
 check out this [handy data transformation with **`dplyr`**
-cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf).
+cheatsheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html?_gl=1*1ov7r49*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 To learn more about **`tidyr`** after the workshop, you may want to
 check out this [handy data tidying with **`tidyr`**
-cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf).
+cheatsheet](https://rstudio.github.io/cheatsheets/html/tidyr.html?_gl=1*1d6d96q*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzEkdDE3NzMyODcxMzkkajYwJGwwJGgw).
 
 ::: callout
 ## Note
@@ -98,24 +98,16 @@ specifically [lesson
 and [lesson
 04-tidyr](https://datacarpentry.github.io/r-socialsci/04-tidyr.html)
 
-<!-- [R for -->
-
-<!-- Ecologists](https://datacarpentry.github.io/R-ecology-lesson/index.html), -->
-
-<!-- specifically -->
-
-<!-- [how-r-thinks-about-data](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html). -->
-
 ## Other Materials
 
-<!-- [See Workshop 4 Slides here]() -->
+[See Workshop 4 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQD8TzzpZnW6Q7_8n7MCaM-EAXYeMs7SyqgNyvh2i4HUo8c?e=JyHKD1)
 
 <!-- [See Workshop 4 recording here]() -->
 
 ## Set up
 
 Start by opening up your RStudio project that you created in a [previous
-lesson](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
+workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
 called intro_r, in a new session. Ensure your global environment is
 empty! You can also 'sweep' your global environment by clicking the
 `broom` icon.
@@ -129,7 +121,7 @@ R notebook with a filename that makes sense, such as
 When you open a new R Notebook, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the SAFI dataset that we downloaded earlier.
+Read in the SAFI dataset that we downloaded earlier [in a previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 ```{r, results="hide", purl=FALSE, message=FALSE}
 
@@ -161,9 +153,7 @@ this function is the dataframe (`interviews`), and the subsequent
 arguments are the columns to keep, separated by commas. Alternatively,
 if you are selecting columns adjacent to each other, you can use a `:`
 to select a range of columns, read as "select columns from \_\_\_ to
-\_\_\_." You may have done something similar in the past using
-subsetting. `select()` is essentially doing the same thing as
-subsetting, using a package (`dplyr`) instead of R's base functions.
+\_\_\_." 
 
 ```{r, results="hide", purl=FALSE}
 # to select columns throughout the dataframe
@@ -183,13 +173,9 @@ final dataframe to adhere to (e.g. village name is Chirodzo):
 filter(interviews, village == "Chirodzo")
 ```
 
-You may also have noticed that the output from these call doesn't run
-off the screen anymore. It's one of the advantages of `tbl_df` (also
-called tibble), the central data class in the tidyverse, compared to
-normal dataframes in R.
 
 We can also specify multiple conditions within the `filter()` function.
-We can combine conditions using either "and" or "or" statements. In an
+We can combine conditionfes using either "and" or "or" statements. In an
 "and" statement, an observation (row) must meet **every** criteria to be
 included in the resulting dataframe. To form "and" statements within
 dplyr, we can pass our desired conditions as arguments in the `filter()`
@@ -544,6 +530,8 @@ interviews %>%
 ```
 :::
 ::::::
+
+## Learning **`tidyr`**
 
 ## Reshaping with pivot_wider() and pivot_longer()
 
@@ -948,7 +936,7 @@ frames.
 
 Before using `write_csv()`, we are going to create a new folder,
 `data/cleaned`, in our working directory that will store this generated
-dataset, if you did not create this folder in a previous workshop.
+dataset, if you did not create this folder in a [previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
 
 We don't want to write generated datasets in the same directory as our
 raw data. It's good practice to keep them separate. The `data/raw`
