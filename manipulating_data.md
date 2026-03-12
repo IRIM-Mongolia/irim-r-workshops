@@ -1,5 +1,5 @@
 ---
-title: Manipulating data with dplyr and tidyr
+title: Manipulating Data with dplyr and tidyr
 teaching: 60
 exercises: 30
 source: Rmd
@@ -71,11 +71,11 @@ free to use the regional variant for where you are teaching.
 
 To learn more about **`dplyr`** after this workshop, you may want to
 check out this [handy data transformation with **`dplyr`**
-cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf).
+cheatsheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html?_gl=1*1ov7r49*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 To learn more about **`tidyr`** after the workshop, you may want to
 check out this [handy data tidying with **`tidyr`**
-cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf).
+cheatsheet](https://rstudio.github.io/cheatsheets/html/tidyr.html?_gl=1*1d6d96q*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzEkdDE3NzMyODcxMzkkajYwJGwwJGgw).
 
 ::: callout
 ## Note
@@ -98,24 +98,16 @@ specifically [lesson
 and [lesson
 04-tidyr](https://datacarpentry.github.io/r-socialsci/04-tidyr.html)
 
-<!-- [R for -->
-
-<!-- Ecologists](https://datacarpentry.github.io/R-ecology-lesson/index.html), -->
-
-<!-- specifically -->
-
-<!-- [how-r-thinks-about-data](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html). -->
-
 ## Other Materials
 
-<!-- [See Workshop 4 Slides here]() -->
+[See Workshop 4 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQD8TzzpZnW6Q7_8n7MCaM-EAXYeMs7SyqgNyvh2i4HUo8c?e=JyHKD1)
 
 <!-- [See Workshop 4 recording here]() -->
 
 ## Set up
 
 Start by opening up your RStudio project that you created in a [previous
-lesson](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
+workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
 called intro_r, in a new session. Ensure your global environment is
 empty! You can also 'sweep' your global environment by clicking the
 `broom` icon.
@@ -129,7 +121,7 @@ R notebook with a filename that makes sense, such as
 When you open a new R Notebook, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the SAFI dataset that we downloaded earlier.
+Read in the SAFI dataset that we downloaded earlier [in a previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 
 ``` r
@@ -161,9 +153,7 @@ this function is the dataframe (`interviews`), and the subsequent
 arguments are the columns to keep, separated by commas. Alternatively,
 if you are selecting columns adjacent to each other, you can use a `:`
 to select a range of columns, read as "select columns from \_\_\_ to
-\_\_\_." You may have done something similar in the past using
-subsetting. `select()` is essentially doing the same thing as
-subsetting, using a package (`dplyr`) instead of R's base functions.
+\_\_\_." 
 
 
 ``` r
@@ -205,13 +195,9 @@ filter(interviews, village == "Chirodzo")
 #   instanceID <chr>
 ```
 
-You may also have noticed that the output from these call doesn't run
-off the screen anymore. It's one of the advantages of `tbl_df` (also
-called tibble), the central data class in the tidyverse, compared to
-normal dataframes in R.
 
 We can also specify multiple conditions within the `filter()` function.
-We can combine conditions using either "and" or "or" statements. In an
+We can combine conditionfes using either "and" or "or" statements. In an
 "and" statement, an observation (row) must meet **every** criteria to be
 included in the resulting dataframe. To form "and" statements within
 dplyr, we can pass our desired conditions as arguments in the `filter()`
@@ -941,6 +927,8 @@ interviews %>%
 :::
 ::::::
 
+## Learning **`tidyr`**
+
 ## Reshaping with pivot_wider() and pivot_longer()
 
 There are essentially three rules that define a "tidy" dataset:
@@ -1005,16 +993,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     51 Chirodzo 2016-11-16 00:00:00 uuid:18ac8e77-bdaf-47ab-85a2-e4c947c9d3ce
- 2    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
- 3     46 Chirodzo 2016-11-17 00:00:00 uuid:35f297e0-aa5d-4149-9b7b-4965004cfc37
- 4    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
- 5     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
- 6     44 Chirodzo 2016-11-17 00:00:00 uuid:f9fadf44-d040-4fca-86c1-2835f79c4952
- 7     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
- 8    199 Chirodzo 2017-06-04 00:00:00 uuid:ffc83162-ff24-4a87-8709-eff17abc0b3b
- 9     66 Chirodzo 2016-11-16 00:00:00 uuid:a457eab8-971b-4417-a971-2e55b8702816
-10     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
+ 1    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
+ 2    192 Chirodzo 2017-06-03 00:00:00 uuid:f94409a6-e461-4e4c-a6fb-0072d3d58b00
+ 3     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
+ 4     54 Chirodzo 2016-11-16 00:00:00 uuid:273ab27f-9be3-4f3b-83c9-d3e1592de919
+ 5     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
+ 6     49 Chirodzo 2016-11-16 00:00:00 uuid:2303ebc1-2b3c-475a-8916-b322ebf18440
+ 7     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
+ 8     53 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
+ 9     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
+10     62 Chirodzo 2016-11-16 00:00:00 uuid:c6597ecc-cc2a-4c35-a6dc-e62c71b345d6
 ```
 
 We notice that the layout or format of the `interviews` data is in a
@@ -1413,7 +1401,7 @@ frames.
 
 Before using `write_csv()`, we are going to create a new folder,
 `data/cleaned`, in our working directory that will store this generated
-dataset, if you did not create this folder in a previous workshop.
+dataset, if you did not create this folder in a [previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
 
 We don't want to write generated datasets in the same directory as our
 raw data. It's good practice to keep them separate. The `data/raw`

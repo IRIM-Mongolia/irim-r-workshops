@@ -55,13 +55,13 @@ specifically
 [See Workshop 3 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK)
 
-[See Workshop 3 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha)
-
+[See Workshop 3 recording
+here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha)
 
 ## Set up
 
 Start by opening up your RStudio project that you created in a [previous
-lesson](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
+workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
 (called intro_r). Open a new R notebook: Click File -\> New File -\> R
 Notebook. Save your R notebook with a filename that makes sense, such as
 `starting_with_data.Rmd`, in the `scripts` folder.
@@ -105,7 +105,7 @@ encoded as "NULL", each row holds information for a single interview
 respondent, and the columns represent:
 
 | column_name | description |
-|------------------------|------------------------------------------------|
+|-------------------------|-----------------------------------------------|
 | key_id | Added to provide a unique Id for each observation. (The InstanceID field does this as well but it is not as convenient to use) |
 | village | Village name |
 | interview_date | Date of interview |
@@ -124,8 +124,7 @@ respondent, and the columns represent:
 ### Download the data
 
 If you did not previously downloaded the `SAFI_clean.csv` dataset in the
-[previous
-lesson](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html),
+[previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
 please follow the instructions below to download it. If you already have
 the file in your `data/raw/` folder, jump to the **Importing data**
 section.
@@ -1298,6 +1297,10 @@ and day, and converts it to a `Date` vector. `Date` is a class of data
 recognized by R as being a date and can be manipulated as such. The
 argument that the function requires is flexible, but, as a best
 practice, is a character vector formatted as "YYYY-MM-DD".
+
+To learn more about **`lubridate`** after this workshop, you may want to
+check out this handy [lubridate
+cheatsheet](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 Let's extract our `interview_date` column and inspect the structure:
 
