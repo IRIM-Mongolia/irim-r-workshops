@@ -248,7 +248,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="manipulating_data.html">4. Manipulating Data with dplyr and tidyr</a>
+        <a href="manipulating_data.html">4. Manipulating Data with <code>dplyr</code> and <code>tidyr</code></a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -430,8 +430,8 @@ the <a href="https://datacarpentry.org/socialsci-workshop/index.html#data" class
 description</a>.</p>
 <p>We will be using a subset of the dataset that has been provided
 (<code>data/raw/SAFI_clean.csv</code>). In this dataset, the missing
-data is encoded as “NULL”, each row holds information for a single
-interview respondent, and the columns represent:</p>
+data is encoded as <code>NULL</code>, each row holds information for a
+single interview respondent, and the columns represent:</p>
 <table class="table"><colgroup><col width="34%"><col width="65%"></colgroup><thead><tr><th>column_name</th>
 <th>description</th>
 </tr></thead><tbody><tr><td>key_id</td>
@@ -498,7 +498,8 @@ for this workshop from the <code>GitHub</code> link or with
 <code>R</code>. You can download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub</code>
 link</a> and save it as <code>SAFI_clean.csv</code> in the
 <code>data/raw</code> directory you just created. Or you can do this
-directly from R by copying and pasting this in your console:</p>
+directly from <code>R</code> by copying and pasting this in your
+console:</p>
 <p><code>download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )</code></p>
 </div>
 </section><section><h2 class="section-heading" id="importing-data">Importing data<a class="anchor" aria-label="anchor" href="#importing-data"></a></h2>
@@ -521,13 +522,13 @@ two conflicting functions: <code>filter()</code> and <code>lag()</code>.
 This happens because <code>filter</code> and <code>lag</code> are
 already functions used by the stats package (already pre-loaded in
 <code>R</code>). What will happen now is that if we, for example, call
-the <code>filter()</code> function, R will use the
+the <code>filter()</code> function, <code>R</code> will use the
 <code>dplyr::filter()</code> version and not the
 <code>stats::filter()</code> one. This happens because, if conflicted,
-by default R uses the function from the most recently loaded package.
-Conflicted functions may cause you some trouble in the future, so it is
-important that we are aware of them so that we can properly handle them,
-if we want.</p>
+by default <code>R</code> uses the function from the most recently
+loaded package. Conflicted functions may cause you some trouble in the
+future, so it is important that we are aware of them so that we can
+properly handle them, if we want.</p>
 <p>To do so, we just need the following functions from the conflicted
 package:</p>
 <ul><li>
@@ -539,8 +540,8 @@ us to choose the default function we want from now on.</li>
 </ul><p>It is also important to know that we can, at any time, just call the
 function directly from the package we want, such as
 <code>stats::filter()</code>.</p>
-<p>Even with the use of an RStudio project, it can be difficult to learn
-how to specify paths to file locations. Enter the
+<p>Even with the use of an <code>RStudio</code> project, it can be
+difficult to learn how to specify paths to file locations. Enter the
 <strong><code>here</code></strong> package! The here package creates
 paths relative to the top-level directory (your RStudio project). These
 relative paths work <em>regardless</em> of where the associated source
@@ -575,12 +576,11 @@ folder and file names as inputs (e.g., <code>"data"</code>,
 <code>"SAFI_clean.csv"</code>), each enclosed in quotations
 (<code>""</code>) and separated by a comma. The <code>here()</code> will
 accept as many names as are necessary to navigate to a particular file
-(e.g.,
-<code>here("analysis", "data", "surveys", "clean", "SAFI_clean.csv)</code>).</p>
+(e.g., <code>here("data", "raw", "SAFI_clean.csv)</code>).</p>
 <p>The <code>here()</code> function can accept the folder and file names
 in an alternate format, using a slash (“/”) rather than commas to
 separate the names. The two methods are equivalent, so that
-<code>here("data", "SAFI_clean.csv")</code> and
+<code>here("data", "raw", "SAFI_clean.csv")</code> and
 <code>here("data/raw/SAFI_clean.csv")</code> produce the same result.
 (The slash is used on all operating systems; backslashes are not
 used.)</p>
@@ -705,15 +705,15 @@ that these approaches will be relevant into the future.</p>
 <p><code>read_csv()</code> assumes that fields are delimited by commas.
 However, in several countries, the comma is used as a decimal separator
 and the semicolon (;) is used as a field delimiter. If you want to read
-in this type of files in R, you can use the <code>read_csv2</code>
-function. It behaves exactly like <code>read_csv</code> but uses
-different parameters for the decimal and the field separators. If you
-are working with another format, they can be both specified by the user.
-Check out the help for <code>read_csv()</code> by typing
-<code>?read_csv</code> to learn more. There is also the
-<code>read_tsv()</code> for tab-separated data files, and
-<code>read_delim()</code> allows you to specify more details about the
-structure of your file.</p>
+in this type of files in <code>R</code>, you can use the
+<code>read_csv2</code> function. It behaves exactly like
+<code>read_csv</code> but uses different parameters for the decimal and
+the field separators. If you are working with another format, they can
+be both specified by the user. Check out the help for
+<code>read_csv()</code> by typing <code>?read_csv</code> to learn more.
+There is also the <code>read_tsv()</code> for tab-separated data files,
+and <code>read_delim()</code> allows you to specify more details about
+the structure of your file.</p>
 </div>
 </div>
 </div>
@@ -809,11 +809,12 @@ and the last few rows with the <code>tail()</code> function:</p>
 #   instanceID &lt;chr&gt;</code></pre>
 </div>
 <p>We used these functions with just one argument, the object
-<code>interviews</code>, and we didn’t give the argument a name. In R, a
-function’s arguments come in a particular order, and if you put them in
-the correct order, you don’t need to name them. In this case, the name
-of the argument is <code>x</code>, so we can name it if we want, but
-since we know it’s the first argument, we don’t need to.</p>
+<code>interviews</code>, and we didn’t give the argument a name. In
+<code>R</code>, a function’s arguments come in a particular order, and
+if you put them in the correct order, you don’t need to name them. In
+this case, the name of the argument is <code>x</code>, so we can name it
+if we want, but since we know it’s the first argument, we don’t need
+to.</p>
 <p>Some arguments are optional. For example, the <code>n</code> argument
 in <code>head()</code> specifies the number of rows to print. It
 defaults to 6, but we can override that by specifying a different
@@ -1536,13 +1537,13 @@ to work with factors.</p>
 <pre class="output" tabindex="0"><code>[1] earth brick brick earth
 Levels: earth brick</code></pre>
 </div>
-<p>So far, your factor is unordered, like a nominal variable. R does not
-know the difference between a nominal and an ordinal variable. You make
-your factor an ordered factor by using the <code>ordered=TRUE</code>
-option inside your factor function. Note how the reported levels changed
-from the unordered factor above to the ordered version below. Ordered
-levels use the less than sign <code>&lt;</code> to denote level
-ranking.</p>
+<p>So far, your factor is unordered, like a nominal variable.
+<code>R</code> does not know the difference between a nominal and an
+ordinal variable. You make your factor an ordered factor by using the
+<code>ordered=TRUE</code> option inside your factor function. Note how
+the reported levels changed from the unordered factor above to the
+ordered version below. Ordered levels use the less than sign
+<code>&lt;</code> to denote level ranking.</p>
 <div class="codewrapper sourceCode" id="cb65">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
