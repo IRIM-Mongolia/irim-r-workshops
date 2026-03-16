@@ -19,9 +19,9 @@ The main goals for this lessons are:
 :::
 
 ::: objectives
--   Load external data from a .csv file into a data frame.
+-   Load external data from a `.csv` file into a data frame.
 -   Explore the structure and content of data.frames
--   Understand how R assigns values to objects
+-   Understand how `R` assigns values to objects
 -   Understand vector types and missing data
 -   Describe the difference between a factor and a string.
 -   Create and convert factors
@@ -29,26 +29,23 @@ The main goals for this lessons are:
 :::
 
 ::: questions
--   How does R store data?
+-   How does `R` store data?
 -   What is a data.frame?
--   How can I read a complete csv file into R?
+-   How can I read a complete `.csv` file into `R`?
 -   How can I get basic summary information about my dataset?
--   How can I change the way R treats strings in my dataset?
+-   How can I change the way `R` treats strings in my dataset?
 -   Why would I want strings to be treated differently?
--   How are dates represented in R and how can I change the format?
+-   How are dates represented in `R` and how can I change the format?
 :::
 
 ## Acknowledgement
 
 This workshop was adapted using material from the Data Carpentry lessons
-[R for Social
-Scientists](https://datacarpentry.github.io/r-socialsci/index.html),
-specifically [lesson
-02-starting-with-data](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html),
-and [R for
-Ecologists](https://datacarpentry.github.io/R-ecology-lesson/index.html),
+[`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/index.html),
+specifically [`lesson 02-starting-with-data`](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html),
+and [`R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/index.html),
 specifically
-[how-r-thinks-about-data](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html).
+[`how-r-thinks-about-data`](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html).
 
 ## Other Materials
 
@@ -60,13 +57,13 @@ here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJK
 
 ## Set up
 
-Start by opening up your RStudio project that you created in a [previous
+Start by opening up your `RStudio project` that you created in a [previous
 workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
-(called intro_r). Open a new R notebook: Click File -\> New File -\> R
-Notebook. Save your R notebook with a filename that makes sense, such as
+(called `intro_r`). Open a new `R Notebook`: `Click File -> New File -> R`
+Notebook. Save your `R Notebook` with a filename that makes sense, such as
 `starting_with_data.Rmd`, in the `scripts` folder.
 
-When you open a new R Notebook, some explanatory text is provided. This
+When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
 ## What are data frames?
@@ -77,7 +74,7 @@ and what we use for data processing, statistics, and plotting.
 A data frame is the representation of data in the format of a table
 where the columns are vectors that all have the same length. Data frames
 are analogous to the more familiar spreadsheet in programs such as
-Excel, with one key difference. Because columns are vectors, each column
+`Excel`, with one key difference. Because columns are vectors, each column
 must contain a single type of data (e.g., characters, integers,
 factors). For example, here is a figure depicting a data frame
 comprising a numeric, a character, and a logical vector.
@@ -91,7 +88,7 @@ demonstrate how to import tabular data using `read_csv()`.
 
 ## Presentation of the SAFI Data
 
-SAFI (Studying African Farmer-Led Irrigation) is a study looking at
+`SAFI` (Studying African Farmer-Led Irrigation) is a study looking at
 farming and irrigation methods in Tanzania and Mozambique. The survey
 data was collected through interviews conducted between November 2016
 and June 2017. For this lesson, we will be using a subset of the
@@ -134,7 +131,7 @@ link for this file is:
 <https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv>.
 This data is a slightly cleaned up version of the SAFI Survey Results
 available on
-[figshare](https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019).
+[`figshare`](https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019).
 
 First, we need to create a new folder called `data` to store this
 dataset. Go to the Files pane, and create a new folder named `data`, and
@@ -155,9 +152,8 @@ intro_r
 ```
 
 You can either download the `SAFI_clean.csv` dataset used for this
-workshop from the GitHub link or with R. You can download the file from
-this [GitHub
-link](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
+workshop from the `GitHub` link or with `R`. You can download the file from
+this [`GitHub` link](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
 and save it as `SAFI_clean.csv` in the `data/raw` directory you just
 created. Or you can do this directly from R by copying and pasting this
 in your console:
@@ -166,7 +162,7 @@ in your console:
 
 ## Importing data
 
-You are going to load the data in R's memory using the function
+You are going to load the data in `R`'s memory using the function
 `read_csv()` from the **`readr`** package, which is part of the
 **`tidyverse`**; learn more about the **`tidyverse`** collection of
 packages [here](https://www.tidyverse.org/). **`readr`** gets installed
@@ -176,11 +172,11 @@ used in most data analyses) get loaded, including **`readr`**.
 
 Before proceeding, however, this is a good opportunity to talk about
 conflicts. Certain packages we load can end up introducing function
-names that are already in use by pre-loaded R packages. For instance,
+names that are already in use by pre-loaded `R` packages. For instance,
 when we load the tidyverse package below, we will introduce two
 conflicting functions: `filter()` and `lag()`. This happens because
 `filter` and `lag` are already functions used by the stats package
-(already pre-loaded in R). What will happen now is that if we, for
+(already pre-loaded in `R`). What will happen now is that if we, for
 example, call the `filter()` function, R will use the `dplyr::filter()`
 version and not the `stats::filter()` one. This happens because, if
 conflicted, by default R uses the function from the most recently loaded
@@ -199,7 +195,7 @@ It is also important to know that we can, at any time, just call the
 function directly from the package we want, such as `stats::filter()`.
 
 Even with the use of an RStudio project, it can be difficult to learn
-how to specify paths to file locations. Enter the **here** package! The
+how to specify paths to file locations. Enter the **`here`** package! The
 here package creates paths relative to the top-level directory (your
 RStudio project). These relative paths work *regardless* of where the
 associated source file lives inside your project, like analysis projects
@@ -208,15 +204,15 @@ contrast to using `setwd()`, which depends on the way you order your
 files on your computer.
 
 Before we can use the `read_csv()` and `here()` functions, we need to
-load the tidyverse and here packages.
+load the `tidyverse` and `here` packages.
 
-Add a new code chunk in your notebook, load the tidyverse and here
-packages, and read in the SAFI dataset. We'll **assign** the dataset to
+Add a new code chunk in your notebook, load the `tidyverse` and `here`
+packages, and read in the `SAFI` dataset. We'll **assign** the dataset to
 an object called `interviews`.
 
-If you recall, the missing data is encoded as "NULL" in the dataset.
-We'll tell this to the `read_csv()` function, so R will automatically
-convert all the "NULL" entries in the dataset into `NA`.
+If you recall, the missing data is encoded as `NULL` in the dataset.
+We'll tell this to the `read_csv()` function, so `R` will automatically
+convert all the `NULL` entries in the dataset into `NA`.
 
 ```{r, eval=TRUE, message=FALSE, purl=FALSE}
 library(tidyverse)
@@ -242,9 +238,9 @@ backslashes are not used.)
 
 ## Assigning objects
 
-In R, we can **assign** inputs to a named **object**. We do this using
-the **assignment arrow** `<-`, <kbd>Alt+-</kbd> (Windows) or
-<kbd>Option+-</kbd> (Mac).What we are doing here is taking the result of
+In `R`, we can **assign** inputs to a named **object**. We do this using
+the **assignment arrow** `<-`, <kbd>Alt+-</kbd> (`Windows`) or
+<kbd>Option+-</kbd> (`Mac`).What we are doing here is taking the result of
 the code on the right side of the arrow (reading in the csv file), and
 assigning it to an object whose name is on the left side of the arrow
 (`interviews`).
@@ -282,11 +278,10 @@ good thing).
 As a `tibble`, the type of data included in each column is listed in an
 abbreviated fashion below the column names. For instance, here `key_ID`
 is a column of floating point numbers (abbreviated `<dbl>` for the word
-'double'),
-``` respondent_wall_type`` is a column of characters ( ```<chr>`) and the`interview_date`is a column in the "date and time" format (`<dttm>\`).
+'double'), `respondent_wall_type` is a column of characters ( `<chr>`) and the`interview_date` is a column in the "date and time" format (`<dttm>`).
 
 ::: callout
-**`tidyverse` vs. base R**
+**`tidyverse` vs. `base R`**
 
 As we begin to delve more deeply into the `tidyverse`, we should briefly
 pause to mention some of the reasons for focusing on the `tidyverse` set
@@ -294,16 +289,15 @@ of tools. In R, there are often many ways to get a job done, and there
 are other approaches that can accomplish tasks similar to the
 `tidyverse`.
 
-The phrase **base R** is used to refer to approaches that utilize
-functions contained in R's default packages. We will use some base R
+The phrase **`base R`** is used to refer to approaches that utilize
+functions contained in `R`'s default packages. We will use some `base R`
 functions, such as `str()`, `head()`, and `nrow()`, and we will be using
 more scattered throughout this workshop. However, there are some key
-base R approaches we will not be teaching. These include square bracket
+`base R` approaches we will not be teaching. These include square bracket
 subsetting. You may come across code written by other people that looks
-like `interviews[1:10, 2]`, which is a base R command. If you're
+like `interviews[1:10, 2]`, which is a `base R` command. If you're
 interested in learning more about these approaches, you can check out
-other Carpentries lessons like the [Software Carpentry Programming with
-R](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
+other Carpentries lessons like the [`Software Carpentry Programming with R`](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
 
 We choose to teach the `tidyverse` set of packages because they share a
 similar syntax and philosophy, making them consistent and producing
@@ -313,7 +307,7 @@ to work well with the rest of the packages. The `tidyverse` packages
 tend to have very clear documentation and wide array of learning
 materials that tend to be written with novice users in mind. Finally,
 the `tidyverse` has only continued to grow, and has strong support from
-RStudio, which implies that these approaches will be relevant into the
+`RStudio`, which implies that these approaches will be relevant into the
 future.
 :::
 
@@ -345,7 +339,7 @@ Size:
 
 -   `dim(interviews)` - returns a vector with the number of rows as the
     first element, and the number of columns as the second element (the
-    **dim**ensions of the object)
+    **`dim`**ensions of the object)
 -   `nrow(interviews)` - returns the number of rows
 -   `ncol(interviews)` - returns the number of columns
 
@@ -367,7 +361,7 @@ Summary:
 -   `glimpse(interviews)` - returns the number of columns and rows of
     the tibble, the names and class of each column, and previews as many
     values will fit on the screen. Unlike the other inspecting functions
-    listed above, `glimpse()` is not a "base R" function so you need to
+    listed above, `glimpse()` is not a `base R` function so you need to
     have the `tidyverse` package loaded to be able to execute it.
 
 Note: most of these functions are "generic." They can be used on other
@@ -447,7 +441,7 @@ their own websites, which often have nicely formatted vignettes and
 tutorials.
 
 Finally, learning to search for help is probably the most useful skill
-for any R user. The key skill is figuring out what you should actually
+for any `R` user. The key skill is figuring out what you should actually
 search for. It's often a good idea to start your search with `R` or
 `R programming`. If you have the name of a package you want to use,
 start with `R package_name`.
@@ -489,10 +483,10 @@ of values, in this case a vector of characters representing the village
 name.
 
 Data.frames are made up of vectors; each column in a data.frame is a
-vector. Vectors are the basic building blocks of all data in R.
-Basically, everything in R is a vector, a bunch of vectors stitched
+vector. Vectors are the basic building blocks of all data in `R`.
+Basically, everything in `R` is a vector, a bunch of vectors stitched
 together in some way, or a function. Understanding how vectors work is
-crucial to understanding how R treats data, so we will spend some time
+crucial to understanding how `R` treats data, so we will spend some time
 learning about them.
 
 There are 4 main types of vectors (also known as *atomic vectors*):
@@ -504,7 +498,7 @@ There are 4 main types of vectors (also known as *atomic vectors*):
 
 2.  `"integer"` for integers. All the numeric values in `interviews` are
     integers. You may sometimes see integers represented like `2L` or
-    `20L`. The `L` indicates to R that it is an integer, instead of the
+    `20L`. The `L` indicates to `R` that it is an integer, instead of the
     next data type, `"numeric"`.
 
 3.  `"numeric"`, aka `"double"`, vectors can contain numbers including
@@ -518,7 +512,7 @@ There are 4 main types of vectors (also known as *atomic vectors*):
 Vectors can only be of a **single type**. Since each column in a
 data.frame is a vector, this means an accidental character following a
 number, like `29,` can change the type of the whole vector. Mixing up
-vector types is one of the most common mistakes in R, and it can be
+vector types is one of the most common mistakes in `R`, and it can be
 tricky to figure out. It's often very useful to check the types of
 vectors.
 
@@ -591,7 +585,7 @@ class(char_logi)
 class(tricky)
 ```
 
-R will automatically convert values in a vector so that they are all the
+`R` will automatically convert values in a vector so that they are all the
 same type, a process called **coercion**.
 :::
 
@@ -634,15 +628,15 @@ coerced to a character vector.
 ::::::
 
 Coercion is not something you will often do intentionally; rather, when
-combining vectors or reading data into R, a stray character that you
+combining vectors or reading data into `R`, a stray character that you
 missed may change an entire numeric vector into a character vector. It
 is a good idea to check the `class()` of your results frequently,
 particularly if you are running into confusing error messages.
 
 ## Missing data
 
-One of the great things about R is how it handles missing data, which
-can be tricky in other programming languages. R represents missing data
+One of the great things about `R` is how it handles missing data, which
+can be tricky in other programming languages. `R` represents missing data
 as `NA`, without quotes, in vectors of any type. Let's make a numeric
 vector with an `NA` value:
 
@@ -650,7 +644,7 @@ vector with an `NA` value:
 weights <- c(25, 34, 12, NA, 42)
 ```
 
-R doesn't make assumptions about how you want to handle missing data, so
+`R` doesn't make assumptions about how you want to handle missing data, so
 if we pass this vector to a numeric function like `min()`, it won't know
 what to do, so it returns `NA`:
 
@@ -660,7 +654,7 @@ min(weights)
 
 This is a very good thing, since we won't accidentally forget to
 consider our missing data. If we decide to exclude our missing values,
-many basic math functions have an argument to **r**e**m**ove them:
+many basic math functions have an argument to **`r`** **`e`** **`m`**ove them:
 
 ```{r func-na-rm}
 min(weights, na.rm = TRUE)
@@ -693,9 +687,9 @@ lots of other shapes and forms. Some other common forms are:
 
 ## Factors
 
-R has a special data class, called factor, to deal with categorical data
+`R` has a special data class, called `factor`, to deal with categorical data
 that you may encounter when creating plots or doing statistical
-analyses. Factors are very useful and actually contribute to making R
+analyses. Factors are very useful and actually contribute to making `R`
 particularly well suited to working with data. So we are going to spend
 a little time introducing them.
 
@@ -710,14 +704,14 @@ treated as integer vectors by `R`. So you need to be very careful when
 treating them as strings.
 
 Once created, factors can only contain a pre-defined set of values,
-known as *levels*. By default, R always sorts levels in alphabetical
+known as *levels*. By default, `R` always sorts levels in alphabetical
 order. For instance, if you have a factor with 2 levels:
 
 ```{r, purl=TRUE}
 respondent_floor_type <- factor(c("earth", "cement", "cement", "earth"))
 ```
 
-R will assign `1` to the level `"cement"` and `2` to the level `"earth"`
+`R` will assign `1` to the level `"cement"` and `2` to the level `"earth"`
 (because `c` comes before `e`, even though the first element in this
 vector is `"earth"`). You can see this by using the function `levels()`
 and you can find the number of levels using `nlevels()`:
@@ -729,8 +723,8 @@ nlevels(respondent_floor_type)
 ```
 
 Sometimes, the order of the factors does not matter. Other times you
-might want to specify the order because it is meaningful (e.g., "low",
-"medium", "high"). It may improve your visualization, or it may be
+might want to specify the order because it is meaningful (e.g., `low`,
+`medium`, `high`). It may improve your visualization, or it may be
 required by a particular type of analysis. Here, one way to reorder our
 levels in the `respondent_floor_type` vector would be:
 
@@ -743,14 +737,14 @@ respondent_floor_type <- factor(respondent_floor_type,
 respondent_floor_type # after re-ordering
 ```
 
-In R's memory, these factors are represented by integers (1, 2), but are
+In `R`'s memory, these factors are represented by integers (1, 2), but are
 more informative than integers because factors are self describing:
 `"cement"`, `"earth"` is more descriptive than `1`, and `2`. Which one
 is "earth"? You wouldn't be able to tell just from the integer data.
 Factors, on the other hand, have this information built in. It is
 particularly helpful when there are many levels. It also makes renaming
-levels easier. Let's say we made a mistake and need to recode "cement"
-to "brick". We can do this using the `fct_recode()` function from the
+levels easier. Let's say we made a mistake and need to recode `cement`
+to `brick`. We can do this using the `fct_recode()` function from the
 **`forcats`** package (included in the **`tidyverse`**) which provides
 some extra tools to work with factors.
 
@@ -842,7 +836,7 @@ plot(memb_assoc)
 ```
 
 Looking at the plot compared to the output of the vector, we can see
-that in addition to "no"s and "yes"s, there are some respondents for
+that in addition to `"no"s` and `"yes"s`, there are some respondents for
 whom the information about whether they were part of an irrigation
 association hasn't been recorded, and encoded as missing data. These
 respondents do not appear on the plot. Let's encode them differently so
@@ -870,10 +864,10 @@ plot(memb_assoc)
 ## Exercise
 
 -   Rename the levels of the factor to have the first letter in
-    uppercase: "No","Undetermined", and "Yes".
+    uppercase: `No`, `Undetermined`, and `Yes`.
 
--   Now that we have renamed the factor level to "Undetermined", can you
-    recreate the barplot such that "Undetermined" is last (after "Yes")?
+-   Now that we have renamed the factor level to `Undetermined`, can you
+    recreate the barplot such that `Undetermined` is last (after `Yes`)?
 
 ::: solution
 ## Solution
@@ -891,7 +885,7 @@ plot(memb_assoc)
 
 ## Formatting Dates
 
-One of the most common issues that new (and experienced!) R users have
+One of the most common issues that new (and experienced!) `R` users have
 is converting date and time information into a variable that is
 appropriate and usable during analyses. A best practice for dealing with
 date data is to ensure that each component of your date is available as
@@ -907,15 +901,14 @@ str(interviews)
 We are going to use the package **`lubridate`**, which is included in
 the **`tidyverse`** installation and should be loaded by default.
 
-The lubridate function `ymd()` takes a vector representing year, month,
+The `lubridate` function `ymd()` takes a vector representing year, month,
 and day, and converts it to a `Date` vector. `Date` is a class of data
-recognized by R as being a date and can be manipulated as such. The
+recognized by `R` as being a date and can be manipulated as such. The
 argument that the function requires is flexible, but, as a best
-practice, is a character vector formatted as "YYYY-MM-DD".
+practice, is a character vector formatted as `YYYY-MM-DD`.
 
 To learn more about **`lubridate`** after this workshop, you may want to
-check out this handy [lubridate
-cheatsheet](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
+check out this handy [`lubridate` cheatsheet](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 Let's extract our `interview_date` column and inspect the structure:
 
@@ -924,7 +917,7 @@ dates <- interviews$interview_date
 str(dates)
 ```
 
-When we imported the data in R, `read_csv()` recognized that this column
+When we imported the data in `R`, `read_csv()` recognized that this column
 contained date information. We can now use the `day()`, `month()` and
 `year()` functions to extract this information from the date, and create
 new columns in our data frame to store it:
@@ -959,11 +952,11 @@ as_date(char_dates, format = "%m/%d/%Y")
 
 Argument `format` tells the function the order to parse the characters
 and identify the month, day and year. The format above is the equivalent
-of mm/dd/yyyy. A wrong format can lead to parsing errors or incorrect
+of `mm/dd/yyyy`. A wrong format can lead to parsing errors or incorrect
 results.
 
-For example, observe what happens when we use a lower case y instead of
-upper case Y for the year.
+For example, observe what happens when we use a lower case `y` instead of
+upper case `Y` for the year.
 
 ```{r, purl=FALSE}
 as_date(char_dates, format = "%m/%d/%y")
@@ -990,6 +983,6 @@ mdy(char_dates)
 ```
 
 ::: keypoints
--   Use read_csv to read tabular data in R.
--   Use factors to represent categorical data in R.
+-   Use `read_csv` to read tabular data in `R`.
+-   Use `factors` to represent categorical data in `R`.
 :::
