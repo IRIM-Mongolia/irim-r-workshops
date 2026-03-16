@@ -1,5 +1,5 @@
 ---
-title: Manipulating Data with dplyr and tidyr
+title: Manipulating Data with `dplyr` and `tidyr`
 teaching: 60
 exercises: 30
 source: Rmd
@@ -9,7 +9,7 @@ editor_options:
 ---
 
 ::: instructor
--   This lesson works better if you have graphics demonstrating dplyr
+-   This lesson works better if you have graphics demonstrating `dplyr`
     commands. You can modify [this Google Slides
     deck](https://docs.google.com/presentation/d/1A9abypFdFp8urAe9z7GCMjFr4aPeIb8mZAtJA2F7H0w/edit#slide=id.g652714585f_0_114)
     and use it for your workshop.
@@ -38,7 +38,7 @@ editor_options:
 -   Reshape a dataframe from long to wide format and back with the
     `pivot_wider` and `pivot_longer` commands from the **`tidyr`**
     package.
--   Export a dataframe to a csv file.
+-   Export a dataframe to a `.csv` file.
 :::
 
 ::: questions
@@ -52,8 +52,7 @@ editor_options:
 **`dplyr`** is a package for making tabular data wrangling easier by
 using a limited set of functions that can be combined to extract and
 summarize insights from your data. It is a part of the tidyverse, and is
-automatically loaded when you load the tidyverse with
-libary(tidyverse)\`.
+automatically loaded when you load the tidyverse with `libary(tidyverse)`.
 
 **`dplyr`** pairs nicely with **`tidyr`** which enables you to swiftly
 convert between different data formats (long vs. wide) for plotting and
@@ -91,12 +90,9 @@ example to get a sense of the differences between using `base`,
 ## Acknowledgement
 
 This workshop was adapted using material from the Data Carpentry lessons
-[R for Social
-Scientists](https://datacarpentry.github.io/r-socialsci/index.html),
-specifically [lesson
-03-dplyr](https://datacarpentry.github.io/r-socialsci/03-dplyr.html),
-and [lesson
-04-tidyr](https://datacarpentry.github.io/r-socialsci/04-tidyr.html)
+[`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/index.html),
+specifically [`lesson 03-dplyr`](https://datacarpentry.github.io/r-socialsci/03-dplyr.html),
+and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.html)
 
 ## Other Materials
 
@@ -108,20 +104,20 @@ and [lesson
 
 Start by opening up your RStudio project that you created in a [previous
 workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
-called intro_r, in a new session. Ensure your global environment is
-empty! You can also 'sweep' your global environment by clicking the
+called `intro_r`, in a new session. Ensure your `global environment` is
+empty! You can also 'sweep' your `global environment` by clicking the
 `broom` icon.
 
 ![](fig/empty_env.png){alt="Screenshot of RStudio showing the empty global environment."}
 
-Open a new R notebook: Click File -\> New File -\> R Notebook. Save your
-R notebook with a filename that makes sense, such as
+Open a new `R Notebook`: `Click File -> New File -> R Notebook`. Save your
+`R Notebook` with a filename that makes sense, such as
 `manipulating_data.Rmd`, in the `scripts` folder.
 
-When you open a new R Notebook, some explanatory text is provided. This
+When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the SAFI dataset that we downloaded earlier [in a previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
+Read in the `SAFI` dataset that we downloaded earlier [in a previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 
 ``` r
@@ -167,7 +163,7 @@ select(interviews, village:respondent_wall_type)
 
 To choose rows based on specific criteria, we can use the `filter()`
 function. The argument after the dataframe is the condition we want our
-final dataframe to adhere to (e.g. village name is Chirodzo):
+final dataframe to adhere to (e.g. village name is `Chirodzo`):
 
 
 ``` r
@@ -197,7 +193,7 @@ filter(interviews, village == "Chirodzo")
 
 
 We can also specify multiple conditions within the `filter()` function.
-We can combine conditionfes using either "and" or "or" statements. In an
+We can combine conditions using either "and" or "or" statements. In an
 "and" statement, an observation (row) must meet **every** criteria to be
 included in the resulting dataframe. To form "and" statements within
 dplyr, we can pass our desired conditions as arguments in the `filter()`
@@ -321,16 +317,16 @@ interviews_ch <- select(filter(interviews, village == "Chirodzo"),
 ```
 
 This is handy, but can be difficult to read if too many functions are
-nested, as R evaluates the expression from the inside out (in this case,
+nested, as `R` evaluates the expression from the inside out (in this case,
 filtering, then selecting).
 
 The last option are *pipes*. Pipes let you take the output of one
 function and send it directly to the next, which is useful when you need
-to do many things to the same dataset. We'll use the tidyverse pipe
-`%>%` whch can be typed pipe with:
+to do many things to the same dataset. We'll use the `tidyverse` pipe
+`%>%` which can be typed with:
 
--   <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> (Windows) or
-    <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> (Mac).
+-   <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> (`Windows`) or
+    <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> (`Mac`).
 
 
 ``` r
@@ -454,7 +450,7 @@ existing columns, for example to do unit conversions, or to find the
 ratio of values in two columns. For this we'll use `mutate()`.
 
 We might be interested in the ratio of number of household members to
-rooms used for sleeping (i.e. avg number of people per room):
+rooms used for sleeping (i.e. the average number of people per room):
 
 
 ``` r
@@ -549,10 +545,10 @@ interviews_total_meals <- interviews %>%
 :::
 ::::
 
-## Split-apply-combine data analysis and the summarize() function
+## `Split-apply-combine` data analysis and the `summarize()` function
 
 Many data analysis tasks can be approached using the
-*split-apply-combine* paradigm: split the data into groups, apply some
+*`split-apply-combine`* paradigm: split the data into groups, apply some
 analysis to each group, and then combine the results. **`dplyr`** makes
 this very easy through the use of the `group_by()` function.
 
@@ -929,7 +925,7 @@ interviews %>%
 
 ## Learning **`tidyr`**
 
-## Reshaping with pivot_wider() and pivot_longer()
+## Reshaping with `pivot_wider()` and `pivot_longer()`
 
 There are essentially three rules that define a "tidy" dataset:
 
@@ -993,16 +989,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
- 2    192 Chirodzo 2017-06-03 00:00:00 uuid:f94409a6-e461-4e4c-a6fb-0072d3d58b00
- 3     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
- 4     54 Chirodzo 2016-11-16 00:00:00 uuid:273ab27f-9be3-4f3b-83c9-d3e1592de919
- 5     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
- 6     49 Chirodzo 2016-11-16 00:00:00 uuid:2303ebc1-2b3c-475a-8916-b322ebf18440
- 7     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
- 8     53 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
- 9     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
-10     62 Chirodzo 2016-11-16 00:00:00 uuid:c6597ecc-cc2a-4c35-a6dc-e62c71b345d6
+ 1     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
+ 2     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
+ 3     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
+ 4      9 Chirodzo 2016-11-16 00:00:00 uuid:846103d2-b1db-4055-b502-9cd510bb7b37
+ 5     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
+ 6     58 Chirodzo 2016-11-16 00:00:00 uuid:a7a3451f-cd0d-4027-82d9-8dcd1234fcca
+ 7     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
+ 8    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
+ 9     68 Chirodzo 2016-11-16 00:00:00 uuid:ef04b3eb-b47d-412e-9b09-4f5e08fc66f9
+10     10 Chirodzo 2016-12-16 00:00:00 uuid:8f4e49bc-da81-4356-ae34-e0d794a23721
 ```
 
 We notice that the layout or format of the `interviews` data is in a
@@ -1035,7 +1031,7 @@ format to the other.
 
 Long and wide dataframe layouts mainly affect readability. You may find
 that visually you may prefer the "wide" format, since you can see more
-of the data on the screen. However, all of the R functions we have used
+of the data on the screen. However, all of the `R` functions we have used
 thus far expect for your data to be in a "long" data format. This is
 because the long format is more machine readable and is closer to the
 formatting of databases.
@@ -1075,10 +1071,10 @@ We can do both of these transformations with two `tidyr` functions,
 
 `pivot_wider()` takes three principal arguments:
 
-1.  the data
-2.  the *names_from* column variable whose values will become new column
+1.  the `data`
+2.  the *`names_from`* column variable whose values will become new column
     names.
-3.  the *values_from* column variable whose values will fill the new
+3.  the *`values_from`* column variable whose values will fill the new
     column variables.
 
 Further arguments include `values_fill` which, if set, fills in missing
@@ -1257,7 +1253,7 @@ columns for each of the months filled with logical vectors (`TRUE` or
 calculates the number of months each household reported a lack of food.
 
 Note that if the household did not lack food in the previous 12 months,
-the value input was "none".
+the value input was `none`.
 
 ::: solution
 ## Solution
@@ -1291,13 +1287,13 @@ this process a bit clearer.
 
 `pivot_longer()` takes four principal arguments:
 
-1.  the data
-2.  *cols* are the names of the columns we use to fill the a new values
+1.  the `data`
+2.  *`cols`* are the names of the columns we use to fill the a new values
     variable (or to drop).
-3.  the *names_to* column variable we wish to create from the *cols*
+3.  the *`names_to`* column variable we wish to create from the *`cols`*
     provided.
-4.  the *values_to* column variable we wish to create and fill with
-    values associated with the *cols* provided.
+4.  the *`values_to`* column variable we wish to create and fill with
+    values associated with the *`cols`* provided.
 
 
 ``` r
