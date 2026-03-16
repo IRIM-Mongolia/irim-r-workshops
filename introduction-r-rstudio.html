@@ -455,13 +455,14 @@ to be reproducible, so knowing <code>R</code> will give you an edge with
 these requirements.</p>
 </div>
 <div class="section level3">
-<h3 id="r-is-interdisciplinary-and-extensible">R is interdisciplinary and extensible<a class="anchor" aria-label="anchor" href="#r-is-interdisciplinary-and-extensible"></a></h3>
+<h3 id="r-is-interdisciplinary-and-extensible">
+<code>R</code> is interdisciplinary and extensible<a class="anchor" aria-label="anchor" href="#r-is-interdisciplinary-and-extensible"></a></h3>
 <p>With tens of thousands of packages that can be installed to extend
-its capabilities, R provides a framework that allows you to combine
-statistical approaches from many scientific disciplines to best suit the
-analytical framework you need to analyze your data. For instance,
-<code>R</code> has packages for image analysis, GIS, time series,
-population genetics, and a lot more.</p>
+its capabilities, <code>R</code> provides a framework that allows you to
+combine statistical approaches from many scientific disciplines to best
+suit the analytical framework you need to analyze your data. For
+instance, <code>R</code> has packages for image analysis, GIS, time
+series, population genetics, and a lot more.</p>
 </div>
 <div class="section level3">
 <h3 id="r-works-on-data-of-all-shapes-and-sizes">
@@ -488,7 +489,8 @@ of plotting software available today. We can learn to use
 <h3 id="r-has-a-large-and-welcoming-community">
 <code>R</code> has a large and welcoming community<a class="anchor" aria-label="anchor" href="#r-has-a-large-and-welcoming-community"></a></h3>
 <p>Thousands of people use R daily. Many of them are willing to help you
-through mailing lists and websites such as <a href="https://stackoverflow.com/" class="external-link">Stack Overflow</a>, or on the <a href="https://community.rstudio.com/" class="external-link"><code>RStudio</code>
+through mailing lists and websites such as <a href="https://stackoverflow.com/" class="external-link"><code>Stack Overflow</code></a>, or on
+the <a href="https://community.rstudio.com/" class="external-link"><code>RStudio</code>
 community</a>.</p>
 <p>Since <code>R</code> is very popular among researchers, most of the
 help communities and learning materials are aimed towards other
@@ -512,20 +514,20 @@ environment (<code>IDE</code>) to write code into scripts, run code in
 R, navigate files on our computer, inspect objects we create in
 <code>R</code>, and look at the plots we make. RStudio has many other
 features that can help with things like version control, developing
-<code>R</code> packages, and writing Shiny apps, but we won’t cover
-those in this workshop.</p>
+<code>R</code> packages, and writing <code>Shiny</code> apps, but we
+won’t cover those in this workshop.</p>
 <figure><img src="fig/rstudio_screenshot.png" alt='Screenshot of RStudio showing the 4 "panes".' class="figure mx-auto d-block"></figure><p>In the above screenshot, we can see 4 “panes” in the default
 layout:</p>
-<ul><li>Top-Left: the <code>**Source**</code> pane that displays scripts and
-other files.
+<ul><li>Top-Left: the <strong><code>Source</code></strong> pane that
+displays scripts and other files.
 <ul><li>If you only have 3 panes, and the Console pane is in the top left,
 press <kbd>Shift+Cmd+N</kbd> (<code>Mac</code>) or
 <kbd>Shift+Ctrl+N</kbd> (<code>Windows</code>) to open a blank
 <code>R</code> script, which should make the <code>Source</code> pane
 appear.</li>
 </ul></li>
-<li>Top-Right: the <strong>Environment/History</strong> pane, which
-shows all the objects in your current R session
+<li>Top-Right: the <strong><code>Environment/History</code></strong>
+pane, which shows all the objects in your current R session
 (<code>Environment</code>) and your command history
 (<code>History</code>)
 <ul><li>there are some other tabs here, including <code>Connections</code>,
@@ -535,15 +537,16 @@ shows all the objects in your current R session
 <li>we won’t cover any of the other tabs, but <code>RStudio</code> has
 lots of other useful features</li>
 </ul></li>
-<li>Bottom-Left: the <code>**Console**</code> pane, where you can
-interact directly with an <code>R</code> console, which interprets
-<code>R</code> commands and prints the results
+<li>Bottom-Left: the <strong><code>Console</code></strong> pane, where
+you can interact directly with an <code>R</code> console, which
+interprets <code>R</code> commands and prints the results
 <ul><li>There are also tabs for <code>Terminal</code> and
 <code>Jobs</code>
 </li>
 </ul></li>
-<li>Bottom-Right: the <code>**Files/Plots/Help/Viewer**</code> pane to
-navigate files or view plots and help pages</li>
+<li>Bottom-Right: the
+<strong><code>Files/Plots/Help/Viewer</code></strong> pane to navigate
+files or view plots and help pages</li>
 </ul><p>You can customize the layout of these panes, as well as many settings
 such as <code>RStudio</code> color scheme, font, and even keyboard
 shortcuts. You can access these settings by going to the menu bar, then
@@ -569,17 +572,19 @@ workshop.</p>
 screenshot above).</li>
 <li>In the top right, you will see a blue 3D cube and the words
 <code>Project: (None)</code>. Click on this icon.</li>
-<li>Click <code>**New Project**</code> from the dropdown menu.</li>
-<li>Click <code>**New Directory**</code>, then
-<code>**New Project**</code>.</li>
+<li>Click <strong><code>New Project</code></strong> from the dropdown
+menu.</li>
+<li>Click <strong><code>New Directory</code></strong>, then
+<strong><code>New Project</code></strong>
+</li>
 <li>Type out a name for the project, such as <code>intro_r</code>
 </li>
 <li>Put it in a convenient location using the
 <code>Create project as a subdirectory of:</code> section. We recommend
 your <code>Desktop</code>. You can always move the project somewhere
 else later, because it will be self-contained.</li>
-<li>Click <code>**Create Project**</code> and your new project will
-open.</li>
+<li>Click <strong><code>Create Project</code></strong> and your new
+project will open.</li>
 </ol><p>Next time you open <code>RStudio</code>, you can click that 3D cube
 icon, and you will see options to open existing projects, like the one
 you just made.</p>
@@ -599,10 +604,10 @@ setting the working directory.</p>
 reproducibility of our work. Go to your menu bar, then click
 <code>Tools → Global Options</code> to open up the <code>Options</code>
 window.</p>
-<p><img src="fig/rstudio_settings.png" class="figure">{alt=“Screenshot of the
-<code>RStudio Global Options</code>, with `”Restore .RData into
-workspace at startup"<code>unchecked, and \</code>“Save workspace to
-.RData on exit"<code>set to \</code>”Never"`.”}</p>
+<p><img src="fig/rstudio_settings.png" class="figure">{alt=“Screenshot of the RStudio
+Global Options, with "Restore .RData into workspace at
+startup”unchecked, and "Save workspace to .RData on exit”set to
+"Never”.“}</p>
 <p>Make sure your settings match those highlighted in yellow. We don’t
 want <code>RStudio</code> to store the current status of our R session
 and reload it the next time we start<code>R</code>. This might sound
@@ -645,18 +650,17 @@ you make any modifications, you write that modified file into the
 for plots we make, and a <code>documents</code> folder for any other
 documents you might produce.</p>
 <p>Let’s start making our new script folder. Go to the
-<code>**Files**</code> pane (bottom right), and check the current
-directory. You should be in the directory for the project you just made,
-in our case <code>intro_r</code>. You shouldn’t see any folders in here
-yet.</p>
-<p><img src="fig/files_pane.png" class="figure">{alt=<code>RStudio Files</code>
-pane.”}</p>
-<p>Next, click the <code>**New Folder**</code> button, and type in
-<code>scripts</code> to generate your <code>scripts</code> folder. It
-should appear in the Files list now. It’s worth noting that the
-<code>**Files**</code> pane helps you create, find, and open files, but
-moving through your files won’t change where the <strong>working
-directory</strong> of your project is.</p>
+<strong><code>Files</code></strong> pane (bottom right), and check the
+current directory. You should be in the directory for the project you
+just made, in our case <code>intro_r</code>. You shouldn’t see any
+folders in here yet.</p>
+<p><img src="fig/files_pane.png" class="figure">{alt=RStudio Files pane.”}</p>
+<p>Next, click the <strong><code>New Folder</code></strong> button, and
+type in <code>scripts</code> to generate your <code>scripts</code>
+folder. It should appear in the Files list now. It’s worth noting that
+the <strong><code>Files</code></strong> pane helps you create, find, and
+open files, but moving through your files won’t change where the
+<strong>working directory</strong> of your project is.</p>
 </section><section><h2 class="section-heading" id="working-in-r-and-rstudio">Working in <code>R</code> and <code>RStudio</code>
 <a class="anchor" aria-label="anchor" href="#working-in-r-and-rstudio"></a></h2>
 <hr class="half-width"><p>The basis of programming is that we write down instructions for the
@@ -696,9 +700,7 @@ commands and print the result.</li>
 </ul></div>
 <div class="section level4">
 <h4 id="script">Script<a class="anchor" aria-label="anchor" href="#script"></a></h4>
-<ul><li>A script is a record of commands to send to <code>R</code>,
-preserved in a plain text file with a <code>.R</code> extension</li>
-<li>You can make a new<code>R</code> script by clicking
+<ul><li>You can make a new<code>R</code> script by clicking
 <code>File → New File → R Script</code>, clicking the green
 <code>+</code> button in the top left corner of <code>RStudio</code>, or
 pressing <kbd>Shift+Cmd+N</kbd> (<code>Mac</code>) or
