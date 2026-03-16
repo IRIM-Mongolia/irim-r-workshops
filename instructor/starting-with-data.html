@@ -312,7 +312,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Starting with Data</h1>
-        <p>Last updated on 2026-03-12 |
+        <p>Last updated on 2026-03-16 |
 
         <a href="https://github.com/kathrynnapier/irim-r-workshops/edit/main/episodes/starting-with-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -351,13 +351,16 @@ enough for learners to avoid common mistakes with them.</li>
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How does R store data?</li>
+<ul><li>How does <code>R</code> store data?</li>
 <li>What is a data.frame?</li>
-<li>How can I read a complete csv file into R?</li>
+<li>How can I read a complete <code>.csv</code> file into
+<code>R</code>?</li>
 <li>How can I get basic summary information about my dataset?</li>
-<li>How can I change the way R treats strings in my dataset?</li>
+<li>How can I change the way <code>R</code> treats strings in my
+dataset?</li>
 <li>Why would I want strings to be treated differently?</li>
-<li>How are dates represented in R and how can I change the format?</li>
+<li>How are dates represented in <code>R</code> and how can I change the
+format?</li>
 </ul></div>
 </div>
 </div>
@@ -365,9 +368,10 @@ enough for learners to avoid common mistakes with them.</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Load external data from a .csv file into a data frame.</li>
+<ul><li>Load external data from a <code>.csv</code> file into a data
+frame.</li>
 <li>Explore the structure and content of data.frames</li>
-<li>Understand how R assigns values to objects</li>
+<li>Understand how <code>R</code> assigns values to objects</li>
 <li>Understand vector types and missing data</li>
 <li>Describe the difference between a factor and a string.</li>
 <li>Create and convert factors</li>
@@ -379,23 +383,26 @@ enough for learners to avoid common mistakes with them.</li>
 </div>
 <section><h2 class="section-heading" id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a></h2>
 <hr class="half-width"><p>This workshop was adapted using material from the Data Carpentry
-lessons <a href="https://datacarpentry.github.io/r-socialsci/index.html" class="external-link">R for
-Social Scientists</a>, specifically <a href="https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html" class="external-link">lesson
-02-starting-with-data</a>, and <a href="https://datacarpentry.github.io/R-ecology-lesson/index.html" class="external-link">R for
-Ecologists</a>, specifically <a href="https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html" class="external-link">how-r-thinks-about-data</a>.</p>
+lessons <a href="https://datacarpentry.github.io/r-socialsci/index.html" class="external-link"><code>R for Social Scientists</code></a>,
+specifically <a href="https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html" class="external-link"><code>lesson 02-starting-with-data</code></a>,
+and <a href="https://datacarpentry.github.io/R-ecology-lesson/index.html" class="external-link"><code>R for Ecologists</code></a>,
+specifically <a href="https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html" class="external-link"><code>how-r-thinks-about-data</code></a>.</p>
 </section><section><h2 class="section-heading" id="other-materials">Other Materials<a class="anchor" aria-label="anchor" href="#other-materials"></a></h2>
 <hr class="half-width"><p><a href="https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK" class="external-link">See
 Workshop 3 Slides here</a></p>
 <p><a href="https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha" class="external-link">See
 Workshop 3 recording here</a></p>
 </section><section><h2 class="section-heading" id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a></h2>
-<hr class="half-width"><p>Start by opening up your RStudio project that you created in a <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio" class="external-link">previous
-workshop</a> (called intro_r). Open a new R notebook: Click File -&gt;
-New File -&gt; R Notebook. Save your R notebook with a filename that
-makes sense, such as <code>starting_with_data.Rmd</code>, in the
+<hr class="half-width"><p>Start by opening up your <code>RStudio project</code> that you
+created in a <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio" class="external-link">previous
+workshop</a> (called <code>intro_r</code>). Open a new
+<code>R Notebook</code>: <code>Click File -&gt; New File -&gt; R</code>
+Notebook. Save your <code>R Notebook</code> with a filename that makes
+sense, such as <code>starting_with_data.Rmd</code>, in the
 <code>scripts</code> folder.</p>
-<p>When you open a new R Notebook, some explanatory text is provided.
-This can be deleted so you can enter your own text and code.</p>
+<p>When you open a new <code>R Notebook</code>, some explanatory text is
+provided. This can be deleted so you can enter your own text and
+code.</p>
 </section><section><h2 class="section-heading" id="what-are-data-frames">What are data frames?<a class="anchor" aria-label="anchor" href="#what-are-data-frames"></a></h2>
 <hr class="half-width"><p>Data frames are the <em>de facto</em> data structure for tabular data
 in <code>R</code>, and what we use for data processing, statistics, and
@@ -403,21 +410,23 @@ plotting.</p>
 <p>A data frame is the representation of data in the format of a table
 where the columns are vectors that all have the same length. Data frames
 are analogous to the more familiar spreadsheet in programs such as
-Excel, with one key difference. Because columns are vectors, each column
-must contain a single type of data (e.g., characters, integers,
-factors). For example, here is a figure depicting a data frame
-comprising a numeric, a character, and a logical vector.</p>
+<code>Excel</code>, with one key difference. Because columns are
+vectors, each column must contain a single type of data (e.g.,
+characters, integers, factors). For example, here is a figure depicting
+a data frame comprising a numeric, a character, and a logical
+vector.</p>
 <figure><img src="../fig/data-frame.svg" alt="A 3 by 3 data frame with columns showing numeric, character and logical values." class="figure mx-auto d-block"></figure><p>Data frames can be created by hand, but most commonly they are
 generated by the functions <code>read_csv()</code> or
 <code>read_table()</code>; in other words, when importing spreadsheets
 from your hard drive (or the web). We will now demonstrate how to import
 tabular data using <code>read_csv()</code>.</p>
 </section><section><h2 class="section-heading" id="presentation-of-the-safi-data">Presentation of the SAFI Data<a class="anchor" aria-label="anchor" href="#presentation-of-the-safi-data"></a></h2>
-<hr class="half-width"><p>SAFI (Studying African Farmer-Led Irrigation) is a study looking at
-farming and irrigation methods in Tanzania and Mozambique. The survey
-data was collected through interviews conducted between November 2016
-and June 2017. For this lesson, we will be using a subset of the
-available data. For information about the orginal dataset, see the <a href="https://datacarpentry.org/socialsci-workshop/index.html#data" class="external-link">dataset
+<hr class="half-width"><p><code>SAFI</code> (Studying African Farmer-Led Irrigation) is a study
+looking at farming and irrigation methods in Tanzania and Mozambique.
+The survey data was collected through interviews conducted between
+November 2016 and June 2017. For this lesson, we will be using a subset
+of the available data. For information about the orginal dataset, see
+the <a href="https://datacarpentry.org/socialsci-workshop/index.html#data" class="external-link">dataset
 description</a>.</p>
 <p>We will be using a subset of the dataset that has been provided
 (<code>data/raw/SAFI_clean.csv</code>). In this dataset, the missing
@@ -468,7 +477,7 @@ the <strong>Importing data</strong> section.</p>
 <p>We will be using a dataset called <code>SAFI_clean.csv</code>. The
 direct download link for this file is: <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link uri">https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv</a>.
 This data is a slightly cleaned up version of the SAFI Survey Results
-available on <a href="https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019" class="external-link">figshare</a>.</p>
+available on <a href="https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019" class="external-link"><code>figshare</code></a>.</p>
 <p>First, we need to create a new folder called <code>data</code> to
 store this dataset. Go to the Files pane, and create a new folder named
 <code>data</code>, and two subfolders called <code>cleaned</code> and
@@ -485,19 +494,19 @@ store this dataset. Go to the Files pane, and create a new folder named
 │
 └─── documents</code></pre>
 <p>You can either download the <code>SAFI_clean.csv</code> dataset used
-for this workshop from the GitHub link or with R. You can download the
-file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link">GitHub
+for this workshop from the <code>GitHub</code> link or with
+<code>R</code>. You can download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub</code>
 link</a> and save it as <code>SAFI_clean.csv</code> in the
 <code>data/raw</code> directory you just created. Or you can do this
 directly from R by copying and pasting this in your console:</p>
 <p><code>download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )</code></p>
 </div>
 </section><section><h2 class="section-heading" id="importing-data">Importing data<a class="anchor" aria-label="anchor" href="#importing-data"></a></h2>
-<hr class="half-width"><p>You are going to load the data in R’s memory using the function
-<code>read_csv()</code> from the <strong><code>readr</code></strong>
-package, which is part of the <strong><code>tidyverse</code></strong>;
-learn more about the <strong><code>tidyverse</code></strong> collection
-of packages <a href="https://www.tidyverse.org/" class="external-link">here</a>.
+<hr class="half-width"><p>You are going to load the data in <code>R</code>’s memory using the
+function <code>read_csv()</code> from the
+<strong><code>readr</code></strong> package, which is part of the
+<strong><code>tidyverse</code></strong>; learn more about the
+<strong><code>tidyverse</code></strong> collection of packages <a href="https://www.tidyverse.org/" class="external-link">here</a>.
 <strong><code>readr</code></strong> gets installed as part as the
 <strong><code>tidyverse</code></strong> installation. When you load the
 <strong><code>tidyverse</code></strong>
@@ -506,13 +515,13 @@ in most data analyses) get loaded, including
 <strong><code>readr</code></strong>.</p>
 <p>Before proceeding, however, this is a good opportunity to talk about
 conflicts. Certain packages we load can end up introducing function
-names that are already in use by pre-loaded R packages. For instance,
-when we load the tidyverse package below, we will introduce two
-conflicting functions: <code>filter()</code> and <code>lag()</code>.
+names that are already in use by pre-loaded <code>R</code> packages. For
+instance, when we load the tidyverse package below, we will introduce
+two conflicting functions: <code>filter()</code> and <code>lag()</code>.
 This happens because <code>filter</code> and <code>lag</code> are
-already functions used by the stats package (already pre-loaded in R).
-What will happen now is that if we, for example, call the
-<code>filter()</code> function, R will use the
+already functions used by the stats package (already pre-loaded in
+<code>R</code>). What will happen now is that if we, for example, call
+the <code>filter()</code> function, R will use the
 <code>dplyr::filter()</code> version and not the
 <code>stats::filter()</code> one. This happens because, if conflicted,
 by default R uses the function from the most recently loaded package.
@@ -531,23 +540,25 @@ us to choose the default function we want from now on.</li>
 function directly from the package we want, such as
 <code>stats::filter()</code>.</p>
 <p>Even with the use of an RStudio project, it can be difficult to learn
-how to specify paths to file locations. Enter the <strong>here</strong>
-package! The here package creates paths relative to the top-level
-directory (your RStudio project). These relative paths work
-<em>regardless</em> of where the associated source file lives inside
-your project, like analysis projects with data and reports in different
-subdirectories. This is an important contrast to using
-<code>setwd()</code>, which depends on the way you order your files on
-your computer.</p>
+how to specify paths to file locations. Enter the
+<strong><code>here</code></strong> package! The here package creates
+paths relative to the top-level directory (your RStudio project). These
+relative paths work <em>regardless</em> of where the associated source
+file lives inside your project, like analysis projects with data and
+reports in different subdirectories. This is an important contrast to
+using <code>setwd()</code>, which depends on the way you order your
+files on your computer.</p>
 <p>Before we can use the <code>read_csv()</code> and <code>here()</code>
-functions, we need to load the tidyverse and here packages.</p>
-<p>Add a new code chunk in your notebook, load the tidyverse and here
-packages, and read in the SAFI dataset. We’ll <strong>assign</strong>
-the dataset to an object called <code>interviews</code>.</p>
-<p>If you recall, the missing data is encoded as “NULL” in the dataset.
-We’ll tell this to the <code>read_csv()</code> function, so R will
-automatically convert all the “NULL” entries in the dataset into
-<code>NA</code>.</p>
+functions, we need to load the <code>tidyverse</code> and
+<code>here</code> packages.</p>
+<p>Add a new code chunk in your notebook, load the
+<code>tidyverse</code> and <code>here</code> packages, and read in the
+<code>SAFI</code> dataset. We’ll <strong>assign</strong> the dataset to
+an object called <code>interviews</code>.</p>
+<p>If you recall, the missing data is encoded as <code>NULL</code> in
+the dataset. We’ll tell this to the <code>read_csv()</code> function, so
+<code>R</code> will automatically convert all the <code>NULL</code>
+entries in the dataset into <code>NA</code>.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -574,13 +585,13 @@ separate the names. The two methods are equivalent, so that
 (The slash is used on all operating systems; backslashes are not
 used.)</p>
 </section><section><h2 class="section-heading" id="assigning-objects">Assigning objects<a class="anchor" aria-label="anchor" href="#assigning-objects"></a></h2>
-<hr class="half-width"><p>In R, we can <strong>assign</strong> inputs to a named
+<hr class="half-width"><p>In <code>R</code>, we can <strong>assign</strong> inputs to a named
 <strong>object</strong>. We do this using the <strong>assignment
-arrow</strong> <code>&lt;-</code>, <kbd>Alt+-</kbd> (Windows) or
-<kbd>Option+-</kbd> (Mac).What we are doing here is taking the result of
-the code on the right side of the arrow (reading in the csv file), and
-assigning it to an object whose name is on the left side of the arrow
-(<code>interviews</code>).</p>
+arrow</strong> <code>&lt;-</code>, <kbd>Alt+-</kbd>
+(<code>Windows</code>) or <kbd>Option+-</kbd> (<code>Mac</code>).What we
+are doing here is taking the result of the code on the right side of the
+arrow (reading in the csv file), and assigning it to an object whose
+name is on the left side of the arrow (<code>interviews</code>).</p>
 <p>You may notice that the contents of the interviews data frame do not
 display below the code cell. This is because assignments
 (<code>&lt;-</code>) don’t display anything. If we want to check that
@@ -642,7 +653,9 @@ of warnings and errors, which is a good thing).</p>
 listed in an abbreviated fashion below the column names. For instance,
 here <code>key_ID</code> is a column of floating point numbers
 (abbreviated <code>&lt;dbl&gt;</code> for the word ‘double’),
-<code>respondent_wall_type`` is a column of characters (</code><chr><code>) and the</code>interview_date<code>is a column in the "date and time" format (</code><dttm>`).</dttm></chr></p>
+<code>respondent_wall_type</code> is a column of characters (
+<code>&lt;chr&gt;</code>) and the<code>interview_date</code> is a column
+in the “date and time” format (<code>&lt;dttm&gt;</code>).</p>
 <div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -650,23 +663,24 @@ here <code>key_ID</code> is a column of floating point numbers
 <span class="callout-header">Callout</span>
 <div class="callout-inner">
 <div class="callout-content">
-<p><strong><code>tidyverse</code> vs. base R</strong></p>
+<p><strong><code>tidyverse</code> vs. <code>base R</code></strong></p>
 <p>As we begin to delve more deeply into the <code>tidyverse</code>, we
 should briefly pause to mention some of the reasons for focusing on the
 <code>tidyverse</code> set of tools. In R, there are often many ways to
 get a job done, and there are other approaches that can accomplish tasks
 similar to the <code>tidyverse</code>.</p>
-<p>The phrase <strong>base R</strong> is used to refer to approaches
-that utilize functions contained in R’s default packages. We will use
-some base R functions, such as <code>str()</code>, <code>head()</code>,
-and <code>nrow()</code>, and we will be using more scattered throughout
-this workshop. However, there are some key base R approaches we will not
-be teaching. These include square bracket subsetting. You may come
-across code written by other people that looks like
-<code>interviews[1:10, 2]</code>, which is a base R command. If you’re
-interested in learning more about these approaches, you can check out
-other Carpentries lessons like the <a href="https://swcarpentry.github.io/r-novice-inflammation/" class="external-link">Software
-Carpentry Programming with R</a> lesson.</p>
+<p>The phrase <strong><code>base R</code></strong> is used to refer to
+approaches that utilize functions contained in <code>R</code>’s default
+packages. We will use some <code>base R</code> functions, such as
+<code>str()</code>, <code>head()</code>, and <code>nrow()</code>, and we
+will be using more scattered throughout this workshop. However, there
+are some key <code>base R</code> approaches we will not be teaching.
+These include square bracket subsetting. You may come across code
+written by other people that looks like
+<code>interviews[1:10, 2]</code>, which is a <code>base R</code>
+command. If you’re interested in learning more about these approaches,
+you can check out other Carpentries lessons like the <a href="https://swcarpentry.github.io/r-novice-inflammation/" class="external-link"><code>Software Carpentry Programming with R</code></a>
+lesson.</p>
 <p>We choose to teach the <code>tidyverse</code> set of packages because
 they share a similar syntax and philosophy, making them consistent and
 producing highly readable code. They are also very flexible and
@@ -675,8 +689,8 @@ similar principles and to work well with the rest of the packages. The
 <code>tidyverse</code> packages tend to have very clear documentation
 and wide array of learning materials that tend to be written with novice
 users in mind. Finally, the <code>tidyverse</code> has only continued to
-grow, and has strong support from RStudio, which implies that these
-approaches will be relevant into the future.</p>
+grow, and has strong support from <code>RStudio</code>, which implies
+that these approaches will be relevant into the future.</p>
 </div>
 </div>
 </div>
@@ -715,7 +729,8 @@ these functions. Let’s try them out!</p>
 <ul><li>
 <code>dim(interviews)</code> - returns a vector with the number of
 rows as the first element, and the number of columns as the second
-element (the <strong>dim</strong>ensions of the object)</li>
+element (the <strong><code>dim</code></strong>ensions of the
+object)</li>
 <li>
 <code>nrow(interviews)</code> - returns the number of rows</li>
 <li>
@@ -740,9 +755,9 @@ column</li>
 <code>glimpse(interviews)</code> - returns the number of columns and
 rows of the tibble, the names and class of each column, and previews as
 many values will fit on the screen. Unlike the other inspecting
-functions listed above, <code>glimpse()</code> is not a “base R”
-function so you need to have the <code>tidyverse</code> package loaded
-to be able to execute it.</li>
+functions listed above, <code>glimpse()</code> is not a
+<code>base R</code> function so you need to have the
+<code>tidyverse</code> package loaded to be able to execute it.</li>
 </ul><p>Note: most of these functions are “generic.” They can be used on
 other types of objects besides data frames or tibbles.</p>
 <div class="section level3">
@@ -921,10 +936,11 @@ where you will find a list of links to each vignette. Some packages will
 have their own websites, which often have nicely formatted vignettes and
 tutorials.</p>
 <p>Finally, learning to search for help is probably the most useful
-skill for any R user. The key skill is figuring out what you should
-actually search for. It’s often a good idea to start your search with
-<code>R</code> or <code>R programming</code>. If you have the name of a
-package you want to use, start with <code>R package_name</code>.</p>
+skill for any <code>R</code> user. The key skill is figuring out what
+you should actually search for. It’s often a good idea to start your
+search with <code>R</code> or <code>R programming</code>. If you have
+the name of a package you want to use, start with
+<code>R package_name</code>.</p>
 <p>Let’s investigate <code>str</code> a bit more.</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1024,11 +1040,12 @@ That’s because it is not a data.frame, it is a <strong>vector</strong>.
 A vector is a 1-dimensional series of values, in this case a vector of
 characters representing the village name.</p>
 <p>Data.frames are made up of vectors; each column in a data.frame is a
-vector. Vectors are the basic building blocks of all data in R.
-Basically, everything in R is a vector, a bunch of vectors stitched
-together in some way, or a function. Understanding how vectors work is
-crucial to understanding how R treats data, so we will spend some time
-learning about them.</p>
+vector. Vectors are the basic building blocks of all data in
+<code>R</code>. Basically, everything in <code>R</code> is a vector, a
+bunch of vectors stitched together in some way, or a function.
+Understanding how vectors work is crucial to understanding how
+<code>R</code> treats data, so we will spend some time learning about
+them.</p>
 <p>There are 4 main types of vectors (also known as <em>atomic
 vectors</em>):</p>
 <ol style="list-style-type: decimal"><li><p><code>"character"</code> for strings of characters, like our
@@ -1038,8 +1055,8 @@ languages, this type of data may be referred to as “strings”.</p></li>
 <li><p><code>"integer"</code> for integers. All the numeric values in
 <code>interviews</code> are integers. You may sometimes see integers
 represented like <code>2L</code> or <code>20L</code>. The <code>L</code>
-indicates to R that it is an integer, instead of the next data type,
-<code>"numeric"</code>.</p></li>
+indicates to <code>R</code> that it is an integer, instead of the next
+data type, <code>"numeric"</code>.</p></li>
 <li><p><code>"numeric"</code>, aka <code>"double"</code>, vectors can
 contain numbers including decimals. Other languages may refer to these
 as “float” or “floating point” numbers.</p></li>
@@ -1051,8 +1068,8 @@ data.</p></li>
 column in a data.frame is a vector, this means an accidental character
 following a number, like <code>29,</code> can change the type of the
 whole vector. Mixing up vector types is one of the most common mistakes
-in R, and it can be tricky to figure out. It’s often very useful to
-check the types of vectors.</p>
+in <code>R</code>, and it can be tricky to figure out. It’s often very
+useful to check the types of vectors.</p>
 <p>To create a vector from scratch, we can use the <code>c()</code>
 function, putting values inside, separated by commas.</p>
 <div class="codewrapper sourceCode" id="cb22">
@@ -1197,8 +1214,9 @@ running any code at first, then run the code and use
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<p>R will automatically convert values in a vector so that they are all
-the same type, a process called <strong>coercion</strong>.</p>
+<p><code>R</code> will automatically convert values in a vector so that
+they are all the same type, a process called
+<strong>coercion</strong>.</p>
 </div>
 </div>
 </div>
@@ -1303,25 +1321,27 @@ coerced to a character vector.</p>
 </div>
 </div>
 <p>Coercion is not something you will often do intentionally; rather,
-when combining vectors or reading data into R, a stray character that
-you missed may change an entire numeric vector into a character vector.
-It is a good idea to check the <code>class()</code> of your results
-frequently, particularly if you are running into confusing error
-messages.</p>
+when combining vectors or reading data into <code>R</code>, a stray
+character that you missed may change an entire numeric vector into a
+character vector. It is a good idea to check the <code>class()</code> of
+your results frequently, particularly if you are running into confusing
+error messages.</p>
 </section><section><h2 class="section-heading" id="missing-data">Missing data<a class="anchor" aria-label="anchor" href="#missing-data"></a></h2>
-<hr class="half-width"><p>One of the great things about R is how it handles missing data, which
-can be tricky in other programming languages. R represents missing data
-as <code>NA</code>, without quotes, in vectors of any type. Let’s make a
-numeric vector with an <code>NA</code> value:</p>
+<hr class="half-width"><p>One of the great things about <code>R</code> is how it handles
+missing data, which can be tricky in other programming languages.
+<code>R</code> represents missing data as <code>NA</code>, without
+quotes, in vectors of any type. Let’s make a numeric vector with an
+<code>NA</code> value:</p>
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="fl">25</span>, <span class="fl">34</span>, <span class="fl">12</span>, <span class="cn">NA</span>, <span class="fl">42</span><span class="op">)</span></span></code></pre>
 </div>
-<p>R doesn’t make assumptions about how you want to handle missing data,
-so if we pass this vector to a numeric function like <code>min()</code>,
-it won’t know what to do, so it returns <code>NA</code>:</p>
+<p><code>R</code> doesn’t make assumptions about how you want to handle
+missing data, so if we pass this vector to a numeric function like
+<code>min()</code>, it won’t know what to do, so it returns
+<code>NA</code>:</p>
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1336,7 +1356,8 @@ it won’t know what to do, so it returns <code>NA</code>:</p>
 <p>This is a very good thing, since we won’t accidentally forget to
 consider our missing data. If we decide to exclude our missing values,
 many basic math functions have an argument to
-<strong>r</strong>e<strong>m</strong>ove them:</p>
+<strong><code>r</code></strong> <strong><code>e</code></strong>
+<strong><code>m</code></strong>ove them:</p>
 <div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1376,11 +1397,11 @@ differently</li>
 <strong>levels</strong>, for each integer</li>
 </ul></li>
 </ul></section><section><h2 class="section-heading" id="factors">Factors<a class="anchor" aria-label="anchor" href="#factors"></a></h2>
-<hr class="half-width"><p>R has a special data class, called factor, to deal with categorical
-data that you may encounter when creating plots or doing statistical
-analyses. Factors are very useful and actually contribute to making R
-particularly well suited to working with data. So we are going to spend
-a little time introducing them.</p>
+<hr class="half-width"><p><code>R</code> has a special data class, called <code>factor</code>,
+to deal with categorical data that you may encounter when creating plots
+or doing statistical analyses. Factors are very useful and actually
+contribute to making <code>R</code> particularly well suited to working
+with data. So we are going to spend a little time introducing them.</p>
 <p>Factors represent categorical data. They are stored as integers
 associated with labels and they can be ordered (ordinal) or unordered
 (nominal). Factors create a structured relation between the different
@@ -1391,8 +1412,8 @@ look (and often behave) like character vectors, they are actually
 treated as integer vectors by <code>R</code>. So you need to be very
 careful when treating them as strings.</p>
 <p>Once created, factors can only contain a pre-defined set of values,
-known as <em>levels</em>. By default, R always sorts levels in
-alphabetical order. For instance, if you have a factor with 2
+known as <em>levels</em>. By default, <code>R</code> always sorts levels
+in alphabetical order. For instance, if you have a factor with 2
 levels:</p>
 <div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1400,10 +1421,11 @@ levels:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">respondent_floor_type</span> <span class="op">&lt;-</span> <span class="fu">factor</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">"earth"</span>, <span class="st">"cement"</span>, <span class="st">"cement"</span>, <span class="st">"earth"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<p>R will assign <code>1</code> to the level <code>"cement"</code> and
-<code>2</code> to the level <code>"earth"</code> (because <code>c</code>
-comes before <code>e</code>, even though the first element in this
-vector is <code>"earth"</code>). You can see this by using the function
+<p><code>R</code> will assign <code>1</code> to the level
+<code>"cement"</code> and <code>2</code> to the level
+<code>"earth"</code> (because <code>c</code> comes before
+<code>e</code>, even though the first element in this vector is
+<code>"earth"</code>). You can see this by using the function
 <code>levels()</code> and you can find the number of levels using
 <code>nlevels()</code>:</p>
 <div class="codewrapper sourceCode" id="cb51">
@@ -1429,10 +1451,11 @@ vector is <code>"earth"</code>). You can see this by using the function
 <pre class="output" tabindex="0"><code>[1] 2</code></pre>
 </div>
 <p>Sometimes, the order of the factors does not matter. Other times you
-might want to specify the order because it is meaningful (e.g., “low”,
-“medium”, “high”). It may improve your visualization, or it may be
-required by a particular type of analysis. Here, one way to reorder our
-levels in the <code>respondent_floor_type</code> vector would be:</p>
+might want to specify the order because it is meaningful (e.g.,
+<code>low</code>, <code>medium</code>, <code>high</code>). It may
+improve your visualization, or it may be required by a particular type
+of analysis. Here, one way to reorder our levels in the
+<code>respondent_floor_type</code> vector would be:</p>
 <div class="codewrapper sourceCode" id="cb55">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1460,15 +1483,16 @@ Levels: cement earth</code></pre>
 <pre class="output" tabindex="0"><code>[1] earth  cement cement earth
 Levels: earth cement</code></pre>
 </div>
-<p>In R’s memory, these factors are represented by integers (1, 2), but
-are more informative than integers because factors are self describing:
-<code>"cement"</code>, <code>"earth"</code> is more descriptive than
-<code>1</code>, and <code>2</code>. Which one is “earth”? You wouldn’t
-be able to tell just from the integer data. Factors, on the other hand,
-have this information built in. It is particularly helpful when there
-are many levels. It also makes renaming levels easier. Let’s say we made
-a mistake and need to recode “cement” to “brick”. We can do this using
-the <code>fct_recode()</code> function from the
+<p>In <code>R</code>’s memory, these factors are represented by integers
+(1, 2), but are more informative than integers because factors are self
+describing: <code>"cement"</code>, <code>"earth"</code> is more
+descriptive than <code>1</code>, and <code>2</code>. Which one is
+“earth”? You wouldn’t be able to tell just from the integer data.
+Factors, on the other hand, have this information built in. It is
+particularly helpful when there are many levels. It also makes renaming
+levels easier. Let’s say we made a mistake and need to recode
+<code>cement</code> to <code>brick</code>. We can do this using the
+<code>fct_recode()</code> function from the
 <strong><code>forcats</code></strong> package (included in the
 <strong><code>tidyverse</code></strong>) which provides some extra tools
 to work with factors.</p>
@@ -1646,11 +1670,11 @@ Levels: no yes</code></pre>
 <span><span class="fu">plot</span><span class="op">(</span><span class="va">memb_assoc</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/starting-with-data-rendered-factor-plot-default-order-1.png" alt="Yes/no bar graph showing number of individuals who are members of irrigation association" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Looking at the plot compared to the output of the vector, we can see
-that in addition to “no”s and “yes”s, there are some respondents for
-whom the information about whether they were part of an irrigation
-association hasn’t been recorded, and encoded as missing data. These
-respondents do not appear on the plot. Let’s encode them differently so
-they can be counted and visualized in our plot.</p>
+that in addition to <code>"no"s</code> and <code>"yes"s</code>, there
+are some respondents for whom the information about whether they were
+part of an irrigation association hasn’t been recorded, and encoded as
+missing data. These respondents do not appear on the plot. Let’s encode
+them differently so they can be counted and visualized in our plot.</p>
 <div class="codewrapper sourceCode" id="cb78">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1716,10 +1740,11 @@ Levels: no undetermined yes</code></pre>
 <h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <ul><li><p>Rename the levels of the factor to have the first letter in
-uppercase: “No”,“Undetermined”, and “Yes”.</p></li>
-<li><p>Now that we have renamed the factor level to “Undetermined”, can
-you recreate the barplot such that “Undetermined” is last (after
-“Yes”)?</p></li>
+uppercase: <code>No</code>, <code>Undetermined</code>, and
+<code>Yes</code>.</p></li>
+<li><p>Now that we have renamed the factor level to
+<code>Undetermined</code>, can you recreate the barplot such that
+<code>Undetermined</code> is last (after <code>Yes</code>)?</p></li>
 </ul></div>
 </div>
 </div>
@@ -1747,11 +1772,11 @@ you recreate the barplot such that “Undetermined” is last (after
 </div>
 </div>
 </section><section><h2 class="section-heading" id="formatting-dates">Formatting Dates<a class="anchor" aria-label="anchor" href="#formatting-dates"></a></h2>
-<hr class="half-width"><p>One of the most common issues that new (and experienced!) R users
-have is converting date and time information into a variable that is
-appropriate and usable during analyses. A best practice for dealing with
-date data is to ensure that each component of your date is available as
-a separate variable. In our dataset, we have a column
+<hr class="half-width"><p>One of the most common issues that new (and experienced!)
+<code>R</code> users have is converting date and time information into a
+variable that is appropriate and usable during analyses. A best practice
+for dealing with date data is to ensure that each component of your date
+is available as a separate variable. In our dataset, we have a column
 <code>interview_date</code> which contains information about the year,
 month, and day that the interview was conducted. Let’s convert those
 dates into three separate columns.</p>
@@ -1765,14 +1790,15 @@ dates into three separate columns.</p>
 <strong><code>lubridate</code></strong>, which is included in the
 <strong><code>tidyverse</code></strong> installation and should be
 loaded by default.</p>
-<p>The lubridate function <code>ymd()</code> takes a vector representing
-year, month, and day, and converts it to a <code>Date</code> vector.
-<code>Date</code> is a class of data recognized by R as being a date and
-can be manipulated as such. The argument that the function requires is
-flexible, but, as a best practice, is a character vector formatted as
-“YYYY-MM-DD”.</p>
+<p>The <code>lubridate</code> function <code>ymd()</code> takes a vector
+representing year, month, and day, and converts it to a
+<code>Date</code> vector. <code>Date</code> is a class of data
+recognized by <code>R</code> as being a date and can be manipulated as
+such. The argument that the function requires is flexible, but, as a
+best practice, is a character vector formatted as
+<code>YYYY-MM-DD</code>.</p>
 <p>To learn more about <strong><code>lubridate</code></strong> after
-this workshop, you may want to check out this handy <a href="https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw" class="external-link">lubridate
+this workshop, you may want to check out this handy <a href="https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw" class="external-link"><code>lubridate</code>
 cheatsheet</a>.</p>
 <p>Let’s extract our <code>interview_date</code> column and inspect the
 structure:</p>
@@ -1788,9 +1814,9 @@ structure:</p>
 </h3>
 <pre class="output" tabindex="0"><code> POSIXct[1:131], format: "2016-11-17" "2016-11-17" "2016-11-17" "2016-11-17" "2016-11-17" ...</code></pre>
 </div>
-<p>When we imported the data in R, <code>read_csv()</code> recognized
-that this column contained date information. We can now use the
-<code>day()</code>, <code>month()</code> and <code>year()</code>
+<p>When we imported the data in <code>R</code>, <code>read_csv()</code>
+recognized that this column contained date information. We can now use
+the <code>day()</code>, <code>month()</code> and <code>year()</code>
 functions to extract this information from the date, and create new
 columns in our data frame to store it:</p>
 <div class="codewrapper sourceCode" id="cb85">
@@ -1856,10 +1882,10 @@ them to the appropriate <code>Date/POSIXct</code>format.</p>
 </div>
 <p>Argument <code>format</code> tells the function the order to parse
 the characters and identify the month, day and year. The format above is
-the equivalent of mm/dd/yyyy. A wrong format can lead to parsing errors
-or incorrect results.</p>
-<p>For example, observe what happens when we use a lower case y instead
-of upper case Y for the year.</p>
+the equivalent of <code>mm/dd/yyyy</code>. A wrong format can lead to
+parsing errors or incorrect results.</p>
+<p>For example, observe what happens when we use a lower case
+<code>y</code> instead of upper case <code>Y</code> for the year.</p>
 <div class="codewrapper sourceCode" id="cb91">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1918,8 +1944,10 @@ cannot be parsed.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Use read_csv to read tabular data in R.</li>
-<li>Use factors to represent categorical data in R.</li>
+<ul><li>Use <code>read_csv</code> to read tabular data in
+<code>R</code>.</li>
+<li>Use <code>factors</code> to represent categorical data in
+<code>R</code>.</li>
 </ul></div>
 </div>
 </div>
@@ -1983,7 +2011,7 @@ cannot be parsed.</p>
   "url": "https://kathrynnapier.github.io/irim-r-workshops/instructor/starting-with-data.html",
   "identifier": "https://kathrynnapier.github.io/irim-r-workshops/instructor/starting-with-data.html",
   "dateCreated": "2026-02-09",
-  "dateModified": "2026-03-12",
+  "dateModified": "2026-03-16",
   "datePublished": "2026-03-16"
 }
 
