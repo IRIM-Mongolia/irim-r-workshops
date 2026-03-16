@@ -47,8 +47,7 @@ functions.
 
 ## What is the difference between base `R` and packages?
 
-The [“base” `R`
-package](https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html)
+The [`base R package`](https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html)
 contains the basic functions which let `R` function as a language:
 
 -   Arithmetic
@@ -89,7 +88,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.5 milliseconds.
+Successfully installed 1 package in 5.9 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -311,8 +310,7 @@ intro_r
 
 You can either download the `SAFI_clean.csv` dataset used for this
 workshop from the GitHub link or with `R`. You can download the file from
-this [`GitHub`
-link](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
+this [`GitHub link`](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
 and save it as `SAFI_clean.csv` in the `data/raw` directory you just
 created. Or you can do this directly from `R` by copying and pasting this
 in your console:
@@ -367,8 +365,7 @@ And nested items by tab-indenting:
     -   Number of rooms in house
 ```
 
-For more `Markdown` syntax see [the following reference
-guide](https://www.markdownguide.org/basic-syntax).
+For more `Markdown` syntax see [`the following reference guide`](https://www.markdownguide.org/basic-syntax).
 
 Now we can render the document into HTML by clicking the **`preview`**
 button in the top of the Source pane (top left). If you haven't saved
@@ -663,8 +660,7 @@ easier for R users. With `tinytex` installed, run
 `tinytex::install_tinytex()` to install the required software (you'll
 only need to do this once) and then when you **`Knit`** to pdf `tinytex`
 will automatically detect and install any additional LaTeX packages that
-are needed to produce the pdf document. Visit the [`tinytex`
-website](https://yihui.org/tinytex/) for more information.
+are needed to produce the pdf document. Visit the [`tinytex website`](https://yihui.org/tinytex/) for more information.
 :::
 
 ::: callout
@@ -680,8 +676,7 @@ accessible through the shortcut `Crtl+Shift+F4`. From here, clicking
 For example, searching `10.1007/978-3-319-24277-4` in `From DOI` and
 inserting will provide the citation for `ggplot2` [`@wickham2016`]. This
 will also save the citation(s) in 'references.bib' in the current
-working directory. Visit the [`R Studio`
-website](https://rstudio.github.io/visual-markdown-editing/) for more
+working directory. Visit the [`R Studio website`](https://rstudio.github.io/visual-markdown-editing/) for more
 information. Tip: obtaining citation information from relevant packages
 can be done by using `citation("package")`.
 :::
@@ -689,14 +684,10 @@ can be done by using `citation("package")`.
 ## Resources
 
 -   [`R Markdown` documentation](https://rmarkdown.rstudio.com)
--   [`R Markdown` cheat
-    sheet](https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf)
--   [Getting started with `R
-    Markdown`](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
--   [Introduction to `R
-    Markdown`](https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw)
--   [`R Markdown`: The Definitive
-    Guide](https://bookdown.org/yihui/rmarkdown/) (book by `Rstudio` team)
+-   [`R Markdown cheat sheet`](https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf)
+-   [`Getting started with R Markdown`](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
+-   [`Introduction to R Markdown`](https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw)
+-   [`R Markdown: The Definitive Guide`](https://bookdown.org/yihui/rmarkdown/) (book by `Rstudio` team)
 
 ::: keypoints
 -   Use `install.packages()` to install packages (libraries)

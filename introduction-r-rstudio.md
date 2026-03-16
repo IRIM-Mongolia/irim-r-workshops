@@ -89,7 +89,7 @@ The skills you learn with `R` scale easily with the size of your dataset. Whethe
 
 ### `R` has a large and welcoming community
 
-Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [`Stack Overflow`](https://stackoverflow.com/), or on the [`RStudio` community](https://community.rstudio.com/).
+Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [`Stack Overflow`](https://stackoverflow.com/), or on the [`RStudio community`](https://community.rstudio.com/).
 
 Since `R` is very popular among researchers, most of the help communities and learning materials are aimed towards other researchers. `Python` is a similar language to `R`, and can accomplish many of the same tasks, but is widely used by software developers and software engineers, so `Python` resources and communities are not as oriented towards researchers.
 

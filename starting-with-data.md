@@ -57,8 +57,7 @@ here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJK
 
 ## Set up
 
-Start by opening up your `RStudio project` that you created in a [previous
-workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
+Start by opening up your `RStudio project` that you created in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
 (called `intro_r`). Open a new `R Notebook`: `Click File -> New File -> R`
 Notebook. Save your `R Notebook` with a filename that makes sense, such as
 `starting_with_data.Rmd`, in the `scripts` folder.
@@ -93,8 +92,7 @@ farming and irrigation methods in Tanzania and Mozambique. The survey
 data was collected through interviews conducted between November 2016
 and June 2017. For this lesson, we will be using a subset of the
 available data. For information about the orginal dataset, see the
-[dataset
-description](https://datacarpentry.org/socialsci-workshop/index.html#data).
+[`dataset description`](https://datacarpentry.org/socialsci-workshop/index.html#data).
 
 We will be using a subset of the dataset that has been provided
 (`data/raw/SAFI_clean.csv`). In this dataset, the missing data is
@@ -121,7 +119,7 @@ respondent, and the columns represent:
 ### Download the data
 
 If you did not previously downloaded the `SAFI_clean.csv` dataset in the
-[previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
+[`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
 please follow the instructions below to download it. If you already have
 the file in your `data/raw/` folder, jump to the **Importing data**
 section.
@@ -153,7 +151,7 @@ intro_r
 
 You can either download the `SAFI_clean.csv` dataset used for this
 workshop from the `GitHub` link or with `R`. You can download the file from
-this [`GitHub` link](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
+this [`GitHub link`](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
 and save it as `SAFI_clean.csv` in the `data/raw` directory you just
 created. Or you can do this directly from `R` by copying and pasting this
 in your console:
@@ -165,7 +163,7 @@ in your console:
 You are going to load the data in `R`'s memory using the function
 `read_csv()` from the **`readr`** package, which is part of the
 **`tidyverse`**; learn more about the **`tidyverse`** collection of
-packages [here](https://www.tidyverse.org/). **`readr`** gets installed
+packages [`here`](https://www.tidyverse.org/). **`readr`** gets installed
 as part as the **`tidyverse`** installation. When you load the
 **`tidyverse`** (`library(tidyverse)`), the core packages (the packages
 used in most data analyses) get loaded, including **`readr`**.
@@ -1293,7 +1291,7 @@ argument that the function requires is flexible, but, as a best
 practice, is a character vector formatted as `YYYY-MM-DD`.
 
 To learn more about **`lubridate`** after this workshop, you may want to
-check out this handy [`lubridate` cheatsheet](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
+check out this handy [`lubridate cheatsheet`](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 Let's extract our `interview_date` column and inspect the structure:
 

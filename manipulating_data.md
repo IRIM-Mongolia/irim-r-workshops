@@ -10,8 +10,8 @@ editor_options:
 
 ::: instructor
 -   This lesson works better if you have graphics demonstrating `dplyr`
-    commands. You can modify [this Google Slides
-    deck](https://docs.google.com/presentation/d/1A9abypFdFp8urAe9z7GCMjFr4aPeIb8mZAtJA2F7H0w/edit#slide=id.g652714585f_0_114)
+    commands. You can modify [`this Google Slides
+    deck`](https://docs.google.com/presentation/d/1A9abypFdFp8urAe9z7GCMjFr4aPeIb8mZAtJA2F7H0w/edit#slide=id.g652714585f_0_114)
     and use it for your workshop.
 -   For this lesson make sure that learners are comfortable using pipes.
 -   There is also sometimes some confusion on what the arguments of
@@ -69,12 +69,11 @@ free to use the regional variant for where you are teaching.
 :::
 
 To learn more about **`dplyr`** after this workshop, you may want to
-check out this [handy data transformation with **`dplyr`**
-cheatsheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html?_gl=1*1ov7r49*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
+check out this [`handy data transformation with **dplyr**
+cheatsheet`](https://rstudio.github.io/cheatsheets/html/data-transformation.html?_gl=1*1ov7r49*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
 To learn more about **`tidyr`** after the workshop, you may want to
-check out this [handy data tidying with **`tidyr`**
-cheatsheet](https://rstudio.github.io/cheatsheets/html/tidyr.html?_gl=1*1d6d96q*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzEkdDE3NzMyODcxMzkkajYwJGwwJGgw).
+check out this [`handy data tidying with **tidyr** cheatsheet`](https://rstudio.github.io/cheatsheets/html/tidyr.html?_gl=1*1d6d96q*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzEkdDE3NzMyODcxMzkkajYwJGwwJGgw).
 
 ::: callout
 ## Note
@@ -82,7 +81,7 @@ cheatsheet](https://rstudio.github.io/cheatsheets/html/tidyr.html?_gl=1*1d6d96q*
 There are alternatives to the `tidyverse` packages for data wrangling,
 including the package
 [`data.table`](https://rdatatable.gitlab.io/data.table/). See this
-[comparison](https://mgimond.github.io/rug_2019_12/Index.html) for
+[`comparison`](https://mgimond.github.io/rug_2019_12/Index.html) for
 example to get a sense of the differences between using `base`,
 `tidyverse`, and `data.table`.
 :::
@@ -102,7 +101,7 @@ and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.htm
 
 ## Set up
 
-Start by opening up your RStudio project that you created in a [previous
+Start by opening up your `RStudio` project that you created in a [previous
 workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
 called `intro_r`, in a new session. Ensure your `global environment` is
 empty! You can also 'sweep' your `global environment` by clicking the
@@ -117,7 +116,7 @@ Open a new `R Notebook`: `Click File -> New File -> R Notebook`. Save your
 When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the `SAFI` dataset that we downloaded earlier [in a previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
+Read in the `SAFI` dataset that we downloaded earlier [`in a previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 
 ``` r
@@ -360,7 +359,7 @@ interviews %>%
 ```
 
 In the above code, we use the pipe to send the `interviews` dataset
-first through `filter()` to keep rows where `village` is "Chirodzo",
+first through `filter()` to keep rows where `village` is `Chirodzo`,
 then through `select()` to keep only the columns from `village` to
 `respondent_wall_type`. Since `%>%` takes the object on its left and
 passes it as the first argument to the function on its right, we don't
@@ -483,7 +482,7 @@ irrigation association had any effect on the ratio of household members
 to rooms. To look at this relationship, we will first remove data from
 our dataset where the respondent didn't answer the question of whether
 they were a member of an irrigation association. These cases are
-recorded as "NULL" in the dataset.
+recorded as `NULL` in the dataset.
 
 To remove these cases, we could insert a `filter()` in the chain:
 
@@ -989,16 +988,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
- 2     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
- 3     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
- 4      9 Chirodzo 2016-11-16 00:00:00 uuid:846103d2-b1db-4055-b502-9cd510bb7b37
- 5     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
- 6     58 Chirodzo 2016-11-16 00:00:00 uuid:a7a3451f-cd0d-4027-82d9-8dcd1234fcca
- 7     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
- 8    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
- 9     68 Chirodzo 2016-11-16 00:00:00 uuid:ef04b3eb-b47d-412e-9b09-4f5e08fc66f9
-10     10 Chirodzo 2016-12-16 00:00:00 uuid:8f4e49bc-da81-4356-ae34-e0d794a23721
+ 1     50 Chirodzo 2016-11-16 00:00:00 uuid:4267c33c-53a7-46d9-8bd6-b96f58a4f92c
+ 2     53 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
+ 3     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
+ 4     36 Chirodzo 2016-11-17 00:00:00 uuid:c90eade0-1148-4a12-8c0e-6387a36f45b1
+ 5     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
+ 6     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
+ 7    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
+ 8     69 Chirodzo 2016-11-16 00:00:00 uuid:f86933a5-12b8-4427-b821-43c5b039401d
+ 9     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
+10     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
 ```
 
 We notice that the layout or format of the `interviews` data is in a
@@ -1023,8 +1022,8 @@ every survey date to be a different column.
 
 These may sound like dramatically different data layouts, but there are
 some tools that make transitions between these layouts much simpler than
-you might think! The gif below shows how these two formats relate to
-each other, and gives you an idea of how we can use R to shift from one
+you might think! The `gif` below shows how these two formats relate to
+each other, and gives you an idea of how we can use `R` to shift from one
 format to the other.
 
 ![](fig/tidyr-pivot_wider_longer.gif)
@@ -1397,7 +1396,7 @@ frames.
 
 Before using `write_csv()`, we are going to create a new folder,
 `data/cleaned`, in our working directory that will store this generated
-dataset, if you did not create this folder in a [previous workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
+dataset, if you did not create this folder in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
 
 We don't want to write generated datasets in the same directory as our
 raw data. It's good practice to keep them separate. The `data/raw`
