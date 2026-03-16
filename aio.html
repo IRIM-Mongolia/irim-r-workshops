@@ -247,7 +247,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="introduction-r-packages-markdown.html">2. Introduction to R Packages, Markdown and Notebooks</a>
+        <a href="introduction-r-packages-markdown.html">2. Introduction to <code>R Packages</code>, <code>Markdown</code> and <code>Notebooks</code></a>
     </div>
 <!--/div.accordion-header-->
 
@@ -407,7 +407,7 @@ packages we will use in these workshops.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Your new pedantic collaborator… </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You’re working on a project when your advisor suggests that you begin
 working with one of their long-time collaborators. According to your
@@ -832,7 +832,7 @@ self-contained</li>
 </div>
 </section></section><section id="aio-introduction-r-packages-markdown"><p>Content from <a href="introduction-r-packages-markdown.html">Introduction to R Packages, Markdown and Notebooks</a></p>
 <hr>
-<p>Last updated on 2026-03-12 |
+<p>Last updated on 2026-03-16 |
 
         <a href="https://github.com/kathrynnapier/irim-r-workshops/edit/main/episodes/introduction-r-packages-markdown.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -846,11 +846,12 @@ self-contained</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What is an R package?</li>
-<li>How to install R packages?</li>
-<li>What is R Markdown and R Notebooks?</li>
-<li>How can I integrate my R code with text and plots?</li>
-<li>How can I convert .Rmd files to .html?</li>
+<li>What is an <code>R package</code>?</li>
+<li>How to install <code>R</code> packages?</li>
+<li>What is <code>R Markdown</code> and <code>R Notebooks</code>?</li>
+<li>How can I integrate my <code>R</code> code with text and plots?</li>
+<li>How can I convert <code>.Rmd</code> files to
+<code>.html</code>?</li>
 </ul>
 </div>
 </div>
@@ -860,10 +861,12 @@ self-contained</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Understand what an R package is</li>
-<li>Install packages using the packages tab.</li>
-<li>Install packages using R code.</li>
-<li>Understand basic syntax of R Markdown and R Notebooks</li>
+<li>Understand what an <code>R package</code> is</li>
+<li>Install packages using the <code>packages</code> tab.</li>
+<li>Install packages using <code>R</code> code.</li>
+<li>Understand basic syntax of <code>R Markdown</code> and
+<code>R Notebooks</code>
+</li>
 </ul>
 </div>
 </div>
@@ -874,10 +877,9 @@ self-contained</li>
 </h2>
 <hr class="half-width">
 <p>This workshop was adapted using material from the Data Carpentry
-lessons <a href="https://datacarpentry.github.io/r-socialsci/index.html" class="external-link">R for
-Social Scientists</a>, specifically <a href="https://datacarpentry.github.io/r-socialsci/00-intro.html" class="external-link">lesson
-00-intro</a> and <a href="https://datacarpentry.github.io/r-socialsci/06-rmarkdown.html" class="external-link">lesson
-06-rmarkdown</a>.</p>
+lessons <a href="https://datacarpentry.github.io/r-socialsci/index.html" class="external-link"><code>R for Social Scientists</code></a>,
+specifically <a href="https://datacarpentry.github.io/r-socialsci/00-intro.html" class="external-link"><code>lesson 00-intro</code></a>
+and <a href="https://datacarpentry.github.io/r-socialsci/06-rmarkdown.html" class="external-link"><code>lesson 06-rmarkdown</code></a>.</p>
 </section><section><h2 class="section-heading" id="other-materials">Other Materials<a class="anchor" aria-label="anchor" href="#other-materials"></a>
 </h2>
 <hr class="half-width">
@@ -885,35 +887,40 @@ Social Scientists</a>, specifically <a href="https://datacarpentry.github.io/r-s
 Workshop 2 Slides here</a></p>
 <p><a href="https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN" class="external-link">See
 Workshop 2 recording here</a></p>
-</section><section><h2 class="section-heading" id="what-are-r-packages">What are R packages?<a class="anchor" aria-label="anchor" href="#what-are-r-packages"></a>
+</section><section><h2 class="section-heading" id="what-are-r-packages">What are <code>R packages</code>?<a class="anchor" aria-label="anchor" href="#what-are-r-packages"></a>
 </h2>
 <hr class="half-width">
-<p><a href="https://r-pkgs.org/" class="external-link">R Packages</a> are the fundamental
-units of reproducible R code. They are collections of reusable R
-functions, sample data, and the documentation that describes how to use
-the functions.</p>
-</section><section><h2 class="section-heading" id="what-is-the-difference-between-base-r-and-packages">What is the difference between base R and packages?<a class="anchor" aria-label="anchor" href="#what-is-the-difference-between-base-r-and-packages"></a>
+<p><a href="https://r-pkgs.org/" class="external-link"><code>R Packages</code></a> are the
+fundamental units of reproducible <code>R</code> code. They are
+collections of reusable <code>R</code> functions, sample data, and the
+documentation that describes how to use the functions.</p>
+</section><section><h2 class="section-heading" id="what-is-the-difference-between-base-r-and-packages">What is the difference between base <code>R</code> and
+packages?<a class="anchor" aria-label="anchor" href="#what-is-the-difference-between-base-r-and-packages"></a>
 </h2>
 <hr class="half-width">
 <p>The <a href="https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html" class="external-link">“base”
-R package</a> contains the basic functions which let R function as a
-language:</p>
+<code>R</code> package</a> contains the basic functions which let
+<code>R</code> function as a language:</p>
 <ul>
 <li>Arithmetic</li>
 <li>Input/output</li>
 <li>Basic programming support, etc</li>
 </ul>
-<p>The R software is distributed with the <code>base</code> R package
-installed. In addition to the base R installation, there are in excess
-of 20,000 additional packages which can be used to extend the
-functionality of R. Many of these have been written by R users and have
-been made available in central repositories, like the one hosted at the
-Comprehensive R Archive Network <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" class="external-link">CRAN</a>,
-for anyone to download and install into their own R environment.</p>
-<p><a href="https://cran.r-project.org/#:~:text=What%20are%20R%20and%20CRAN%3F,provides%20a%20wide%20variety%20of" class="external-link">CRAN</a>
+<p>The <code>R</code> software is distributed with the
+<code>base R</code> package installed. In addition to the
+<code>base R</code> installation, there are in excess of 20,000
+additional packages which can be used to extend the functionality of
+<code>R</code>. Many of these have been written by <code>R</code> users
+and have been made available in central repositories, like the one
+hosted at the <code>Comprehensive R Archive Network</code> <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" class="external-link"><code>CRAN</code></a>,
+for anyone to download and install into their own <code>R</code>
+environment.</p>
+<p><a href="https://cran.r-project.org/#:~:text=What%20are%20R%20and%20CRAN%3F,provides%20a%20wide%20variety%20of" class="external-link"><code>CRAN</code></a>
 is a network of ftp and web servers around the world that store
-identical, up-to-date, versions of code and documentation for R.</p>
-</section><section><h2 class="section-heading" id="installing-packages-using-r-code-and-the-packages-tab">Installing packages using R code and the packages tab<a class="anchor" aria-label="anchor" href="#installing-packages-using-r-code-and-the-packages-tab"></a>
+identical, up-to-date, versions of code and documentation for
+<code>R</code>.</p>
+</section><section><h2 class="section-heading" id="installing-packages-using-r-code-and-the-packages-tab">Installing packages using <code>R</code> code and the
+<code>packages</code> tab<a class="anchor" aria-label="anchor" href="#installing-packages-using-r-code-and-the-packages-tab"></a>
 </h2>
 <hr class="half-width">
 <p>We’ll use the <code>tidyverse</code> and <code>here</code> packages
@@ -938,24 +945,25 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.1 milliseconds.</code></pre>
+Successfully installed 1 package in 5.5 milliseconds.</code></pre>
 </div>
 <p>You can see if you have a package installed by looking in the
 <code>packages</code> tab (on the lower-right by default). You can also
 type the command <code>installed.packages()</code> into the console and
 examine the output.</p>
-<figure><img src="fig/packages_pane.png" alt="Screenshot of Packages pane" class="figure mx-auto d-block"></figure><p>Packages can also be installed from the ‘packages’ tab. On the
-packages tab, click the ‘Install’ icon and start typing the name of the
-package you want in the text box. As you type, packages matching your
-starting characters will be displayed in a drop-down list so that you
-can select them.</p>
-<figure><img src="fig/R_00_Rstudio_03.png" alt="Screenshot of Install Packages Window" class="figure mx-auto d-block"></figure><p>At the bottom of the Install Packages window is a check box to
-‘Install’ dependencies. This is ticked by default, which is usually what
-you want. Packages can (and do) make use of functionality built into
-other packages, so for the functionality contained in the package you
-are installing to work properly, there may be other packages which have
-to be installed with them. The ‘Install dependencies’ option makes sure
-that this happens.</p>
+<figure><img src="fig/packages_pane.png" alt="Screenshot of Packages pane" class="figure mx-auto d-block"></figure><p>Packages can also be installed from the <code>packages</code> tab. On
+the <code>packages</code> tab, click the <code>Install</code> icon and
+start typing the name of the package you want in the text box. As you
+type, packages matching your starting characters will be displayed in a
+drop-down list so that you can select them.</p>
+<figure><img src="fig/R_00_Rstudio_03.png" alt="Screenshot of Install Packages Window" class="figure mx-auto d-block"></figure><p>At the bottom of the <code>Install Packages</code> window is a check
+box to <code>Install</code> dependencies. This is ticked by default,
+which is usually what you want. Packages can (and do) make use of
+functionality built into other packages, so for the functionality
+contained in the package you are installing to work properly, there may
+be other packages which have to be installed with them. The
+<code>Install dependencies</code> option makes sure that this
+happens.</p>
 <div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -964,7 +972,7 @@ that this happens.</p>
 <div id="exercise" class="callout-inner">
 <h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
-<p>Use the Packages tab to confirm that you have both the
+<p>Use the <code>Packages</code> tab to confirm that you have both the
 <code>tidyverse</code> and <code>here</code> packages installed.</p>
 </div>
 </div>
@@ -974,58 +982,66 @@ that this happens.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Scroll through packages tab down to ‘tidyverse’. You can also type a
-few characters into the searchbox. The ‘tidyverse’ package is really a
-package of packages, including ‘ggplot2’ and ‘dplyr’, both of which
+<p>Scroll through packages tab down to <code>tidyverse</code>. You can
+also type a few characters into the searchbox. The
+<code>tidyverse</code> package is really a package of packages,
+including <code>ggplot2</code> and <code>dplyr</code>, both of which
 require other packages to run correctly. All of these packages will be
 installed automatically. Depending on what packages have previously been
-installed in your R environment, the install of ‘tidyverse’ could be
-very quick or could take several minutes. As the install proceeds,
-messages relating to its progress will be written to the console. You
-will be able to see all of the packages which are actually being
-installed.</p>
+installed in your R environment, the install of <code>tidyverse</code>
+could be very quick or could take several minutes. As the install
+proceeds, messages relating to its progress will be written to the
+console. You will be able to see all of the packages which are actually
+being installed.</p>
 </div>
 </div>
 </div>
 </div>
-<p>Because the install process accesses the CRAN repository, you will
-need an Internet connection to install packages.</p>
+<p>Because the install process accesses the <code>CRAN</code>
+repository, you will need an Internet connection to install
+packages.</p>
 <p>It is also possible to install packages from other repositories, as
-well as Github or the local file system, but we won’t be looking at
-these options in this workshop.</p>
-</section><section><h2 class="section-heading" id="r-markdown-and-r-notebooks">R Markdown and R Notebooks<a class="anchor" aria-label="anchor" href="#r-markdown-and-r-notebooks"></a>
+well as <code>Github</code> or the local file system, but we won’t be
+looking at these options in this workshop.</p>
+</section><section><h2 class="section-heading" id="r-markdown-and-r-notebooks">
+<code>R Markdown</code> and <code>R Notebooks</code>
+<a class="anchor" aria-label="anchor" href="#r-markdown-and-r-notebooks"></a>
 </h2>
 <hr class="half-width">
-<p>R Markdown is a flexible type of document that allows you to
-seamlessly combine executable R code, and its output, with text in a
-single document.</p>
-<p>An R Notebook is a specific interactive execution mode for an R
-Markdown (Rmd) document. Code chunks are executed independently and
-interactively within the RStudio editor.</p>
-<p>R Markdown documents can be readily converted to multiple static and
-dynamic output formats, including PDF (.pdf), Word (.docx), and HTML
-(.html).</p>
-<p>The benefit of a well-prepared R Markdown or Notebook document is
-full reproducibility. This also means that, if you notice a data
-transcription error, or you are able to add more data to your analysis,
-you will be able to recompile the report without making any changes in
-the actual document.</p>
-</section><section><h2 class="section-heading" id="creating-an-r-notebook-file">Creating an R Notebook file<a class="anchor" aria-label="anchor" href="#creating-an-r-notebook-file"></a>
+<p><code>R Markdown</code> is a flexible type of document that allows
+you to seamlessly combine executable <code>R</code> code, and its
+output, with text in a single document.</p>
+<p>An <code>R Notebook</code> is a specific interactive execution mode
+for an <code>R Markdown</code> (<code>Rmd</code>) document. Code chunks
+are executed independently and interactively within the
+<code>RStudio</code> editor.</p>
+<p><code>R Markdown</code> documents can be readily converted to
+multiple static and dynamic output formats, including PDF (.pdf), Word
+(.docx), and HTML (.html).</p>
+<p>The benefit of a well-prepared <code>R Markdown</code> or
+<code>Notebook</code> document is full reproducibility. This also means
+that, if you notice a data transcription error, or you are able to add
+more data to your analysis, you will be able to recompile the report
+without making any changes in the actual document.</p>
+</section><section><h2 class="section-heading" id="creating-an-r-notebook-file">Creating an <code>R Notebook</code> file<a class="anchor" aria-label="anchor" href="#creating-an-r-notebook-file"></a>
 </h2>
 <hr class="half-width">
-<p>To create a new R Markdown document in RStudio, click File -&gt; New
-File -&gt; R Notebook. You may be prompted to install required packages
-the first time you do this.</p>
-</section><section><h2 class="section-heading" id="basic-components-of-an-r-notebook">Basic components of an R Notebook<a class="anchor" aria-label="anchor" href="#basic-components-of-an-r-notebook"></a>
+<p>To create a new <code>R Markdown</code> document in
+<code>RStudio</code>, click
+<code>File -&gt; New File -&gt; R Notebook</code>. You may be prompted
+to install required packages the first time you do this.</p>
+</section><section><h2 class="section-heading" id="basic-components-of-an-r-notebook">Basic components of an <code>R Notebook</code>
+<a class="anchor" aria-label="anchor" href="#basic-components-of-an-r-notebook"></a>
 </h2>
 <hr class="half-width">
 <div class="section level3">
-<h3 id="yaml-header">YAML Header<a class="anchor" aria-label="anchor" href="#yaml-header"></a>
+<h3 id="yaml-header">
+<code>YAML</code> Header<a class="anchor" aria-label="anchor" href="#yaml-header"></a>
 </h3>
-<p>To control the output, a YAML (YAML Ain’t Markup Language) header is
-needed:</p>
+<p>To control the output, a <code>YAML</code> (<code>YAML</code> Ain’t
+Markup Language) header is needed:</p>
 <pre><code>---
 title: "My Awesome Report"
 output: html_document
@@ -1033,36 +1049,40 @@ output: html_document
 <p>The header is defined by the three hyphens at the beginning
 (<code>---</code>) and the three hyphens at the end
 (<code>---</code>).</p>
-<p>In the YAML, the only required field is the <code>output:</code>,
-which specifies the type of output you want. This can be an
-<code>html_document</code>, a <code>pdf_document</code>, or a
+<p>In the <code>YAML</code>, the only required field is the
+<code>output:</code>, which specifies the type of output you want. This
+can be an <code>html_document</code>, a <code>pdf_document</code>, or a
 <code>word_document</code>. We will start with an HTML document and
 discuss the other options later.</p>
 <p>After the header, to begin the body of the document, you start typing
-after the end of the YAML header (i.e. after the second
+after the end of the <code>YAML</code> header (i.e. after the second
 <code>---</code>).</p>
 </div>
 <div class="section level3">
-<h3 id="markdown-syntax">Markdown syntax<a class="anchor" aria-label="anchor" href="#markdown-syntax"></a>
+<h3 id="markdown-syntax">
+<code>Markdown</code> syntax<a class="anchor" aria-label="anchor" href="#markdown-syntax"></a>
 </h3>
-<p>Markdown is a popular markup language that allows you to add
-formatting elements to text, such as <strong>bold</strong>,
+<p><code>Markdown</code> is a popular markup language that allows you to
+add formatting elements to text, such as <strong>bold</strong>,
 <em>italics</em>, and <code>code</code>. The formatting will not be
 immediately visible in a markdown (.md) document, like you would see in
-a Word document. Rather, you add Markdown syntax to the text, which can
-then be converted to various other files that can translate the Markdown
-syntax. Markdown is useful because it is lightweight, flexible, and
-platform independent.</p>
-<p>RStudio provides a real time preview of the formatting- click the
-<code>Visual</code> tab to view the rendered markdown, or
-<code>Source</code> to view the raw markdown.</p>
+a Word document. Rather, you add <code>Markdown</code> syntax to the
+text, which can then be converted to various other files that can
+translate the <code>Markdown</code> syntax. <code>Markdown</code> is
+useful because it is lightweight, flexible, and platform
+independent.</p>
+<p><code>RStudio</code> provides a real time preview of the formatting-
+click the <code>Visual</code> tab to view the rendered
+<code>Markdown</code>, or <code>Source</code> to view the raw
+<code>Markdown</code>.</p>
 <div class="section level4">
 <h4 id="headings">Headings<a class="anchor" aria-label="anchor" href="#headings"></a>
 </h4>
-<p>A <code>#</code> in front of text indicates to Markdown that this
-text is a heading. Adding more <code>#</code>s make the heading smaller,
-i.e. one <code>#</code> is a first level heading, two <code>##</code>s
-is a second level heading, etc. upto the 6th level heading.</p>
+<p>A <code>#</code> in front of text indicates to <code>Markdown</code>
+that this text is a heading. Adding more <code>#</code>s make the
+heading smaller, i.e. one <code>#</code> is a first level heading, two
+<code>##</code>s is a second level heading, etc. up to the 6th level
+heading.</p>
 <pre><code><span><span class="co"># Title</span></span>
 <span><span class="co">## Section</span></span>
 <span><span class="co">### Sub-section</span></span>
@@ -1094,11 +1114,13 @@ backticks, <code>`code-type`</code>.</p>
 </h3>
 <p>Code chunks are blocks where you write and execute R code. They start
 with <code>```{r} and end with ```</code>.</p>
-<p>To insert a Chunk, click the small arrow next to the Insert button in
-the editor toolbar and select R.</p>
+<p>To insert a Chunk, click the small arrow next to the
+<code>Insert</code> button in the editor toolbar and select
+<code>R</code>.</p>
 <p>To run a Chunk, click the small green play arrow on the right side of
-the chunk, or use the keyboard shortcut Ctrl + Alt + I (or Cmd + Option
-+ I on Mac).</p>
+the chunk, or use the keyboard shortcut <code>Ctrl + Alt + I</code> on
+<code>Windows</code> (or <code>Cmd + Option + I</code> on
+<code>Mac</code>).</p>
 <div class="section level4">
 <h4 id="viewing-output">Viewing output<a class="anchor" aria-label="anchor" href="#viewing-output"></a>
 </h4>
@@ -1108,34 +1130,37 @@ editor.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="render-and-share-your-notebook">Render and Share Your Notebook<a class="anchor" aria-label="anchor" href="#render-and-share-your-notebook"></a>
+<h3 id="render-and-share-your-notebook">Render and Share Your <code>Notebook</code>
+<a class="anchor" aria-label="anchor" href="#render-and-share-your-notebook"></a>
 </h3>
 <p>Once your analysis is complete, you can generate a final, polished
 report.</p>
-<p>Click the Preview (or Render) button in the RStudio editor
-toolbar.</p>
+<p>Click the <code>Preview</code> (or <code>Render</code>) button in the
+<code>RStudio</code> editor toolbar.</p>
 <p>This creates a self-contained HTML file (or PDF/Word document,
-depending on your settings in your YAML header) that includes both the
-narrative text and the final results.</p>
+depending on your settings in your <code>YAML</code> header) that
+includes both the narrative text and the final results.</p>
 <p>You can easily share this output file with others, even if they don’t
-use R.</p>
+use <code>R</code>.</p>
 <p>Now that we’ve learned a couple of things, it might be useful to
 implement them.</p>
 </div>
-</section><section><h2 class="section-heading" id="create-your-own-new-r-notebook">Create your own new R Notebook<a class="anchor" aria-label="anchor" href="#create-your-own-new-r-notebook"></a>
+</section><section><h2 class="section-heading" id="create-your-own-new-r-notebook">Create your own new <code>R Notebook</code>
+<a class="anchor" aria-label="anchor" href="#create-your-own-new-r-notebook"></a>
 </h2>
 <hr class="half-width">
-<p>Start by opening a new R notebook: Click File -&gt; New File -&gt; R
-Notebook</p>
-<p>When you open a new R Notebook, some explanatory text is provided.
-This can be deleted so you can enter your own text and code.</p>
+<p>Start by opening a new <code>R Notebook</code>:
+<code>Click File -&gt; New File -&gt; R Notebook</code></p>
+<p>When you open a new <code>R Notebook</code>, some explanatory text is
+provided. This can be deleted so you can enter your own text and
+code.</p>
 <div class="section level3">
 <h3 id="download-data">Download data<a class="anchor" aria-label="anchor" href="#download-data"></a>
 </h3>
 <p>We will be using a dataset called <code>SAFI_clean.csv</code>. The
 direct download link for this file is: <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link uri">https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv</a>.
-This data is a slightly cleaned up version of the SAFI Survey Results
-available on <a href="https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019" class="external-link">figshare</a>.</p>
+This data is a slightly cleaned up version of the
+<code>SAFI Survey Results</code> available on <a href="https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019" class="external-link"><code>figshare</code></a>.</p>
 <p>First, we need to create a new folder called <code>data</code> to
 store this dataset. Go to the Files pane, and create a new folder named
 <code>data</code>, and two subfolders called <code>cleaned</code> and
@@ -1152,11 +1177,12 @@ store this dataset. Go to the Files pane, and create a new folder named
 │
 └─── documents</code></pre>
 <p>You can either download the <code>SAFI_clean.csv</code> dataset used
-for this workshop from the GitHub link or with R. You can download the
-file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link">GitHub
+for this workshop from the GitHub link or with <code>R</code>. You can
+download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub</code>
 link</a> and save it as <code>SAFI_clean.csv</code> in the
 <code>data/raw</code> directory you just created. Or you can do this
-directly from R by copying and pasting this in your console:</p>
+directly from <code>R</code> by copying and pasting this in your
+console:</p>
 <p><code>download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )</code></p>
 </div>
 <div class="section level3">
@@ -1165,8 +1191,9 @@ directly from R by copying and pasting this in your console:</p>
 <p>Make a header called <code>Introduction</code>, and insert some
 explanatory text about the dataset that will be in your report. For
 example:</p>
-<p>This report uses the <strong>tidyverse</strong> package along with
-the <em>SAFI</em> dataset, which has columns that include:</p>
+<p>This report uses the <strong><code>tidyverse</code></strong> package
+along with the <em><code>SAFI</code></em> dataset, which has columns
+that include:</p>
 <pre><code><span><span class="op">-</span>   <span class="va">village</span></span>
 <span><span class="op">-</span>   <span class="va">interview_date</span></span>
 <span><span class="op">-</span>   <span class="va">no_members</span></span>
@@ -1196,27 +1223,30 @@ the <em>SAFI</em> dataset, which has columns that include:</p>
     -   Type of wall of house
 -   rooms
     -   Number of rooms in house</code></pre>
-<p>For more Markdown syntax see <a href="https://www.markdownguide.org/basic-syntax" class="external-link">the following
+<p>For more <code>Markdown</code> syntax see <a href="https://www.markdownguide.org/basic-syntax" class="external-link">the following
 reference guide</a>.</p>
 <p>Now we can render the document into HTML by clicking the
-<strong>preview</strong> button in the top of the Source pane (top
-left). If you haven’t saved the document yet, you will be prompted to do
-so when you <strong>preview</strong> for the first time.</p>
+<strong><code>preview</code></strong> button in the top of the Source
+pane (top left). If you haven’t saved the document yet, you will be
+prompted to do so when you <strong><code>preview</code></strong> for the
+first time.</p>
 </div>
 <div class="section level3">
-<h3 id="writing-an-r-markdown-report">Writing an R Markdown report<a class="anchor" aria-label="anchor" href="#writing-an-r-markdown-report"></a>
+<h3 id="writing-an-r-markdown-report">Writing an <code>R Markdown</code> report<a class="anchor" aria-label="anchor" href="#writing-an-r-markdown-report"></a>
 </h3>
-<p>Now we will add some R code to demonstrate (we will learn more about
-this code in the next workshop!).</p>
-<p>First, we need to make sure <strong>tidyverse</strong> is loaded. It
-is not enough to load <strong>tidyverse</strong> from the console, we
-will need to load it within our R Markdown document. The same applies to
-our data. To load these, we will need to create a ‘code chunk’ at the
-top of our document (below the YAML header).</p>
-<p>A code chunk can be inserted by clicking Code &gt; Insert Chunk, or
-by using the keyboard shortcuts
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, and
-<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
+<p>Now we will add some <code>R</code> code to demonstrate (we will
+learn more about this code in the next workshop!).</p>
+<p>First, we need to make sure <strong><code>tidyverse</code></strong>
+is loaded. It is not enough to load
+<strong><code>tidyverse</code></strong> from the console, we will need
+to load it within our <code>R Notebook</code>. The same applies to our
+data. To load these, we will need to create a ‘code chunk’ at the top of
+our document (below the <code>YAML</code> header).</p>
+<p>A code chunk can be inserted by clicking
+<code>Code \&gt; Insert Chunk</code>, or by using the keyboard shortcuts
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on <code>Windows</code> and
+<code>Linux</code>, and <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on
+<code>Mac</code>.</p>
 <p>The syntax of a code chunk is:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1225,14 +1255,14 @@ by using the keyboard shortcuts
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="in">"Here is where you place the R code that you want to run."</span></span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="in">```</span></span></code></pre>
 </div>
-<p>An R Markdown document knows that this text is not part of the report
-from the <code>```</code> that begins and ends the chunk. It also knows
-that the code inside of the chunk is R code from the <code>r</code>
-inside of the curly braces (<code>{}</code>). After the <code>r</code>
-you can add a name for the code chunk . Naming a chunk is optional, but
-recommended. Each chunk name must be unique, and only contain
-alphanumeric characters and <code>-</code>.</p>
-<p>To load <strong>tidyverse</strong> and our
+<p>An <code>R Markdown</code> document knows that this text is not part
+of the report from the (<code>```</code>) that begins and ends the
+chunk. It also knows that the code inside of the chunk is R code from
+the <code>r</code> inside of the curly braces (<code>{}</code>). After
+the <code>r</code> you can add a name for the code chunk . Naming a
+chunk is optional, but recommended. Each chunk name must be unique, and
+only contain alphanumeric characters and <code>-</code>.</p>
+<p>To load <strong><code>tidyverse</code></strong> and our
 <code>SAFI_clean.csv</code> file, we will insert a chunk and call it
 ‘setup’. Since we don’t want this code or the output to show in our
 rendered HTML document, we add an <code>include = FALSE</code> option
@@ -1274,14 +1304,15 @@ the naming rules).</p>
 <p>We will learn more about this code later!</p>
 <p>To see the output, run the code chunk with the green triangle in the
 top right corner of the the chunk, or with the keyboard shortcuts:
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on Windows and Linux, or
-<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on Mac.</p>
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on <code>Windows</code> and
+<code>Linux</code>, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on
+<code>Mac</code>.</p>
 <p>To make sure the table is formatted nicely in our output document, we
 will need to use the <code>kable()</code> function from the
-<strong>knitr</strong> package. The <code>kable()</code> function takes
-the output of your R code and knits it into a nice looking HTML table.
-You can also specify different aspects of the table, e.g. the column
-names, a caption, etc.</p>
+<strong><code>knitr</code></strong> package. The <code>kable()</code>
+function takes the output of your R code and knits it into a nice
+looking HTML table. You can also specify different aspects of the table,
+e.g. the column names, a caption, etc.</p>
 <p>Run the code chunk to make sure you get the desired output.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1335,8 +1366,9 @@ names, a caption, etc.</p>
 </tr>
 </tbody>
 </table>
-<p>Many different R packages can be used to generate tables. Some of the
-more commonly used options are listed in the table below.</p>
+<p>Many different <code>R</code> packages can be used to generate
+tables. Some of the more commonly used options are listed in the table
+below.</p>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -1479,11 +1511,11 @@ glm, coxph, nls, fitdistr, mytable and cbind.mytable objects.</td>
 </table>
 </div>
 <div class="section level3">
-<h3 id="customising-chunk-output">Customising chunk output<a class="anchor" aria-label="anchor" href="#customising-chunk-output"></a>
+<h3 id="customizing-chunk-output">Customizing chunk output<a class="anchor" aria-label="anchor" href="#customizing-chunk-output"></a>
 </h3>
 <p>We mentioned using <code>include = FALSE</code> in a code chunk to
 prevent the code and output from printing in the knitted document. There
-are additional options available to customise how the code-chunks are
+are additional options available to customize how the code-chunks are
 presented in the output document. The options are entered in the code
 chunk after <code>chunk-name</code> and separated by commas, e.g.
 <code>{r chunk-name, eval = FALSE, echo = TRUE}</code>.</p>
@@ -1571,7 +1603,7 @@ the table, and see what each option does to the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.
@@ -1588,18 +1620,19 @@ store the output for later use.</p>
 <div class="section level3">
 <h3 id="in-line-r-code">In-line R code<a class="anchor" aria-label="anchor" href="#in-line-r-code"></a>
 </h3>
-<p>Now we will use some in-line R code to present some descriptive
-statistics. To use in-line R-code, we use the same backticks that we
-used in the Markdown section, with an <code>r</code> to specify that we
-are generating R-code. The difference between in-line code and a code
-chunk is the number of backticks. In-line R code uses one backtick
+<p>Now we will use some in-line <code>R</code> code to present some
+descriptive statistics. To use in-line <code>R</code> code, we use the
+same backticks that we used in the <code>Markdown</code> section, with
+an <code>r</code> to specify that we are generating R-code. The
+difference between in-line code and a code chunk is the number of
+backticks. In-line <code>R</code> code uses one backtick
 (<code>`r`</code>), whereas code chunks use three backticks
 (<code>```r```</code>).</p>
 <p>For example, today’s date is <code>`r Sys.Date()`</code>, will be
-rendered as: today’s date is 2026-03-12.<br>
+rendered as: today’s date is 2026-03-16.<br>
 The code will display today’s date in the output document (well,
-technically the date the document was last knitted).</p>
-<p>The best way to use in-line R code, is to minimise the amount of code
+technically the date the document was last knitted or previewed).</p>
+<p>The best way to use in-line R code, is to minimize the amount of code
 you need to produce the in-line output by preparing the output in code
 chunks. Let’s say we’re interested in presenting the average household
 size in a village.</p>
@@ -1622,9 +1655,10 @@ village, and include the mean values as in-line R-code. For example:</p>
 <code>`r round(mean_chirodzo$mean_no_membrs, 2)`</code></p>
 <p>becomes…</p>
 <p>The average household size in the village of Chirodzo is 7.08.</p>
-<p>Because we are using in-line R code instead of the actual values, we
-have created a dynamic document that will automatically update if we
-make changes to the dataset and/or code chunks.</p>
+<p>Because we are using in-line <code>R</code> code instead of the
+actual values, we have created a dynamic document that will
+automatically update if we make changes to the dataset and/or code
+chunks.</p>
 </div>
 </section><section><h2 class="section-heading" id="plots">Plots<a class="anchor" aria-label="anchor" href="#plots"></a>
 </h2>
@@ -1680,11 +1714,11 @@ I made this plot!
 </figcaption></figure></section><section><h2 class="section-heading" id="other-output-options">Other output options<a class="anchor" aria-label="anchor" href="#other-output-options"></a>
 </h2>
 <hr class="half-width">
-<p>You can convert R Markdown to a PDF or a Word document (among
-others). Click the little triangle next to the <strong>Preview</strong>
-button to get a drop-down menu. Or you could put
-<code>pdf_document</code> or <code>word_document</code> in the initial
-header of the file.</p>
+<p>You can convert <code>R Markdown</code> to a PDF or a Word document
+(among others). Click the little triangle next to the
+<strong><code>Preview</code></strong> button to get a drop-down menu. Or
+you could put <code>pdf_document</code> or <code>word_document</code> in
+the initial header of the file.</p>
 <pre><code>---
 title: "My Awesome Report"
 author: "Author name"
@@ -1699,15 +1733,15 @@ output: word_document
 <div id="note-creating-pdf-documents" class="callout-inner">
 <h3 class="callout-title">Note: Creating PDF documents</h3>
 <div class="callout-content">
-<p>Creating .pdf documents may require installation of some extra
-software. The R package <code>tinytex</code> provides some tools to help
-make this process easier for R users. With <code>tinytex</code>
+<p>Creating <code>.pdf</code> documents may require installation of some
+extra software. The R package <code>tinytex</code> provides some tools
+to help make this process easier for R users. With <code>tinytex</code>
 installed, run <code>tinytex::install_tinytex()</code> to install the
 required software (you’ll only need to do this once) and then when you
-<strong>Knit</strong> to pdf <code>tinytex</code> will automatically
-detect and install any additional LaTeX packages that are needed to
-produce the pdf document. Visit the <a href="https://yihui.org/tinytex/" class="external-link">tinytex website</a> for more
-information.</p>
+<strong><code>Knit</code></strong> to pdf <code>tinytex</code> will
+automatically detect and install any additional LaTeX packages that are
+needed to produce the pdf document. Visit the <a href="https://yihui.org/tinytex/" class="external-link"><code>tinytex</code> website</a> for
+more information.</p>
 </div>
 </div>
 </div>
@@ -1717,22 +1751,24 @@ information.</p>
 </div>
 <span class="callout-header">Callout</span>
 <div id="note-inserting-citations-into-an-r-markdown-file" class="callout-inner">
-<h3 class="callout-title">Note: Inserting citations into an R Markdown
-file</h3>
+<h3 class="callout-title">Note: Inserting citations into an
+<code>R Markdown</code> file</h3>
 <div class="callout-content">
-<p>It is possible to insert citations into an R Markdown file using the
-editor toolbar. The editor toolbar includes commonly seen formatting
-buttons generally seen in text editors (e.g., bold and italic buttons).
-The toolbar is accessible by using the settings dropdown menu (next to
-the ‘Preview’ dropdown menu) to select ‘Use Visual Editor’, also
-accessible through the shortcut ‘Crtl+Shift+F4’. From here, clicking
-‘Insert’ allows ‘Citation’ to be selected (shortcut: ‘Crtl+Shift+F8’).
-For example, searching ‘10.1007/978-3-319-24277-4’ in ‘From DOI’ and
-inserting will provide the citation for <code>ggplot2</code> <span class="citation">[@wickham2016]</span>. This will also save the
-citation(s) in ‘references.bib’ in the current working directory. Visit
-the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link">R
-Studio website</a> for more information. Tip: obtaining citation
-information from relevant packages can be done by using
+<p>It is possible to insert citations into an <code>R Markdown</code>
+file using the editor toolbar. The editor toolbar includes commonly seen
+formatting buttons generally seen in text editors (e.g., bold and italic
+buttons). The toolbar is accessible by using the settings dropdown menu
+(next to the <code>Preview</code> dropdown menu) to select
+<code>Use Visual Editor</code>, also accessible through the shortcut
+<code>Crtl+Shift+F4</code>. From here, clicking <code>Insert</code>
+allows <code>Citation</code> to be selected (shortcut:
+<code>Crtl+Shift+F8</code>). For example, searching
+<code>10.1007/978-3-319-24277-4</code> in <code>From DOI</code> and
+inserting will provide the citation for <code>ggplot2</code>
+[<code>@wickham2016</code>]. This will also save the citation(s) in
+‘references.bib’ in the current working directory. Visit the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link"><code>R Studio</code>
+website</a> for more information. Tip: obtaining citation information
+from relevant packages can be done by using
 <code>citation("package")</code>.</p>
 </div>
 </div>
@@ -1741,17 +1777,17 @@ information from relevant packages can be done by using
 </h2>
 <hr class="half-width">
 <ul>
-<li><a href="https://rmarkdown.rstudio.com" class="external-link">R Markdown
+<li><a href="https://rmarkdown.rstudio.com" class="external-link"><code>R Markdown</code>
 documentation</a></li>
-<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf" class="external-link">R
-Markdown cheat sheet</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf" class="external-link"><code>R Markdown</code>
+cheat sheet</a></li>
 <li><a href="https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/" class="external-link">Getting
-started with R Markdown</a></li>
+started with <code>R Markdown</code></a></li>
 <li><a href="https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw" class="external-link">Introduction
-to R Markdown</a></li>
+to <code>R Markdown</code></a></li>
 <li>
-<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link">R Markdown: The
-Definitive Guide</a> (book by Rstudio team)</li>
+<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link"><code>R Markdown</code>:
+The Definitive Guide</a> (book by <code>Rstudio</code> team)</li>
 </ul>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -1764,8 +1800,10 @@ Definitive Guide</a> (book by Rstudio team)</li>
 <li>Use <code>install.packages()</code> to install packages
 (libraries)</li>
 <li>Use <code>library()</code> to load packages</li>
-<li>R Markdown is a useful language for creating reproducible documents
-combining text and executable R-code</li>
+<li>
+<code>R Markdown</code> is a useful language for creating
+reproducible documents combining text and executable <code>R</code>
+code</li>
 <li>Specify chunk options to control formatting of the output
 document</li>
 </ul>
@@ -3938,7 +3976,7 @@ interviews where respondents were members of an irrigation association
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4075,7 +4113,7 @@ to produce this data frame!</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4418,7 +4456,7 @@ represented?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4460,7 +4498,7 @@ add the number of observations (hint: see <code>?n</code>).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4507,7 +4545,7 @@ add the number of observations (hint: see <code>?n</code>).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb53">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4893,7 +4931,7 @@ months, the value input was “none”.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb71">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4970,7 +5008,7 @@ all the items using the <code>items_owned</code> variable.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb73">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
