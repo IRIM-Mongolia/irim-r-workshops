@@ -71,9 +71,9 @@ Reproducibility is when someone else (including your future self) can obtain the
 
 An increasing number of journals and funding agencies expect analyses to be reproducible, so knowing `R` will give you an edge with these requirements.
 
-### R is interdisciplinary and extensible
+### `R` is interdisciplinary and extensible
 
-With tens of thousands of packages that can be installed to extend its capabilities, R provides a framework that allows you to combine statistical approaches from many scientific disciplines to best suit the analytical framework you need to analyze your data. For instance, `R` has packages for image analysis, GIS, time series, population genetics, and a lot more.
+With tens of thousands of packages that can be installed to extend its capabilities, `R` provides a framework that allows you to combine statistical approaches from many scientific disciplines to best suit the analytical framework you need to analyze your data. For instance, `R` has packages for image analysis, GIS, time series, population genetics, and a lot more.
 
 ### `R` works on data of all shapes and sizes
 
@@ -89,7 +89,7 @@ The skills you learn with `R` scale easily with the size of your dataset. Whethe
 
 ### `R` has a large and welcoming community
 
-Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [`RStudio` community](https://community.rstudio.com/).
+Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [`Stack Overflow`](https://stackoverflow.com/), or on the [`RStudio` community](https://community.rstudio.com/).
 
 Since `R` is very popular among researchers, most of the help communities and learning materials are aimed towards other researchers. `Python` is a similar language to `R`, and can accomplish many of the same tasks, but is widely used by software developers and software engineers, so `Python` resources and communities are not as oriented towards researchers.
 
@@ -99,20 +99,20 @@ Anyone can inspect the source code to see how `R` works. Because of this transpa
 
 ## Navigating `RStudio`
 
-We will use the `RStudio` integrated development environment (`IDE`) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in `R`, and look at the plots we make. RStudio has many other features that can help with things like version control, developing `R` packages, and writing Shiny apps, but we won't cover those in this workshop.
+We will use the `RStudio` integrated development environment (`IDE`) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in `R`, and look at the plots we make. RStudio has many other features that can help with things like version control, developing `R` packages, and writing `Shiny` apps, but we won't cover those in this workshop.
 
 ![](fig/rstudio_screenshot.png){alt="Screenshot of RStudio showing the 4 \"panes\"."}
 
 In the above screenshot, we can see 4 "panes" in the default layout:
 
--   Top-Left: the `**Source**` pane that displays scripts and other files.
+-   Top-Left: the **`Source`** pane that displays scripts and other files.
     -   If you only have 3 panes, and the Console pane is in the top left, press <kbd>Shift+Cmd+N</kbd> (`Mac`) or <kbd>Shift+Ctrl+N</kbd> (`Windows`) to open a blank `R` script, which should make the `Source` pane appear.
--   Top-Right: the **Environment/History** pane, which shows all the objects in your current R session (`Environment`) and your command history (`History`)
+-   Top-Right: the **`Environment/History`** pane, which shows all the objects in your current R session (`Environment`) and your command history (`History`)
     -   there are some other tabs here, including `Connections`, `Build`, `Tutorial`, and possibly `Git`
     -   we won't cover any of the other tabs, but `RStudio` has lots of other useful features
--   Bottom-Left: the `**Console**` pane, where you can interact directly with an `R` console, which interprets `R` commands and prints the results
+-   Bottom-Left: the **`Console`** pane, where you can interact directly with an `R` console, which interprets `R` commands and prints the results
     -   There are also tabs for `Terminal` and `Jobs`
--   Bottom-Right: the `**Files/Plots/Help/Viewer**` pane to navigate files or view plots and help pages
+-   Bottom-Right: the **`Files/Plots/Help/Viewer`** pane to navigate files or view plots and help pages
 
 You can customize the layout of these panes, as well as many settings such as `RStudio` color scheme, font, and even keyboard shortcuts. You can access these settings by going to the menu bar, then clicking on `Tools → Global Options`.
 
@@ -126,11 +126,11 @@ It is a good practice to organize your projects into self-contained folders righ
 
 1.  Start `RStudio` (you should see a view similar to the screenshot above).
 2.  In the top right, you will see a blue 3D cube and the words `Project: (None)`. Click on this icon.
-3.  Click `**New Project**` from the dropdown menu.
-4.  Click `**New Directory**`, then `**New Project**`.
+3.  Click **`New Project`** from the dropdown menu.
+4.  Click **`New Directory`**, then **`New Project`**
 5.  Type out a name for the project, such as `intro_r`
 6.  Put it in a convenient location using the `Create project as a subdirectory of:` section. We recommend your `Desktop`. You can always move the project somewhere else later, because it will be self-contained.
-7.  Click `**Create Project**` and your new project will open.
+7.  Click **`Create Project`** and your new project will open.
 
 Next time you open `RStudio`, you can click that 3D cube icon, and you will see options to open existing projects, like the one you just made.
 
@@ -138,9 +138,9 @@ One of the benefits to using RStudio Projects is that they automatically set the
 
 There are a few settings we will need to adjust to improve the reproducibility of our work. Go to your menu bar, then click `Tools → Global Options` to open up the `Options` window.
 
-![](fig/rstudio_settings.png){alt="Screenshot of the `RStudio Global Options`, with \`"Restore .RData into workspace at startup\"` unchecked, and \`"Save workspace to .RData on exit\"` set to \`"Never\"`."}
+![](fig/rstudio_settings.png){alt="Screenshot of the RStudio Global Options, with \"Restore .RData into workspace at startup"unchecked, and \"Save workspace to .RData on exit"set to \"Never"\."}
 
-Make sure your settings match those highlighted in yellow. We don't want `RStudio` to store the current status of our R session and reload it the next time we start` R`. This might sound convenient, but for the sake of reproducibility, we want to start with a clean, empty R session every time we work. That means that we have to record everything we do into scripts, save any data we need into files, and store outputs like images as files. We want to get used to everything we generate in a single `R` session being *disposable*. We want our scripts to be able to regenerate things we need, other than "raw materials" like data.
+Make sure your settings match those highlighted in yellow. We don't want `RStudio` to store the current status of our R session and reload it the next time we start`R`. This might sound convenient, but for the sake of reproducibility, we want to start with a clean, empty R session every time we work. That means that we have to record everything we do into scripts, save any data we need into files, and store outputs like images as files. We want to get used to everything we generate in a single `R` session being *disposable*. We want our scripts to be able to regenerate things we need, other than "raw materials" like data.
 
 ## Organizing your project directory
 
@@ -168,11 +168,11 @@ intro_r
 
 Within our project folder (`intro_r`), we first have a `scripts` folder to hold any scripts we write. We will also have a `data` folder containing `cleaned` and `raw` subfolders. In general, you want to keep your `raw` data completely untouched, so once you put data into that folder, you do not modify it. Instead, you read it into R, and if you make any modifications, you write that modified file into the `cleaned` folder. We also have an `images` folder for plots we make, and a `documents` folder for any other documents you might produce.
 
-Let's start making our new script folder. Go to the `**Files**` pane (bottom right), and check the current directory. You should be in the directory for the project you just made, in our case `intro_r`. You shouldn't see any folders in here yet.
+Let's start making our new script folder. Go to the **`Files`** pane (bottom right), and check the current directory. You should be in the directory for the project you just made, in our case `intro_r`. You shouldn't see any folders in here yet.
 
-![](fig/files_pane.png){alt=`RStudio Files` pane."}
+![](fig/files_pane.png){alt=RStudio Files pane."}
 
-Next, click the `**New Folder**` button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. It's worth noting that the `**Files**` pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
+Next, click the **`New Folder`** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. It's worth noting that the **`Files`** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
 
 ## Working in `R` and `RStudio`
 
@@ -195,8 +195,7 @@ An additional benefit of scripts is that you can leave **comments** for yourself
 
 #### Script
 
--   A script is a record of commands to send to `R`, preserved in a plain text file with a `.R` extension
--   You can make a new` R` script by clicking `File → New File → R Script`, clicking the green `+` button in the top left corner of `RStudio`, or pressing <kbd>Shift+Cmd+N</kbd> (`Mac`) or <kbd>Shift+Ctrl+N</kbd> (`Windows`). It will be unsaved, and called `Untitled1`
+-   You can make a new`R` script by clicking `File → New File → R Script`, clicking the green `+` button in the top left corner of `RStudio`, or pressing <kbd>Shift+Cmd+N</kbd> (`Mac`) or <kbd>Shift+Ctrl+N</kbd> (`Windows`). It will be unsaved, and called `Untitled1`
 -   If you type out lines of `R` code in a script, you can send them to the `R` console to be evaluated
     -   <kbd>Cmd+Enter</kbd> (`Mac`) or <kbd>Ctrl+Enter</kbd> (`Windows`) will run the line of code that your cursor is on
     -   If you highlight multiple lines of code, you can run all of them by pressing <kbd>Cmd+Enter</kbd> (`Mac`) or <kbd>Ctrl+Enter</kbd> (`Windows`)
