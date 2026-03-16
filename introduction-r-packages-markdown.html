@@ -372,9 +372,9 @@ collections of reusable <code>R</code> functions, sample data, and the
 documentation that describes how to use the functions.</p>
 </section><section><h2 class="section-heading" id="what-is-the-difference-between-base-r-and-packages">What is the difference between base <code>R</code> and
 packages?<a class="anchor" aria-label="anchor" href="#what-is-the-difference-between-base-r-and-packages"></a></h2>
-<hr class="half-width"><p>The <a href="https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html" class="external-link">“base”
-<code>R</code> package</a> contains the basic functions which let
-<code>R</code> function as a language:</p>
+<hr class="half-width"><p>The <a href="https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html" class="external-link"><code>base R package</code></a>
+contains the basic functions which let <code>R</code> function as a
+language:</p>
 <ul><li>Arithmetic</li>
 <li>Input/output</li>
 <li>Basic programming support, etc</li>
@@ -415,7 +415,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.5 milliseconds.</code></pre>
+Successfully installed 1 package in 5.9 milliseconds.</code></pre>
 </div>
 <p>You can see if you have a package installed by looking in the
 <code>packages</code> tab (on the lower-right by default). You can also
@@ -452,7 +452,7 @@ happens.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Scroll through packages tab down to <code>tidyverse</code>. You can
 also type a few characters into the searchbox. The
@@ -632,11 +632,10 @@ store this dataset. Go to the Files pane, and create a new folder named
 └─── documents</code></pre>
 <p>You can either download the <code>SAFI_clean.csv</code> dataset used
 for this workshop from the GitHub link or with <code>R</code>. You can
-download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub</code>
-link</a> and save it as <code>SAFI_clean.csv</code> in the
-<code>data/raw</code> directory you just created. Or you can do this
-directly from <code>R</code> by copying and pasting this in your
-console:</p>
+download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub link</code></a>
+and save it as <code>SAFI_clean.csv</code> in the <code>data/raw</code>
+directory you just created. Or you can do this directly from
+<code>R</code> by copying and pasting this in your console:</p>
 <p><code>download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )</code></p>
 </div>
 <div class="section level3">
@@ -676,8 +675,7 @@ that include:</p>
     -   Type of wall of house
 -   rooms
     -   Number of rooms in house</code></pre>
-<p>For more <code>Markdown</code> syntax see <a href="https://www.markdownguide.org/basic-syntax" class="external-link">the following
-reference guide</a>.</p>
+<p>For more <code>Markdown</code> syntax see <a href="https://www.markdownguide.org/basic-syntax" class="external-link"><code>the following reference guide</code></a>.</p>
 <p>Now we can render the document into HTML by clicking the
 <strong><code>preview</code></strong> button in the top of the Source
 pane (top left). If you haven’t saved the document yet, you will be
@@ -971,7 +969,7 @@ the table, and see what each option does to the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.
@@ -1103,7 +1101,7 @@ installed, run <code>tinytex::install_tinytex()</code> to install the
 required software (you’ll only need to do this once) and then when you
 <strong><code>Knit</code></strong> to pdf <code>tinytex</code> will
 automatically detect and install any additional LaTeX packages that are
-needed to produce the pdf document. Visit the <a href="https://yihui.org/tinytex/" class="external-link"><code>tinytex</code> website</a> for
+needed to produce the pdf document. Visit the <a href="https://yihui.org/tinytex/" class="external-link"><code>tinytex website</code></a> for
 more information.</p>
 </div>
 </div>
@@ -1129,25 +1127,21 @@ allows <code>Citation</code> to be selected (shortcut:
 <code>10.1007/978-3-319-24277-4</code> in <code>From DOI</code> and
 inserting will provide the citation for <code>ggplot2</code>
 [<code>@wickham2016</code>]. This will also save the citation(s) in
-‘references.bib’ in the current working directory. Visit the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link"><code>R Studio</code>
-website</a> for more information. Tip: obtaining citation information
-from relevant packages can be done by using
-<code>citation("package")</code>.</p>
+‘references.bib’ in the current working directory. Visit the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link"><code>R Studio website</code></a>
+for more information. Tip: obtaining citation information from relevant
+packages can be done by using <code>citation("package")</code>.</p>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a></h2>
 <hr class="half-width"><ul><li><a href="https://rmarkdown.rstudio.com" class="external-link"><code>R Markdown</code>
 documentation</a></li>
-<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf" class="external-link"><code>R Markdown</code>
-cheat sheet</a></li>
-<li><a href="https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/" class="external-link">Getting
-started with <code>R Markdown</code></a></li>
-<li><a href="https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw" class="external-link">Introduction
-to <code>R Markdown</code></a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf" class="external-link"><code>R Markdown cheat sheet</code></a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/" class="external-link"><code>Getting started with R Markdown</code></a></li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw" class="external-link"><code>Introduction to R Markdown</code></a></li>
 <li>
-<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link"><code>R Markdown</code>:
-The Definitive Guide</a> (book by <code>Rstudio</code> team)</li>
+<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link"><code>R Markdown: The Definitive Guide</code></a>
+(book by <code>Rstudio</code> team)</li>
 </ul><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>

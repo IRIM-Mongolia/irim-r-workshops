@@ -331,7 +331,7 @@
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>The main goals for this lessons are:</p>
 <ul><li>To make sure that learners understand the structure of a
@@ -394,12 +394,12 @@ Workshop 3 Slides here</a></p>
 Workshop 3 recording here</a></p>
 </section><section><h2 class="section-heading" id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a></h2>
 <hr class="half-width"><p>Start by opening up your <code>RStudio project</code> that you
-created in a <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio" class="external-link">previous
-workshop</a> (called <code>intro_r</code>). Open a new
-<code>R Notebook</code>: <code>Click File -&gt; New File -&gt; R</code>
-Notebook. Save your <code>R Notebook</code> with a filename that makes
-sense, such as <code>starting_with_data.Rmd</code>, in the
-<code>scripts</code> folder.</p>
+created in a <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio" class="external-link"><code>previous workshop</code></a>
+(called <code>intro_r</code>). Open a new <code>R Notebook</code>:
+<code>Click File -&gt; New File -&gt; R</code> Notebook. Save your
+<code>R Notebook</code> with a filename that makes sense, such as
+<code>starting_with_data.Rmd</code>, in the <code>scripts</code>
+folder.</p>
 <p>When you open a new <code>R Notebook</code>, some explanatory text is
 provided. This can be deleted so you can enter your own text and
 code.</p>
@@ -426,8 +426,7 @@ looking at farming and irrigation methods in Tanzania and Mozambique.
 The survey data was collected through interviews conducted between
 November 2016 and June 2017. For this lesson, we will be using a subset
 of the available data. For information about the orginal dataset, see
-the <a href="https://datacarpentry.org/socialsci-workshop/index.html#data" class="external-link">dataset
-description</a>.</p>
+the <a href="https://datacarpentry.org/socialsci-workshop/index.html#data" class="external-link"><code>dataset description</code></a>.</p>
 <p>We will be using a subset of the dataset that has been provided
 (<code>data/raw/SAFI_clean.csv</code>). In this dataset, the missing
 data is encoded as <code>NULL</code>, each row holds information for a
@@ -470,10 +469,10 @@ situation when you did not have enough food to feed the household?</td>
 </tr></tbody></table><div class="section level3">
 <h3 id="download-the-data">Download the data<a class="anchor" aria-label="anchor" href="#download-the-data"></a></h3>
 <p>If you did not previously downloaded the <code>SAFI_clean.csv</code>
-dataset in the <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data" class="external-link">previous
-workshop</a>, please follow the instructions below to download it. If
-you already have the file in your <code>data/raw/</code> folder, jump to
-the <strong>Importing data</strong> section.</p>
+dataset in the <a href="https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data" class="external-link"><code>previous workshop</code></a>,
+please follow the instructions below to download it. If you already have
+the file in your <code>data/raw/</code> folder, jump to the
+<strong>Importing data</strong> section.</p>
 <p>We will be using a dataset called <code>SAFI_clean.csv</code>. The
 direct download link for this file is: <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link uri">https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv</a>.
 This data is a slightly cleaned up version of the SAFI Survey Results
@@ -495,11 +494,10 @@ store this dataset. Go to the Files pane, and create a new folder named
 └─── documents</code></pre>
 <p>You can either download the <code>SAFI_clean.csv</code> dataset used
 for this workshop from the <code>GitHub</code> link or with
-<code>R</code>. You can download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub</code>
-link</a> and save it as <code>SAFI_clean.csv</code> in the
-<code>data/raw</code> directory you just created. Or you can do this
-directly from <code>R</code> by copying and pasting this in your
-console:</p>
+<code>R</code>. You can download the file from this <a href="https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv" class="external-link"><code>GitHub link</code></a>
+and save it as <code>SAFI_clean.csv</code> in the <code>data/raw</code>
+directory you just created. Or you can do this directly from
+<code>R</code> by copying and pasting this in your console:</p>
 <p><code>download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )</code></p>
 </div>
 </section><section><h2 class="section-heading" id="importing-data">Importing data<a class="anchor" aria-label="anchor" href="#importing-data"></a></h2>
@@ -507,7 +505,7 @@ console:</p>
 function <code>read_csv()</code> from the
 <strong><code>readr</code></strong> package, which is part of the
 <strong><code>tidyverse</code></strong>; learn more about the
-<strong><code>tidyverse</code></strong> collection of packages <a href="https://www.tidyverse.org/" class="external-link">here</a>.
+<strong><code>tidyverse</code></strong> collection of packages <a href="https://www.tidyverse.org/" class="external-link"><code>here</code></a>.
 <strong><code>readr</code></strong> gets installed as part as the
 <strong><code>tidyverse</code></strong> installation. When you load the
 <strong><code>tidyverse</code></strong>
@@ -1169,7 +1167,7 @@ running any code at first, then run the code and use
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1248,7 +1246,7 @@ they are all the same type, a process called
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1305,7 +1303,7 @@ the hierarchy of what types get converted to other types?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>logical → integer → numeric → character</p>
 <p>Logical vectors can only take on two values: <code>TRUE</code> or
@@ -1754,7 +1752,7 @@ uppercase: <code>No</code>, <code>Undetermined</code>, and
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1799,8 +1797,7 @@ such. The argument that the function requires is flexible, but, as a
 best practice, is a character vector formatted as
 <code>YYYY-MM-DD</code>.</p>
 <p>To learn more about <strong><code>lubridate</code></strong> after
-this workshop, you may want to check out this handy <a href="https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw" class="external-link"><code>lubridate</code>
-cheatsheet</a>.</p>
+this workshop, you may want to check out this handy <a href="https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw" class="external-link"><code>lubridate cheatsheet</code></a>.</p>
 <p>Let’s extract our <code>interview_date</code> column and inspect the
 structure:</p>
 <div class="codewrapper sourceCode" id="cb83">
