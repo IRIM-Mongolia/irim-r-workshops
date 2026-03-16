@@ -1,5 +1,5 @@
 ---
-title: Introduction to R Packages, Markdown and Notebooks
+title: Introduction to `R Packages`, `Markdown` and `Notebooks`
 teaching: 45
 exercises: 15
 source: Rmd
@@ -9,67 +9,65 @@ editor_options:
 ---
 
 ::: objectives
--   Understand what an R package is
--   Install packages using the packages tab.
--   Install packages using R code.
--   Understand basic syntax of R Markdown and R Notebooks
+-   Understand what an `R package` is
+-   Install packages using the `packages` tab.
+-   Install packages using `R` code.
+-   Understand basic syntax of `R Markdown` and `R Notebooks`
 :::
 
 ::: questions
--   What is an R package?
--   How to install R packages?
--   What is R Markdown and R Notebooks?
--   How can I integrate my R code with text and plots?
--   How can I convert .Rmd files to .html?
+-   What is an `R package`?
+-   How to install `R` packages?
+-   What is `R Markdown` and `R Notebooks`?
+-   How can I integrate my `R` code with text and plots?
+-   How can I convert `.Rmd` files to `.html`?
 :::
 
 ## Acknowledgement
 
 This workshop was adapted using material from the Data Carpentry lessons
-[R for Social
-Scientists](https://datacarpentry.github.io/r-socialsci/index.html),
-specifically [lesson
-00-intro](https://datacarpentry.github.io/r-socialsci/00-intro.html) and
-[lesson
-06-rmarkdown](https://datacarpentry.github.io/r-socialsci/06-rmarkdown.html).
+[`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/index.html),
+specifically [`lesson 00-intro`](https://datacarpentry.github.io/r-socialsci/00-intro.html) and
+[`lesson 06-rmarkdown`](https://datacarpentry.github.io/r-socialsci/06-rmarkdown.html).
 
 ## Other Materials
 
-[See Workshop 2 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
+[See Workshop 2 Slides
+here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAqoM4BmLU6R6UjbycjaZmtAaafTMrG87jL2YfVwXwb5vc?e=FZkIgq)
 
-[See Workshop 2 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
+[See Workshop 2 recording
+here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDtlOBD0YyDQao0uFaHsLxnAV5RXuEj7SKOzi2nDZJn5X4?e=1QT3FN)
 
-## What are R packages?
+## What are `R packages`?
 
-[R Packages](https://r-pkgs.org/) are the fundamental units of
-reproducible R code. They are collections of reusable R functions,
+[`R Packages`](https://r-pkgs.org/) are the fundamental units of
+reproducible `R` code. They are collections of reusable `R` functions,
 sample data, and the documentation that describes how to use the
 functions.
 
-## What is the difference between base R and packages?
+## What is the difference between base `R` and packages?
 
-The [“base” R
+The [“base” `R`
 package](https://cran.r-project.org/doc/manuals/r-patched/packages/base/refman/base.html)
-contains the basic functions which let R function as a language:
+contains the basic functions which let `R` function as a language:
 
 -   Arithmetic
 -   Input/output
 -   Basic programming support, etc
 
-The R software is distributed with the `base` R package installed. In
-addition to the base R installation, there are in excess of 20,000
-additional packages which can be used to extend the functionality of R.
-Many of these have been written by R users and have been made available
-in central repositories, like the one hosted at the Comprehensive R
-Archive Network
-[CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html),
-for anyone to download and install into their own R environment.
+The `R` software is distributed with the `base R` package installed. In
+addition to the `base R` installation, there are in excess of 20,000
+additional packages which can be used to extend the functionality of `R`.
+Many of these have been written by `R` users and have been made available
+in central repositories, like the one hosted at the `Comprehensive R Archive Network`
+[`CRAN`](https://cran.r-project.org/web/packages/available_packages_by_name.html),
+for anyone to download and install into their own `R` environment.
 
-[CRAN](https://cran.r-project.org/#:~:text=What%20are%20R%20and%20CRAN%3F,provides%20a%20wide%20variety%20of)
+[`CRAN`](https://cran.r-project.org/#:~:text=What%20are%20R%20and%20CRAN%3F,provides%20a%20wide%20variety%20of)
 is a network of ftp and web servers around the world that store
-identical, up-to-date, versions of code and documentation for R.
+identical, up-to-date, versions of code and documentation for `R`.
 
-## Installing packages using R code and the packages tab
+## Installing packages using `R` code and the `packages` tab
 
 We'll use the `tidyverse` and `here` packages in this workshop.
 
@@ -91,7 +89,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 5.1 milliseconds.
+Successfully installed 1 package in 5.5 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -100,37 +98,37 @@ tab (on the lower-right by default). You can also type the command
 
 ![](fig/packages_pane.png){alt="Screenshot of Packages pane"}
 
-Packages can also be installed from the ‘packages' tab. On the packages
-tab, click the ‘Install' icon and start typing the name of the package
+Packages can also be installed from the `packages` tab. On the `packages`
+tab, click the `Install` icon and start typing the name of the package
 you want in the text box. As you type, packages matching your starting
 characters will be displayed in a drop-down list so that you can select
 them.
 
 ![](fig/R_00_Rstudio_03.png){alt="Screenshot of Install Packages Window"}
 
-At the bottom of the Install Packages window is a check box to ‘Install'
+At the bottom of the `Install Packages` window is a check box to `Install`
 dependencies. This is ticked by default, which is usually what you want.
 Packages can (and do) make use of functionality built into other
 packages, so for the functionality contained in the package you are
 installing to work properly, there may be other packages which have to
-be installed with them. The ‘Install dependencies' option makes sure
+be installed with them. The `Install dependencies` option makes sure
 that this happens.
 
 :::: challenge
 ## Exercise
 
-Use the Packages tab to confirm that you have both the `tidyverse` and
+Use the `Packages` tab to confirm that you have both the `tidyverse` and
 `here` packages installed.
 
 ::: solution
 ## Solution
 
-Scroll through packages tab down to ‘tidyverse'. You can also type a few
-characters into the searchbox. The ‘tidyverse' package is really a
-package of packages, including 'ggplot2' and 'dplyr', both of which
+Scroll through packages tab down to `tidyverse`. You can also type a few
+characters into the searchbox. The `tidyverse` package is really a
+package of packages, including `ggplot2` and `dplyr`, both of which
 require other packages to run correctly. All of these packages will be
 installed automatically. Depending on what packages have previously been
-installed in your R environment, the install of ‘tidyverse' could be
+installed in your R environment, the install of `tidyverse` could be
 very quick or could take several minutes. As the install proceeds,
 messages relating to its progress will be written to the console. You
 will be able to see all of the packages which are actually being
@@ -138,45 +136,43 @@ installed.
 :::
 ::::
 
-Because the install process accesses the CRAN repository, you will need
+Because the install process accesses the `CRAN` repository, you will need
 an Internet connection to install packages.
 
 It is also possible to install packages from other repositories, as well
-as Github or the local file system, but we won't be looking at these
+as `Github` or the local file system, but we won't be looking at these
 options in this workshop.
 
-## R Markdown and R Notebooks
+## `R Markdown` and `R Notebooks`
 
-R Markdown is a flexible type of document that allows you to seamlessly
-combine executable R code, and its output, with text in a single
+`R Markdown` is a flexible type of document that allows you to seamlessly
+combine executable `R` code, and its output, with text in a single
 document.
 
-An R Notebook is a specific interactive execution mode for an R Markdown
-(Rmd) document. Code chunks are executed independently and interactively
-within the RStudio editor.
+An `R Notebook` is a specific interactive execution mode for an `R Markdown`
+(`Rmd`) document. Code chunks are executed independently and interactively
+within the `RStudio` editor.
 
-R Markdown documents can be readily converted to multiple static and
+`R Markdown` documents can be readily converted to multiple static and
 dynamic output formats, including PDF (.pdf), Word (.docx), and HTML
 (.html).
 
-The benefit of a well-prepared R Markdown or Notebook document is full
+The benefit of a well-prepared `R Markdown` or `Notebook` document is full
 reproducibility. This also means that, if you notice a data
 transcription error, or you are able to add more data to your analysis,
 you will be able to recompile the report without making any changes in
 the actual document.
 
+## Creating an `R Notebook` file
 
-## Creating an R Notebook file
-
-To create a new R Markdown document in RStudio, click File -\> New File
--\> R Notebook. You may be prompted to install required packages the
+To create a new `R Markdown` document in `RStudio`, click `File -> New File -> R Notebook`. You may be prompted to install required packages the
 first time you do this.
 
-## Basic components of an R Notebook
+## Basic components of an `R Notebook`
 
-### YAML Header
+### `YAML` Header
 
-To control the output, a YAML (YAML Ain't Markup Language) header is
+To control the output, a `YAML` (`YAML` Ain't Markup Language) header is
 needed:
 
 ```         
@@ -189,33 +185,33 @@ output: html_document
 The header is defined by the three hyphens at the beginning (`---`) and
 the three hyphens at the end (`---`).
 
-In the YAML, the only required field is the `output:`, which specifies
+In the `YAML`, the only required field is the `output:`, which specifies
 the type of output you want. This can be an `html_document`, a
 `pdf_document`, or a `word_document`. We will start with an HTML
 document and discuss the other options later.
 
 After the header, to begin the body of the document, you start typing
-after the end of the YAML header (i.e. after the second `---`).
+after the end of the `YAML` header (i.e. after the second `---`).
 
-### Markdown syntax
+### `Markdown` syntax
 
-Markdown is a popular markup language that allows you to add formatting
+`Markdown` is a popular markup language that allows you to add formatting
 elements to text, such as **bold**, *italics*, and `code`. The
 formatting will not be immediately visible in a markdown (.md) document,
-like you would see in a Word document. Rather, you add Markdown syntax
+like you would see in a Word document. Rather, you add `Markdown` syntax
 to the text, which can then be converted to various other files that can
-translate the Markdown syntax. Markdown is useful because it is
+translate the `Markdown` syntax. `Markdown` is useful because it is
 lightweight, flexible, and platform independent.
 
-RStudio provides a real time preview of the formatting- click the
-`Visual` tab to view the rendered markdown, or `Source` to view the raw
-markdown.
+`RStudio` provides a real time preview of the formatting- click the
+`Visual` tab to view the rendered `Markdown`, or `Source` to view the raw
+`Markdown`.
 
 #### Headings
 
-A `#` in front of text indicates to Markdown that this text is a
+A `#` in front of text indicates to `Markdown` that this text is a
 heading. Adding more `#`s make the heading smaller, i.e. one `#` is a
-first level heading, two `##`s is a second level heading, etc. upto the
+first level heading, two `##`s is a second level heading, etc. up to the
 6th level heading.
 
 ```         
@@ -250,12 +246,11 @@ To create `code-type` font, surround the word with backticks,
 Code chunks are blocks where you write and execute R code. They start
 with ```` ```{r} and end with ``` ````.
 
-To insert a Chunk, click the small arrow next to the Insert button in
-the editor toolbar and select R.
+To insert a Chunk, click the small arrow next to the `Insert` button in
+the editor toolbar and select `R`.
 
 To run a Chunk, click the small green play arrow on the right side of
-the chunk, or use the keyboard shortcut Ctrl + Alt + I (or Cmd +
-Option + I on Mac).
+the chunk, or use the keyboard shortcut `Ctrl + Alt + I` on `Windows` (or `Cmd + Option + I` on `Mac`).
 
 #### Viewing output
 
@@ -263,29 +258,28 @@ Once you execute a code chunk, the results, including plots or data
 summaries, will appear immediately below the code chunk within the
 editor.
 
-### Render and Share Your Notebook
+### Render and Share Your `Notebook`
 
 Once your analysis is complete, you can generate a final, polished
 report.
 
-Click the Preview (or Render) button in the RStudio editor toolbar.
+Click the `Preview` (or `Render`) button in the `RStudio` editor toolbar.
 
 This creates a self-contained HTML file (or PDF/Word document, depending
-on your settings in your YAML header) that includes both the narrative
+on your settings in your `YAML` header) that includes both the narrative
 text and the final results.
 
 You can easily share this output file with others, even if they don't
-use R.
+use `R`.
 
 Now that we've learned a couple of things, it might be useful to
 implement them.
 
-## Create your own new R Notebook
+## Create your own new `R Notebook`
 
-Start by opening a new R notebook: Click File -\> New File -\> R
-Notebook
+Start by opening a new `R Notebook`: `Click File -> New File -> R Notebook`
 
-When you open a new R Notebook, some explanatory text is provided. This
+When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
 ### Download data
@@ -293,9 +287,9 @@ can be deleted so you can enter your own text and code.
 We will be using a dataset called `SAFI_clean.csv`. The direct download
 link for this file is:
 <https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv>.
-This data is a slightly cleaned up version of the SAFI Survey Results
+This data is a slightly cleaned up version of the `SAFI Survey Results`
 available on
-[figshare](https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019).
+[`figshare`](https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019).
 
 First, we need to create a new folder called `data` to store this
 dataset. Go to the Files pane, and create a new folder named `data`, and
@@ -316,11 +310,11 @@ intro_r
 ```
 
 You can either download the `SAFI_clean.csv` dataset used for this
-workshop from the GitHub link or with R. You can download the file from
-this [GitHub
+workshop from the GitHub link or with `R`. You can download the file from
+this [`GitHub`
 link](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
 and save it as `SAFI_clean.csv` in the `data/raw` directory you just
-created. Or you can do this directly from R by copying and pasting this
+created. Or you can do this directly from `R` by copying and pasting this
 in your console:
 
 `download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )`
@@ -330,7 +324,7 @@ in your console:
 Make a header called `Introduction`, and insert some explanatory text
 about the dataset that will be in your report. For example:
 
-This report uses the **tidyverse** package along with the *SAFI*
+This report uses the **`tidyverse`** package along with the *`SAFI`*
 dataset, which has columns that include:
 
 ```         
@@ -373,29 +367,29 @@ And nested items by tab-indenting:
     -   Number of rooms in house
 ```
 
-For more Markdown syntax see [the following reference
+For more `Markdown` syntax see [the following reference
 guide](https://www.markdownguide.org/basic-syntax).
 
-Now we can render the document into HTML by clicking the **preview**
+Now we can render the document into HTML by clicking the **`preview`**
 button in the top of the Source pane (top left). If you haven't saved
-the document yet, you will be prompted to do so when you **preview** for
+the document yet, you will be prompted to do so when you **`preview`** for
 the first time.
 
-### Writing an R Markdown report
+### Writing an `R Markdown` report
 
-Now we will add some R code to demonstrate (we will learn more about
+Now we will add some `R` code to demonstrate (we will learn more about
 this code in the next workshop!).
 
-First, we need to make sure **tidyverse** is loaded. It is not enough to
-load **tidyverse** from the console, we will need to load it within our
-R Markdown document. The same applies to our data. To load these, we
+First, we need to make sure **`tidyverse`** is loaded. It is not enough to
+load **`tidyverse`** from the console, we will need to load it within our
+`R Notebook`. The same applies to our data. To load these, we
 will need to create a 'code chunk' at the top of our document (below the
-YAML header).
+`YAML` header).
 
-A code chunk can be inserted by clicking Code \> Insert Chunk, or by
+A code chunk can be inserted by clicking `Code \> Insert Chunk`, or by
 using the keyboard shortcuts <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>
-on Windows and Linux, and <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>
-on Mac.
+on `Windows` and `Linux`, and <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>
+on `Mac`.
 
 The syntax of a code chunk is:
 
@@ -406,8 +400,8 @@ The syntax of a code chunk is:
 ```
 ````
 
-An R Markdown document knows that this text is not part of the report
-from the ```` ``` ```` that begins and ends the chunk. It also knows
+An `R Markdown` document knows that this text is not part of the report
+from the (```` ``` ````) that begins and ends the chunk. It also knows
 that the code inside of the chunk is R code from the `r` inside of the
 curly braces (`{}`). After the `r` you can add a name for the code chunk
 . Naming a chunk is optional, but recommended. Each chunk name must be
@@ -415,7 +409,7 @@ unique, and only contain alphanumeric characters and `-`.
 
 
 
-To load **tidyverse** and our `SAFI_clean.csv` file, we will insert a
+To load **`tidyverse`** and our `SAFI_clean.csv` file, we will insert a
 chunk and call it 'setup'. Since we don't want this code or the output
 to show in our rendered HTML document, we add an `include = FALSE`
 option after the code chunk name (`{r setup, include = FALSE}`).
@@ -450,11 +444,11 @@ We will learn more about this code later!
 
 To see the output, run the code chunk with the green triangle in the top
 right corner of the the chunk, or with the keyboard shortcuts:
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on Windows and Linux, or
-<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on Mac.
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on `Windows` and `Linux`, or
+<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on `Mac`.
 
 To make sure the table is formatted nicely in our output document, we
-will need to use the `kable()` function from the **knitr** package. The
+will need to use the `kable()` function from the **`knitr`** package. The
 `kable()` function takes the output of your R code and knits it into a
 nice looking HTML table. You can also specify different aspects of the
 table, e.g. the column names, a caption, etc.
@@ -485,7 +479,7 @@ Table: We can also add a caption.
 |Ruaca    |no                 |               7.178571|
 |Ruaca    |yes                |               9.500000|
 
-Many different R packages can be used to generate tables. Some of the
+Many different `R` packages can be used to generate tables. Some of the
 more commonly used options are listed in the table below.
 
 | Name | Creator(s) | Description |
@@ -506,11 +500,11 @@ more commonly used options are listed in the table below.
 | [xtable](https://github.com/cran/xtable) | [Dahl et al. (2019)](https://cran.r-project.org/web/packages/xtable/index.html) | Coerce data to LaTeX and HTML tables. |
 | [ztable](https://github.com/cardiomoon/ztable) | [Moon (2021)](https://cran.r-project.org/web/packages/ztable/index.html) | Makes zebra-striped tables (tables with alternating row colors) in LaTeX and HTML formats easily from a data.frame, matrix, lm, aov, anova, glm, coxph, nls, fitdistr, mytable and cbind.mytable objects. |
 
-### Customising chunk output
+### Customizing chunk output
 
 We mentioned using `include = FALSE` in a code chunk to prevent the code
 and output from printing in the knitted document. There are additional
-options available to customise how the code-chunks are presented in the
+options available to customize how the code-chunks are presented in the
 output document. The options are entered in the code chunk after
 `chunk-name` and separated by commas, e.g.
 `{r chunk-name, eval = FALSE, echo = TRUE}`.
@@ -547,20 +541,20 @@ run the code and store the output for later use.
 
 ### In-line R code
 
-Now we will use some in-line R code to present some descriptive
-statistics. To use in-line R-code, we use the same backticks that we
-used in the Markdown section, with an `r` to specify that we are
+Now we will use some in-line `R` code to present some descriptive
+statistics. To use in-line `R` code, we use the same backticks that we
+used in the `Markdown` section, with an `r` to specify that we are
 generating R-code. The difference between in-line code and a code chunk
-is the number of backticks. In-line R code uses one backtick
+is the number of backticks. In-line `R` code uses one backtick
 (`` `r` ``), whereas code chunks use three backticks
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-03-12.\
+rendered as: today's date is 2026-03-16.\
 The code will display today's date in the output document (well,
-technically the date the document was last knitted).
+technically the date the document was last knitted or previewed).
 
-The best way to use in-line R code, is to minimise the amount of code
+The best way to use in-line R code, is to minimize the amount of code
 you need to produce the in-line output by preparing the output in code
 chunks. Let's say we're interested in presenting the average household
 size in a village.
@@ -580,15 +574,14 @@ mean_chirodzo <- mean_household %>%
 Now we can make an informative statement on the means of each village,
 and include the mean values as in-line R-code. For example:
 
-The average household size in the village of Chirodzo is
-``` `r round(mean_chirodzo$mean_no_membrs, 2)` ```
-
+The average household size in the village of Chirodzo is ``` `r round(mean_chirodzo$mean_no_membrs, 2)` ```
+ 
 becomes...
 
 The average household size in the village of Chirodzo is
 7.08.
 
-Because we are using in-line R code instead of the actual values, we
+Because we are using in-line `R` code instead of the actual values, we
 have created a dynamic document that will automatically update if we
 make changes to the dataset and/or code chunks.
 
@@ -647,8 +640,8 @@ interviews_plotting %>%
 
 ## Other output options
 
-You can convert R Markdown to a PDF or a Word document (among others).
-Click the little triangle next to the **Preview** button to get a
+You can convert `R Markdown` to a PDF or a Word document (among others).
+Click the little triangle next to the **`Preview`** button to get a
 drop-down menu. Or you could put `pdf_document` or `word_document` in
 the initial header of the file.
 
@@ -664,30 +657,30 @@ output: word_document
 ::: callout
 ## Note: Creating PDF documents
 
-Creating .pdf documents may require installation of some extra software.
+Creating `.pdf` documents may require installation of some extra software.
 The R package `tinytex` provides some tools to help make this process
 easier for R users. With `tinytex` installed, run
 `tinytex::install_tinytex()` to install the required software (you'll
-only need to do this once) and then when you **Knit** to pdf `tinytex`
+only need to do this once) and then when you **`Knit`** to pdf `tinytex`
 will automatically detect and install any additional LaTeX packages that
-are needed to produce the pdf document. Visit the [tinytex
+are needed to produce the pdf document. Visit the [`tinytex`
 website](https://yihui.org/tinytex/) for more information.
 :::
 
 ::: callout
-## Note: Inserting citations into an R Markdown file
+## Note: Inserting citations into an `R Markdown` file
 
-It is possible to insert citations into an R Markdown file using the
+It is possible to insert citations into an `R Markdown` file using the
 editor toolbar. The editor toolbar includes commonly seen formatting
 buttons generally seen in text editors (e.g., bold and italic buttons).
 The toolbar is accessible by using the settings dropdown menu (next to
-the 'Preview' dropdown menu) to select 'Use Visual Editor', also
-accessible through the shortcut 'Crtl+Shift+F4'. From here, clicking
-'Insert' allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8').
-For example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and
-inserting will provide the citation for `ggplot2` [@wickham2016]. This
+the `Preview` dropdown menu) to select `Use Visual Editor`, also
+accessible through the shortcut `Crtl+Shift+F4`. From here, clicking
+`Insert` allows `Citation` to be selected (shortcut: `Crtl+Shift+F8`).
+For example, searching `10.1007/978-3-319-24277-4` in `From DOI` and
+inserting will provide the citation for `ggplot2` [`@wickham2016`]. This
 will also save the citation(s) in 'references.bib' in the current
-working directory. Visit the [R Studio
+working directory. Visit the [`R Studio`
 website](https://rstudio.github.io/visual-markdown-editing/) for more
 information. Tip: obtaining citation information from relevant packages
 can be done by using `citation("package")`.
@@ -695,20 +688,20 @@ can be done by using `citation("package")`.
 
 ## Resources
 
--   [R Markdown documentation](https://rmarkdown.rstudio.com)
--   [R Markdown cheat
+-   [`R Markdown` documentation](https://rmarkdown.rstudio.com)
+-   [`R Markdown` cheat
     sheet](https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf)
--   [Getting started with R
-    Markdown](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
--   [Introduction to R
-    Markdown](https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw)
--   [R Markdown: The Definitive
-    Guide](https://bookdown.org/yihui/rmarkdown/) (book by Rstudio team)
+-   [Getting started with `R
+    Markdown`](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
+-   [Introduction to `R
+    Markdown`](https://rmarkdown.rstudio.com/lesson-1.html?_gl=1*1e2p8mh*_up*MQ..*_ga*MjExNzU1MjM2NS4xNzcwOTEwMTgx*_ga_X64JZVV9NC*czE3NzA5MTAxODAkbzEkZzEkdDE3NzA5MTAyMDgkajMyJGwwJGgw)
+-   [`R Markdown`: The Definitive
+    Guide](https://bookdown.org/yihui/rmarkdown/) (book by `Rstudio` team)
 
 ::: keypoints
 -   Use `install.packages()` to install packages (libraries)
 -   Use `library()` to load packages
--   R Markdown is a useful language for creating reproducible documents
-    combining text and executable R-code
+-  `R Markdown` is a useful language for creating reproducible documents
+    combining text and executable `R` code
 -   Specify chunk options to control formatting of the output document
 :::
