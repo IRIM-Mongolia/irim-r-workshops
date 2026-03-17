@@ -1,6 +1,6 @@
 # .github/workflows/deploy-site-mn.yaml
 #
-# Builds the Mongolian lesson (mn branch) with sandpaper and deploys it
+# Builds the Mongolian text version of the wrkshop website (mn branch) with sandpaper and deploys it
 # into the mn/ subfolder of gh-pages, alongside the existing English site.
 #
 # Triggered by:
@@ -80,3 +80,4 @@ jobs:
           git add mn/
           git diff --staged --quiet || git commit -m "auto: deploy Mongolian site [skip ci]"
           git push
+          
