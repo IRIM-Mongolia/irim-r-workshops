@@ -1,83 +1,136 @@
-# .github/workflows/deploy-site-mn.yaml
-#
-# Builds the Mongolian text version of the wrkshop website (mn branch) with sandpaper and deploys it
-# into the mn/ subfolder of gh-pages, alongside the existing English site.
-#
-# Triggered by:
-#   - pushes to the mn branch (episodes or index.md changed)
-#   - merges of the auto/mongolian-translations PR (which targets mn)
-
-name: Deploy Mongolian Site
+name: "Build and Deploy Mongolian Site"
+description: "Build and deploy the Mongolian text version of the workshop website using the carpentries/workbench-docker container"
 
 on:
   push:
-    branches: [mn]
-    paths:
-      - 'episodes/**.Rmd'
-      - 'episodes/**.md'
-      - 'index.md'
-      - 'config.yaml'
-  workflow_dispatch:   # allows manual trigger from the Actions tab
+    branches:
+      - 'mn'
+    paths-ignore:
+      - '.github/workflows/**.yaml'
+      - '.github/workbench-docker-version.txt'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Who triggered this build?'
+        required: true
+        default: 'Maintainer (via GitHub)'
+
+# only one build/deploy at a time
+concurrency:
+  group: docker-build-deploy-mn
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy-mn:
+  preflight:
+    name: "Preflight: Push or Manual?"
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write   # to push built site to gh-pages
-
+    outputs:
+      do-build: ${{ steps.build-check.outputs.do-build }}
+      renv-needed: ${{ steps.build-check.outputs.renv-needed }}
+      renv-cache-hashsum: ${{ steps.build-check.outputs.renv-cache-hashsum }}
+      workbench-container-file-exists: ${{ steps.wb-vers.outputs.workbench-container-file-exists }}
+      wb-vers: ${{ steps.wb-vers.outputs.container-version }}
+      last-wb-vers: ${{ steps.wb-vers.outputs.last-container-version }}
+      workbench-update: ${{ steps.wb-vers.outputs.workbench-update }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Checkout mn branch (lesson source)
+      - name: "Should we run build and deploy?"
+        id: build-check
+        uses: carpentries/actions/build-preflight@main
+
+      - name: "Checkout mn branch"
+        if: steps.build-check.outputs.do-build == 'true'
         uses: actions/checkout@v4
         with:
           ref: mn
-          fetch-depth: 1
 
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+      - name: "Get container version info"
+        id: wb-vers
+        if: steps.build-check.outputs.do-build == 'true'
+        uses: carpentries/actions/container-version@main
         with:
-          r-version: 'release'
-          use-public-rspm: true
+          WORKBENCH_TAG: ${{ vars.WORKBENCH_TAG }}
+          renv-needed: ${{ steps.build-check.outputs.renv-needed }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install pandoc
-        uses: r-lib/actions/setup-pandoc@v2
-
-      - name: Install sandpaper and dependencies
-        run: |
-          options(repos = c(
-            carpentries = "https://carpentries.r-universe.dev/",
-            CRAN        = "https://cran.rstudio.com/"
-          ))
-          install.packages(c("sandpaper", "varnish", "pegboard", "tinkr"),
-                           dep = TRUE)
-        shell: Rscript {0}
-
-      - name: Build Mongolian site with sandpaper
-        run: |
-          sandpaper::build_lesson(preview = FALSE)
-        shell: Rscript {0}
-
-      - name: Checkout gh-pages branch
+  full-build:
+    name: "Build Full Mongolian Site"
+    runs-on: ubuntu-latest
+    needs: preflight
+    if: |
+      needs.preflight.outputs.do-build == 'true' &&
+      needs.preflight.outputs.workbench-update != 'true'
+    env:
+      RENV_EXISTS: ${{ needs.preflight.outputs.renv-needed }}
+      RENV_HASH: ${{ needs.preflight.outputs.renv-cache-hashsum }}
+    permissions:
+      checks: write
+      contents: write
+      pages: write
+      id-token: write
+    container:
+      image: ghcr.io/carpentries/workbench-docker:${{ vars.WORKBENCH_TAG || 'latest' }}
+      env:
+        WORKBENCH_PROFILE: "ci"
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+        RENV_PATHS_ROOT: /home/rstudio/lesson/renv
+        RENV_PROFILE: "lesson-requirements"
+        RENV_CONFIG_EXTERNAL_LIBRARIES: "/usr/local/lib/R/site-library"
+      volumes:
+        - ${{ github.workspace }}:/home/rstudio/lesson
+      options: --cpus 1
+    steps:
+      - name: "Checkout mn branch"
         uses: actions/checkout@v4
         with:
-          ref: gh-pages
-          path: gh-pages-dir
-          fetch-depth: 1
+          ref: mn
 
-      - name: Copy Mongolian site into mn/ subfolder on gh-pages
-        run: |
-          # Remove old mn/ build so stale files don't linger
-          rm -rf gh-pages-dir/mn
-          mkdir -p gh-pages-dir/mn
-          # sandpaper outputs built site to site/docs/
-          cp -r site/docs/. gh-pages-dir/mn/
+      - name: "Mark Repository as Safe"
+        run: git config --global --add safe.directory $(pwd)
+        shell: bash
 
-      - name: Commit and push to gh-pages
-        run: |
-          cd gh-pages-dir
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add mn/
-          git diff --staged --quiet || git commit -m "auto: deploy Mongolian site [skip ci]"
-          git push
-          
+      - name: "Setup Lesson Dependencies"
+        id: build-container-deps
+        uses: carpentries/actions/build-container-deps@main
+        with:
+          CACHE_VERSION: ${{ vars.CACHE_VERSION || '' }}
+          WORKBENCH_TAG: ${{ vars.WORKBENCH_TAG || 'latest' }}
+          LESSON_PATH: ${{ vars.LESSON_PATH || '/home/rstudio/lesson' }}
+          role-to-assume: ${{ secrets.AWS_GH_OIDC_ARN }}
+          aws-region: ${{ secrets.AWS_GH_OIDC_REGION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build Mongolian Site"
+        id: build-and-deploy
+        uses: carpentries/actions/build-and-deploy@main
+        with:
+          reset: ${{ vars.BUILD_RESET || 'false' }}
+          skip-manage-deps: ${{ steps.build-container-deps.outputs.renv-cache-available || steps.build-container-deps.outputs.backup-cache-used || 'false' }}
+          lang-code: 'mn'
+
+  update-container-version:
+    name: "Update container version used"
+    runs-on: ubuntu-latest
+    needs: [preflight]
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      id-token: write
+    if: |
+      needs.preflight.outputs.do-build == 'true' &&
+      (
+        needs.preflight.outputs.workbench-container-file-exists == 'false' ||
+        needs.preflight.outputs.workbench-update == 'true'
+      )
+    steps:
+      - name: "Record container version used"
+        uses: carpentries/actions/record-container-version@main
+        with:
+          CONTAINER_VER: ${{ needs.preflight.outputs.wb-vers }}
+          AUTO_MERGE: ${{ vars.AUTO_MERGE_CONTAINER_VERSION_UPDATE || 'true' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          role-to-assume: ${{ secrets.AWS_GH_OIDC_ARN }}
+          aws-region: ${{ secrets.AWS_GH_OIDC_REGION }}
+ 
