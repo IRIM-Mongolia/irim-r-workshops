@@ -12,9 +12,12 @@ Presented by Kathryn Napier, with material adapted from from several [`Carpentri
 :::
 
 The English version of the IRIM R Workshop website is located [here](https://kathrynnapier.github.io/irim-r-workshops/)
+
+<!--
 A Mongolian version of the IRIM R Workshop website is located [here](https://kathrynnapier.github.io/irim-r-workshops/mn).
 
 The Mongolian text is automatically translated from the original English text using Google Translate.
+-->
 
 The Carpentries aim is to teach researchers basic concepts, skills, and tools for working with data so that they can get more done in less time, and with less pain. This is an introduction to R designed for participants with no programming experience. The workshop includes:
 

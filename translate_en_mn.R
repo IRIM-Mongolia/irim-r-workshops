@@ -313,12 +313,13 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
   #   )
   # Leave as character(0) to translate everything.
   # Leave as character(0) to translate everything.
-  SKIP_FILES <- c(
-    "episodes/manipulating_data.Rmd",
-    "episodes/introduction-r-rstudio.Rmd",
-    "episodes/introduction-r-packages-markdown.Rmd",
-    "episodes/starting-with-data.Rmd"
-  )
+  # SKIP_FILES <- c(
+  #   "episodes/manipulating_data.Rmd",
+  #   "episodes/introduction-r-rstudio.Rmd",
+  #   "episodes/introduction-r-packages-markdown.Rmd",
+  #   "episodes/starting-with-data.Rmd"
+  # )
+  SKIP_FILES <- c()
   
   if (length(SKIP_FILES) > 0) {
     skipping <- basename(files_to_translate) %in% basename(SKIP_FILES)
