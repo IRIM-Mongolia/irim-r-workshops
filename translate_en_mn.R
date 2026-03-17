@@ -316,7 +316,8 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
   SKIP_FILES <- c(
     "episodes/manipulating_data.Rmd",
     "episodes/introduction-r-rstudio.Rmd",
-    "episodes/introduction-r-packages-markdown.Rmd"
+    "episodes/introduction-r-packages-markdown.Rmd",
+    "episodes/starting-with-data.Rmd"
   )
   
   if (length(SKIP_FILES) > 0) {
