@@ -22,9 +22,11 @@ The Carpentries aim is to teach researchers basic concepts, skills, and tools fo
 The workshop starts with information about the R programming language and the RStudio interface.
 
 1.  Introduction to `R` and `R Studio`
-R 
+
 2.  Introduction to `R Packages`, `R Markdown` and `R Notebooks`
 
 3.  Starting with data in `R`
+
+4.  Manipulating Data with `dplyr` and `tidyr`
 
 This lesson assumes no prior knowledge of `R` or `RStudio` and no programming experience.
