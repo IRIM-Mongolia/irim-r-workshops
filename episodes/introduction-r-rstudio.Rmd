@@ -1,5 +1,5 @@
 ---
-title: `R` болон `RStudio`-ийн танилцуулга
+title: "`R` болон `RStudio`-ийн танилцуулга"
 teaching: 45
 exercises: 0
 ---
