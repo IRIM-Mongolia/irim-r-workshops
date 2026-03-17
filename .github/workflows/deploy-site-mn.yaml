@@ -26,15 +26,13 @@ concurrency:
 
 jobs:
   full-build:
-    name: "Build Full Mongolian Site"
+    name: "Build and Deploy Mongolian Site"
     runs-on: ubuntu-latest
     permissions:
-      checks: write
       contents: write
       pages: write
-      id-token: write
     container:
-      image: ghcr.io/carpentries/workbench-docker:${{ vars.WORKBENCH_TAG || 'latest' }}
+      image: ghcr.io/carpentries/workbench-docker:latest
       env:
         WORKBENCH_PROFILE: "ci"
         GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -43,31 +41,52 @@ jobs:
         RENV_CONFIG_EXTERNAL_LIBRARIES: "/usr/local/lib/R/site-library"
       volumes:
         - ${{ github.workspace }}:/home/rstudio/lesson
-      options: --cpus 1
+      options: --user root
+
     steps:
       - name: "Checkout mn branch"
         uses: actions/checkout@v4
         with:
           ref: mn
+          fetch-depth: 1
 
-      - name: "Mark Repository as Safe"
-        run: git config --global --add safe.directory $(pwd)
+      - name: "Mark repository as safe"
+        run: git config --global --add safe.directory /__w/irim-r-workshops/irim-r-workshops
         shell: bash
 
-      - name: "Setup Lesson Dependencies"
-        id: build-container-deps
-        uses: carpentries/actions/build-container-deps@main
-        with:
-          CACHE_VERSION: ${{ vars.CACHE_VERSION || '' }}
-          WORKBENCH_TAG: ${{ vars.WORKBENCH_TAG || 'latest' }}
-          LESSON_PATH: ${{ vars.LESSON_PATH || '/home/rstudio/lesson' }}
-          role-to-assume: ${{ secrets.AWS_GH_OIDC_ARN }}
-          aws-region: ${{ secrets.AWS_GH_OIDC_REGION }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Build lesson with sandpaper"
+        run: |
+          cd /home/rstudio/lesson
+          Rscript -e "
+            options(repos = c(
+              carpentries = 'https://carpentries.r-universe.dev/',
+              CRAN        = 'https://cran.rstudio.com/'
+            ))
+            library(sandpaper)
+            sandpaper::build_lesson(preview = FALSE, quiet = FALSE)
+          "
+        shell: bash
 
-      - name: "Build and Deploy Mongolian Site"
-        uses: carpentries/actions/build-and-deploy@main
+      - name: "Checkout gh-pages branch"
+        uses: actions/checkout@v4
         with:
-          reset: ${{ vars.BUILD_RESET || github.event.inputs.reset || 'false' }}
-          skip-manage-deps: ${{ steps.build-container-deps.outputs.renv-cache-available || steps.build-container-deps.outputs.backup-cache-used || 'false' }}
-          lang-code: 'mn'
+          ref: gh-pages
+          path: gh-pages-dir
+          fetch-depth: 1
+
+      - name: "Copy Mongolian site into mn/ subfolder on gh-pages"
+        run: |
+          rm -rf gh-pages-dir/mn
+          mkdir -p gh-pages-dir/mn
+          cp -r /home/rstudio/lesson/site/docs/. gh-pages-dir/mn/
+        shell: bash
+
+      - name: "Commit and push to gh-pages"
+        run: |
+          cd gh-pages-dir
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mn/
+          git diff --staged --quiet || git commit -m "auto: deploy Mongolian site [skip ci]"
+          git push
+        shell: bash
