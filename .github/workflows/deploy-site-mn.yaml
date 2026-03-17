@@ -1,0 +1,81 @@
+# .github/workflows/deploy-site-mn.yaml
+#
+# Builds the Mongolian text version of the workshop website (mn branch) with sandpaper and deploys it
+# into the mn/ subfolder of gh-pages, alongside the existing English site.
+#
+# Triggered by:
+#   - pushes to the mn branch (episodes or index.md changed)
+#   - merges of the auto/mongolian-translations PR (which targets mn)
+
+name: Deploy Mongolian Site
+
+on:
+  push:
+    branches: [mn]
+    paths:
+      - 'episodes/**.Rmd'
+      - 'episodes/**.md'
+      - 'index.md'
+      - 'config.yaml'
+
+jobs:
+  build-and-deploy-mn:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # to push built site to gh-pages
+
+    steps:
+      - name: Checkout mn branch (lesson source)
+        uses: actions/checkout@v4
+        with:
+          ref: mn
+          fetch-depth: 1
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Install pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Install sandpaper and dependencies
+        run: |
+          options(repos = c(
+            carpentries = "https://carpentries.r-universe.dev/",
+            CRAN        = "https://cran.rstudio.com/"
+          ))
+          install.packages(c("sandpaper", "varnish", "pegboard", "tinkr"),
+                           dep = TRUE)
+        shell: Rscript {0}
+
+      - name: Build Mongolian site with sandpaper
+        run: |
+          sandpaper::build_lesson(preview = FALSE)
+        shell: Rscript {0}
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-dir
+          fetch-depth: 1
+
+      - name: Copy Mongolian site into mn/ subfolder on gh-pages
+        run: |
+          # Remove old mn/ build so stale files don't linger
+          rm -rf gh-pages-dir/mn
+          mkdir -p gh-pages-dir/mn
+          # sandpaper outputs built site to site/docs/
+          cp -r site/docs/. gh-pages-dir/mn/
+
+      - name: Commit and push to gh-pages
+        run: |
+          cd gh-pages-dir
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mn/
+          git diff --staged --quiet || git commit -m "auto: deploy Mongolian site [skip ci]"
+          git push

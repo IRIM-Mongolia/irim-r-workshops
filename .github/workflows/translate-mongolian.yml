@@ -1,0 +1,111 @@
+# .github/workflows/translate-mongolian.yml
+#
+# On every push to main that touches English source files:
+#   1. Checks out the mn branch
+#   2. Re-translates only the changed files into episodes/ or index.md on that branch
+#   3. Opens a PR into mn for review
+#
+# The mn branch is an identical copy of main except episodes/ and index.md
+# are in Mongolian — so sandpaper builds it as a complete Mongolian site
+# with all fig/, data/, files/ paths resolving correctly.
+
+name: Translate to Mongolian
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'episodes/**.Rmd'
+      - 'episodes/**.md'
+      - 'index.md'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # to push to mn branch
+      pull-requests: write   # to open the PR
+
+    steps:
+      - name: Checkout main (to read source files and get changed list)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+          path: main-repo
+
+      - name: Detect changed English source files
+        id: changed
+        working-directory: main-repo
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'episodes/*.Rmd' 'episodes/*.md' 'index.md')
+          echo "Changed files:"
+          echo "$CHANGED"
+          echo "$CHANGED" > /tmp/changed_files.txt
+          if [ -z "$CHANGED" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            FILENAMES=$(echo "$CHANGED" | xargs -I{} basename {} | head -3 | tr '\n' ' ')
+            TOTAL=$(echo "$CHANGED" | wc -l | tr -d ' ')
+            if [ "$TOTAL" -gt 3 ]; then
+              FILENAMES="${FILENAMES}(+$((TOTAL - 3)) more)"
+            fi
+            echo "pr_files=$FILENAMES" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout mn branch (translation target)
+        if: steps.changed.outputs.has_changes == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: mn
+          path: mn-repo
+
+      - name: Set up R
+        if: steps.changed.outputs.has_changes == 'true'
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+
+      - name: Install R dependencies
+        if: steps.changed.outputs.has_changes == 'true'
+        run: install.packages(c("httr2", "fs", "jsonlite"))
+        shell: Rscript {0}
+
+      - name: Run translation script
+        if: steps.changed.outputs.has_changes == 'true'
+        run: Rscript main-repo/translate_en_mn.R
+        env:
+          CHANGED_FILES_PATH: /tmp/changed_files.txt
+          SOURCE_REPO: main-repo     # script reads English files from here
+          TARGET_REPO: mn-repo       # script writes translated files here
+
+      - name: Open pull request into mn branch
+        if: steps.changed.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: mn-repo
+          branch: auto/mongolian-translations
+          base: mn
+          commit-message: "auto: update Mongolian translations"
+          title: "🇲🇳 Update Mongolian translations — ${{ steps.changed.outputs.pr_files }}"
+          body: |
+            This PR was created automatically by the **Translate to Mongolian** workflow.
+
+            ### Changed source files
+            ```
+            ${{ steps.changed.outputs.pr_files }}
+            ```
+
+            ### Review checklist
+            - [ ] Mongolian text reads naturally (have a native speaker check)
+            - [ ] Code blocks are unchanged
+            - [ ] YAML front matter is intact
+            - [ ] Links and callout boxes look correct
+            - [ ] Figure paths unchanged (they resolve correctly on the mn branch)
+
+            Once approved, merge into the `mn` branch to publish the updated Mongolian site.
+          labels: "translation, mongolian"
+          delete-branch: true
