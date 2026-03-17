@@ -1,5 +1,5 @@
 ---
-title: `R Packages`, `Markdown` болон `Notebooks`-н танилцуулга
+title: "`R Packages`, `Markdown` болон `Notebooks`-н танилцуулга"
 teaching: 45
 exercises: 15
 source: Rmd
