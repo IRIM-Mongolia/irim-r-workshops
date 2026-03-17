@@ -1,156 +1,156 @@
 ---
-title: "Introduction to `R` and `RStudio`"
+title: `R` болон `RStudio`-ийн танилцуулга
 teaching: 45
 exercises: 0
 ---
 
 ::: questions
--   Why should you use `R` and `RStudio`?
--   How do you get started working in `R` and `RStudio`?
+- Та яагаад `R` болон `RStudio` ашиглах ёстой вэ?
+- Та `R` болон `RStudio` дээр хэрхэн ажиллаж эхлэх вэ?
 :::
 
 ::: objectives
--   Understand the difference between `R` and `RStudio`
--   Describe the purpose of the different `RStudio` panes
--   Organize files and directories into `R` Projects
+- `R` болон `RStudio` хоёрын ялгааг ойлгоорой
+- Өөр `RStudio` самбаруудын зорилгыг тайлбарлана уу
+- Файл болон лавлахуудыг `R` төсөл болгон зохион байгуул
 :::
 
-## Acknowledgement
+## Хүлээн зөвшөөрөлт
 
-This workshop was adapted using material from the Data Carpentry lessons [`R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/index.html), specifically [`introduction-r-rstudio`](https://datacarpentry.github.io/R-ecology-lesson/introduction-r-rstudio.html).
+Энэ семинарыг Мэдээллийн мужааны хичээлүүдийн [`R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/index.html), ялангуяа [`introduction-r-rstudio`](https://datacarpentry.github.io/R-ecology-lesson/introduction-r-r-r)-ын материалыг ашиглан тохируулсан.
 
-## Other Materials
+## Бусад материал
 
-[See Workshop 1 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQC2QIi5hSalQ4WFU1qTaduaAdYxB4Gd0f7Y7wTtaKn6AnQ?e=gjZViL)
+[Зөвлөгөөний 1-р слайдыг эндээс үзнэ үү](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQC2QIi5hSalQ4WFU1qTaduaAdYxB4Gd0f7Y7wTtaKn6AnQ?e=gjZViL)
 
-[See Workshop 1 recording here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQBf8NThi-iKQ4Et5uw4_-b9ATUDqsI7om6Dp0YSSVZBXBI?e=A4d0fQ)
+[Зөвлөгөөний 1-р бичлэгийг эндээс үзнэ үү](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQBf8NThi-iKQ4Et5uw4_-b9ATUDqsI7om6Dp0YSSVZBXBI?e=A4d0fQ)
 
-## What are `R` and `RStudio`?
+## `R` ба `RStudio` гэж юу вэ?
 
-`R` refers to a programming language as well as the software that runs `R` code.
+`R` нь програмчлалын хэл болон `R` кодыг ажиллуулдаг програм хангамжийг хэлдэг.
 
-[`RStudio`](https://posit.co/download/rstudio-desktop/) is a software interface that can make it easier to write R scripts and interact with the `R` software. It's a very popular platform, and RStudio also maintains the [`tidyverse`](https://www.tidyverse.org/) series of packages we will use in these workshops.
+[`RStudio`](https://posit.co/download/rstudio-desktop/) нь R скрипт бичих болон `R` программ хангамжтай харилцахад хялбар болгох програм хангамжийн интерфейс юм. Энэ бол маш алдартай платформ бөгөөд RStudio нь бидний эдгээр семинарт ашиглах [`tidyverse`](https://www.tidyverse.org/) цуврал багцуудыг хадгалдаг.
 
-## Why learn `R`?
+## Яагаад `R` сурах вэ?
 
 <br>
 
 ::: instructor
-You can walk through this analogy if you want, or skip over it if you don't find it useful.
+Хэрэв та хүсвэл энэ зүйрлэлийг үзэж болно, хэрэв танд хэрэг болохгүй бол алгасаж болно.
 :::
 
 ::: solution
-## Your new pedantic collaborator...
+## Таны шинэ хамтрагч ...
 
-You're working on a project when your advisor suggests that you begin working with one of their long-time collaborators. According to your advisor, this collaborator is very talented, but only speaks a language that you don't know. Your advisor assures you that this is ok, the collaborator won't judge you for starting to learn the language, and will happily answer your questions. However, the collaborator is also quite pedantic. While they don't mind that you don't speak their language fluently yet, they are always going to answer you quite literally.
+Таны зөвлөх таныг олон жилийн хамтран ажиллагсдын нэгтэй нь хамтран ажиллахыг санал болгосноор та төсөл дээр ажиллаж байна. Таны зөвлөхийн хэлснээр, энэ хамтрагч маш авъяастай, гэхдээ зөвхөн таны мэдэхгүй хэлээр ярьдаг. Таны зөвлөх таныг хэл сурч эхэлсэн гэж дүгнэхгүй бөгөөд таны асуултад баяртайгаар хариулах болно гэдгийг баталж байна. Гэсэн хэдий ч, хамтран ажиллагч нь бас нэлээд педантик юм. Таныг одоохондоо тэдний хэлээр чөлөөтэй ярьж чадахгүй байгаад тэд дургүйцэхгүй ч тэд үргэлж танд шууд утгаараа хариулах болно.
 
-You decide to reach out to the collaborator. You find that they email you back very quickly, almost immediately most of the time. Since you're just learning their language, you often make mistakes. Sometimes, they tell you that you've made a grammatical error or warn you that what you asked for doesn't make a lot of sense. Sometimes these warnings are difficult to understand, because you don't really have a grasp of the underlying grammar. Sometimes you get an answer back, with no warnings, but you realize that it doesn't make sense, because what you asked for isn't quite what you *wanted*. Since this collaborator responds almost immediately, without tiring, you can quickly reformulate your question and send it again.
+Та хамтрагчтайгаа холбогдохоор шийдсэн. Тэд танд маш хурдан, бараг тэр даруй ихэнх цагаа и-мэйл илгээдэг. Та тэдний хэлийг дөнгөж сурч байгаа болохоор алдаа гаргах нь элбэг. Заримдаа тэд таныг дүрмийн алдаа гаргасан гэж хэлэх эсвэл таны асуусан зүйл тийм ч утгагүй байгааг анхааруулдаг. Заримдаа эдгээр сэрэмжлүүлгийг ойлгоход хэцүү байдаг, учир нь та үндсэн дүрмээ сайн ойлгодоггүй. Заримдаа танд ямар ч сануулгагүйгээр хариу ирдэг ч энэ нь утгагүй гэдгийг ойлгодог, учир нь таны асуусан зүйл таны *хүссэн* ​​зүйл биш юм. Энэ хамтрагч ядрахгүйгээр бараг тэр даруй хариулдаг тул та асуултаа хурдан боловсруулж, дахин илгээх боломжтой.
 
-In this way, you begin to learn the language your collaborator speaks, as well as the particular way they think about your work. Eventually, the two of you develop a good working relationship, where you understand how to ask them questions effectively, and how to work through any issues in communication that might arise.
+Ингэснээр та хамтрагчынхаа ярьдаг хэл, мөн тэдний ажлын талаар ямар бодолтой байдаг талаар суралцаж эхэлдэг. Эцэст нь та хоёрт хэрхэн үр дүнтэй асуулт асуух, харилцааны явцад гарч болох аливаа асуудлыг хэрхэн шийдвэрлэх талаар ойлгодог сайн ажлын харилцаа бий болно.
 
-This collaborator's name is `R`.
+Энэ хамтрагчийн нэр `R`.
 
-When you send commands to `R`, you get a response back. Sometimes, when you make mistakes, you will get back a nice, informative error message or warning. However, sometimes the warnings seem to reference a much "deeper" level of `R` than you're familiar with. Or, even worse, you may get the wrong answer with no warning because the command you sent is perfectly valid, but isn't what you actually want. While you may first have some success working with `R` by memorizing certain commands or reusing other scripts, this is akin to using a collection of tourist phrases or pre-written statements when having a conversation. You might make a mistake (like getting directions to the library when you need a bathroom), and you are going to be limited in your flexibility (like furiously paging through a tourist guide looking for the term for "thrift store").
+Та `R` руу тушаал илгээх үед танд хариу ирэх болно. Заримдаа, та алдаа гаргахад танд сайхан, мэдээлэл сайтай алдааны мессеж эсвэл анхааруулга буцаж ирдэг. Гэсэн хэдий ч заримдаа анхааруулга нь `R`-ийн таны мэддэг байснаас хамаагүй "гүнзгий" түвшнийг илтгэж байх шиг байна. Эсвэл бүр ч дордвол таны илгээсэн тушаал бүрэн хүчинтэй боловч таны хүссэн зүйл биш учраас та ямар ч анхааруулгагүйгээр буруу хариулт авч болно. Та эхлээд `R`-тэй тодорхой тушаалуудыг цээжлэх эсвэл өөр скриптийг дахин ашиглах замаар амжилттай ажиллаж магадгүй ч энэ нь харилцан яриа хийхдээ жуулчны хэллэг эсвэл урьдчилан бичсэн мэдэгдлийн цуглуулга ашиглахтай адил юм. Та алдаа гаргаж магадгүй (угаалгын өрөө хэрэгтэй үед номын сан руу явах чиглэл авах гэх мэт), таны уян хатан байдал хязгаарлагдмал байх болно ("хямдхан дэлгүүр" гэсэн нэр томъёог хайж буй жуулчны гарын авлагаас улайран хайх гэх мэт).
 
-This is all to say that we are going to spend a bit of time digging into some of the more fundamental aspects of the `R` language, and these concepts may not feel as immediately useful as, say, learning to make plots with `ggplot2`. However, learning these more fundamental concepts will help you develop an understanding of how `R` thinks about data and code, how to interpret error messages, and how to flexibly expand your skills to new situations.
+Энэ нь бид `R` хэлний зарим үндсэн талуудыг судлахад бага зэрэг цаг зарцуулах болно гэдгийг хэлж байгаа бөгөөд эдгээр ойлголтууд нь `ggplot2`-ээр зураглал хийж сурахтай адил хэрэг болохгүй байж магадгүй юм. Гэсэн хэдий ч эдгээр илүү үндсэн ойлголтуудыг сурснаар `R` өгөгдөл болон кодын талаар хэрхэн боддог, алдааны мэдээг хэрхэн тайлбарлах, шинэ нөхцөл байдалд ур чадвараа хэрхэн уян хатан байдлаар өргөжүүлэх талаар ойлголттой болоход тусална.
 :::
 
-### `R` does not involve lots of pointing and clicking, and that's a good thing
+### `R` нь олон удаа зааж, товших шаардлагагүй бөгөөд энэ нь сайн хэрэг
 
-Since `R` is a programming language, the results of your analysis do not rely on remembering a succession of pointing and clicking, but instead on a series of written commands, and that's a good thing! So, if you want to redo your analysis because you collected more data, you don't have to remember which button you clicked in which order to obtain your results; you just have to run your script again.
+`R` нь програмчлалын хэл тул таны шинжилгээний үр дүн нь дараалсан заах, товших үйлдлийг санахад тулгуурладаггүй, харин дараалсан бичсэн командуудад тулгуурладаг бөгөөд энэ нь сайн хэрэг! Тиймээс, хэрэв та илүү их мэдээлэл цуглуулсан тул дүн шинжилгээгээ дахин хийхийг хүсвэл үр дүнгээ авахын тулд аль товчлуур дээр дарсанаа санах шаардлагагүй; та зүгээр л скриптээ дахин ажиллуулах хэрэгтэй.
 
-Working with scripts makes the steps you used in your analysis clear, and the code you write can be inspected by someone else who can give you feedback and spot mistakes.
+Скрипттэй ажиллах нь таны дүн шинжилгээ хийхдээ ашигласан алхмуудыг тодорхой болгодог бөгөөд таны бичсэн кодыг өөр хүн шалгаж, танд санал хүсэлт өгч, алдааг олж илрүүлэх боломжтой.
 
-Working with scripts forces you to have a deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use.
+Скрипттэй ажиллах нь юу хийж байгаагаа илүү гүнзгий ойлгоход хүргэдэг бөгөөд таны хэрэглэж буй арга барилд суралцах, ойлгоход тусална.
 
-### `R` code is great for reproducibility
+### `R` код нь дахин давтагдахад тохиромжтой
 
-Reproducibility is when someone else (including your future self) can obtain the same results from the same dataset when using the same analysis.
+Дахин давтагдах чадвар гэдэг нь өөр хэн нэгэн (таны ирээдүйн өөрийгөө оруулаад) ижил дүн шинжилгээг ашиглах үед ижил өгөгдлийн багцаас ижил үр дүнг авч болохыг хэлнэ.
 
-`R` integrates with other tools to generate manuscripts from your code. If you collect more data, or fix a mistake in your dataset, the figures and the statistical tests in your manuscript are updated automatically.
+`R` нь таны кодоос гар бичмэл үүсгэхийн тулд бусад хэрэгслүүдтэй нэгддэг. Хэрэв та илүү их мэдээлэл цуглуулах эсвэл өгөгдлийн багц дахь алдааг засвал таны гар бичмэл дэх тоонууд болон статистик тестүүд автоматаар шинэчлэгддэг.
 
-An increasing number of journals and funding agencies expect analyses to be reproducible, so knowing `R` will give you an edge with these requirements.
+Өсөн нэмэгдэж буй сэтгүүлүүд болон санхүүжүүлэгч агентлагууд дүн шинжилгээг дахин давтагдах боломжтой гэж найдаж байгаа тул `R`-ийг мэдэх нь эдгээр шаардлагуудыг биелүүлэх боломжийг танд олгоно.
 
-### `R` is interdisciplinary and extensible
+### `R` нь салбар дундын шинж чанартай бөгөөд өргөтгөх боломжтой
 
-With tens of thousands of packages that can be installed to extend its capabilities, `R` provides a framework that allows you to combine statistical approaches from many scientific disciplines to best suit the analytical framework you need to analyze your data. For instance, `R` has packages for image analysis, GIS, time series, population genetics, and a lot more.
+`R` нь өөрийн чадавхийг өргөжүүлэхийн тулд суулгаж болох хэдэн арван мянган багцын хамт олон шинжлэх ухааны салбаруудын статистик хандлагыг нэгтгэн өгөгдөлдөө дүн шинжилгээ хийхэд шаардлагатай аналитик системд хамгийн сайн тохирох тогтолцоог бий болгодог. Жишээлбэл, `R` нь зургийн дүн шинжилгээ, GIS, цагийн цуваа, популяцийн генетик болон бусад олон багцтай.
 
-### `R` works on data of all shapes and sizes
+### `R` нь бүх хэлбэр, хэмжээтэй өгөгдөл дээр ажилладаг
 
-The skills you learn with `R` scale easily with the size of your dataset. Whether your dataset has hundreds or millions of lines, it won't make much difference to you.
+`R` ашиглан сурсан ур чадвар тань өгөгдлийн багцын хэмжээгээр хялбархан хэмжигддэг. Таны өгөгдлийн багц хэдэн зуун эсвэл сая сая мөртэй эсэхээс үл хамааран энэ нь танд тийм ч их ялгаагүй.
 
-`R` is designed for data analysis. It comes with special data structures and data types that make handling of missing data and statistical factors convenient.
+`R` нь өгөгдөлд дүн шинжилгээ хийхэд зориулагдсан. Энэ нь тусгай өгөгдлийн бүтэц, өгөгдлийн төрлүүдийн хамт ирдэг бөгөөд энэ нь дутуу өгөгдөл болон статистик хүчин зүйлсийг боловсруулахад хялбар болгодог.
 
-`R` can read data from many different file types, including geospatial data, and connect to local and remote databases.
+`R` нь гео орон зайн өгөгдөл зэрэг олон төрлийн файлын өгөгдлийг уншиж, дотоод болон алсын мэдээллийн сантай холбогдох боломжтой.
 
-### `R` produces high-quality graphics
+### `R` нь өндөр чанартай график үүсгэдэг
 
-`R` has well-developed plotting capabilities, and the `ggplot2` package is one of, if not the most powerful pieces of plotting software available today. We can learn to use `ggplot2` in future workshops if you wish.
+`R` нь график зурах чадвар сайтай бөгөөд `ggplot2` багц нь өнөөдөр байгаа хамгийн хүчирхэг зураг зурах програм хангамжийн нэг юм. Хэрэв та хүсвэл бид `ggplot2`-г дараагийн сургалтуудад ашиглаж сурах боломжтой.
 
-### `R` has a large and welcoming community
+### `R` том, найрсаг хамт олонтой
 
-Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [`Stack Overflow`](https://stackoverflow.com/), or on the [`RStudio community`](https://community.rstudio.com/).
+Өдөр бүр олон мянган хүмүүс R ашигладаг. Тэдний олонх нь [`Stack Overflow`](https://stackoverflow.com/) эсвэл [`RStudio community`](https://community.rstudio.com/) гэх мэт захидлын жагсаалт болон вэбсайтаар дамжуулан танд туслахад бэлэн байна.
 
-Since `R` is very popular among researchers, most of the help communities and learning materials are aimed towards other researchers. `Python` is a similar language to `R`, and can accomplish many of the same tasks, but is widely used by software developers and software engineers, so `Python` resources and communities are not as oriented towards researchers.
+`R` судлаачдын дунд маш их алдартай байдаг тул ихэнх тусламжийн нийгэмлэг болон сургалтын хэрэглэгдэхүүн нь бусад судлаачдад чиглэгддэг. `Python` нь `R`-тэй төстэй хэл бөгөөд ижил төрлийн олон ажлыг гүйцэтгэх боломжтой боловч программ хангамж хөгжүүлэгчид болон программ хангамжийн инженерүүд өргөнөөр ашигладаг тул `Python`-ын нөөц болон нийгэмлэгүүд судлаачдад тийм ч чиглээгүй байдаг.
 
-### Not only is `R` free, but it is also open-source and cross-platform
+### `R` нь үнэ төлбөргүй төдийгүй нээлттэй эх сурвалж, хөндлөн платформ юм
 
-Anyone can inspect the source code to see how `R` works. Because of this transparency, there is less chance for mistakes, and if you (or someone else) find some, you can report and fix bugs.
+`R` хэрхэн ажилладагийг харахын тулд хэн ч эх кодыг шалгаж болно. Энэхүү ил тод байдлын улмаас алдаа гарах магадлал бага байдаг бөгөөд хэрэв та (эсвэл өөр хэн нэгэн) алдааг олж мэдээд алдаагаа засах боломжтой.
 
-## Navigating `RStudio`
+## `RStudio` чиглүүлж байна
 
-We will use the `RStudio` integrated development environment (`IDE`) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in `R`, and look at the plots we make. RStudio has many other features that can help with things like version control, developing `R` packages, and writing `Shiny` apps, but we won't cover those in this workshop.
+Бид `RStudio` хөгжүүлэлтийн нэгдсэн орчинг (`IDE`) ашиглан скрипт болгон код бичих, R кодыг ажиллуулах, компьютер дээрх файлуудыг удирдах, `R` дээр үүсгэсэн объектуудаа шалгах, хийсэн графикуудаа харах болно. RStudio нь хувилбарыг хянах, `R` багцуудыг хөгжүүлэх, `Shiny` програм бичих зэрэгт туслах олон боломжуудтай боловч бид энэ семинарт эдгээрийг авч үзэхгүй.
 
 ![](fig/rstudio_screenshot.png){alt="Screenshot of RStudio showing the 4 \"panes\"."}
 
-In the above screenshot, we can see 4 "panes" in the default layout:
+Дээрх дэлгэцийн агшинд бид өгөгдмөл байрлал дахь 4 "цавх"-ыг харж болно:
 
--   Top-Left: the **`Source`** pane that displays scripts and other files.
-    -   If you only have 3 panes, and the Console pane is in the top left, press <kbd>Shift+Cmd+N</kbd> (`Mac`) or <kbd>Shift+Ctrl+N</kbd> (`Windows`) to open a blank `R` script, which should make the `Source` pane appear.
--   Top-Right: the **`Environment/History`** pane, which shows all the objects in your current R session (`Environment`) and your command history (`History`)
-    -   there are some other tabs here, including `Connections`, `Build`, `Tutorial`, and possibly `Git`
-    -   we won't cover any of the other tabs, but `RStudio` has lots of other useful features
--   Bottom-Left: the **`Console`** pane, where you can interact directly with an `R` console, which interprets `R` commands and prints the results
-    -   There are also tabs for `Terminal` and `Jobs`
--   Bottom-Right: the **`Files/Plots/Help/Viewer`** pane to navigate files or view plots and help pages
+- Зүүн дээд талд: скрипт болон бусад файлуудыг харуулдаг **`Source`** хэсэг.
+    - Хэрэв танд зөвхөн 3 самбар байгаа бөгөөд Консолын хэсэг зүүн дээд талд байгаа бол <kbd>Shift+Cmd+N</kbd> (`Mac`) эсвэл <kbd>Shift+Ctrl+N</kbd> (`Windows`) товчлуурыг дарж `R` скриптийг нээвэл `Source` цонх гарч ирнэ.
+- Баруун дээд талд: **`Environment/History`** самбар нь таны одоогийн R сесс (`Environment`) болон тушаалын түүх (`History`) доторх бүх объектыг харуулдаг.
+    - энд `Connections`, `Build`, `Tutorial`, магадгүй `Git` зэрэг өөр хэдэн таб байна
+    - Бид бусад табын аль нэгийг нь хамрахгүй, гэхдээ `RStudio` нь өөр олон ашигтай функцуудтай
+- Зүүн доод талд: **`Console`** самбар, та `R` командыг тайлбарлаж, үр дүнг хэвлэдэг `R` консолтой шууд харилцах боломжтой.
+    - `Terminal` болон `Jobs`-д зориулсан табууд бас бий
+- Баруун доод талд: **`Files/Plots/Help/Viewer`** хэсэг нь файлууд руу шилжих эсвэл график болон тусламжийн хуудсыг үзэх
 
-You can customize the layout of these panes, as well as many settings such as `RStudio` color scheme, font, and even keyboard shortcuts. You can access these settings by going to the menu bar, then clicking on `Tools → Global Options`.
+Та эдгээр цонхны байршлыг өөрчлөхөөс гадна `RStudio` өнгөний схем, фонт, тэр ч байтугай гарын товчлол зэрэг олон тохиргоог өөрчлөх боломжтой. Та цэсийн мөрөнд очоод `Tools → Global Options` дээр дарснаар эдгээр тохиргоонд хандах боломжтой.
 
-`RStudio` puts most of the things you need to work in `R` into a single window, and also includes features like keyboard shortcuts, autocompletion of code, and syntax highlighting (different types of code are colored differently, making it easier to navigate your code).
+`RStudio` нь `R` дээр ажиллахад шаардлагатай ихэнх зүйлсийг нэг цонхонд оруулахаас гадна гарын товчлол, кодыг автоматаар бөглөх, синтакс тодотгох зэрэг функцуудыг агуулдаг (янз бүрийн төрлийн кодууд өөр өөр өнгөтэй байдаг тул таны кодыг удирдахад хялбар болгодог).
 
-## Getting set up in `RStudio`
+## `RStudio`-д тохируулж байна
 
-It is a good practice to organize your projects into self-contained folders right from the start, so we will start building that habit now. A well-organized project is easier to navigate, more reproducible, and easier to share with others. Your project should start with a top-level folder that contains everything necessary for the project, including data, scripts, and images, all organized into sub-folders.
+Төслөө эхнээс нь хавтас болгон зохион байгуулах нь сайн туршлага тул бид одооноос энэ зуршлыг бий болгож эхэлнэ. Сайн зохион байгуулалттай төслийг удирдахад илүү хялбар, дахин давтагдах боломжтой, бусадтай хуваалцахад хялбар байдаг. Таны төсөл дэд хавтас болгон зохион байгуулагдсан өгөгдөл, скрипт, зураг зэрэг төсөлд шаардлагатай бүх зүйлийг агуулсан дээд түвшний хавтсаас эхлэх ёстой.
 
-`RStudio` provides a `Projects` feature that can make it easier to work on individual projects in `R`. We will create a `project` that we will keep everything for this workshop.
+`RStudio` нь `R` дахь бие даасан төсөл дээр ажиллахад хялбар болгох боломжтой `Projects` функцээр хангадаг. Бид `project`-ыг бий болгож, энэ семинарт зориулж бүх зүйлийг хадгалах болно.
 
-1.  Start `RStudio` (you should see a view similar to the screenshot above).
-2.  In the top right, you will see a blue 3D cube and the words `Project: (None)`. Click on this icon.
-3.  Click **`New Project`** from the dropdown menu.
-4.  Click **`New Directory`**, then **`New Project`**
-5.  Type out a name for the project, such as `intro_r`
-6.  Put it in a convenient location using the `Create project as a subdirectory of:` section. We recommend your `Desktop`. You can always move the project somewhere else later, because it will be self-contained.
-7.  Click **`Create Project`** and your new project will open.
+1. `RStudio`-г эхлүүлнэ үү (та дээрх дэлгэцийн зурагтай төстэй харагдах болно).
+2. Баруун дээд буланд та цэнхэр 3D шоо болон `Project: (None)` гэсэн үгсийг харах болно. Энэ дүрс дээр дарна уу.
+3. Унждаг цэснээс **`New Project`** дээр дарна уу.
+4. **`New Directory`**, дараа нь **`New Project`** дээр товшино уу.
+5. `intro_r` гэх мэт төслийн нэрийг бичнэ үү
+6. `Create project as a subdirectory of:` хэсгийг ашиглан тохиромжтой газар байрлуул. Бид таны `Desktop`-г санал болгож байна. Та төслийг дараа нь өөр газар шилжүүлж болно, учир нь энэ нь бие даасан байх болно.
+7. **`Create Project`** дээр дарвал таны шинэ төсөл нээгдэнэ.
 
-Next time you open `RStudio`, you can click that 3D cube icon, and you will see options to open existing projects, like the one you just made.
+Дараагийн удаа та `RStudio`-г нээхдээ тэр 3D шоо дүрс дээр товших ба одоо байгаа төслүүдийг нээх сонголтууд гарч ирнэ, тухайлбал таны хийсэн төсөл.
 
-One of the benefits to using RStudio Projects is that they automatically set the **working directory** to the top-level folder for the project. The working directory is the folder where R is working, so it views the location of all files (including data and scripts) as being relative to the working directory. You may come across scripts that include something like `setwd("/Users/YourUserName/MyCoolProject")`, which directly sets a working directory. This is usually much less portable, since that specific directory might not be found on someone else's computer (they probably don't have the same username as you). Using `RStudio` Projects means we don't have to deal with manually setting the working directory.
+RStudio Projects-ийн давуу талуудын нэг нь **ажлын лавлах**-ыг төслийн дээд түвшний хавтас руу автоматаар тохируулдаг явдал юм. Ажлын лавлах нь R-ийн ажиллаж байгаа хавтас тул бүх файлуудын (өгөгдөл, скриптийг оруулаад) байршлыг ажлын лавлахтай харьцуулан хардаг. Та ажлын лавлахыг шууд тохируулдаг `setwd("/Users/YourUserName/MyCoolProject")` гэх мэт скриптүүдтэй таарч магадгүй. Энэ нь ихэвчлэн зөөврийн хувьд хамаагүй бага байдаг, учир нь тухайн лавлах нь хэн нэгний компьютер дээр олдохгүй байж магадгүй (тэд тантай ижил хэрэглэгчийн нэргүй байж магадгүй). `RStudio` төслүүдийг ашигласнаар бид ажлын лавлахыг гараар тохируулах шаардлагагүй болно.
 
-There are a few settings we will need to adjust to improve the reproducibility of our work. Go to your menu bar, then click `Tools → Global Options` to open up the `Options` window.
+Бид ажлынхаа давтагдах чадварыг сайжруулахын тулд хэд хэдэн тохиргоог хийх шаардлагатай болно. Өөрийн цэс рүү очоод `Tools → Global Options` дээр дарж `Options` цонхыг нээнэ үү.
 
 ![](fig/rstudio_settings.png){alt="Screenshot of the RStudio Global Options, with \"Restore .RData into workspace at startup"unchecked, and \"Save workspace to .RData on exit"set to \"Never"\."}
 
-Make sure your settings match those highlighted in yellow. We don't want `RStudio` to store the current status of our R session and reload it the next time we start`R`. This might sound convenient, but for the sake of reproducibility, we want to start with a clean, empty R session every time we work. That means that we have to record everything we do into scripts, save any data we need into files, and store outputs like images as files. We want to get used to everything we generate in a single `R` session being *disposable*. We want our scripts to be able to regenerate things we need, other than "raw materials" like data.
+Таны тохиргоо шараар тодруулсантай таарч байгаа эсэхийг шалгаарай. Бид `RStudio`-д бидний R сессийн одоогийн статусыг хадгалж, дараагийн удаа `R`-ийг эхлүүлэхэд дахин ачаалахыг хүсэхгүй байна. Энэ нь эвтэйхэн мэт санагдаж болох ч дахин давтагдахын тулд бид ажиллах бүртээ цэвэр, хоосон R сессээр эхлэхийг хүсдэг. Энэ нь бид хийсэн бүх зүйлээ скрипт болгон бичиж, шаардлагатай бүх өгөгдлийг файл болгон хадгалах, зураг гэх мэт гаралтыг файл болгон хадгалах ёстой гэсэн үг юм. Бид нэг `R` сессийн дотор үүсгэсэн бүх зүйлээ *нэг удаагийн* байхад дасахыг хүсч байна. Бид скриптүүдээ өгөгдөл гэх мэт "түүхий эд"-ээс өөр хэрэгцээтэй зүйлсийг сэргээх чадвартай байхыг хүсч байна.
 
-## Organizing your project directory
+## Төслийн лавлахыг зохион байгуулж байна
 
 ::: instructor
-If you are teaching remotely and sharing only the `RStudio` window, the new windows that pop up while creating folders will not be shared via Zoom. You can switch to sharing your entire screen, which will allow learners to see the popup windows.
+Хэрэв та зайнаас хичээл зааж байгаа бөгөөд зөвхөн `RStudio` цонхыг хуваалцаж байгаа бол фолдер үүсгэх явцад гарч ирэх шинэ цонхнуудыг Zoom-ээр хуваалцахгүй. Та дэлгэцээ бүхэлд нь хуваалцах горимд шилжих боломжтой бөгөөд ингэснээр суралцагчдад гарч ирэх цонхнуудыг харах боломжтой болно.
 :::
 
-Using a consistent folder structure across all your new projects will help keep a growing project organized, and make it easy to find files in the future. This is especially beneficial if you are working on multiple projects, since you will know where to look for particular kinds of files.
+Бүх шинэ төслүүд дээрээ хавтасны бүтцийг ашиглах нь өсөн нэмэгдэж буй төслийг эмх цэгцтэй байлгахад тусалж, ирээдүйд файл хайхад хялбар болгоно. Хэрэв та олон төсөл дээр ажиллаж байгаа бол энэ нь ялангуяа ашигтай байдаг, учир нь та тодорхой төрлийн файлуудыг хаанаас хайхаа мэддэг болно.
 
-We will use a basic structure for this workshop, which is often a good place to start, and can be extended to meet your specific needs. Here is a diagram describing the structure that we will end up with as we progress through the workshops:
+Бид энэ семинарт үндсэн бүтцийг ашиглах бөгөөд энэ нь ихэвчлэн эхлэхэд тохиромжтой газар бөгөөд таны тусгай хэрэгцээнд нийцүүлэн өргөтгөх боломжтой. Семинараар дамжих явцад бидний дуусгах бүтцийг тодорхойлсон диаграмм энд байна.
 
 ```         
 intro_r
@@ -166,51 +166,51 @@ intro_r
 └─── documents
 ```
 
-Within our project folder (`intro_r`), we first have a `scripts` folder to hold any scripts we write. We will also have a `data` folder containing `cleaned` and `raw` subfolders. In general, you want to keep your `raw` data completely untouched, so once you put data into that folder, you do not modify it. Instead, you read it into R, and if you make any modifications, you write that modified file into the `cleaned` folder. We also have an `images` folder for plots we make, and a `documents` folder for any other documents you might produce.
+Манай төслийн хавтсанд (`intro_r`) эхлээд бидний бичсэн скриптүүдийг хадгалах `scripts` хавтас бий. Мөн бид `cleaned` болон `raw` дэд хавтас агуулсан `data` хавтастай болно. Ерөнхийдөө та `raw`-н датаг бүрэн хөндөгдөөгүй байлгахыг хүсч байгаа тул тухайн хавтсанд өгөгдөл оруулсны дараа та үүнийг өөрчлөхгүй. Харин та үүнийг R дээр уншиж, хэрэв та ямар нэгэн өөрчлөлт хийвэл `cleaned` хавтас руу өөрчилсөн файлаа бичнэ. Бидэнд мөн бидний хийсэн зурагт зориулсан `images` хавтас, таны гаргаж болох бусад баримт бичигт зориулсан `documents` хавтас бий.
 
-Let's start making our new script folder. Go to the **`Files`** pane (bottom right), and check the current directory. You should be in the directory for the project you just made, in our case `intro_r`. You shouldn't see any folders in here yet.
+Шинэ скрипт хавтас хийж эхэлцгээе. **`Files`** хэсэг рүү (баруун доод талд) очиж, одоогийн лавлахыг шалгана уу. Та саяхан хийсэн төслийн лавлахад `intro_r` байх ёстой. Та энд ямар ч фолдер хараахан харагдахгүй байна.
 
 ![](fig/files_pane.png){alt=RStudio Files pane."}
 
-Next, click the **`New Folder`** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. It's worth noting that the **`Files`** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
+Дараа нь **`New Folder`** товчийг дараад `scripts` гэж бичээд `scripts` хавтсаа үүсгэнэ үү. Энэ нь одоо Файлуудын жагсаалтад гарч ирэх ёстой. **`Files`** хэсэг нь танд файл үүсгэх, олох, нээхэд тусалдаг боловч таны файлуудаар шилжихэд таны төслийн **ажлын директор** хаана байгааг өөрчлөхгүй гэдгийг тэмдэглэх нь зүйтэй.
 
-## Working in `R` and `RStudio`
+## `R` болон `RStudio` дээр ажиллаж байна
 
-The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write these instructions in the form of *code*, which is a common language that is understood by the computer and humans (after some practice). We call these instructions *commands*, and we tell the computer to follow the instructions by *running* (also called *executing*) the commands.
+Програмчлалын үндэс нь бид компьютерийг дагаж мөрдөх зааварчилгааг бичиж, дараа нь компьютерт эдгээр зааврыг дагахыг хэлдэг. Бид эдгээр зааврыг *код* хэлбэрээр бичдэг бөгөөд энэ нь компьютер болон хүмүүст ойлгомжтой нийтлэг хэл (зарим дасгал хийсний дараа). Бид эдгээр зааврыг *команд* гэж нэрлэдэг бөгөөд командуудыг *ажиллуулах* (мөн * гүйцэтгэх* гэж нэрлэдэг) зааврыг дагаж мөрдөхийг компьютерт хэлдэг.
 
-### Console vs. script
+### Консол ба скрипт
 
-You can run commands directly in the `R` console, or you can write them into an `R` script. It may help to think of working in the console vs. working in a script as something like cooking. The console is like making up a new recipe, but not writing anything down. You can carry out a series of steps and produce a nice, tasty dish at the end. However, because you didn't write anything down, it's harder to figure out exactly what you did, and in what order.
+Та тушаалуудыг `R` консол дээр шууд ажиллуулж болно, эсвэл `R` скрипт рүү бичиж болно. Энэ нь консол дээр ажиллах, скрипт дээр ажиллахыг хоол хийхтэй адил зүйл гэж үзэхэд тустай байж болох юм. Консол нь шинэ жор зохиохтой адил боловч юу ч бичихгүй. Та хэд хэдэн алхмуудыг хийж, эцэст нь сайхан, амттай хоол хийж болно. Гэсэн хэдий ч та юу ч бичээгүй тул яг юу хийсэн, ямар дарааллаар хийснээ ойлгоход хэцүү байдаг.
 
-Writing a script is like taking nice notes while cooking- you can tweak and edit the recipe all you want, you can come back in 6 months and try it again, and you don't have to try to remember what went well and what didn't. It's actually even easier than cooking, since you can hit one button and the computer "cooks" the whole recipe for you!
+Скрипт бичих нь хоол хийж байхдаа сайхан тэмдэглэл хөтлөхтэй адил юм- та хүссэн бүх жороо өөрчилж, засварлаж болно, 6 сарын дараа буцаж ирээд дахин оролдож болно, юу нь сайн болсон, юу нь болохгүй байсныг санах гэж оролдох шаардлагагүй. Энэ нь үнэндээ хоол хийхээс ч хялбар, учир нь та нэг товчлуур дээр дарахад компьютер бүх жорыг "хоол хийх" болно!
 
-An additional benefit of scripts is that you can leave **comments** for yourself or others to read. Lines that start with `#` are considered comments and will not be interpreted as `R` code.
+Скриптүүдийн нэмэлт давуу тал бол та өөртөө болон бусад хүмүүст **сэтгэгдэл** үлдээх боломжтой юм. `#`-оор эхэлсэн мөрүүдийг сэтгэгдэл гэж үзэх ба `R` код гэж тайлбарлахгүй.
 
-#### Console
+#### Консол
 
--   The `R` console is where code is run/executed
--   The **prompt**, which is the `>` symbol, is where you can type commands
--   By pressing <kbd>Enter</kbd>, `R` will execute those commands and print the result.
--   You can work here, and your history is saved in the `History` pane, but you can't access it in the future
+- `R` консол нь кодыг ажиллуулах/гүйцэтгэх газар юм
+- `>` тэмдэг болох **prompt** нь команд бичих боломжтой газар юм
+- <kbd>Enter</kbd> товчийг дарснаар `R` эдгээр командуудыг гүйцэтгэж үр дүнг хэвлэнэ.
+- Та энд ажиллах боломжтой бөгөөд таны түүхийг `History` хэсэгт хадгалах боловч цаашид үүнд хандах боломжгүй.
 
-#### Script
+#### Скрипт
 
--   You can make a new`R` script by clicking `File → New File → R Script`, clicking the green `+` button in the top left corner of `RStudio`, or pressing <kbd>Shift+Cmd+N</kbd> (`Mac`) or <kbd>Shift+Ctrl+N</kbd> (`Windows`). It will be unsaved, and called `Untitled1`
--   If you type out lines of `R` code in a script, you can send them to the `R` console to be evaluated
-    -   <kbd>Cmd+Enter</kbd> (`Mac`) or <kbd>Ctrl+Enter</kbd> (`Windows`) will run the line of code that your cursor is on
-    -   If you highlight multiple lines of code, you can run all of them by pressing <kbd>Cmd+Enter</kbd> (`Mac`) or <kbd>Ctrl+Enter</kbd> (`Windows`)
-    -   By preserving commands in a script, you can edit and rerun them quickly, save them for later, and share them with others
-    -   You can leave comments for yourself by starting a line with a `#`
+- Та `File → New File → R Script` дээр дарж, `RStudio`-ын зүүн дээд буланд байрлах ногоон `+` товчлуур дээр дарж, эсвэл <kbd>Shift+Cmd+N</kbd> (`Mac`) эсвэл <kbd>Shift+Ctrld+LACEHOLDER (</kbd) дарж шинэ `R` скрипт үүсгэж болно. Үүнийг хадгалахгүй бөгөөд `Untitled1` гэж нэрлэнэ
+- Хэрэв та скриптэд `R` кодын мөрүүдийг бичвэл `R` консол руу илгээж, үнэлгээ өгөх боломжтой.
+    - <kbd>Cmd+Enter</kbd> (`Mac`) эсвэл <kbd>Ctrl+Enter</kbd> (`Windows`) нь таны курсор дээр байгаа кодын мөрийг ажиллуулна.
+    - Хэрэв та олон мөр кодыг тодруулбал <kbd>Cmd+Enter</kbd> (`Mac`) эсвэл <kbd>Ctrl+Enter</kbd> (`Windows`) дарж бүгдийг нь ажиллуулж болно.
+    - Скрипт дэх командуудыг хадгалснаар та тэдгээрийг хурдан засварлаж, дахин ажиллуулж, дараа нь хадгалах, бусадтай хуваалцах боломжтой.
+    - Та `#` гэсэн мөрийг эхлүүлснээр өөртөө сэтгэгдэл үлдээх боломжтой
 
-#### Example
+#### Жишээ
 
-Let's try running some code in the console and in a script. First, click down in the Console pane, and type out `1+1`. Hit <kbd>Enter</kbd> to run the code. You should see your code echoed, and then the value of `2` returned.
+Консол болон скрипт дээр зарим кодыг ажиллуулж үзье. Эхлээд Консолын хэсэгт доош товшоод `1+1` гэж бичнэ үү. Кодыг ажиллуулахын тулд <kbd>Enter</kbd> товчийг дарна уу. Та өөрийн кодыг цуурайтаж, `2`-ийн утга буцаж ирэхийг харах ёстой.
 
-Now click into your blank script, and type out `1+1`. With your cursor on that line, hit <kbd>Cmd+Enter</kbd> (`Mac`) or <kbd>Ctrl+Enter</kbd> (`Windows`) to run the code. You will see that your code was sent from the script to the console, where it returned a value of `2`, just like when you ran your code directly in the console.
+Одоо хоосон скрипт дээрээ дараад `1+1` гэж бичнэ үү. Курсороо энэ мөрөнд байхад <kbd>Cmd+Enter</kbd> (`Mac`) эсвэл <kbd>Ctrl+Enter</kbd> (`Windows`) дарж кодыг ажиллуулна уу. Таны кодыг скриптээс консол руу илгээсэн бөгөөд энэ нь `2`-ын утгыг буцаасныг харах болно, яг л та консол дээр кодоо шууд ажиллуулсан шиг.
 
 ::: keypoints
--   `R` is a programming language and software used to run commands in that language
--   `RStudio` is software to make it easier to write and run code in `R`
--   Use `R Projects` to keep your work organized and self-contained
--   Write your code in scripts for reproducibility and portability
+- `R` нь програмчлалын хэл ба тухайн хэл дээрх тушаалуудыг ажиллуулах программ хангамж юм
+- `RStudio` нь `R`-д код бичих, ажиллуулахад хялбар болгох програм хангамж юм
+- Ажлаа эмх цэгцтэй, бие даасан байлгахын тулд `R Projects`-г ашиглаарай
+- Дахин давтагдах, зөөвөрлөхийн тулд кодоо скриптээр бичээрэй
 :::

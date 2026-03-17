@@ -3,22 +3,22 @@ site: sandpaper::sandpaper_site
 ---
 
 ::: callout
-## IRIM R Workshops
+## IRIM R семинар
 
-Presented by Kathryn Napier, with material adapted from from several [Carpentries](https://carpentries.org/) resources, including:
+Kathryn Napier, хэд хэдэн [Carpentries](https://carpentries.org/) эх сурвалжаас дасан зохицсон материалтай танилцуулсан бөгөөд үүнд:
 
--   [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.github.io/R-ecology-lesson/)
--   [R for Social Scientists](https://datacarpentry.github.io/r-socialsci/)
+- [Экологичдод зориулсан R хэл дээрх мэдээллийн шинжилгээ ба дүрслэл](https://datacarpentry.github.io/R-ecology-lesson/)
+- [Нийгмийн эрдэмтдэд зориулсан R](https://datacarpentry.github.io/r-socialsci/)
 :::
 
-The Carpentries aim is to teach researchers basic concepts, skills, and tools for working with data so that they can get more done in less time, and with less pain. This is an introduction to R designed for participants with no programming experience. The workshop includes:
+Мужааны зорилго нь судлаачдад өгөгдөлтэй ажиллах үндсэн ойлголт, ур чадвар, багаж хэрэгслийг зааж өгөх бөгөөд ингэснээр тэд бага хугацаанд, өвдөлт багатай илүү их зүйлийг хийх боломжтой болно. Энэ бол програмчлалын туршлагагүй оролцогчдод зориулсан R-ийн танилцуулга юм. Семинарт дараахь зүйлс орно.
 
-The workshop starts with information about the R programming language and the RStudio interface.
+Семинар R програмчлалын хэл болон RStudio интерфейсийн талаарх мэдээллээр эхэлнэ.
 
-1.  Introduction to R and R Studio
+1. R and R Studio-ийн танилцуулга
 
-2.  Introduction to R packages, markdown and notebooks
+2. R багц, тэмдэглэгээ, дэвтэртэй танилцах
 
-3.  Starting with data in R
+3. R-ийн өгөгдлөөс эхлэн
 
-This lesson assumes no prior knowledge of R or RStudio and no programming experience.
+Энэ хичээл нь R эсвэл RStudio-ийн талаар урьдчилж мэдлэггүй, програмчлалын туршлагагүй гэж үздэг.

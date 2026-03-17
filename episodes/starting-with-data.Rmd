@@ -1,5 +1,5 @@
 ---
-title: Starting with Data
+title: Өгөгдлөөс эхэлнэ
 teaching: 70
 exercises: 2
 source: Rmd
@@ -9,95 +9,95 @@ editor_options:
 ---
 
 ::: instructor
-The main goals for this lessons are:
+Энэ хичээлийн гол зорилго нь:
 
--   To make sure that learners understand the structure of a dataframe
--   To expose learners to factors. Their behavior is not necessarily
-    intuitive, and so it is important that they are guided through it
-    the first time they are exposed to it. The content of the lesson
-    should be enough for learners to avoid common mistakes with them.
+- Дата фреймийн бүтцийг суралцагчдад ойлгуулах
+- Суралцагчдыг хүчин зүйлийн нөлөөнд оруулах. Тэдний зан байдал нь заавал байх албагүй
+зөн совинтой, тиймээс тэд үүнийг удирдан чиглүүлэх нь чухал юм
+анх удаа тэд үүнд өртөж байна. Хичээлийн агуулга
+Суралцагчдад нийтлэг алдаа гаргахаас зайлсхийхэд хангалттай байх ёстой.
 :::
 
 ::: objectives
--   Load external data from a `.csv` file into a data frame.
--   Explore the structure and content of data.frames
--   Understand how `R` assigns values to objects
--   Understand vector types and missing data
--   Describe the difference between a factor and a string.
--   Create and convert factors
--   Examine and change date formats.
+- `.csv` файлаас гадаад өгөгдлийг өгөгдлийн хүрээ рүү ачаална уу.
+- Data.frames-ийн бүтэц, агуулгыг судлах
+- `R` нь объектуудад хэрхэн утгыг оноож байгааг ойлгоорой
+- Векторын төрлүүд болон дутуу өгөгдлийг ойлгох
+- Хүчин зүйл ба мөр хоорондын ялгааг тайлбарла.
+- Хүчин зүйлүүдийг үүсгэх, хөрвүүлэх
+- Огнооны форматыг шалгаж, өөрчлөх.
 :::
 
 ::: questions
--   How does `R` store data?
--   What is a data.frame?
--   How can I read a complete `.csv` file into `R`?
--   How can I get basic summary information about my dataset?
--   How can I change the way `R` treats strings in my dataset?
--   Why would I want strings to be treated differently?
--   How are dates represented in `R` and how can I change the format?
+- `R` өгөгдөл хэрхэн хадгалдаг вэ?
+- Data.frame гэж юу вэ?
+- Би `.csv` файлыг хэрхэн бүтнээр нь `R` руу унших вэ?
+- Би өөрийн өгөгдлийн багцын талаарх үндсэн хураангуй мэдээллийг хэрхэн авах вэ?
+- Би `R` нь миний датасет дахь мөрүүдийг хэрхэн яаж өөрчлөх вэ?
+- Яагаад би утсанд өөрөөр хандахыг хүсч байна вэ?
+- `R`-д огноог хэрхэн дүрсэлсэн, би форматыг хэрхэн өөрчлөх вэ?
 :::
 
-## Acknowledgement
+## Хүлээн зөвшөөрөлт
 
-This workshop was adapted using material from the Data Carpentry lessons
+Энэхүү семинарыг Дата мужааны хичээлүүдийн материалыг ашиглан тохируулсан
 [`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/index.html),
-specifically [`lesson 02-starting-with-data`](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html),
-and [`R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/index.html),
-specifically
+ялангуяа [`lesson 02-starting-with-data`](https://datacarpentry.github.io/r-socialsci/02-starting-with-data.html),
+болон [`R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/index.html),
+тусгайлан
 [`how-r-thinks-about-data`](https://datacarpentry.github.io/R-ecology-lesson/how-r-thinks-about-data.html).
 
-## Other Materials
+## Бусад материал
 
-[See Workshop 3 Slides
-here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK)
+[Зөвлөгөөний 3 слайдыг үзнэ үү
+энд](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQARukopMq9ITq8gmPXMml9zAYqZU3vDsT6V57tMfkiLR9I?e=jJuvIK)
 
-[See Workshop 3 recording
-here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha)
+[Зөвлөгөөний 3-р бичлэгийг үзнэ үү
+энд](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJKhARghJz3XspT9d2XQTv5w0Qs?e=63Ozha)
 
-## Set up
+## Тохируулах
 
-Start by opening up your `RStudio project` that you created in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
-(called `intro_r`). Open a new `R Notebook`: `Click File -> New File -> R`
-Notebook. Save your `R Notebook` with a filename that makes sense, such as
-`starting_with_data.Rmd`, in the `scripts` folder.
+Та [`previous workshop`] (https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)-д үүсгэсэн `RStudio project`-аа нээж эхэл.
+(`intro_r` гэж нэрлэдэг). Шинэ `R Notebook` нээнэ үү: `Click File -> New File -> R`
+Тэмдэглэлийн дэвтэр. `R Notebook` гэх мэт утга учиртай файлын нэрээр хадгална уу
+`starting_with_data.Rmd`, `scripts` фолдерт.
 
-When you open a new `R Notebook`, some explanatory text is provided. This
-can be deleted so you can enter your own text and code.
+Та шинэ `R Notebook`-г нээхэд зарим тайлбар текст гарч ирнэ. Энэ
+устгаж болох тул та өөрийн текст болон кодыг оруулах боломжтой.
 
-## What are data frames?
+## Өгөгдлийн хүрээ гэж юу вэ?
 
-Data frames are the *de facto* data structure for tabular data in `R`,
-and what we use for data processing, statistics, and plotting.
+Өгөгдлийн хүрээ нь `R` дахь хүснэгтэн өгөгдөлд зориулсан *де факто* өгөгдлийн бүтэц юм.
+мөн өгөгдөл боловсруулах, статистик, график зурахад бидний ашигладаг зүйл.
 
-A data frame is the representation of data in the format of a table
-where the columns are vectors that all have the same length. Data frames
-are analogous to the more familiar spreadsheet in programs such as
-`Excel`, with one key difference. Because columns are vectors, each column
-must contain a single type of data (e.g., characters, integers,
-factors). For example, here is a figure depicting a data frame
-comprising a numeric, a character, and a logical vector.
+Өгөгдлийн хүрээ нь хүснэгтийн формат дахь өгөгдлийг дүрслэх явдал юм
+Энд баганууд нь бүгд ижил урттай векторууд юм. Өгөгдлийн хүрээ
+зэрэг программуудад илүү танил болсон хүснэгттэй адил юм
+`Excel`, нэг гол ялгаа. Баганууд нь вектор учраас багана бүр
+нэг төрлийн өгөгдөл агуулсан байх ёстой (жишээ нь, тэмдэгт, бүхэл тоо,
+хүчин зүйлс). Жишээлбэл, өгөгдлийн хүрээг дүрсэлсэн зураг энд байна
+тоо, тэмдэгт, логик вектороос бүрдэнэ.
 
 ![](fig/data-frame.svg){alt="A 3 by 3 data frame with columns showing numeric, character and logical values."}
 
-Data frames can be created by hand, but most commonly they are generated
-by the functions `read_csv()` or `read_table()`; in other words, when
-importing spreadsheets from your hard drive (or the web). We will now
-demonstrate how to import tabular data using `read_csv()`.
+Өгөгдлийн хүрээг гараар үүсгэж болох боловч ихэнхдээ тэдгээрийг үүсгэдэг
+`read_csv()` эсвэл `read_table()` функцээр; өөрөөр хэлбэл хэзээ
+хатуу дискээсээ (эсвэл вэбээс) хүснэгт импортлох. Бид одоо болно
+`read_csv()` ашиглан хүснэгтэн өгөгдлийг хэрхэн импортлохыг харуулах.
 
-## Presentation of the SAFI Data
+## SAFI мэдээллийн танилцуулга
 
-`SAFI` (Studying African Farmer-Led Irrigation) is a study looking at
-farming and irrigation methods in Tanzania and Mozambique. The survey
-data was collected through interviews conducted between November 2016
-and June 2017. For this lesson, we will be using a subset of the
-available data. For information about the orginal dataset, see the
+`SAFI` (Африкийн фермерээр удирдуулсан усжуулалтыг судлах) нь дараах судалгаа юм.
+Танзани, Мозамбик дахь газар тариалан, усалгааны аргууд. Судалгаа
+мэдээллийг 2016 оны 11-р сарын хооронд хийсэн ярилцлагаар цуглуулсан
+болон 2017 оны 6-р сар. Энэ хичээлд бид дэд багцыг ашиглах болно
+боломжтой өгөгдөл. Анхны өгөгдлийн багцын талаарх мэдээллийг үзнэ үү
 [`dataset description`](https://datacarpentry.org/socialsci-workshop/index.html#data).
 
-We will be using a subset of the dataset that has been provided
-(`data/raw/SAFI_clean.csv`). In this dataset, the missing data is
-encoded as `NULL`, each row holds information for a single interview
-respondent, and the columns represent:
+Бид өгсөн өгөгдлийн багцын дэд багцыг ашиглах болно
+(`data/raw/SAFI_clean.csv`). Энэ өгөгдлийн багцад дутуу өгөгдөл байна
+`NULL` гэж кодлогдсон, мөр бүр нь нэг ярилцлагад зориулсан мэдээллийг агуулна
+Хариуцагч ба баганууд нь:
 
 | column_name | description |
 |-------------------------|-----------------------------------------------|
@@ -116,24 +116,24 @@ respondent, and the columns represent:
 | months_lack_food | Indicate which months, In the last 12 months have you faced a situation when you did not have enough food to feed the household? |
 | instanceID | Unique identifier for the form data submission |
 
-### Download the data
+### Өгөгдлийг татаж авах
 
-If you did not previously downloaded the `SAFI_clean.csv` dataset in the
+Хэрэв та өмнө нь `SAFI_clean.csv` датасетийг татаж аваагүй бол
 [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
-please follow the instructions below to download it. If you already have
-the file in your `data/raw/` folder, jump to the **Importing data**
-section.
+доорх зааврыг дагаж татаж авна уу. Хэрэв танд байгаа бол
+`data/raw/` фолдерт байгаа файлыг **Импортлох өгөгдөл** руу очно уу.
+хэсэг.
 
-We will be using a dataset called `SAFI_clean.csv`. The direct download
-link for this file is:
+Бид `SAFI_clean.csv` нэртэй өгөгдлийн багцыг ашиглах болно. Шууд татаж авах
+Энэ файлын холбоос нь:
 <https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv>.
-This data is a slightly cleaned up version of the SAFI Survey Results
-available on
+Энэ өгөгдөл нь SAFI судалгааны үр дүнгийн бага зэрэг цэвэршүүлсэн хувилбар юм
+дээр боломжтой
 [`figshare`](https://figshare.com/articles/dataset/SAFI_Survey_Results/6262019).
 
-First, we need to create a new folder called `data` to store this
-dataset. Go to the Files pane, and create a new folder named `data`, and
-two subfolders called `cleaned` and `raw`.
+Эхлээд бид үүнийг хадгалахын тулд `data` нэртэй шинэ хавтас үүсгэх хэрэгтэй
+өгөгдлийн багц. Файлын хэсэг рүү очоод `data` нэртэй шинэ хавтас үүсгэнэ үү
+`cleaned` болон `raw` гэж нэрлэгддэг хоёр дэд хавтас.
 
 ```         
 intro_r
@@ -149,68 +149,68 @@ intro_r
 └─── documents
 ```
 
-You can either download the `SAFI_clean.csv` dataset used for this
-workshop from the `GitHub` link or with `R`. You can download the file from
-this [`GitHub link`](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
-and save it as `SAFI_clean.csv` in the `data/raw` directory you just
-created. Or you can do this directly from `R` by copying and pasting this
-in your console:
+Та үүнд ашигласан `SAFI_clean.csv` датасетийг татаж авах боломжтой
+`GitHub` холбоосоос эсвэл `R`-тэй семинар. Та файлыг эндээс татаж авах боломжтой
+энэ [`GitHub link`](https://github.com/datacarpentry/r-socialsci/blob/main/episodes/data/SAFI_clean.csv)
+мөн үүнийг `data/raw` лавлахдаа `SAFI_clean.csv` болгон хадгална уу
+үүсгэсэн. Эсвэл үүнийг хуулж буулгах замаар `R`-с шууд хийж болно
+таны консол дээр:
 
 `download.file(   "https://raw.githubusercontent.com/datacarpentry/r-socialsci/main/episodes/data/SAFI_clean.csv",   "data/raw/SAFI_clean.csv", mode = "wb"   )`
 
-## Importing data
+## Өгөгдөл импортлож байна
 
-You are going to load the data in `R`'s memory using the function
-`read_csv()` from the **`readr`** package, which is part of the
-**`tidyverse`**; learn more about the **`tidyverse`** collection of
-packages [`here`](https://www.tidyverse.org/). **`readr`** gets installed
-as part as the **`tidyverse`** installation. When you load the
-**`tidyverse`** (`library(tidyverse)`), the core packages (the packages
-used in most data analyses) get loaded, including **`readr`**.
+Та функцийг ашиглан `R`-н санах ойд өгөгдлийг ачаалах гэж байна
+-ийн нэг хэсэг болох **`readr`** багцаас `read_csv()`
+**ОРОН БАЙГУУЛАГЧ0**; -ийн **`tidyverse`** цуглуулгын талаар илүү ихийг мэдэж аваарай
+багцууд [`here`](https://www.tidyverse.org/). **`readr`**-г суулгасан
+**`tidyverse`** суулгацын нэг хэсэг болгон. Та ачаалах үед
+**`tidyverse`** (`library(tidyverse)`), үндсэн багцууд (багцууд
+ихэнх өгөгдлийн шинжилгээнд ашигладаг) **`readr`**-г оруулаад ачаалагдана.
 
-Before proceeding, however, this is a good opportunity to talk about
-conflicts. Certain packages we load can end up introducing function
-names that are already in use by pre-loaded `R` packages. For instance,
-when we load the tidyverse package below, we will introduce two
-conflicting functions: `filter()` and `lag()`. This happens because
-`filter` and `lag` are already functions used by the stats package
-(already pre-loaded in `R`). What will happen now is that if we, for
-example, call the `filter()` function, `R` will use the `dplyr::filter()`
-version and not the `stats::filter()` one. This happens because, if
-conflicted, by default `R` uses the function from the most recently loaded
-package. Conflicted functions may cause you some trouble in the future,
-so it is important that we are aware of them so that we can properly
-handle them, if we want.
+Гэхдээ үргэлжлүүлэхээсээ өмнө энэ нь ярих сайхан боломж юм
+зөрчилдөөн. Бидний ачаалж буй зарим багцууд нь функцийг нэвтрүүлж болно
+урьдчилан ачаалагдсан `R` багцад аль хэдийн ашиглагдаж байгаа нэрс. Тухайлбал,
+Бид доорх tidyverse багцыг ачаалах үед бид хоёрыг танилцуулах болно
+зөрчилтэй функцууд: `filter()` болон `lag()`. Учир нь ийм зүйл тохиолддог
+`filter` болон `lag` нь статистикийн багцад аль хэдийн ашиглагдсан функцууд юм
+(`R`-д аль хэдийн урьдчилан ачаалагдсан). Одоо юу болох вэ гэвэл бид, төлөө
+Жишээ нь, `filter()` функцийг дуудах, `R` `dplyr::filter()`-г ашиглах болно
+`stats::filter()` хувилбар биш. Учир нь ийм зүйл тохиолддог
+зөрчилтэй, анхдагчаар `R` нь хамгийн сүүлд ачаалагдсан функцийг ашигладаг
+багц. Зөрчилтэй функцууд нь ирээдүйд танд асуудал үүсгэж болзошгүй.
+Тиймээс бид тэдгээрийг зөв мэддэг байх нь чухал юм
+Хэрэв бид хүсвэл тэдгээрийг зохицуул.
 
-To do so, we just need the following functions from the conflicted
-package:
+Үүнийг хийхийн тулд бидэнд зөрчилдөөнтэй дараах функцүүд хэрэгтэй
+багц:
 
--   `conflicted::conflict_scout()`: Shows us any conflicted functions.\
--   `conflict_prefer("function", "package_prefered")`: Allows us to
-    choose the default function we want from now on.
+- `conflicted::conflict_scout()`: Бидэнд зөрчилтэй функцуудыг харуулна.\
+- `conflict_prefer("function", "package_prefered")`: Бидэнд зөвшөөрнө
+одооноос бидний хүссэн үндсэн функцийг сонго.
 
-It is also important to know that we can, at any time, just call the
-function directly from the package we want, such as `stats::filter()`.
+Бид хүссэн үедээ утсаар ярих боломжтой гэдгийг мэдэх нь чухал юм
+`stats::filter()` гэх мэт бидний хүссэн багцаас шууд функц.
 
-Even with the use of an `RStudio` project, it can be difficult to learn
-how to specify paths to file locations. Enter the **`here`** package! The
-here package creates paths relative to the top-level directory (your
-RStudio project). These relative paths work *regardless* of where the
-associated source file lives inside your project, like analysis projects
-with data and reports in different subdirectories. This is an important
-contrast to using `setwd()`, which depends on the way you order your
-files on your computer.
+`RStudio` төслийг ашигласан ч сурахад хэцүү байж болно
+файлын байршилд хүрэх замыг хэрхэн зааж өгөх. **`here`** багцыг оруулна уу! The
+энд багц нь дээд түвшний лавлахтай (таны
+RStudio төсөл). Эдгээр харьцангуй замууд нь хаана байгаагаас үл хамааран ажилладаг
+холбогдох эх файл нь шинжилгээний төслүүд гэх мэт таны төсөл дотор амьдардаг
+өөр өөр дэд лавлах дахь өгөгдөл, тайлантай. Энэ бол чухал зүйл
+`setwd()`-г ашиглахаас ялгаатай нь таны захиалах аргаас хамаарна
+таны компьютер дээрх файлууд.
 
-Before we can use the `read_csv()` and `here()` functions, we need to
-load the `tidyverse` and `here` packages.
+`read_csv()` болон `here()` функцийг ашиглахын өмнө бид үүнийг хийх хэрэгтэй
+`tidyverse` болон `here` багцуудыг ачаална уу.
 
-Add a new code chunk in your notebook, load the `tidyverse` and `here`
-packages, and read in the `SAFI` dataset. We'll **assign** the dataset to
-an object called `interviews`.
+Тэмдэглэлийн дэвтэртээ шинэ кодын хэсэг нэмж, `tidyverse` болон `here`-г ачаална уу
+багц болон `SAFI` өгөгдлийн багцаас уншина уу. Бид өгөгдлийн багцыг **тохируулна**
+`interviews` нэртэй объект.
 
-If you recall, the missing data is encoded as `NULL` in the dataset.
-We'll tell this to the `read_csv()` function, so `R` will automatically
-convert all the `NULL` entries in the dataset into `NA`.
+Хэрэв та санаж байгаа бол дутуу өгөгдлийг өгөгдлийн багцад `NULL` гэж кодлосон болно.
+Бид үүнийг `read_csv()` функцэд хэлэх тул `R` автоматаар хэлэх болно
+өгөгдлийн багц дахь бүх `NULL` оруулгыг `NA` болгон хөрвүүлэх.
 
 ```{r, eval=TRUE, message=FALSE, purl=FALSE}
 library(tidyverse)
@@ -221,33 +221,33 @@ interviews <- read_csv(
   na = "NULL")
 ```
 
-In the above code, we notice the `here()` function takes folder and file
-names as inputs (e.g., `"data"`, `"SAFI_clean.csv"`), each enclosed in
-quotations (`""`) and separated by a comma. The `here()` will accept as
-many names as are necessary to navigate to a particular file (e.g.,
+Дээрх кодонд `here()` функц хавтас болон файлыг авч байгааг бид анзаарсан
+нэрсийг оролт болгон (жишээ нь, `"data"`, `"SAFI_clean.csv"`), тус бүрийг дотор нь хавсаргасан
+ишлэл (`""`) ба таслалаар тусгаарлагдсан. `here()` нь хүлээн авах болно
+тодорхой файл руу шилжихэд шаардлагатай олон нэр (жишээ нь,
 `here("data", "raw", "SAFI_clean.csv)`).
 
-The `here()` function can accept the folder and file names in an
-alternate format, using a slash ("/") rather than commas to separate the
-names. The two methods are equivalent, so that
-`here("data", "raw", "SAFI_clean.csv")` and `here("data/raw/SAFI_clean.csv")`
-produce the same result. (The slash is used on all operating systems;
-backslashes are not used.)
+`here()` функц нь хавтас болон файлын нэрийг хүлээн авах боломжтой
+өөр форматтай, таслалаас илүү налуу зураас ("/") ашиглан тусгаарлана
+нэрс. Хоёр арга нь тэнцүү, тиймээс
+`here("data", "raw", "SAFI_clean.csv")` болон `here("data/raw/SAFI_clean.csv")`
+ижил үр дүнг гаргана. (Налуу зураасыг бүх үйлдлийн системд ашигладаг;
+урвуу зураасыг ашигладаггүй.)
 
-## Assigning objects
+## Объектуудыг хуваарилах
 
-In `R`, we can **assign** inputs to a named **object**. We do this using
-the **assignment arrow** `<-`, <kbd>Alt+-</kbd> (`Windows`) or
-<kbd>Option+-</kbd> (`Mac`).What we are doing here is taking the result of
-the code on the right side of the arrow (reading in the csv file), and
-assigning it to an object whose name is on the left side of the arrow
+`R`-д бид нэрлэсэн **объект**-д **оролт өгөх** боломжтой. Бид үүнийг ашиглан хийдэг
+**даалгаврын сум** `<-`, <kbd>Alt+-</kbd> (`Windows`) эсвэл
+<kbd>Сонголт+-</kbd> (`Mac`). Бидний энд хийж байгаа зүйл бол дараах үр дүнг авч байна.
+сумны баруун талд байгаа код (csv файлыг унших), ба
+сумны зүүн талд нэр нь байгаа объектод оноож байна
 (`interviews`).
 
-You may notice that the contents of the interviews data frame do not
-display below the code cell. This is because assignments (`<-`) don't
-display anything. If we want to check that our data has been loaded, we
-can see the contents of the data frame by typing its name: `interviews`
-into a new code chunk.
+Ярилцлагын өгөгдлийн хүрээ тийм биш байгааг та анзаарсан байх
+кодын нүдний доор харуулна. Учир нь даалгавар (`<-`) байхгүй
+юу ч харуулах. Хэрэв бид өгөгдөл ачаалагдсан эсэхийг шалгахыг хүсвэл бид
+өгөгдлийн хүрээний агуулгыг харж болно: `interviews`
+шинэ кодын хэсэг болгон.
 
 ```{r, results="hold", purl=FALSE}
 interviews
@@ -256,300 +256,300 @@ interviews
 ## head(interviews)
 ```
 
-## Exploring data frames
+## Өгөгдлийн хүрээг судлах
 
-When working with the output of a new function, it's often a good idea
-to check the `class()`:
+Шинэ функцийн гаралттай ажиллахдаа энэ нь ихэвчлэн сайн санаа юм
+`class()`-г шалгахын тулд:
 
 ```{r class-tibble}
 class(interviews)
 ```
 
-Whoa! What is this thing? It has multiple classes`spec_tbl_df`,
-`tbl_df`, `tbl`, and `data.frame`? Well, it's called a `tibble`, and it
-is the `tidyverse` version of a data.frame. It *is* a data.frame, but
-with some added perks. It prints out a little more nicely, it highlights
-`NA` values and negative values in red, and it will generally
-communicate with you more (in terms of warnings and errors, which is a
-good thing).
+Өө! Энэ юу вэ? Энэ нь олон ангитай `spec_tbl_df`,
+`tbl_df`, `tbl`, `data.frame`? За, үүнийг `tibble` гэж нэрлэдэг бөгөөд энэ нь
+нь data.frame-ийн `tidyverse` хувилбар юм. Энэ нь * data.frame, гэхдээ
+зарим нэмэлт хөнгөлөлтүүдтэй. Энэ нь арай илүү сайхан хэвлэдэг, энэ нь онцлон тэмдэглэдэг
+`NA` утгууд ба сөрөг утгууд улаан өнгөтэй байх ба энэ нь ерөнхийдөө болно
+тантай илүү их харилцах (анхаарал, алдааны хувьд, энэ нь a
+сайн зүйл).
 
-As a `tibble`, the type of data included in each column is listed in an
-abbreviated fashion below the column names. For instance, here `key_ID`
-is a column of floating point numbers (abbreviated `<dbl>` for the word
-'double'), `respondent_wall_type` is a column of characters ( `<chr>`) and the`interview_date` is a column in the "date and time" format (`<dttm>`).
+`tibble`-ын хувьд багана тус бүрт орсон өгөгдлийн төрлийг a-д жагсаасан болно
+баганын нэрсийн доор товчилсон загвар. Жишээлбэл, энд `key_ID`
+нь хөвөгч цэгийн тоонуудын багана (үгний хувьд `<dbl>` гэж товчилсон
+'давхар'), `respondent_wall_type` нь тэмдэгтүүдийн багана ( `<chr>`), `interview_date` нь "огноо ба цаг" форматтай багана (`<dttm>`).
 
 ::: callout
-**`tidyverse` vs. `base R`**
+**`tidyverse` ба `base R`**
 
-As we begin to delve more deeply into the `tidyverse`, we should briefly
-pause to mention some of the reasons for focusing on the `tidyverse` set
-of tools. In R, there are often many ways to get a job done, and there
-are other approaches that can accomplish tasks similar to the
+Бид `tidyverse`-ийн талаар илүү гүнзгий нэвтэрч эхлэхийн тулд товчхон хэлэх хэрэгтэй
+`tidyverse` багц дээр анхаарлаа төвлөрүүлэх зарим шалтгааныг дурдахын тулд түр зогсоо
+багаж хэрэгслийн. R-д ажил хийх олон арга зам байдаг бөгөөд тэнд
+-тэй төстэй ажлуудыг гүйцэтгэж чадах өөр аргууд юм
 `tidyverse`.
 
-The phrase **`base R`** is used to refer to approaches that utilize
-functions contained in `R`'s default packages. We will use some `base R`
-functions, such as `str()`, `head()`, and `nrow()`, and we will be using
-more scattered throughout this workshop. However, there are some key
-`base R` approaches we will not be teaching. These include square bracket
-subsetting. You may come across code written by other people that looks
-like `interviews[1:10, 2]`, which is a `base R` command. If you're
-interested in learning more about these approaches, you can check out
-other Carpentries lessons like the [`Software Carpentry Programming with R`](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
+**`base R`** хэллэгийг ашигладаг хандлагыг илэрхийлэхэд ашигладаг
+`R`-н өгөгдмөл багцуудад агуулагдсан функцууд. Бид `base R` ашиглах болно
+`str()`, `head()`, `nrow()` зэрэг функцуудыг ашиглах бөгөөд бид ашиглах болно.
+энэ семинарт илүү тараагдсан. Гэсэн хэдий ч зарим түлхүүрүүд байдаг
+`base R` арга барилыг бид заахгүй. Эдгээрт дөрвөлжин хаалт орно
+дэд тохиргоо. Та бусад хүмүүсийн бичсэн кодтой таарч магадгүй юм
+`base R` тушаал болох `interviews[1:10, 2]` гэх мэт. Хэрэв та
+Эдгээр аргуудын талаар илүү ихийг мэдэхийг хүсвэл та шалгаж болно
+[`Software Carpentry Programming with R`](https://swcarpentry.github.io/r-novice-inflamation/) зэрэг Мужааны бусад хичээлүүд.
 
-We choose to teach the `tidyverse` set of packages because they share a
-similar syntax and philosophy, making them consistent and producing
-highly readable code. They are also very flexible and powerful, with a
-growing number of packages designed according to similar principles and
-to work well with the rest of the packages. The `tidyverse` packages
-tend to have very clear documentation and wide array of learning
-materials that tend to be written with novice users in mind. Finally,
-the `tidyverse` has only continued to grow, and has strong support from
-`RStudio`, which implies that these approaches will be relevant into the
-future.
+`tidyverse` багц багцыг хуваалцдаг тул бид тэдэнд заах сонгосон
+ижил төстэй синтакс ба философи нь тэдгээрийг тууштай, үр дүнтэй болгодог
+уншихад хялбар код. Тэд бас маш уян хатан, хүчирхэг бөгөөд a
+ижил төстэй зарчмын дагуу хийгдсэн багцын тоо өссөөр байна
+бусад багцуудтай сайн ажиллах. `tidyverse` багцууд
+Тэд маш тодорхой баримт бичигтэй, өргөн хүрээтэй суралцах хандлагатай байдаг
+шинэхэн хэрэглэгчдэд зориулж бичих хандлагатай материалууд. Эцэст нь,
+`tidyverse` улам л өссөөр байгаа бөгөөд хүчтэй дэмжлэг авсан
+`RStudio`, энэ нь эдгээр хандлага нь тухайн салбарт хамааралтай болно гэсэн үг юм
+ирээдүй.
 :::
 
 ::: callout
-## Note
+## Анхаарна уу
 
-`read_csv()` assumes that fields are delimited by commas. However, in
-several countries, the comma is used as a decimal separator and the
-semicolon (;) is used as a field delimiter. If you want to read in this
-type of files in `R`, you can use the `read_csv2` function. It behaves
-exactly like `read_csv` but uses different parameters for the decimal
-and the field separators. If you are working with another format, they
-can be both specified by the user. Check out the help for `read_csv()`
-by typing `?read_csv` to learn more. There is also the `read_tsv()` for
-tab-separated data files, and `read_delim()` allows you to specify more
-details about the structure of your file.
+`read_csv()` талбаруудыг таслалаар тусгаарласан гэж үздэг. Гэсэн хэдий ч, онд
+хэд хэдэн оронд таслалыг аравтын бутархай болгон ашигладаг
+цэг таслал (;)-ийг талбарын зааглагч болгон ашигладаг. Хэрэв та үүнийг уншихыг хүсвэл
+`R` доторх файлын төрлийг та `read_csv2` функцийг ашиглаж болно. Энэ нь биеэ авч явдаг
+яг `read_csv` шиг боловч аравтын бутархайн хувьд өөр параметр ашигладаг
+болон талбайн тусгаарлагч. Хэрэв та өөр форматтай ажиллаж байгаа бол тэд
+Хэрэглэгч хоёуланг нь зааж өгч болно. `read_csv()`-н тусламжийг шалгана уу
+Илүү ихийг мэдэхийн тулд `?read_csv` гэж бичнэ үү. Мөн `read_tsv()` байна
+табаар тусгаарлагдсан өгөгдлийн файлууд ба `read_delim()` нь танд илүү ихийг зааж өгөх боломжийг олгоно
+таны файлын бүтцийн талаарх дэлгэрэнгүй мэдээлэл.
 :::
 
-## Inspecting data frames
+## Өгөгдлийн хүрээг шалгаж байна
 
-When calling a `tbl_df` object (like `interviews`), there is already a
-lot of information about our data frame being displayed such as the
-number of rows, the number of columns, the names of the columns, and as
-we just saw the class of data stored in each column. However, there are
-functions to extract this information from data frames. Here is a
-non-exhaustive list of some of these functions. Let's try them out!
+`tbl_df` объектыг дуудах үед (`interviews` гэх мэт) аль хэдийн байна
+гэх мэт бидний өгөгдлийн хүрээний талаарх олон мэдээлэл
+мөрийн тоо, баганын тоо, баганын нэр, гэх мэт
+Бид багана бүрт хадгалагдсан өгөгдлийн ангиллыг харлаа. Гэсэн хэдий ч байдаг
+өгөгдлийн хүрээнээс энэ мэдээллийг гаргаж авах функцууд. Энд а
+эдгээр функцүүдийн заримын бүрэн бус жагсаалт. Тэднийг туршиж үзье!
 
-Size:
+Хэмжээ:
 
--   `dim(interviews)` - returns a vector with the number of rows as the
-    first element, and the number of columns as the second element (the
-    **`dim`**ensions of the object)
--   `nrow(interviews)` - returns the number of rows
--   `ncol(interviews)` - returns the number of columns
+- `dim(interviews)` - мөрийн тоо бүхий векторыг буцаана
+эхний элемент, хоёр дахь элемент болох баганын тоо (
+**`dim`**объектийн сонголтууд)
+- `nrow(interviews)` - мөрийн тоог буцаана
+- `ncol(interviews)` - баганын тоог буцаана
 
-Content:
+Агуулга:
 
--   `head(interviews)` - shows the first 6 rows
--   `tail(interviews)` - shows the last 6 rows
+- `head(interviews)` - эхний 6 мөрийг харуулна
+- `tail(interviews)` - сүүлийн 6 мөрийг харуулна
 
-Names:
+Нэр:
 
--   `names(interviews)` - returns the column names (synonym of
-    `colnames()` for `data.frame` objects)
+- `names(interviews)` - баганын нэрийг буцаана (үүнтэй ижил утгатай
+`data.frame` объектын `colnames()`)
 
-Summary:
+Дүгнэлт:
 
--   `str(interviews)` - structure of the object and information about
-    the class, length and content of each column
--   `summary(interviews)` - summary statistics for each column
--   `glimpse(interviews)` - returns the number of columns and rows of
-    the tibble, the names and class of each column, and previews as many
-    values will fit on the screen. Unlike the other inspecting functions
-    listed above, `glimpse()` is not a `base R` function so you need to
-    have the `tidyverse` package loaded to be able to execute it.
+- `str(interviews)` - объектын бүтэц, тухай мэдээлэл
+багана бүрийн ангилал, урт, агуулга
+- `summary(interviews)` - багана бүрийн хураангуй статистик
+- `glimpse(interviews)` - багана, мөрийн тоог буцаана
+tibble, багана тус бүрийн нэр, ангилал, мөн олон тооны урьдчилан харах боломжтой
+утгууд дэлгэцэн дээр багтах болно. Бусад хяналтын функцээс ялгаатай
+дээр дурдсан, `glimpse()` нь `base R` функц биш тул та үүнийг хийх хэрэгтэй
+Үүнийг ажиллуулахын тулд `tidyverse` багцыг ачаална уу.
 
-Note: most of these functions are "generic." They can be used on other
-types of objects besides data frames or tibbles.
+Анхаар: Эдгээр функцүүдийн ихэнх нь "ерөнхий" байдаг. Тэдгээрийг бусад зүйлд ашиглаж болно
+өгөгдлийн хүрээ эсвэл tibbles-аас гадна объектын төрлүүд.
 
-### Using functions
+### Функцуудыг ашиглах
 
-We can view the first few rows with the `head()` function, and the last
-few rows with the `tail()` function:
+Бид эхний хэдэн мөрийг `head()` функцээр, сүүлчийнх нь харах боломжтой
+`tail()` функцтэй цөөн мөр:
 
 ```{r head}
 head(interviews)
 tail(interviews)
 ```
 
-We used these functions with just one argument, the object `interviews`,
-and we didn't give the argument a name. In `R`, a function's arguments
-come in a particular order, and if you put them in the correct order,
-you don't need to name them. In this case, the name of the argument is
-`x`, so we can name it if we want, but since we know it's the first
-argument, we don't need to.
+Бид эдгээр функцийг `interviews` гэсэн ганц аргументаар ашигласан.
+мөн бид маргаанд нэр өгөөгүй. `R`-д функцийн аргументууд
+тодорхой дарааллаар ирэх бөгөөд хэрэв та тэдгээрийг зөв дарааллаар оруулбал,
+чи тэднийг нэрлэх шаардлагагүй. Энэ тохиолдолд аргументийн нэр нь байна
+`x`, тиймээс бид хүсвэл үүнийг нэрлэж болно, гэхдээ бид үүнийг анхных гэдгийг мэдэж байгаа
+маргаан, бидэнд хэрэггүй.
 
-Some arguments are optional. For example, the `n` argument in `head()`
-specifies the number of rows to print. It defaults to 6, but we can
-override that by specifying a different number:
+Зарим аргументууд нь сонголттой байдаг. Жишээлбэл, `head()` дэх `n` аргумент
+хэвлэх мөрийн тоог заана. Энэ нь анхдагчаар 6 байна, гэхдээ бид чадна
+өөр дугаар зааж үүнийг хүчингүй болгох:
 
 ```{r head-n}
 head(interviews, n = 10)
 ```
 
-If we order them correctly, we don't have to name either:
+Хэрэв бид тэдгээрийг зөв захиалсан бол нэрлэх шаардлагагүй:
 
 ```{r head-n-noname}
 head(interviews, 10)
 ```
 
-Additionally, if we name them, we can put them in any order we want:
+Нэмж хэлэхэд, хэрэв бид тэдгээрийг нэрлэвэл бид хүссэн дарааллаар нь байрлуулж болно:
 
 ```{r head-reverse}
 head(n = 10, x = interviews)
 ```
 
-Generally, it's good practice to start with the required arguments, like
-the data.frame whose rows you want to see, and then to name the optional
-arguments. If you are ever unsure, it never hurts to explicitly name an
-argument.
+Ерөнхийдөө шаардлагатай аргументуудаас эхлэх нь сайн туршлага юм
+мөрийг нь харахыг хүсэж байгаа data.frame, дараа нь нэмэлтээр нэрлэнэ үү
+аргументууд. Хэрэв та хэзээ нэгэн цагт эргэлзэж байвал нэгийг тодорхой нэрлэх нь хэзээ ч гэмтээхгүй
+маргаан.
 
-### Aside: Getting Help
+### Хажуу талд: Тусламж авах
 
-To learn more about a function, you can type a `?` in front of the name
-of the function, which will bring up the official documentation for that
-function:
+Функцийн талаар илүү ихийг мэдэхийн тулд нэрний өмнө `?` гэж бичиж болно
+үйл ажиллагааны албан ёсны баримт бичгийг гаргаж ирэх болно
+функц:
 
 ```{r, head-help}
 ?head
 ```
 
-Function documentation is written by the authors of the functions, so
-they can vary pretty widely in their style and readability. The first
-section, **Description**, gives you a concise description of what the
-function does, but it may not always be enough. The **Arguments**
-section defines all the arguments for the function and is usually worth
-reading thoroughly. Finally, the **Examples** section at the end will
-often have some helpful examples that you can run to get a sense of what
-the function is doing.
+Функцийн баримт бичгийг функцүүдийн зохиогчид бичсэн байдаг тул
+Тэд хэв маяг, унших чадвараараа нэлээд ялгаатай байж болно. Эхнийх нь
+**Тодорхойлолт** хэсэгт юу болох талаар товч тайлбарыг өгнө
+функцийг гүйцэтгэдэг, гэхдээ энэ нь үргэлж хангалттай байдаггүй. **Аргументууд**
+хэсэг нь функцийн бүх аргументуудыг тодорхойлдог бөгөөд ихэвчлэн үнэ цэнэтэй байдаг
+сайтар унших. Эцэст нь төгсгөлд байгаа **Жишээ** хэсэг болно
+Та юуг ойлгохын тулд гүйж болох хэрэгтэй жишээнүүдтэй байх нь элбэг
+функц ажиллаж байна.
 
-Another great source of information is **package vignettes**. Many
-packages have vignettes, which are like tutorials that introduce the
-package, specific functions, or general methods. You can run
-`vignette(package = "package_name")` to see a list of vignettes in that
-package. Once you have a name, you can run
-`vignette("vignette_name", "package_name")` to view that vignette. You
-can also use a web browser to go to
-`https://cran.r-project.org/web/packages/package_name/vignettes/` where
-you will find a list of links to each vignette. Some packages will have
-their own websites, which often have nicely formatted vignettes and
-tutorials.
+Мэдээллийн өөр нэг гайхалтай эх сурвалж бол **багцын виньетк** юм. Олон
+багцууд нь виньеткатай бөгөөд тэдгээр нь танилцуулах заавартай адил юм
+багц, тусгай функцууд эсвэл ерөнхий аргууд. Та гүйж болно
+`vignette(package = "package_name")`-н доторх виньетуудын жагсаалтыг харна уу
+багц. Нэгэнт нэртэй болсон бол гүйж болно
+`vignette("vignette_name", "package_name")`-г үзнэ үү. Та
+мөн вэб хөтчийг ашиглаж болно
+`https://cran.r-project.org/web/packages/package_name/vignettes/` хаана
+та виньет бүрийн холбоосуудын жагсаалтыг олох болно. Зарим багцууд байх болно
+өөрсдийн вэб сайтууд нь ихэвчлэн сайхан форматтай виньет болон
+хичээлүүд.
 
-Finally, learning to search for help is probably the most useful skill
-for any `R` user. The key skill is figuring out what you should actually
-search for. It's often a good idea to start your search with `R` or
-`R programming`. If you have the name of a package you want to use,
-start with `R package_name`.
+Эцэст нь хэлэхэд, тусламж хайж сурах нь магадгүй хамгийн хэрэгтэй чадвар юм
+ямар ч `R` хэрэглэгч. Гол ур чадвар бол яг юу хийх ёстойгоо олж мэдэх явдал юм
+хайх. Ихэнхдээ хайлтаа `R` эсвэл гэсэн үгээр эхлүүлэх нь зүйтэй
+`R programming`. Хэрэв танд ашиглахыг хүссэн багцын нэр байгаа бол,
+`R package_name` гэж эхэлнэ.
 
-Let's investigate `str` a bit more.
+`str`-г бага зэрэг судалж үзье.
 
 ```{r}
 str(interviews)
 ```
 
-We get quite a bit of useful information here. First, we are told that
-we have a data.frame of `r nrow(interviews)` observations, or rows, and
-`r ncol(interviews)` variables, or columns.
+Бид эндээс маш их хэрэгтэй мэдээллийг олж авдаг. Эхлээд бид үүнийг хэлдэг
+бидэнд `r nrow(interviews)` ажиглалтын өгөгдөл.фрэйм, эсвэл мөр байна
+`r ncol(interviews)` хувьсагч эсвэл багана.
 
-Next, we get a bit of information on each variable, including its type
-(`int` or `chr`) and a quick peek at the first 10 values. You might ask
-why there is a `$` in front of each variable. This is because the `$` is
-an operator that allows us to select individual columns from a
-data.frame.
+Дараа нь бид хувьсагч бүрийн төрөл, түүний дотор бага зэрэг мэдээлэл авдаг
+(`int` эсвэл `chr`) болон эхний 10 утгыг хурдан харна уу. Та асууж магадгүй
+яагаад хувьсагч бүрийн өмнө `$` байдаг вэ? Учир нь `$` нь
+a-аас тус тусад нь багануудыг сонгох боломжийг бидэнд олгодог оператор
+өгөгдөл.фрэйм.
 
-The `$` operator also allows you to use tab-completion to quickly select
-which variable you want from a given data.frame. For example, to get the
-`village` variable, we can type `interviews$` and then hit
-<kbd>Tab</kbd>. We get a list of the variables that we can move through
-with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach
-`village`, which should finish this code:
+`$` оператор нь мөн таб бөглөх функцийг ашиглан хурдан сонгох боломжийг олгодог
+өгөгдсөн өгөгдлөөс ямар хувьсагч хүсэж байна.frame. Жишээлбэл, авахын тулд
+`village` хувьсагч, бид `interviews$` гэж бичээд дараа нь дарж болно
+<kbd>Таб</kbd>. Бид шилжиж болох хувьсагчдын жагсаалтыг авдаг
+дээш доош сумтай товчлуурууд. Хүрэх үедээ <kbd>Enter</kbd> дарна уу
+`village`, энэ кодыг дуусгах ёстой:
 
 ```{r dollar-subsetting}
 interviews$village
 
 ```
 
-## Vectors: the building block of data
+## Векторууд: өгөгдлийн барилгын материал
 
-You might have noticed that our last result looked different from when
-we printed out the `interviews` data.frame itself. That's because it is
-not a data.frame, it is a **vector**. A vector is a 1-dimensional series
-of values, in this case a vector of characters representing the village
-name.
+Бидний сүүлчийн үр дүн хэзээнээс өөр байгааг та анзаарсан байх
+бид `interviews` data.frame-г өөрөө хэвлэсэн. Тийм учраас тэр
+өгөгдөл.фрэйм ​​биш, энэ нь **вектор** юм. Вектор нь 1 хэмжээст цуваа юм
+утгын тоо, энэ тохиолдолд тосгоныг төлөөлөх тэмдэгтүүдийн вектор
+нэр.
 
-Data.frames are made up of vectors; each column in a data.frame is a
-vector. Vectors are the basic building blocks of all data in `R`.
-Basically, everything in `R` is a vector, a bunch of vectors stitched
-together in some way, or a function. Understanding how vectors work is
-crucial to understanding how `R` treats data, so we will spend some time
-learning about them.
+Data.frames нь векторуудаас бүрддэг; өгөгдөл.фрэймийн багана бүр нь a
+вектор. Векторууд нь `R` дахь бүх өгөгдлийн үндсэн блокууд юм.
+Үндсэндээ `R`-д байгаа бүх зүйл нь вектор, хэд хэдэн векторуудыг залгасан байна
+хамтад нь ямар нэг байдлаар, эсвэл функц. Векторууд хэрхэн ажилладагийг ойлгох
+`R` өгөгдөлд хэрхэн ханддагийг ойлгоход маш чухал тул бид хэсэг хугацаа зарцуулах болно
+тэдний талаар суралцах.
 
-There are 4 main types of vectors (also known as *atomic vectors*):
+Үндсэн 4 төрлийн вектор байдаг (мөн *атомын векторууд* гэж нэрлэдэг):
 
-1.  `"character"` for strings of characters, like our `village` or
-    `respondent_wall_type` columns. Each entry in a character vector is
-    wrapped in quotes. In other programming languages, this type of data
-    may be referred to as "strings".
+1. `"character"` нь манай `village` эсвэл гэх мэт тэмдэгтүүдийн мөр
+`respondent_wall_type` багана. Тэмдэгтийн вектор дахь оруулга бүр нь байна
+ишлэлд ороосон. Бусад програмчлалын хэлэнд энэ төрлийн өгөгдөл
+"мөр" гэж нэрлэж болно.
 
-2.  `"integer"` for integers. All the numeric values in `interviews` are
-    integers. You may sometimes see integers represented like `2L` or
-    `20L`. The `L` indicates to `R` that it is an integer, instead of the
-    next data type, `"numeric"`.
+2. Бүхэл тоонд `"integer"`. `interviews` дээрх бүх тоон утгууд нь байна
+бүхэл тоо. Та заримдаа `2L` эсвэл гэх мэт бүхэл тоонуудыг харж болно
+`20L`. `L` нь `R`-д энэ нь бүхэл тоо болохыг харуулж байна.
+дараагийн өгөгдлийн төрөл, `"numeric"`.
 
-3.  `"numeric"`, aka `"double"`, vectors can contain numbers including
-    decimals. Other languages may refer to these as "float" or "floating
-    point" numbers.
+3. `"numeric"`, `"double"` гэх векторууд нь тоонуудыг агуулж болно
+аравтын бутархай. Бусад хэлээр эдгээрийг "хөвөгч" эсвэл "хөвөгч" гэж хэлж болно
+цэг" тоонууд.
 
-4.  `"logical"` for `TRUE` and `FALSE`, which can also be represented as
-    `T` and `F`. In other contexts, these may be referred to as
-    "Boolean" data.
+4. `TRUE` болон `FALSE`-д зориулсан `"logical"`, үүнийг мөн дараах байдлаар төлөөлөх боломжтой.
+`T` болон `F`. Бусад нөхцөл байдалд эдгээрийг нэрлэж болно
+"Боолийн" өгөгдөл.
 
-Vectors can only be of a **single type**. Since each column in a
-data.frame is a vector, this means an accidental character following a
-number, like `29,` can change the type of the whole vector. Mixing up
-vector types is one of the most common mistakes in `R`, and it can be
-tricky to figure out. It's often very useful to check the types of
-vectors.
+Векторууд зөвхөн **ганц төрлийн** байж болно. А дахь багана бүрээс хойш
+data.frame нь вектор бөгөөд энэ нь a дараах санамсаргүй тэмдэгт гэсэн үг юм
+`29,` гэх мэт тоо нь бүх векторын төрлийг өөрчлөх боломжтой. Холимог
+векторын төрлүүд нь `R` дээрх хамгийн нийтлэг алдаануудын нэг бөгөөд ийм байж болно
+ойлгоход төвөгтэй. Энэ нь ихэвчлэн төрлийг шалгахад маш их хэрэгтэй байдаг
+векторууд.
 
-To create a vector from scratch, we can use the `c()` function, putting
-values inside, separated by commas.
+Эхнээс нь вектор үүсгэхийн тулд бид `c()` функцийг ашиглаж болно
+доторх утгуудыг таслалаар тусгаарлана.
 
 ```{r c-vector}
 c(1, 2, 5, 12, 4)
 ```
 
-As you can see, those values get printed out in the console, just like
-with `interviews$village`. To store this vector so we can continue to
-work with it, we need to assign it to an object.
+Таны харж байгаагаар эдгээр утгууд нь консол дээр хэвлэгддэг
+`interviews$village`-тай. Энэ векторыг хадгалахын тулд бид үргэлжлүүлэх боломжтой
+түүнтэй ажиллахын тулд бид үүнийг объектод хуваарилах хэрэгтэй.
 
 ```{r assign-vector}
 num <- c(1, 2, 5, 12, 4)
 ```
 
-You can check what kind of object `num` is with the `class()` function.
+Та `class()` функцээр `num` ямар төрлийн объект болохыг шалгах боломжтой.
 
 ```{r}
 class(num)
 ```
 
-We see that `num` is a `numeric` vector.
+`num` нь `numeric` вектор болохыг бид харж байна.
 
-Let's try making a character vector:
+Тэмдэгтийн вектор хийж үзье:
 
 ```{r}
 char <- c("apple", "pear", "grape")
 class(char)
 ```
 
-Remember that each entry, like `"apple"`, needs to be surrounded by
-quotes, and entries are separated with commas. If you do something like
-`"apple, pear, grape"`, you will have only a single entry containing
-that whole string.
+`"apple"` шиг оруулга бүрийг хүрээлэх шаардлагатай гэдгийг санаарай
+ишлэл, оруулгуудыг таслалаар тусгаарлана. Хэрэв та ийм зүйл хийвэл
+`"apple, pear, grape"`, танд зөвхөн нэг оруулга орсон байх болно
+тэр бүхэл мөр.
 
-Finally, let's make a logical vector:
+Эцэст нь логик вектор хийцгээе:
 
 ```{r}
 logi <- c(TRUE, FALSE, TRUE, TRUE)
@@ -557,14 +557,14 @@ class(logi)
 ```
 
 :::::: challenge
-## Challenge 1: Coercion
+## Сорилт 1: Албадлага
 
-Since vectors can only hold one type of data, something has to be done
-when we try to combine different types of data into one vector.
+Векторууд зөвхөн нэг төрлийн өгөгдлийг агуулж чаддаг тул ямар нэг зүйл хийх хэрэгтэй
+Бид янз бүрийн төрлийн өгөгдлийг нэг вектор болгон нэгтгэхийг оролдох үед.
 
-1.  What type will each of these vectors be? Try to guess without
-    running any code at first, then run the code and use `class()` to
-    verify your answers.
+1. Эдгээр вектор бүр ямар төрлийн байх вэ? Үүнгүйгээр таахыг хичээ
+эхлээд ямар ч код ажиллуулаад дараа нь кодыг ажиллуулаад `class()`-г ашиглана уу
+хариултаа баталгаажуулна уу.
 
 ```{r coercion-challenge}
 num_logi <- c(1, 4, 6, TRUE)
@@ -583,11 +583,11 @@ class(char_logi)
 class(tricky)
 ```
 
-`R` will automatically convert values in a vector so that they are all the
-same type, a process called **coercion**.
+`R` нь вектор дахь утгыг автоматаар хөрвүүлэх бөгөөд тэдгээр нь бүгд ижил байх болно
+ижил төрлийн үйл явц, **албадлага**.
 :::
 
-2.  How many values in `combined_logical` are `"TRUE"` (as a character)?
+2. `combined_logical`-д `"TRUE"` (тэмдэгтээр) хэдэн утга байна вэ?
 
 ```{r combined-logical-challenge}
 combined_logical <- c(num_logi, char_logi)
@@ -599,120 +599,120 @@ combined_logical
 class(combined_logical)
 ```
 
-Only one value is `"TRUE"`. Coercion happens when each vector is
-created, so the `TRUE` in `num_logi` becomes a `1`, while the `TRUE` in
-`char_logi` becomes `"TRUE"`. When these two vectors are combined, R
-doesn't remember that the `1` in `num_logi` used to be a `TRUE`, it will
-just coerce the `1` to `"1"`.
+Зөвхөн нэг утга нь `"TRUE"`. Вектор бүр байх үед албадлага үүсдэг
+үүсгэсэн тул `num_logi` дахь `TRUE` нь `1` болж, харин `TRUE` нь `num_logi`
+`char_logi` нь `"TRUE"` болно. Эдгээр хоёр векторыг нэгтгэх үед Р
+`num_logi` дэх `1` нь өмнө нь `TRUE` байсныг санахгүй байна.
+зүгээр л `1`-г `"1"`-д тулга.
 :::
 
-3.  Now that you've seen a few examples of coercion, you might have
-    started to see that there are some rules about how types get
-    converted. There is a hierarchy to coercion. Can you draw a diagram
-    that represents the hierarchy of what types get converted to other
-    types?
+3. Одоо та албадлагын хэд хэдэн жишээг харсан бол та магадгүй
+төрлүүд хэрхэн олддог талаар зарим дүрэм журам байдгийг харж эхэлсэн
+хөрвүүлсэн. Албадах шатлал гэж байдаг. Та диаграм зурж чадах уу
+Энэ нь ямар төрлүүд бусад төрөлд шилждэг шатлалыг илэрхийлдэг
+төрлүүд?
 
 ::: solution
-logical → integer → numeric → character
+логик → бүхэл тоо → тоон → тэмдэгт
 
-Logical vectors can only take on two values: `TRUE` or `FALSE`. Integer
-vectors can only contain integers, so `TRUE` and `FALSE` can be coerced
-to `1` and `0`. Numeric vectors can contain numbers with decimals, so
-integers can be coerced from, say, `6` to `6.0` (though R will still
-display a numeric `6` as `6`.). Finally, any string of characters can be
-represented as a character vector, so any of the other types can be
-coerced to a character vector.
+Логик векторууд зөвхөн хоёр утгыг авах боломжтой: `TRUE` эсвэл `FALSE`. Бүхэл тоо
+векторууд зөвхөн бүхэл тоо агуулж болох тул `TRUE` болон `FALSE`-ийг албадах боломжтой
+`1` болон `0` руу. Тоон векторууд нь аравтын бутархай тоонуудыг агуулж болно
+бүхэл тоог `6`-аас `6.0` болгон шахаж болно (гэхдээ R хэвээр байх болно
+`6`-ийг `6` болгон харуулах.). Эцэст нь ямар ч тэмдэгтийн мөр байж болно
+тэмдэгтийн вектор хэлбэрээр илэрхийлэгддэг тул бусад төрлийн аль нь ч байж болно
+тэмдэгт вектор руу албадсан.
 :::
 ::::::
 
-Coercion is not something you will often do intentionally; rather, when
-combining vectors or reading data into `R`, a stray character that you
-missed may change an entire numeric vector into a character vector. It
-is a good idea to check the `class()` of your results frequently,
-particularly if you are running into confusing error messages.
+Албадлага бол санаатайгаар хийх зүйл биш; харин хэзээ
+векторуудыг нэгтгэх эсвэл өгөгдлийг `R` болгон унших, таны төөрсөн тэмдэгт
+орхигдуулсан нь бүхэл тоон векторыг тэмдэгтийн вектор болгон өөрчилж болно. Энэ
+илэрцийнхээ `class()`-г байнга шалгаж байх нь зүйтэй.
+ялангуяа та төөрөгдүүлсэн алдааны мессежүүдтэй тулгарч байгаа бол.
 
-## Missing data
+## Өгөгдөл дутуу байна
 
-One of the great things about `R` is how it handles missing data, which
-can be tricky in other programming languages. `R` represents missing data
-as `NA`, without quotes, in vectors of any type. Let's make a numeric
-vector with an `NA` value:
+`R`-ын нэг сайхан зүйл бол алга болсон өгөгдлийг хэрхэн зохицуулдаг вэ?
+бусад програмчлалын хэл дээр төвөгтэй байж болно. `R` нь дутуу өгөгдлийг илэрхийлнэ
+`NA` хэлбэрээр, хашилтгүй, ямар ч төрлийн вектор дотор. Тоон тоо хийцгээе
+`NA` утгатай вектор:
 
 ```{r na-vec}
 weights <- c(25, 34, 12, NA, 42)
 ```
 
-`R` doesn't make assumptions about how you want to handle missing data, so
-if we pass this vector to a numeric function like `min()`, it won't know
-what to do, so it returns `NA`:
+`R` нь таны дутуу өгөгдлийг хэрхэн зохицуулах талаар таамаглал дэвшүүлдэггүй
+Хэрэв бид энэ векторыг `min()` гэх мэт тоон функцэд дамжуулбал энэ нь мэдэхгүй
+юу хийх вэ, энэ нь `NA`-г буцаана:
 
 ```{r func-na}
 min(weights)
 ```
 
-This is a very good thing, since we won't accidentally forget to
-consider our missing data. If we decide to exclude our missing values,
-many basic math functions have an argument to **`r`** **`e`** **`m`**ove them:
+Энэ бол маш сайн зүйл, учир нь бид санамсаргүйгээр мартахгүй
+бидний дутуу өгөгдлийг анхаарч үзээрэй. Хэрэв бид алга болсон үнэт зүйлсээ хасахаар шийдсэн бол
+Математикийн олон үндсэн функцууд нь **`r`** **`e`** **`m`**тэдгээрээс илүү аргументтай:
 
 ```{r func-na-rm}
 min(weights, na.rm = TRUE)
 ```
 
-## Building with vectors
+## Вектор бүхий барилга
 
-We have now seen vectors in a few different forms: as columns in a
-data.frame and as single vectors. However, they can be manipulated into
-lots of other shapes and forms. Some other common forms are:
+Одоо бид векторуудыг хэд хэдэн өөр хэлбэрээр харлаа: a-д багана хэлбэрээр
+data.frame болон дан вектор хэлбэрээр. However, they can be manipulated into
+бусад олон хэлбэр, хэлбэрүүд. Бусад нийтлэг хэлбэрүүд нь:
 
--   matrices
-    -   2-dimensional numeric representations
--   arrays
-    -   many-dimensional numeric
--   lists
-    -   lists are very flexible ways to store vectors
-    -   a list can contain vectors of many different types and lengths
-    -   an entry in a list can be another list, so lists can get deeply
-        nested
-    -   a data.frame is a type of list where each column is an
-        individual vector and each vector has to be the same length,
-        since a data.frame has an entry in every column for each row
--   factors
-    -   a way to represent categorical data
-    -   factors can be ordered or unordered
-    -   they often *look* like character vectors, but behave differently
-    -   under the hood, they are integers with character labels, called
-        **levels**, for each integer
+- матрицууд
+    - 2 хэмжээст тоон дүрслэл
+- массив
+    - олон хэмжээст тоо
+- жагсаалтууд
+    - жагсаалт нь векторуудыг хадгалах маш уян хатан арга юм
+    - Жагсаалт нь олон төрлийн, урттай векторуудыг агуулж болно
+    - жагсаалтын оруулга нь өөр жагсаалт байж болох тул жагсаалтууд гүнзгийрэх боломжтой
+үүрлэсэн
+    - data.frame нь багана бүр нь нэг төрлийн жагсаалт юм
+бие даасан вектор ба вектор бүр ижил урттай байх ёстой,
+учир нь data.frame нь мөр бүрийн багана бүрт оруулгатай байдаг
+- хүчин зүйлүүд
+    - ангилсан өгөгдлийг төлөөлөх арга
+    - хүчин зүйлүүд нь захиалгат болон эрэмблэгдээгүй байж болно
+    - Тэд ихэвчлэн дүрийн вектор шиг *харагдах* боловч өөрөөр биеэ авч явдаг
+    - бүрээсийн дор, Тэд тэмдэгт шошго бүхий бүхэл тоо байна, гэж нэрлэдэг
+**түвшин**, бүхэл тоо бүрийн хувьд
 
-## Factors
+## Хүчин зүйлс
 
-`R` has a special data class, called `factor`, to deal with categorical data
-that you may encounter when creating plots or doing statistical
-analyses. Factors are very useful and actually contribute to making `R`
-particularly well suited to working with data. So we are going to spend
-a little time introducing them.
+`R` нь ангилсан өгөгдөлтэй ажиллахын тулд `factor` нэртэй тусгай өгөгдлийн ангитай.
+график үүсгэх эсвэл статистик мэдээлэл хийх үед танд тулгарч магадгүй
+шинжилгээ. Хүчин зүйлүүд нь маш хэрэгтэй бөгөөд `R`-ыг бий болгоход хувь нэмэр оруулдаг
+ялангуяа өгөгдөлтэй ажиллахад тохиромжтой. Тиймээс бид зарцуулах гэж байна
+Тэднийг танилцуулахад бага зэрэг хугацаа.
 
-Factors represent categorical data. They are stored as integers
-associated with labels and they can be ordered (ordinal) or unordered
-(nominal). Factors create a structured relation between the different
-levels (values) of a categorical variable, such as days of the week or
-responses to a question in a survey. This can make it easier to see how
-one element relates to the other elements in a column. While factors
-look (and often behave) like character vectors, they are actually
-treated as integer vectors by `R`. So you need to be very careful when
-treating them as strings.
+Хүчин зүйлүүд нь ангилсан өгөгдлийг илэрхийлдэг. Тэдгээрийг бүхэл тоо болгон хадгалдаг
+шошготой холбоотой бөгөөд тэдгээр нь захиалгат (захиалгат) эсвэл дараалалгүй байж болно
+(нэрлэсэн). Хүчин зүйлүүд нь ялгаатай талуудын хооронд бүтэцлэгдсэн харилцааг бий болгодог
+долоо хоногийн өдрүүд эсвэл зэрэг ангилалд хамаарах хувьсагчийн түвшин (утга).
+санал асуулгын асуултын хариулт. Энэ нь яаж гэдгийг харахад хялбар болгож чадна
+нэг элемент нь баганын бусад элементүүдтэй холбоотой. Хүчин зүйлс байхад
+Тэмдэгтийн векторууд шиг харагдах (мөн ихэвчлэн биеэ авч явах), тэдгээр нь үнэн хэрэгтээ байдаг
+`R`-р бүхэл тоон вектор гэж үзсэн. Тиймээс та маш болгоомжтой байх хэрэгтэй
+тэднийг утас гэж үздэг.
 
-Once created, factors can only contain a pre-defined set of values,
-known as *levels*. By default, `R` always sorts levels in alphabetical
-order. For instance, if you have a factor with 2 levels:
+Нэгэнт үүсгэсэн хүчин зүйлүүд нь зөвхөн урьдчилан тодорхойлсон багц утгыг агуулж болно.
+*түвшин* гэж нэрлэдэг. Өгөгдмөлөөр `R` түвшин үргэлж цагаан толгойн дарааллаар эрэмбэлдэг
+захиалга. Жишээлбэл, хэрэв танд 2 түвшний хүчин зүйл байгаа бол:
 
 ```{r, purl=TRUE}
 respondent_floor_type <- factor(c("earth", "cement", "cement", "earth"))
 ```
 
-`R` will assign `1` to the level `"cement"` and `2` to the level `"earth"`
-(because `c` comes before `e`, even though the first element in this
-vector is `"earth"`). You can see this by using the function `levels()`
-and you can find the number of levels using `nlevels()`:
+`R` `1`-ийг `"cement"`, `2`-ыг `"earth"`-т онооно
+(Учир нь `c` нь `e`-ээс өмнө ирдэг, гэхдээ энэ дотор эхний элемент байгаа ч гэсэн
+вектор нь `"earth"`). Та үүнийг `levels()` функцийг ашиглан харж болно
+мөн та `nlevels()` ашиглан түвшний тоог олох боломжтой:
 
 ```{r, purl=FALSE}
 levels(respondent_floor_type)
@@ -720,11 +720,11 @@ levels(respondent_floor_type)
 nlevels(respondent_floor_type)
 ```
 
-Sometimes, the order of the factors does not matter. Other times you
-might want to specify the order because it is meaningful (e.g., `low`,
-`medium`, `high`). It may improve your visualization, or it may be
-required by a particular type of analysis. Here, one way to reorder our
-levels in the `respondent_floor_type` vector would be:
+Заримдаа хүчин зүйлийн дараалал хамаагүй. Бусад үед чи
+утга учиртай учраас дарааллыг зааж өгөхийг хүсэж магадгүй (жишээ нь, `low`,
+`medium`, `high`). Энэ нь таны дүрслэлийг сайжруулж магадгүй, эсвэл магадгүй
+тодорхой төрлийн шинжилгээнд шаардлагатай. Энд бидний дахин захиалга хийх нэг арга зам байна
+`respondent_floor_type` вектор дахь түвшин нь:
 
 ```{r, results=TRUE, purl=FALSE}
 respondent_floor_type # current order
@@ -735,16 +735,16 @@ respondent_floor_type <- factor(respondent_floor_type,
 respondent_floor_type # after re-ordering
 ```
 
-In `R`'s memory, these factors are represented by integers (1, 2), but are
-more informative than integers because factors are self describing:
-`"cement"`, `"earth"` is more descriptive than `1`, and `2`. Which one
-is "earth"? You wouldn't be able to tell just from the integer data.
-Factors, on the other hand, have this information built in. It is
-particularly helpful when there are many levels. It also makes renaming
-levels easier. Let's say we made a mistake and need to recode `cement`
-to `brick`. We can do this using the `fct_recode()` function from the
-**`forcats`** package (included in the **`tidyverse`**) which provides
-some extra tools to work with factors.
+`R`-ийн санах ойд эдгээр хүчин зүйлсийг бүхэл тоогоор (1, 2) төлөөлдөг боловч
+Бүхэл тооноос илүү мэдээлэл сайтай, учир нь хүчин зүйлүүд нь өөрийгөө тодорхойлдог:
+`"cement"`, `"earth"` `1`, `2`-аас илүү тодорхой байна. Аль нь
+"дэлхий" мөн үү? Та бүхэл тоон өгөгдлөөс л хэлэх боломжгүй.
+Нөгөө талаар хүчин зүйлүүд нь энэ мэдээллийг өөртөө суулгасан байдаг
+ялангуяа олон түвшинтэй үед тустай. Энэ нь мөн нэрийг өөрчлөх боломжийг олгодог
+түвшин илүү хялбар. Бид алдаа гаргасан тул `cement`-г дахин кодлох шаардлагатай гэж бодъё
+`brick` руу. Бид үүнийг `fct_recode()` функцийг ашиглан хийж болно
+**`forcats`** багц (**`tidyverse`**-д багтсан)
+хүчин зүйлүүдтэй ажиллах нэмэлт хэрэгсэл.
 
 ```{r, results=TRUE, purl=FALSE}
 levels(respondent_floor_type)
@@ -760,12 +760,12 @@ levels(respondent_floor_type)
 respondent_floor_type
 ```
 
-So far, your factor is unordered, like a nominal variable. `R` does not
-know the difference between a nominal and an ordinal variable. You make
-your factor an ordered factor by using the `ordered=TRUE` option inside
-your factor function. Note how the reported levels changed from the
-unordered factor above to the ordered version below. Ordered levels use
-the less than sign `<` to denote level ranking.
+Одоогоор таны хүчин зүйл нэрлэсэн хувьсагч шиг эрэмблэгдээгүй байна. `R` үгүй
+нэрлэсэн болон дарааллын хувьсагчийн ялгааг мэдэх. Та хийнэ
+доторх `ordered=TRUE` сонголтыг ашиглан эрэмбэлсэн хүчин зүйлээ тооцно уу
+Таны хүчин зүйлийн функц. Тайлбарласан түвшин өмнөхөөс хэрхэн өөрчлөгдсөнийг анхаарна уу
+Дээрх эрэмблэгдээгүй хүчин зүйлээс доор эрэмблэгдсэн хувилбарт. Захиалсан түвшний хэрэглээ
+түвшний зэрэглэлийг илэрхийлэхийн тулд `<`-ээс бага тэмдэг.
 
 ```{r, results=TRUE, purl=FALSE}
 respondent_floor_type_ordered <- factor(respondent_floor_type, 
@@ -774,22 +774,22 @@ respondent_floor_type_ordered <- factor(respondent_floor_type,
 respondent_floor_type_ordered # after setting as ordered factor
 ```
 
-### Converting factors
+### Хөрвүүлэх хүчин зүйлүүд
 
-If you need to convert a factor to a character vector, you use
+Хэрэв та хүчин зүйлийг тэмдэгтийн вектор руу хөрвүүлэх шаардлагатай бол үүнийг ашиглана
 `as.character(x)`.
 
 ```{r, purl=FALSE}
 as.character(respondent_floor_type)
 ```
 
-Converting factors where the levels appear as numbers (such as
-concentration levels, or years) to a numeric vector is a little
-trickier. The `as.numeric()` function returns the index values of the
-factor, not its levels, so it will result in an entirely new (and
-unwanted in this case) set of numbers. One method to avoid this is to
-convert factors to characters, and then to numbers. Another method is to
-use the `levels()` function. Compare:
+Түвшин нь тоогоор харагдах хүчин зүйлсийг хөрвүүлэх (жишээ нь
+концентрацийн түвшин, эсвэл жил) нь тоон вектор руу бага зэрэг байна
+илүү зальтай. `as.numeric()` функц нь индексийн утгыг буцаана
+хүчин зүйл, түүний түвшин биш, тиймээс энэ нь цоо шинэ (болон
+энэ тохиолдолд хүсээгүй) тооны багц. Үүнээс зайлсхийх нэг арга бол
+хүчин зүйлийг тэмдэгт болгон хувиргаж, дараа нь тоо. Өөр нэг арга бол
+`levels()` функцийг ашиглана уу. Харьцуулах:
 
 ```{r, purl=TRUE}
 year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
@@ -801,22 +801,22 @@ as.numeric(as.character(year_fct))       # Works...
 as.numeric(levels(year_fct))[year_fct]   # The recommended way.
 ```
 
-Notice that in the recommended `levels()` approach, three important
-steps occur:
+Санал болгож буй `levels()` хандлагад гурван чухал болохыг анхаарна уу
+алхамууд тохиолддог:
 
--   We obtain all the factor levels using `levels(year_fct)`
--   We convert these levels to numeric values using
-    `as.numeric(levels(year_fct))`
--   We then access these numeric values using the underlying integers of
-    the vector `year_fct` inside the square brackets
+- Бид `levels(year_fct)` ашиглан хүчин зүйлийн бүх түвшинг олж авдаг
+- Бид эдгээр түвшинг ашиглан тоон утга руу хөрвүүлдэг
+`as.numeric(levels(year_fct))`
+- Дараа нь бид үндсэн бүхэл тоог ашиглан эдгээр тоон утгуудад ханддаг
+дөрвөлжин хаалт дотор `year_fct` вектор
 
-### Renaming factors
+### Хүчин зүйлийн нэрийг өөрчлөх
 
-When your data is stored as a factor, you can use the `plot()` function
-to get a quick glance at the number of observations represented by each
-factor level. Let's extract the `memb_assoc` column from our data frame,
-convert it into a factor, and use it to look at the number of interview
-respondents who were or were not members of an irrigation association:
+Таны өгөгдлийг хүчин зүйл болгон хадгалах үед та `plot()` функцийг ашиглаж болно
+тус бүрээр илэрхийлсэн ажиглалтын тоог хурдан харах
+хүчин зүйлийн түвшин. Өгөгдлийн хүрээнээсээ `memb_assoc` баганыг задалцгаая.
+үүнийг хүчин зүйл болгон хувиргаж, ярилцлагын тоог харахын тулд ашиглана уу
+Усжуулалтын холбооны гишүүн байсан эсвэл гишүүн биш байсан судалгаанд оролцогчид:
 
 ```{r factor-plot-default-order, fig.alt="Yes/no bar graph showing number of individuals who are members of irrigation association", purl=TRUE}
 ## create a vector from the data frame column "memb_assoc"
@@ -833,12 +833,12 @@ memb_assoc
 plot(memb_assoc)
 ```
 
-Looking at the plot compared to the output of the vector, we can see
-that in addition to `"no"s` and `"yes"s`, there are some respondents for
-whom the information about whether they were part of an irrigation
-association hasn't been recorded, and encoded as missing data. These
-respondents do not appear on the plot. Let's encode them differently so
-they can be counted and visualized in our plot.
+Векторын гаралттай харьцуулсан графикийг харахад бид харж болно
+`"no"s` болон `"yes"s`-ээс гадна зарим санал асуулгад оролцогчид байгаа
+Тэд усалгааны хэсэг байсан эсэх талаар хэнд мэдээлэл өгсөн
+холбоо бүртгэгдээгүй бөгөөд дутуу өгөгдөл гэж кодлогдсон. Эдгээр
+Хариуцагч нар талбай дээр харагдахгүй байна. Тэдгээрийг өөрөөр кодлоё
+Тэдгээрийг манай талбай дээр тоолж, дүрсэлж болно.
 
 ```{r factor-plot-reorder, fig.alt="Bar plot of association membership, showing missing responses.", purl=TRUE}
 ## Let's recreate the vector from the data frame column "memb_assoc"
@@ -859,16 +859,16 @@ plot(memb_assoc)
 ```
 
 :::: challenge
-## Exercise
+## Дасгал хийх
 
--   Rename the levels of the factor to have the first letter in
-    uppercase: `No`, `Undetermined`, and `Yes`.
+- Эхний үсгийг оруулах хүчин зүйлийн түвшинг өөрчил
+том үсгээр: `No`, `Undetermined`, `Yes`.
 
--   Now that we have renamed the factor level to `Undetermined`, can you
-    recreate the barplot such that `Undetermined` is last (after `Yes`)?
+- Одоо бид хүчин зүйлийн түвшинг `Undetermined` болгон өөрчилсөн тул та чадна
+`Undetermined` хамгийн сүүлд (`Yes`-ийн дараа) байхаар зураасыг дахин үүсгэх үү?
 
 ::: solution
-## Solution
+## Шийдэл
 
 ```{r factor-plot-exercise, fig.alt="bar graph showing number of individuals who are members of irrigation association, including undetermined option"}
 ## Rename levels.
@@ -881,44 +881,44 @@ plot(memb_assoc)
 :::
 ::::
 
-## Formatting Dates
+## Форматлах огноо
 
-One of the most common issues that new (and experienced!) `R` users have
-is converting date and time information into a variable that is
-appropriate and usable during analyses. A best practice for dealing with
-date data is to ensure that each component of your date is available as
-a separate variable. In our dataset, we have a column `interview_date`
-which contains information about the year, month, and day that the
-interview was conducted. Let's convert those dates into three separate
-columns.
+Шинэ (болон туршлагатай!) `R` хэрэглэгчдэд тулгардаг хамгийн нийтлэг асуудлуудын нэг
+огноо, цагийн мэдээллийг хувьсагч болгон хувиргаж байна
+дүн шинжилгээ хийх явцад тохиромжтой, ашиглах боломжтой. Харьцах хамгийн сайн туршлага
+огнооны өгөгдөл нь таны огнооны бүрэлдэхүүн хэсэг бүрийг дараах байдлаар ашиглах боломжтой эсэхийг баталгаажуулах явдал юм
+тусдаа хувьсагч. Манай мэдээллийн багцад `interview_date` багана байна
+жил, сар, өдрийн талаарх мэдээллийг агуулсан
+ярилцлага хийсэн. Эдгээр огноог гурван тусдаа болгон хөрвүүлье
+баганууд.
 
 ```{r, eval=FALSE, purl=FALSE}
 str(interviews)
 ```
 
-We are going to use the package **`lubridate`**, which is included in
-the **`tidyverse`** installation and should be loaded by default.
+Бид үүнд багтсан **`lubridate`** багцыг ашиглах гэж байна
+**`tidyverse`** суулгац бөгөөд анхдагчаар ачаалагдсан байх ёстой.
 
-The `lubridate` function `ymd()` takes a vector representing year, month,
-and day, and converts it to a `Date` vector. `Date` is a class of data
-recognized by `R` as being a date and can be manipulated as such. The
-argument that the function requires is flexible, but, as a best
-practice, is a character vector formatted as `YYYY-MM-DD`.
+`lubridate` функц `ymd()` нь жил, сар,
+болон өдөр, мөн `Date` вектор руу хөрвүүлнэ. `Date` нь өгөгдлийн ангилал юм
+`R` нь огноо гэж хүлээн зөвшөөрөгдсөн бөгөөд үүнийг өөрчлөх боломжтой. The
+Функцийн шаарддаг аргумент нь уян хатан боловч хамгийн сайн нь
+практик нь `YYYY-MM-DD` хэлбэрээр форматлагдсан тэмдэгтийн вектор юм.
 
-To learn more about **`lubridate`** after this workshop, you may want to
-check out this handy [`lubridate cheatsheet`](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgwMjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
+Энэхүү семинарын дараа та **`lubridate`**-ын талаар илүү ихийг мэдэхийг хүсч болно
+үүнийг сайн шалгаарай [`lubridate cheatsheet`](https://rstudio.github.io/cheatsheets/html/lubridate.html?_gl=1*ud3j0e*_ga*MTgw MjI0NTA1LjE3NzMwMjUwNzQ.*_ga_2C0WZ1JHG0*czE3NzMyODY1ODUkbzMkZzAkdDE3NzMyODY1ODUkajYwJGwwJGgw).
 
-Let's extract our `interview_date` column and inspect the structure:
+`interview_date` баганыг задалж, бүтцийг шалгацгаая:
 
 ```{r, purl=FALSE}
 dates <- interviews$interview_date
 str(dates)
 ```
 
-When we imported the data in `R`, `read_csv()` recognized that this column
-contained date information. We can now use the `day()`, `month()` and
-`year()` functions to extract this information from the date, and create
-new columns in our data frame to store it:
+Бид `R`-д өгөгдлийг импортлох үед `read_csv()` энэ баганыг таньсан
+огнооны мэдээллийг агуулсан. Бид одоо `day()`, `month()` болон ашиглах боломжтой
+`year()` нь энэ мэдээллийг огнооноос гаргаж авах, үүсгэх функцтэй
+үүнийг хадгалахын тулд манай өгөгдлийн хүрээн дэх шинэ баганууд:
 
 ```{r, purl=FALSE}
 interviews$day <- day(dates)
@@ -927,60 +927,60 @@ interviews$year <- year(dates)
 interviews
 ```
 
-Notice the three new columns at the end of our data frame.
+Манай мэдээллийн хүрээний төгсгөлд байгаа гурван шинэ баганыг анхаарч үзээрэй.
 
-In our example above, the `interview_date` column was read in correctly
-as a `Date` variable but generally that is not the case. Date columns
-are often read in as `character` variables and one can use the
-`as_date()` function to convert them to the appropriate
-`Date/POSIXct`format.
+Дээрх бидний жишээн дээр `interview_date` баганыг зөв уншсан
+`Date` хувьсагч болох боловч ерөнхийдөө тийм биш. Огноо багана
+нь ихэвчлэн `character` хувьсагч гэж уншдаг ба нэг нь ашиглаж болно
+`as_date()` функц нь тэдгээрийг тохирох руу хөрвүүлэх
+`Date/POSIXct`формат.
 
-Let's say we have a vector of dates in character format:
+Бидэнд тэмдэгтийн форматтай огнооны вектор байна гэж бодъё:
 
 ```{r, purl=FALSE}
 char_dates <- c("7/31/2012", "8/9/2014", "4/30/2016")
 str(char_dates)
 ```
 
-We can convert this vector to dates as :
+Бид энэ векторыг дараах байдлаар огноо болгон хувиргаж болно.
 
 ```{r, purl=FALSE}
 as_date(char_dates, format = "%m/%d/%Y")
 ```
 
-Argument `format` tells the function the order to parse the characters
-and identify the month, day and year. The format above is the equivalent
-of `mm/dd/yyyy`. A wrong format can lead to parsing errors or incorrect
-results.
+`format` аргумент нь функцэд тэмдэгтүүдийг задлах дарааллыг хэлдэг
+мөн сар, өдөр, жилийг тодорхойлох. Дээрх формат нь үүнтэй ижил байна
+`mm/dd/yyyy`-н. Буруу формат нь задлан шинжлэлийн алдаа эсвэл буруу байдалд хүргэж болзошгүй
+үр дүн.
 
-For example, observe what happens when we use a lower case `y` instead of
-upper case `Y` for the year.
+Жишээлбэл, бид `y`-ын оронд жижиг үсгийг ашиглахад юу болохыг ажиглаарай
+жилийн `Y` том үсгээр.
 
 ```{r, purl=FALSE}
 as_date(char_dates, format = "%m/%d/%y")
 ```
 
-Here, the `%y` part of the format stands for a two-digit year instead of
-a four-digit year, and this leads to parsing errors.
+Энд форматын `%y` хэсэг нь оронд нь хоёр оронтой жилийг илэрхийлнэ
+дөрвөн оронтой жил бөгөөд энэ нь задлан шинжлэхэд алдаа гаргахад хүргэдэг.
 
-Or in the following example, observe what happens when the month and day
-elements of the format are switched.
+Эсвэл дараах жишээн дээр сар, өдөр юу болохыг ажиглаарай
+форматын элементүүд солигддог.
 
 ```{r, purl=FALSE}
 as_date(char_dates, format = "%d/%m/%y")
 ```
 
-Since there is no month numbered 30 or 31, the first and third dates
-cannot be parsed.
+30 эсвэл 31-ээр дугаарлагдсан сар байхгүй тул эхний болон гурав дахь огноо
+задлан шинжлэх боломжгүй.
 
-We can also use functions `ymd()`, `mdy()` or `dmy()` to convert
-character variables to date.
+Мөн бид хөрвүүлэхийн тулд `ymd()`, `mdy()` эсвэл `dmy()` функцуудыг ашиглаж болно.
+өнөөг хүртэл тэмдэгтийн хувьсагч.
 
 ```{r, purl=FALSE}
 mdy(char_dates)
 ```
 
 ::: keypoints
--   Use `read_csv` to read tabular data in `R`.
--   Use `factors` to represent categorical data in `R`.
+- `R` доторх хүснэгтэн өгөгдлийг уншихын тулд `read_csv`-г ашиглана уу.
+- `R`-д ангилсан өгөгдлийг харуулахын тулд `factors`-г ашиглана уу.
 :::
