@@ -83,7 +83,7 @@ jobs:
 
       - name: Run translation script
         if: steps.changed.outputs.has_changes == 'true'
-        run: Rscript main-repo/translate_to_mongolian.R
+        run: Rscript main-repo/translate_en_mn.R
         env:
           CHANGED_FILES_PATH: /tmp/changed_files.txt
           SOURCE_REPO: main-repo     # script reads English files from here
