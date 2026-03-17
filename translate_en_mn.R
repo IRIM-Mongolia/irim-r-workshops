@@ -7,7 +7,7 @@
 # Two modes:
 #
 #   LOCAL:  source("translate_en_mn.R")  from your repo root
-#           Translates ALL episodes and index.md in-place (overwrites files).
+#           Translates ALL episodes/*.md files, index.md and learners/setup.md in-place (overwrites files).
 #           Run this from inside a local checkout of the mn branch.
 #
 #   CI:     Called by GitHub Actions with env vars:
@@ -15,7 +15,7 @@
 #             SOURCE_REPO         — path to main-repo checkout (read English from)
 #             TARGET_REPO         — path to mn-repo checkout (write Mongolian to)
 #
-# In both modes, translated files land in episodes/ and index.md, so
+# In both modes, translated files land in episodes/*.md learners/setup.md and index.md, so
 # sandpaper can build the mn branch as a complete Mongolian site with all
 # fig/, data/, files/ paths resolving correctly.
 # =============================================================================
@@ -32,6 +32,7 @@ SOURCE_LANG  <- "en"
 TARGET_LANG  <- "mn"
 EPISODES_DIR <- "episodes"
 INDEX_FILE   <- "index.md"
+SETUP_FILE   <- "setup.md"
 SLEEP_SECS   <- 1.5
 
 # CI mode: separate source and target repo paths
@@ -300,7 +301,7 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
     fs::dir_ls(EPISODES_DIR, glob = "*.Rmd"),
     fs::dir_ls(EPISODES_DIR, glob = "*.md")
   )
-  files_to_translate <- c(episode_files, INDEX_FILE)
+  files_to_translate <- c(episode_files, INDEX_FILE, SETUP_FILE)
   files_to_translate <- files_to_translate[file_exists(files_to_translate)]
   
   # --- Resume support --------------------------------------------------------
@@ -311,8 +312,7 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
   #     "episodes/01-introduction.Rmd",
   #     "episodes/02-r-basics.Rmd"
   #   )
-  # Leave as character(0) to translate everything.
-  # Leave as character(0) to translate everything.
+  # Leave as SKIP_FILES <- c() to translate everything.
   # SKIP_FILES <- c(
   #   "episodes/manipulating_data.Rmd",
   #   "episodes/introduction-r-rstudio.Rmd",
