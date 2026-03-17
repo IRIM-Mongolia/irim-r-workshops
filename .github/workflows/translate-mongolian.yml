@@ -68,14 +68,22 @@ jobs:
         with:
           r-version: 'release'
 
+      - name: Install system dependencies
+        if: steps.changed.outputs.has_changes == 'true'
+        run: sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+        shell: bash
+
       - name: Install R dependencies
         if: steps.changed.outputs.has_changes == 'true'
-        run: install.packages(c("httr2", "fs", "jsonlite"))
+        run: |
+          install.packages(c("httr2", "fs", "jsonlite"),
+            repos = paste0("https://packagemanager.posit.co/all/__linux__/",
+              system("lsb_release -cs", intern = TRUE), "/latest"))
         shell: Rscript {0}
 
       - name: Run translation script
         if: steps.changed.outputs.has_changes == 'true'
-        run: Rscript main-repo/translate_en_mn.R
+        run: Rscript main-repo/translate_to_mongolian.R
         env:
           CHANGED_FILES_PATH: /tmp/changed_files.txt
           SOURCE_REPO: main-repo     # script reads English files from here
