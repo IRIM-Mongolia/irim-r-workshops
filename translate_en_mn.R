@@ -189,7 +189,9 @@ translate_rmd_file <- function(input_path, output_path) {
       if (grepl("^title:", line)) {
         key   <- sub("^(title:\\s*).*", "\\1", line)
         value <- sub("^title:\\s*['\"]?(.*?)['\"]?\\s*$", "\\1", line)
-        out_lines[i] <- paste0(key, translate_line(value))
+        translated    <- translate_line(value)
+        # Always wrap in double quotes — Mongolian chars/colons break unquoted YAML
+        out_lines[i]  <- paste0(key, '"', translated, '"')
       } else {
         out_lines[i] <- line
       }
@@ -310,14 +312,12 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
   #     "episodes/02-r-basics.Rmd"
   #   )
   # Leave as character(0) to translate everything.
-  # SKIP_FILES <- c(
-  #   "episodes/manipulating_data.Rmd",
-  #   "episodes/introduction-r-rstudio.Rmd",
-  #   "episodes/introduction-r-packages-markdown.Rmd"
-  # )
-  # 
-  
-  SKIP_FILES <- c()
+  # Leave as character(0) to translate everything.
+  SKIP_FILES <- c(
+    "episodes/manipulating_data.Rmd",
+    "episodes/introduction-r-rstudio.Rmd",
+    "episodes/introduction-r-packages-markdown.Rmd"
+  )
   
   if (length(SKIP_FILES) > 0) {
     skipping <- basename(files_to_translate) %in% basename(SKIP_FILES)
