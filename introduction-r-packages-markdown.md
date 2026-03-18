@@ -88,7 +88,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 6.3 milliseconds.
+Successfully installed 1 package in 7.6 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -249,7 +249,7 @@ To insert a Chunk, click the small arrow next to the `Insert` button in
 the editor toolbar and select `R`.
 
 To run a Chunk, click the small green play arrow on the right side of
-the chunk, or use the keyboard shortcut `Ctrl + Alt + I` on `Windows` (or `Cmd + Option + I` on `Mac`).
+the chunk, or use the keyboard shortcut **`Ctrl`**+**`Alt`**+`**I`** on `Windows` and `Linux` (or **`Cmd`**+**`Option**`+**`I`** on `Mac`).
 
 #### Viewing output
 
@@ -384,8 +384,8 @@ will need to create a 'code chunk' at the top of our document (below the
 `YAML` header).
 
 A code chunk can be inserted by clicking `Code \> Insert Chunk`, or by
-using the keyboard shortcuts <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>
-on `Windows` and `Linux`, and <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>
+using the keyboard shortcuts **`Ctrl`**+**`Alt`**+**`I`**
+on `Windows` and `Linux`, and **`Cmd`**+**`Option`**+**`I`**
 on `Mac`.
 
 The syntax of a code chunk is:
@@ -441,8 +441,8 @@ We will learn more about this code later!
 
 To see the output, run the code chunk with the green triangle in the top
 right corner of the the chunk, or with the keyboard shortcuts:
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on `Windows` and `Linux`, or
-<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on `Mac`.
+**`Ctrl`**+**`Alt`**+**`C`** on `Windows` and `Linux`, or
+**`Cmd`**+**`Option`**+**`C`** on `Mac`.
 
 To make sure the table is formatted nicely in our output document, we
 will need to use the `kable()` function from the **`knitr`** package. The
