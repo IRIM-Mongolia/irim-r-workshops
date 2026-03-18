@@ -1,0 +1,92 @@
+name: "Build and Deploy Mongolian Site"
+description: "Build and deploy the Mongolian text version of the workshop website using the carpentries/workbench-docker container"
+
+on:
+  push:
+    branches:
+      - 'mn'
+    paths-ignore:
+      - '.github/workflows/**.yaml'
+      - '.github/workbench-docker-version.txt'
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Who triggered this build?'
+        required: true
+        default: 'Maintainer (via GitHub)'
+      reset:
+        description: 'Reset cached markdown files'
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: docker-build-deploy-mn
+  cancel-in-progress: true
+
+jobs:
+  full-build:
+    name: "Build and Deploy Mongolian Site"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    container:
+      image: ghcr.io/carpentries/workbench-docker:latest
+      env:
+        WORKBENCH_PROFILE: "ci"
+        GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+        RENV_PATHS_ROOT: /home/rstudio/lesson/renv
+        RENV_PROFILE: "lesson-requirements"
+        RENV_CONFIG_EXTERNAL_LIBRARIES: "/usr/local/lib/R/site-library"
+      volumes:
+        - ${{ github.workspace }}:/home/rstudio/lesson
+      options: --user root
+
+    steps:
+      - name: "Checkout mn branch"
+        uses: actions/checkout@v4
+        with:
+          ref: mn
+          fetch-depth: 1
+
+      - name: "Mark repository as safe"
+        run: git config --global --add safe.directory /__w/irim-r-workshops/irim-r-workshops
+        shell: bash
+
+      - name: "Build lesson with sandpaper"
+        run: |
+          cd /home/rstudio/lesson
+          Rscript -e "
+            options(repos = c(
+              carpentries = 'https://carpentries.r-universe.dev/',
+              CRAN        = 'https://cran.rstudio.com/'
+            ))
+            library(sandpaper)
+            sandpaper::build_lesson(preview = FALSE, quiet = FALSE)
+          "
+        shell: bash
+
+      - name: "Checkout gh-pages branch"
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-dir
+          fetch-depth: 1
+
+      - name: "Copy Mongolian site into mn/ subfolder on gh-pages"
+        run: |
+          rm -rf gh-pages-dir/mn
+          mkdir -p gh-pages-dir/mn
+          cp -r /home/rstudio/lesson/site/docs/. gh-pages-dir/mn/
+        shell: bash
+
+      - name: "Commit and push to gh-pages"
+        run: |
+          cd gh-pages-dir
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mn/
+          git diff --staged --quiet || git commit -m "auto: deploy Mongolian site [skip ci]"
+          git push
+        shell: bash
