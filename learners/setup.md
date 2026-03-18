@@ -1,126 +1,117 @@
 ---
-title: Setup
+title: "Тохиргоо"
 ---
 
-## Preparations
+## Бэлтгэл ажил
 
-This series of workshops are designed to be hands-on, so 
-learners must have R and RStudio installed on their computers. They also need
-to be able to install a number of R packages, create directories, and download
-files.
+Энэхүү цуврал семинарууд нь практикт зориулагдсан тул
+суралцагчид компьютер дээрээ `R` болон `RStudio` суулгасан байх ёстой. Танд ч бас хэрэгтэй
+хэд хэдэн R багц суулгах, лавлах үүсгэх, татаж авах боломжтой байх
+файлууд.
 
 <!--
-If the computer is managed by their organization's IT department
-they might need help from an IT administrator.
+Хэрэв компьютерийг байгууллагынхаа мэдээллийн технологийн хэлтэс удирддаг бол
+Тэд мэдээллийн технологийн администраторын тусламж хэрэгтэй байж магадгүй.
 -->
 
-### Install R and RStudio
+### `R` болон `RStudio`-г суулгана уу
 
-R and RStudio are two separate pieces of software: 
+`R` болон `RStudio` хоёр тусдаа програм хангамж юм:
 
-* **R** is a programming language and software used to run code written in R.
-* **RStudio** is an integrated development environment (IDE) that makes using R easier. In these workshops, we use RStudio to interact with R. 
+* **`R`** нь `R` дээр бичигдсэн кодыг ажиллуулахад ашигладаг програмчлалын хэл ба програм хангамж юм.
+* **`RStudio`** нь `R`-г ашиглахад хялбар болгосон хөгжүүлэлтийн нэгдсэн орчин (`IDE`) юм. Эдгээр семинарт бид `RStudio`-ыг `R`-тэй харилцахдаа ашигладаг.
   
-If you don't already have R and RStudio installed, follow the instructions for your operating system below.
-You have to install R before you install RStudio. 
+Хэрэв танд `R` болон `RStudio` суулгаагүй байгаа бол доорх үйлдлийн системийнхээ зааврыг дагана уу.
+Та `RStudio`-ийг суулгахаасаа өмнө `R`-г суулгах хэрэгтэй.
 
 ::::::: spoiler
 
-## For Windows
+## `Windows`-д зориулагдсан
 
-* Download R from the [CRAN website](https://cran.r-project.org/bin/windows/base/release.htm).
-* Run the `.exe` file that was just downloaded
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-* Click **INSTALL RSTUDIO DESKTOP FOR WINDOWS**
-* Run the `.exe` file that was just downloaded
-* Once it's installed, open RStudio to make sure it works and you don't get any error messages.
+* [`CRAN website`](https://cran.r-project.org/bin/windows/base/release.htm)-аас `R`-ыг татаж авна уу.
+* Дөнгөж татсан `.exe` файлыг ажиллуулна уу
+* [`RStudio download page`] руу очно уу(https://www.rstudio.com/products/rstudio/download/#download)
+* **`INSTALL RSTUDIO DESKTOP FOR WINDOWS`** дээр дарна уу
+* Дөнгөж татсан `.exe` файлыг ажиллуулна уу
+* Үүнийг суулгасны дараа `RStudio`-г нээгээд энэ нь ажиллаж байгаа эсэхийг шалгах бөгөөд танд ямар ч алдааны мессеж ирэхгүй.
   
 :::::::::::::::::::::::::
 
 :::::::::::::::: spoiler
 
-## For MacOS
+## `MacOS`-д зориулагдсан
 
-* Download R from the [CRAN website](https://cran.r-project.org/bin/macosx/).
-* Select the `.pkg` file for the latest R version
-* Double click on the downloaded file to install R
-* It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed by some packages)
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-* Under *Installers* select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
-* Double click the file to install RStudio
-* Once it's installed, open RStudio to make sure it works and you don't get any error messages.
+* [`CRAN website`](https://cran.r-project.org/bin/macosx/)-аас `R`-ыг татаж авна уу.
+* Хамгийн сүүлийн үеийн `R` хувилбарын `.pkg` файлыг сонгоно уу
+* Татаж авсан файл дээр давхар товшоод `R`-г суулгана уу
+* Мөн [`XQuartz`](https://www.xquartz.org/) суулгах нь зүйтэй (зарим багцад шаардлагатай)
+* [`RStudio download page`] руу очно уу(https://www.rstudio.com/products/rstudio/download/#download)
+* *`Installers`* доор **`Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg`** (`where x = year, y = month, and z represent version numbers`)-г сонгоно уу.
+* `RStudio`-г суулгахын тулд файл дээр давхар товшино уу
+* Үүнийг суулгасны дараа `RStudio`-г нээгээд энэ нь ажиллаж байгаа эсэхийг шалгах бөгөөд танд ямар ч алдааны мессеж ирэхгүй.
 
 ::::::::::::::::
 
 ::::::: spoiler
 
-## For Linux
+## `Linux`-д зориулагдсан
 
-* Click on your distribution in the [Linux folder of the CRAN website](https://cran.r-project.org/bin/linux/). Linux Mint users should follow instructions for Ubuntu.
-* Go through the instructions for your distribution to install R.
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-* Select the relevant installer for your Linux system (Ubuntu/Debian or Fedora)
-* Double click the file to install RStudio
-* Once it's installed, open RStudio to make sure it works and you don't get any error messages.
+* [`Linux folder of the CRAN website`](https://cran.r-project.org/bin/linux/) доторх өөрийн түгээлт дээр товшино уу. Linux Mint хэрэглэгчид Ubuntu-д зориулсан зааврыг дагах ёстой.
+* `R`-г суулгахын тулд түгээлтийн зааварчилгааг дагана уу.
+* [`RStudio download page`] руу очно уу(https://www.rstudio.com/products/rstudio/download/#download)
+* Линукс системдээ тохирох суулгагчийг сонгоно уу (Ubuntu/Debian эсвэл Fedora)
+* `RStudio`-г суулгахын тулд файл дээр давхар товшино уу
+* Үүнийг суулгасны дараа `RStudio`-г нээгээд энэ нь ажиллаж байгаа эсэхийг шалгах бөгөөд танд ямар ч алдааны мессеж ирэхгүй.
 
 ::::::::::::::::
 
-### Update R and RStudio
+### `R` болон `RStudio`-ийг шинэчил
 
-If you already have R and RStudio installed, first check if your R version is up to date:
+Хэрэв танд `R` болон `RStudio` суулгасан бол эхлээд таны `R` хувилбар шинэчлэгдсэн эсэхийг шалгана уу:
 
-* When you open RStudio your R version will be printed in the console on the bottom left. Alternatively, you can type `sessionInfo()` into the console. If your R version is 4.0.0 or later, you don't need to update R for this workshop. If your version of R is older than that, download and install the latest version of R from the R project website [for Windows](https://cran.r-project.org/bin/windows/base/), [for MacOS](https://cran.r-project.org/bin/macosx/), or [for Linux](https://cran.r-project.org/bin/linux/)
-* It is not necessary to remove old versions of R from your system, but if you wish to do so you can check [How do I uninstall R?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) 
-* After installing a new version of R, you will have to reinstall all your packages with the new version. For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library. A similar package called `pacman` can help with updating R packages across
-To update RStudio to the latest version, open RStudio and click on 
-`Help > Check for Updates`. If a new version is available follow the 
-instruction on screen. By default, RStudio will also automatically notify you 
-of new versions every once in a while.
+* Таныг `RStudio`-г нээхэд таны `R` хувилбар зүүн доод талд байгаа консол дээр хэвлэгдэх болно. Эсвэл та консол дээр `sessionInfo()` гэж бичиж болно. Хэрэв таны `R` хувилбар 4.0.0 эсвэл түүнээс дээш бол та энэ семинарт R-г шинэчлэх шаардлагагүй. Хэрэв таны R хувилбар үүнээс хуучин бол `R` төслийн вэбсайтаас [`for Windows`](https://cran.r-project.org/bin/windows/base/), [`for MacOS`](https://cran.r-project.org/bin/macos/), эсвэл `R`-ийн хамгийн сүүлийн хувилбарыг татаж аваад суулгана уу. [`for Linux`](https://cran.r-project.org/bin/linux/)
+* R-ийн хуучин хувилбарыг системээсээ устгах шаардлагагүй, гэхдээ хэрэв та үүнийг хүсвэл [R-г хэрхэн устгах вэ?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) шалгах боломжтой.
+* `R`-ийн шинэ хувилбарыг суулгасны дараа та бүх багцуудаа шинэ хувилбараар дахин суулгах шаардлагатай болно. `Windows`-ийн хувьд `installr` нэртэй багц байгаа бөгөөд энэ нь танд `R` хувилбарыг шинэчлэх болон багц номын сангаа шилжүүлэхэд тусална. `pacman` нэртэй ижил төстэй багц нь `R` багцуудыг шинэчлэхэд тусална
+`RStudio`-г хамгийн сүүлийн хувилбар болгон шинэчлэхийн тулд `RStudio`-г нээж, дээр дарна уу
+`Help > Check for Updates`. Хэрэв шинэ хувилбар байгаа бол дараахыг дагана уу
+дэлгэц дээрх заавар. Өгөгдмөлөөр `RStudio` танд автоматаар мэдэгдэх болно
+Хааяа нэг удаа шинэ хувилбарууд.
 
 ::::::::::::::::::::::::::::: callout
 
-The changes introduced by new R versions are usually backwards-compatible. That is, your old code should still work after updating your R version. However, if breaking changes happen, it is useful to know that you can have multiple versions of R installed in parallel and that you can switch between them in RStudio by going to `Tools > Global Options > General > Basic`.
+`R`-н шинэ хувилбаруудын оруулсан өөрчлөлтүүд нь ихэвчлэн хойшоо нийцдэг. Өөрөөр хэлбэл, `R` хувилбараа шинэчилсний дараа таны хуучин код ажиллах ёстой. Гэсэн хэдий ч, хэрэв эвдэрсэн өөрчлөлт гарвал та `R`-ийн олон хувилбарыг зэрэгцүүлэн суулгаж, `Tools > Global Options > General > Basic` руу орж RStudio-д тэдгээрийн хооронд сэлгэх боломжтой гэдгийг мэдэх нь зүйтэй.
 
-While this may sound scary, it is **far more common** to run into issues due to using out-of-date versions of R or R packages. Keeping up with the latest versions of R, RStudio, and any packages you regularly use is a good practice.
+Хэдийгээр энэ нь аймшигтай сонсогдож байгаа ч `R` эсвэл `R packages`-ийн хуучирсан хувилбаруудыг ашигласнаас болж асуудал гарах нь **илүү нийтлэг** юм. `R`, `RStudio`-ын хамгийн сүүлийн үеийн хувилбарууд болон байнга ашигладаг аливаа багцуудыг дагаж мөрдөх нь сайн туршлага юм.
 
 :::::::::::::::::::::::::::::
 
-### Install required R packages
+### Шаардлагатай `R` багцуудыг суулгана уу
 
-During the workshops we will need a number of R packages. Packages contain useful R code written by other people. We will use the `tidyverse` package. 
+Сургалтын үеэр бидэнд хэд хэдэн `R` багц хэрэгтэй болно. Багцууд нь бусад хүмүүсийн бичсэн ашигтай R кодыг агуулдаг. Бид `tidyverse` багцыг ашиглах болно.
 
-To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (MacOS) to execute the command.
+Эдгээр багцуудыг суулгахыг оролдохын тулд `RStudio`-г нээгээд консолын цонхонд дараах командыг хуулж буулгаад (зүүн доод талд анивчсан курсорыг хай), дараа нь <kbd>Enter</kbd> (`Windows and Linux`) эсвэл <kbd>Буцах</kb> (`MacOS`) товчийг дарж тушаалыг гүйцэтгэнэ.
 
 ```r
 install.packages("tidyverse")
+install.packages("help")
 ```
 
-Alternatively, you can install the packages using RStudio's graphical user interface by going to `Tools > Install Packages` and typing the names of the packages separated by a comma.
+Мөн та `Tools > Install Packages` руу очиж багцын нэрийг таслалаар бичиж ` RStudio's` график хэрэглэгчийн интерфэйсийг ашиглан багцуудыг суулгаж болно.
 
-R tries to download and install the packages on your machine. 
+`R` таны машин дээр багцуудыг татаж суулгахыг оролддог.
 
-When the installation has finished, you can try to load the packages by pasting the following code into the console:
+Суулгац дууссаны дараа та консол руу дараах кодыг буулгаж багцуудыг ачаалахыг оролдож болно.
 
 ```r
 library(tidyverse)
+library(here)
 ```
 
-If you do not see an error like `there is no package called ‘...’` you are good to go! 
+Хэрэв та `there is no package called ‘...’` шиг алдаа олж харахгүй байвал явахад бэлэн байна!
 
-### Updating R packages
+### `R` багцуудыг шинэчилж байна
 
-Generally, it is recommended to keep your R version and all packages up to date, because new versions bring improvements and important bugfixes. To update the packages that you have installed, click `Update` in the `Packages` tab in the bottom right panel of RStudio, or go to `Tools > Check for Package Updates...` 
+Ерөнхийдөө `R` хувилбар болон бүх багцаа шинэчилж байхыг зөвлөж байна, учир нь шинэ хувилбарууд нь сайжруулалт болон чухал алдаа засваруудыг авчирдаг. Суулгасан багцуудаа шинэчлэхийн тулд RStudio-н баруун доод хэсэгт байрлах `Packages` табын `Update` дээр дарж эсвэл `Tools > Check for Package Updates...` руу очно уу.
 
-Sometimes, package updates introduce changes that break your old code, which can be very frustrating. To avoid this problem, you can use a package called `renv`. It locks the package versions you have used for a given project and makes it straightforward to reinstall those exact package version in a new environment, for example after updating your R version or on another computer. We will introduce the `renv` package at a future workshop.
+Заримдаа багцын шинэчлэлтүүд нь таны хуучин кодыг эвдэх өөрчлөлтүүдийг оруулдаг бөгөөд энэ нь маш их урам хугарах болно. Энэ асуудлаас зайлсхийхийн тулд та `renv` нэртэй багцыг ашиглаж болно. Энэ нь таны тухайн төсөлд ашигласан багцын хувилбаруудыг түгжиж, шинэ орчинд, жишээ нь `R` хувилбараа шинэчлэсний дараа эсвэл өөр компьютер дээр яг тэр багцын хувилбарыг дахин суулгахад хялбар болгодог. Бид ирээдүйн семинар дээр `renv` багцыг танилцуулах болно.
 
-
-<!--
-### Download the data
-
-We will download the data we need during the workshopss. However, if you are expecting problems with the network, it may be better to download the data beforehand and store it on your machine.
-
-The data files for the lesson can be downloaded from:
-
- - [cleaned data](../episodes/data/cleaned/surveys_complete_77_89.csv) and 
- - [zip file of raw data](../episodes/data/new_data.zip).
--->
