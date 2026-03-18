@@ -18,6 +18,8 @@ on:
       - 'episodes/**.Rmd'
       - 'episodes/**.md'
       - 'index.md'
+      - 'learners/**.Rmd'
+      - 'learners/**.md'
 
 jobs:
   translate:
@@ -39,9 +41,24 @@ jobs:
         id: changed
         working-directory: main-repo
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'episodes/*.Rmd' 'episodes/*.md' 'index.md')
-          echo "Changed files:"
+         # Try HEAD~1 first
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- \
+          'episodes/*.Rmd' 'episodes/*.md' \
+          'learners/*.Rmd' 'learners/*.md' \
+          'index.md'  2>/dev/null || echo "")
+          echo "Changed files detected by diff:"
           echo "$CHANGED"
+          # Fallback: diff against mn branch if HEAD~1 found nothing
+          if [ -z "$CHANGED" ]; then
+            echo "No changes from HEAD~1 diff, trying diff against mn branch..."
+            git fetch origin mn --depth=1 2>/dev/null || true
+            CHANGED=$(git diff --name-only origin/mn HEAD -- \
+              'episodes/*.Rmd' 'episodes/*.md' \
+              'learners/*.Rmd' 'learners/*.md' \
+              'index.md' 2>/dev/null || echo "")
+            echo "Changed files detected vs mn:"
+            echo "$CHANGED"
+          fi
           echo "$CHANGED" > /tmp/changed_files.txt
           if [ -z "$CHANGED" ]; then
             echo "has_changes=false" >> $GITHUB_OUTPUT

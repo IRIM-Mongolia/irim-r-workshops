@@ -7,7 +7,7 @@
 # Two modes:
 #
 #   LOCAL:  source("translate_en_mn.R")  from your repo root
-#           Translates ALL episodes/*.md files, index.md and learners/setup.md in-place (overwrites files).
+#           Translates ALL episodes/*.md files, index.md and learners/*.md in-place (overwrites files).
 #           Run this from inside a local checkout of the mn branch.
 #
 #   CI:     Called by GitHub Actions with env vars:
@@ -15,7 +15,7 @@
 #             SOURCE_REPO         — path to main-repo checkout (read English from)
 #             TARGET_REPO         — path to mn-repo checkout (write Mongolian to)
 #
-# In both modes, translated files land in episodes/*.md learners/setup.md and index.md, so
+# In both modes, translated files land in episodes/*.md learners/*.md and index.md, so
 # sandpaper can build the mn branch as a complete Mongolian site with all
 # fig/, data/, files/ paths resolving correctly.
 # =============================================================================
@@ -32,7 +32,7 @@ SOURCE_LANG  <- "en"
 TARGET_LANG  <- "mn"
 EPISODES_DIR <- "episodes"
 INDEX_FILE   <- "index.md"
-SETUP_FILE   <- "setup.md"
+LEARNERS_DIR   <- "learners"
 SLEEP_SECS   <- 1.5
 
 # CI mode: separate source and target repo paths
@@ -296,12 +296,16 @@ if (nchar(changed_files_path) > 0 && file.exists(changed_files_path)) {
   files_to_translate <- readLines(changed_files_path)
   files_to_translate <- files_to_translate[nchar(trimws(files_to_translate)) > 0]
 } else {
-  message("Local mode: translating all episodes in current directory")
+  message("Local mode: translating all episodes and learners files")
   episode_files <- c(
     fs::dir_ls(EPISODES_DIR, glob = "*.Rmd"),
     fs::dir_ls(EPISODES_DIR, glob = "*.md")
   )
-  files_to_translate <- c(episode_files, INDEX_FILE, SETUP_FILE)
+  learners_files <- c(
+    fs::dir_ls(LEARNERS_DIR, glob = "*.Rmd"),
+    fs::dir_ls(LEARNERS_DIR, glob = "*.md")
+  )
+  files_to_translate <- c(episode_files, INDEX_FILE, learners_files)
   files_to_translate <- files_to_translate[file_exists(files_to_translate)]
   
   # --- Resume support --------------------------------------------------------
