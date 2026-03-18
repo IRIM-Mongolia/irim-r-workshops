@@ -24,6 +24,7 @@
 # TEST_FILE <- "episodes/introduction-r-packages-markdown.Rmd"
 # TEST_FILE <- "episodes/starting-with-data.Rmd"
 # TEST_FILE <- "episodes/manipulating_data.Rmd"
+TEST_FILE <- "learners/setup.md"
 
 
 for (pkg in c("httr2", "fs", "jsonlite")) {
@@ -39,11 +40,18 @@ TARGET_LANG  <- "mn"
 SLEEP_SECS   <- 1.5
 OUT_DIR      <- "test-translation-output"
 
-# Pick the file to test — defaults to the first .Rmd in episodes/
+# --- Pick file to test -------------------------------------------------------
+# Defaults to first .Rmd found in episodes/ or learners/
 if (!exists("TEST_FILE")) {
-  candidates <- fs::dir_ls("episodes", glob = "*.Rmd")
+  candidates <- c(
+    fs::dir_ls("episodes", glob = "*.Rmd"),
+    fs::dir_ls("episodes", glob = "*.md"),
+    fs::dir_ls("learners", glob = "*.Rmd"),
+    fs::dir_ls("learners", glob = "*.md")
+  )
   if (length(candidates) == 0)
-    stop("No .Rmd files found in episodes/. Are you running from the repo root?")
+    stop("No .Rmd/.md files found in episodes/ or learners/. ",
+         "Are you running from the repo root?")
   TEST_FILE <- candidates[[1]]
 }
 
@@ -51,13 +59,15 @@ if (!file_exists(TEST_FILE)) {
   stop("File not found: ", TEST_FILE, "\nAre you running from the repo root?")
 }
 
+output_path <- file.path(OUT_DIR, path_file(TEST_FILE))
+
 message("=== Test translation ===")
-message("Input:  ", TEST_FILE)
-message("Output: ", file.path(OUT_DIR, path_file(TEST_FILE)))
-message("Model:  Google Translate (", SOURCE_LANG, " -> ", TARGET_LANG, ")")
+message("Input:   ", TEST_FILE)
+message("Output:  ", output_path)
+message("Lang:    ", SOURCE_LANG, " -> ", TARGET_LANG)
 message("")
 
-# --- Translation -------------------------------------------------------------
+# --- Translation (same as translate_en_mn.R) ---------------------------------
 safe_translate <- function(text, retries = 3) {
   if (trimws(text) == "") return(text)
   
@@ -95,16 +105,6 @@ safe_translate <- function(text, retries = 3) {
   return(text)
 }
 
-# --- Inline code protection --------------------------------------------------
-# Replaces all backtick-delimited spans with PLACEHOLDERn tokens before
-# translation, then restores them after.
-#
-# Uses a character-by-character state machine rather than regex:
-#   - counts the opening run of backticks (1, 2, 3, ...)
-#   - scans forward for a closing run of the exact same length
-#   - replaces the entire span (including backticks) with PLACEHOLDERn
-# This correctly handles nested spans like `` `r` `` and ``` ``r "..."`` ```.
-
 protect_inline <- function(text) {
   chars        <- strsplit(text, "")[[1]]
   n            <- length(chars)
@@ -115,21 +115,17 @@ protect_inline <- function(text) {
   
   while (i <= n) {
     if (chars[i] == "`") {
-      # Count opening backtick run
       j <- i
       while (j <= n && chars[j] == "`") j <- j + 1L
       tick_count <- j - i
       
-      # Search for matching closing run of same length
       k     <- j
       found <- FALSE
       while (k <= n) {
         if (chars[k] == "`") {
-          # Count this run
           end <- k
           while (end <= n && chars[end] == "`") end <- end + 1L
           if ((end - k) == tick_count) {
-            # Matching close found — capture entire span
             span <- paste(chars[i:(end - 1L)], collapse = "")
             key  <- paste0("PLACEHOLDER", counter)
             placeholders[[key]] <- span
@@ -139,7 +135,7 @@ protect_inline <- function(text) {
             found   <- TRUE
             break
           } else {
-            k <- end   # skip non-matching run
+            k <- end
           }
         } else {
           k <- k + 1L
@@ -147,7 +143,6 @@ protect_inline <- function(text) {
       }
       
       if (!found) {
-        # No matching close — output backticks as-is
         result <- c(result, paste(chars[i:(j - 1L)], collapse = ""))
         i <- j
       }
@@ -167,7 +162,6 @@ restore_inline <- function(text, placeholders) {
   text
 }
 
-# Wrap safe_translate with inline protection
 translate_line <- function(text) {
   if (trimws(text) == "") return(text)
   protected  <- protect_inline(text)
@@ -175,7 +169,7 @@ translate_line <- function(text) {
   restore_inline(translated, protected$placeholders)
 }
 
-# --- Line-by-line processor --------------------------------------------------
+# --- Line-by-line processor with progress + summary -------------------------
 translate_rmd_file <- function(input_path, output_path) {
   in_con <- file(input_path, open = "r", encoding = "UTF-8")
   lines  <- readLines(in_con, warn = FALSE)
@@ -188,77 +182,70 @@ translate_rmd_file <- function(input_path, output_path) {
   in_code    <- FALSE
   open_fence <- ""
   
-  # Counters for the summary report
-  n_translated <- 0
-  n_skipped    <- 0
-  n_code       <- 0
+  n_translated <- 0L
+  n_skipped    <- 0L
+  n_code       <- 0L
   
-  i <- 1
+  i <- 1L
   while (i <= length(lines)) {
     line <- lines[i]
     
-    # Progress indicator every 20 lines
-    if (i %% 20 == 0)
-      message(sprintf("  Progress: line %d / %d", i, total))
+    # Progress every 10 translated lines
+    if (n_translated > 0L && n_translated %% 10L == 0L)
+      message(sprintf("  line %d / %d  (translated: %d  skipped: %d  in-code: %d)",
+                      i, total, n_translated, n_skipped, n_code))
     
     # YAML front matter
-    if (i == 1 && trimws(line) == "---") {
+    if (i == 1L && trimws(line) == "---") {
       in_yaml <- TRUE; yaml_start <- TRUE
-      out_lines[i] <- line; i <- i + 1; next
+      out_lines[i] <- line; i <- i + 1L; next
     }
     if (in_yaml) {
       if (trimws(line) == "---" && !yaml_start) {
         in_yaml <- FALSE
-        out_lines[i] <- line; i <- i + 1; next
+        out_lines[i] <- line; i <- i + 1L; next
       }
       yaml_start <- FALSE
       if (grepl("^title:", line)) {
-        key   <- sub("^(title:\\s*).*", "\\1", line)
-        value <- sub("^title:\\s*['\"]?(.*?)['\"]?\\s*$", "\\1", line)
-        out_lines[i] <- paste0(key, translate_line(value))
-        n_translated <- n_translated + 1
+        key        <- sub("^(title:\\s*).*", "\\1", line)
+        value      <- sub("^title:\\s*['\"]?(.*?)['\"]?\\s*$", "\\1", line)
+        translated <- translate_line(value)
+        out_lines[i] <- paste0(key, '"', translated, '"')
+        n_translated <- n_translated + 1L
       } else {
         out_lines[i] <- line
-        n_skipped <- n_skipped + 1
+        n_skipped <- n_skipped + 1L
       }
-      i <- i + 1; next
+      i <- i + 1L; next
     }
     
-    # Fenced code/verbatim blocks
-    # Handles all fence styles: ```{r}, ```{verbatim}, ````{verbatim}, plain ```
-    # Uses the opening fence string to match the correct closing fence,
-    # so ````{verbatim} is only closed by ```` and not by ```.
+    # Fenced code blocks
     fence_match <- regmatches(line, regexpr("^(`{3,}|~{3,})", line))
     if (length(fence_match) > 0) {
       fence_char <- fence_match[[1]]
       is_close   <- grepl(paste0("^`{", nchar(fence_char), "}\\s*$"), line)
       if (!in_code) {
-        in_code    <- TRUE
-        open_fence <- fence_char
+        in_code <- TRUE; open_fence <- fence_char
       } else if (is_close && fence_char == open_fence) {
-        in_code    <- FALSE
-        open_fence <- ""
+        in_code <- FALSE; open_fence <- ""
       }
-      out_lines[i] <- line; i <- i + 1; next
-    }
-    if (in_code) {
-      out_lines[i] <- line; i <- i + 1; next
+      out_lines[i] <- line; i <- i + 1L; next
     }
     if (in_code) {
       out_lines[i] <- line
-      n_code <- n_code + 1
-      i <- i + 1; next
+      n_code <- n_code + 1L
+      i <- i + 1L; next
     }
     
-    # Structural lines never translated
+    # Lines never translated
     if (trimws(line) == "" ||
         grepl("^:{2,}", line) ||
         grepl("^#\\|", line) ||
         grepl("^!\\[", line) ||
         grepl("^\\s*\\|", line)) {
       out_lines[i] <- line
-      n_skipped <- n_skipped + 1
-      i <- i + 1; next
+      n_skipped <- n_skipped + 1L
+      i <- i + 1L; next
     }
     
     # Headings
@@ -266,8 +253,8 @@ translate_rmd_file <- function(input_path, output_path) {
       prefix <- sub("^(#{1,6}\\s).*", "\\1", line)
       text   <- sub("^#{1,6}\\s", "", line)
       out_lines[i] <- paste0(prefix, translate_line(text))
-      n_translated <- n_translated + 1
-      i <- i + 1; next
+      n_translated <- n_translated + 1L
+      i <- i + 1L; next
     }
     
     # Blockquotes
@@ -275,12 +262,12 @@ translate_rmd_file <- function(input_path, output_path) {
       prefix <- sub("^(>\\s?).*", "\\1", line)
       text   <- sub("^>\\s?", "", line)
       if (trimws(text) == "") {
-        out_lines[i] <- line; n_skipped <- n_skipped + 1
+        out_lines[i] <- line; n_skipped <- n_skipped + 1L
       } else {
         out_lines[i] <- paste0(prefix, translate_line(text))
-        n_translated <- n_translated + 1
+        n_translated <- n_translated + 1L
       }
-      i <- i + 1; next
+      i <- i + 1L; next
     }
     
     # List items
@@ -288,18 +275,18 @@ translate_rmd_file <- function(input_path, output_path) {
       prefix <- sub("^(\\s*[-*+]\\s|\\s*\\d+\\.\\s).*", "\\1", line)
       text   <- sub("^(\\s*[-*+]\\s|\\s*\\d+\\.\\s)", "", line)
       if (trimws(text) == "") {
-        out_lines[i] <- line; n_skipped <- n_skipped + 1
+        out_lines[i] <- line; n_skipped <- n_skipped + 1L
       } else {
         out_lines[i] <- paste0(prefix, translate_line(text))
-        n_translated <- n_translated + 1
+        n_translated <- n_translated + 1L
       }
-      i <- i + 1; next
+      i <- i + 1L; next
     }
     
     # Plain prose
     out_lines[i] <- translate_line(line)
-    n_translated <- n_translated + 1
-    i <- i + 1
+    n_translated <- n_translated + 1L
+    i <- i + 1L
   }
   
   # Write output
@@ -310,25 +297,24 @@ translate_rmd_file <- function(input_path, output_path) {
   writeBin(charToRaw(enc2utf8(out_text)), bin_con)
   close(bin_con)
   
-  # Summary
   message("")
   message("=== Summary ===")
-  message(sprintf("  Total lines:   %d", total))
-  message(sprintf("  Translated:    %d", n_translated))
-  message(sprintf("  Skipped:       %d (empty, structural, images, tables)", n_skipped))
-  message(sprintf("  Inside code:   %d (untouched)", n_code))
+  message(sprintf("  Total lines:  %d", total))
+  message(sprintf("  Translated:   %d", n_translated))
+  message(sprintf("  Skipped:      %d", n_skipped))
+  message(sprintf("  Inside code:  %d", n_code))
   message("")
-  message("Output file: ", output_path)
+  message("Output: ", output_path)
   message("")
-  message("Things to check in the output:")
-  message("  1. Mongolian text looks correct (not garbled)")
-  message("  2. Code chunks between ``` are untouched")
-  message("  3. Lines like fig/packages_pane.png are unchanged")
-  message("  4. YAML header fields (except title) are unchanged")
-  message("  5. ::: callout fences are unchanged")
+  message("Check:")
+  message("  1. Mongolian text is not garbled")
+  message("  2. Code chunks are untouched")
+  message("  3. Inline code like `kable()` is untouched")
+  message("  4. Figure paths like fig/xyz.png are unchanged")
+  message("  5. YAML title is quoted")
+  message("  6. ::: callout fences are unchanged")
 }
 
 # --- Run ---------------------------------------------------------------------
-output_path <- file.path(OUT_DIR, path_file(TEST_FILE))
+fs::dir_create(OUT_DIR)
 translate_rmd_file(TEST_FILE, output_path)
-

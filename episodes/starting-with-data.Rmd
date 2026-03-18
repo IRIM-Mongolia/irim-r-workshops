@@ -237,8 +237,8 @@ backslashes are not used.)
 ## Assigning objects
 
 In `R`, we can **assign** inputs to a named **object**. We do this using
-the **assignment arrow** `<-`, <kbd>Alt+-</kbd> (`Windows`) or
-<kbd>Option+-</kbd> (`Mac`).What we are doing here is taking the result of
+the **assignment arrow** `<-`, **`Alt`**+**`-`** (`Windows` and `Linux`) or
+**`Option`**+**`-`**(`Mac`).What we are doing here is taking the result of
 the code on the right side of the arrow (reading in the csv file), and
 assigning it to an object whose name is on the left side of the arrow
 (`interviews`).
@@ -462,9 +462,8 @@ data.frame.
 
 The `$` operator also allows you to use tab-completion to quickly select
 which variable you want from a given data.frame. For example, to get the
-`village` variable, we can type `interviews$` and then hit
-<kbd>Tab</kbd>. We get a list of the variables that we can move through
-with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach
+`village` variable, we can type `interviews$` and then hit **`Tab`**. We get a list of the variables that we can move through
+with up and down arrow keys. Hit **`Enter`** when you reach
 `village`, which should finish this code:
 
 ```{r dollar-subsetting}
