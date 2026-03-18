@@ -1,5 +1,5 @@
 ---
-title: "Өгөгдлөөс эхэлн"
+title: "Өгөгдлөөс эхэлнэ"
 teaching: 70
 exercises: 2
 source: Rmd
