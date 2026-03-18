@@ -5,21 +5,21 @@ site: sandpaper::sandpaper_site
 ::: callout
 ## IRIM `R` Семинарууд
 
-Kathryn Napier хэд хэдэн [`Carpentries`](https://carpentries.org/) эх сурвалжаас тохируулсан материалтай танилцуулсан бөгөөд үүнд:
+Kathryn Napier танилцуулсан бөгөөд материалыг [`Carpentries`](https://carpentries.org/) хэд хэдэн эх сурвалжаас тохируулсан бөгөөд үүнд:
 
 - [`Data Analysis and Visualization in R for Ecologists`](https://datacarpentry.github.io/R-ecology-lesson/)
 - [`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/)
 :::
 
-[IRIM R Workshop вэбсайтын англи хувилбар энд байрладаг](https://kathrynnapier.github.io/irim-r-workshops/).
+[IRIM R Workshop вэбсайтын англи хувилбар энд байна](https://irim-mongolia.github.io/irim-r-workshops/).
 
-[IRIM R Workshop вэбсайтын монгол хувилбарыг энд байрлуулсан](https://kathrynnapier.github.io/irim-r-workshops/mn).
+[IRIM R Workshop вэбсайтын монгол хувилбарыг энд байрлуулсан](https://irim-mongolia.github.io/irim-r-workshops/mn).
 
 Монгол эх бичвэрийг Google Translate ашиглан англи хэл дээрх эх бичвэрээс автоматаар орчуулна.
 
-Мужааны зорилго нь судлаачдад өгөгдөлтэй ажиллах үндсэн ойлголт, ур чадвар, арга хэрэгслийг зааж өгөх бөгөөд ингэснээр тэд бага хугацаанд, өвдөлт багатай илүү их зүйлийг хийх боломжтой болно. Энэ бол програмчлалын туршлагагүй оролцогчдод зориулагдсан R-ийн танилцуулга юм. Семинарт дараахь зүйлс орно.
+Мужааны зорилго нь судлаачдад өгөгдөлтэй ажиллах үндсэн ойлголт, ур чадвар, багаж хэрэгслийг зааж өгөх бөгөөд ингэснээр тэд бага хугацаанд, өвдөлт багатай илүү их зүйлийг хийх боломжтой болно. Энэ бол програмчлалын туршлагагүй оролцогчдод зориулсан R-ийн танилцуулга юм. Семинарт дараахь зүйлс орно.
 
-Семинар R програмчлалын хэл болон RStudio интерфейсийн талаарх мэдээллээс эхэлнэ.
+Семинар R програмчлалын хэл болон RStudio интерфейсийн талаарх мэдээллээр эхэлнэ.
 
 1. `R` болон `R Studio`-ийн танилцуулга
 
