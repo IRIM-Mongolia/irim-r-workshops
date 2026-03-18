@@ -1,9 +1,9 @@
 ---
-title: Learners' Reference
+title: "Сурагчдын лавлагаа"
 ---
 
-Cheat sheet of functions used in the workshops. This will be populated as we work through the workshops.
+Семинарт ашигласан функцүүдийн мэхлэх хуудас. Энэ нь биднийг семинараар дамжуулан ажиллахад хүн амтай байх болно.
 
 
-## Workshop -- Introduction to R
-- `install.packages() ` # install R packages to your computer
+## Семинар -- `R`-ийн танилцуулга
+- `install.packages() ` # R багцуудыг компьютер дээрээ суулгана уу
