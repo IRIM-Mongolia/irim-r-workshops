@@ -11,9 +11,9 @@ Presented by Kathryn Napier, with material adapted from from several [`Carpentri
 -   [`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/)
 :::
 
-[The English version of the IRIM R Workshop website is located here](https://kathrynnapier.github.io/irim-r-workshops/).
+[The English version of the IRIM R Workshop website is located here](https://irim-mongolia.github.io/irim-r-workshops/).
 
-[A Mongolian version of the IRIM R Workshop website is located here](https://kathrynnapier.github.io/irim-r-workshops/mn).
+[A Mongolian version of the IRIM R Workshop website is located here](https://irim-mongolia.github.io/irim-r-workshops/mn).
 
 The Mongolian text is automatically translated from the original English text using Google Translate.
 

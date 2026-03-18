@@ -102,7 +102,7 @@ and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.htm
 ## Set up
 
 Start by opening up your `RStudio` project that you created in a [previous
-workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
+workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
 called `intro_r`, in a new session. Ensure your `global environment` is
 empty! You can also 'sweep' your `global environment` by clicking the
 `broom` icon.
@@ -116,7 +116,7 @@ Open a new `R Notebook`: `Click File -> New File -> R Notebook`. Save your
 When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the `SAFI` dataset that we downloaded earlier [`in a previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
+Read in the `SAFI` dataset that we downloaded earlier [`in a previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 
 ``` r
@@ -988,16 +988,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     50 Chirodzo 2016-11-16 00:00:00 uuid:4267c33c-53a7-46d9-8bd6-b96f58a4f92c
- 2     53 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
- 3     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
- 4     36 Chirodzo 2016-11-17 00:00:00 uuid:c90eade0-1148-4a12-8c0e-6387a36f45b1
- 5     64 Chirodzo 2016-11-16 00:00:00 uuid:28cfd718-bf62-4d90-8100-55fafbe45d06
- 6     70 Chirodzo 2016-11-16 00:00:00 uuid:1feb0108-4599-4bf9-8a07-1f5e66a50a0a
- 7    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
- 8     69 Chirodzo 2016-11-16 00:00:00 uuid:f86933a5-12b8-4427-b821-43c5b039401d
- 9     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
-10     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
+ 1     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
+ 2     44 Chirodzo 2016-11-17 00:00:00 uuid:f9fadf44-d040-4fca-86c1-2835f79c4952
+ 3     43 Chirodzo 2016-11-17 00:00:00 uuid:b4dff49f-ef27-40e5-a9d1-acf287b47358
+ 4     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
+ 5     59 Chirodzo 2016-11-16 00:00:00 uuid:1936db62-5732-45dc-98ff-9b3ac7a22518
+ 6    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
+ 7     69 Chirodzo 2016-11-16 00:00:00 uuid:f86933a5-12b8-4427-b821-43c5b039401d
+ 8     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
+ 9    127 Chirodzo 2016-11-16 00:00:00 uuid:f6d04b41-b539-4e00-868a-0f62b427587d
+10     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
 ```
 
 We notice that the layout or format of the `interviews` data is in a
@@ -1396,7 +1396,7 @@ frames.
 
 Before using `write_csv()`, we are going to create a new folder,
 `data/cleaned`, in our working directory that will store this generated
-dataset, if you did not create this folder in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
+dataset, if you did not create this folder in a [`previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
 
 We don't want to write generated datasets in the same directory as our
 raw data. It's good practice to keep them separate. The `data/raw`

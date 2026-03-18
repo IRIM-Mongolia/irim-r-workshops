@@ -57,7 +57,7 @@ here](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCOPuF89NgRT725GgpozJK
 
 ## Set up
 
-Start by opening up your `RStudio project` that you created in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
+Start by opening up your `RStudio project` that you created in a [`previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio)
 (called `intro_r`). Open a new `R Notebook`: `Click File -> New File -> R`
 Notebook. Save your `R Notebook` with a filename that makes sense, such as
 `starting_with_data.Rmd`, in the `scripts` folder.
@@ -119,7 +119,7 @@ respondent, and the columns represent:
 ### Download the data
 
 If you did not previously downloaded the `SAFI_clean.csv` dataset in the
-[`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
+[`previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data),
 please follow the instructions below to download it. If you already have
 the file in your `data/raw/` folder, jump to the **Importing data**
 section.
