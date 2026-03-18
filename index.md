@@ -11,11 +11,11 @@ Kathryn Napier хэд хэдэн [`Carpentries`](https://carpentries.org/) эх 
 - [`R for Social Scientists`](https://datacarpentry.github.io/r-socialsci/)
 :::
 
-[IRIM R Workshop вэбсайтын англи хувилбар байрладаг](https://kathrynnapier.github.io/irim-r-workshops/).
+[IRIM R Workshop вэбсайтын англи хувилбар энд байрладаг](https://kathrynnapier.github.io/irim-r-workshops/).
 
-[IRIM R Workshop вэбсайтын монгол хувилбарыг байрлуулсан](https://kathrynnapier.github.io/irim-r-workshops/mn).
+[IRIM R Workshop вэбсайтын монгол хувилбарыг энд байрлуулсан](https://kathrynnapier.github.io/irim-r-workshops/mn).
 
-Монгол хэл дээрх эх бичвэрийг Google Translate ашиглан автоматаар англи хэл дээрх эх бичвэрээс орчуулна.
+Монгол эх бичвэрийг Google Translate ашиглан англи хэл дээрх эх бичвэрээс автоматаар орчуулна.
 
 Мужааны зорилго нь судлаачдад өгөгдөлтэй ажиллах үндсэн ойлголт, ур чадвар, арга хэрэгслийг зааж өгөх бөгөөд ингэснээр тэд бага хугацаанд, өвдөлт багатай илүү их зүйлийг хийх боломжтой болно. Энэ бол програмчлалын туршлагагүй оролцогчдод зориулагдсан R-ийн танилцуулга юм. Семинарт дараахь зүйлс орно.
 
