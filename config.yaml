@@ -81,7 +81,6 @@ profiles:
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
 
-url: 'https://kathrynnapier.github.io/irim-r-workshops/'
+url: 'https://irim-mongolia.github.io/irim-r-workshops/'
 analytics: carpentries
 lang: en
-

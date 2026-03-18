@@ -102,7 +102,7 @@ and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.htm
 ## Set up
 
 Start by opening up your `RStudio` project that you created in a [previous
-workshop](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
+workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
 called `intro_r`, in a new session. Ensure your `global environment` is
 empty! You can also 'sweep' your `global environment` by clicking the
 `broom` icon.
@@ -116,7 +116,7 @@ Open a new `R Notebook`: `Click File -> New File -> R Notebook`. Save your
 When you open a new `R Notebook`, some explanatory text is provided. This
 can be deleted so you can enter your own text and code.
 
-Read in the `SAFI` dataset that we downloaded earlier [`in a previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
+Read in the `SAFI` dataset that we downloaded earlier [`in a previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data).
 
 ```{r, results="hide", purl=FALSE, message=FALSE}
 
@@ -931,7 +931,7 @@ frames.
 
 Before using `write_csv()`, we are going to create a new folder,
 `data/cleaned`, in our working directory that will store this generated
-dataset, if you did not create this folder in a [`previous workshop`](https://kathrynnapier.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
+dataset, if you did not create this folder in a [`previous workshop`](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html#download-data)
 
 We don't want to write generated datasets in the same directory as our
 raw data. It's good practice to keep them separate. The `data/raw`

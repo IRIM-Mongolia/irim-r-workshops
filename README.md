@@ -11,4 +11,4 @@ The workshops contain material adapted from from several [Carpentries](https://c
 
 ## Prerequisites
 
-The workshop assumes no prior knowledge of R or RStudio. Learners should have R and RStudio installed on their computers. They will also need to be able to install R packages from CRAN, create directories, and download files. See [the IRIM workshop website](https://kathrynnapier.github.io/irim-r-workshops/index.html#setup) for instructions on installing R, RStudio, and the required R packages.
+The workshop assumes no prior knowledge of R or RStudio. Learners should have R and RStudio installed on their computers. They will also need to be able to install R packages from CRAN, create directories, and download files. See [the IRIM workshop website](https://irim-mongolia.github.io/irim-r-workshops/index.html#setup) for instructions on installing R, RStudio, and the required R packages.
