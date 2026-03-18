@@ -14,7 +14,7 @@ If the computer is managed by their organization's IT department
 they might need help from an IT administrator.
 -->
 
-### Install R and RStudio
+### Install `R` and `RStudio`
 
 `R` and `RStudio` are two separate pieces of software: 
 
@@ -26,7 +26,7 @@ You have to install `R` before you install `RStudio`.
 
 ::::::: spoiler
 
-## For Windows
+## For `Windows`
 
 * Download `R` from the [`CRAN website`](https://cran.r-project.org/bin/windows/base/release.htm).
 * Run the `.exe` file that was just downloaded
@@ -39,7 +39,7 @@ You have to install `R` before you install `RStudio`.
 
 :::::::::::::::: spoiler
 
-## For MacOS
+## For `MacOS`
 
 * Download `R` from the [`CRAN website`](https://cran.r-project.org/bin/macosx/).
 * Select the `.pkg` file for the latest `R` version
@@ -54,7 +54,7 @@ You have to install `R` before you install `RStudio`.
 
 ::::::: spoiler
 
-## For Linux
+## For `Linux`
 
 * Click on your distribution in the [`Linux folder of the CRAN website`](https://cran.r-project.org/bin/linux/). Linux Mint users should follow instructions for Ubuntu.
 * Go through the instructions for your distribution to install `R`.
@@ -65,7 +65,7 @@ You have to install `R` before you install `RStudio`.
 
 ::::::::::::::::
 
-### Update R and RStudio
+### Update `R` and `RStudio`
 
 If you already have `R` and `RStudio` installed, first check if your `R` version is up to date:
 
