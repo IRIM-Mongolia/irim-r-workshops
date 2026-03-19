@@ -8,7 +8,7 @@ Cheat sheet of functions used in the workshops. This will be populated as we wor
 
 -   `install.packages()` \# install `R` packages to your computer
 
-## Workshop -- Introduction to R Packages`,`Markdown`and`Notebooks\`
+## Workshop -- Introduction to `R Packages`,`Markdown` and `Notebooks`
 
 -   `library()` \# load `R` packages in each `R` session
 
