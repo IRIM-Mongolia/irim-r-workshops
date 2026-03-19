@@ -242,6 +242,7 @@ to do many things to the same dataset. We'll use the `tidyverse` pipe
 
 **`Ctrl+Shift+M`** (`Windows` and `Linux`) or **`Cmd+Shift+M`** (`Mac`).
 
+
 ```{r, purl=FALSE}
 # the following example is run using magrittr pipe but the output will be same with the native pipe
 interviews %>%
