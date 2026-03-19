@@ -312,7 +312,7 @@ packages?</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to <code>R Packages</code>, <code>Markdown</code> and <code>Notebooks</code></h1>
-        <p>Last updated on 2026-03-18 |
+        <p>Last updated on 2026-03-19 |
 
         <a href="https://github.com/kathrynnapier/irim-r-workshops/edit/main/episodes/introduction-r-packages-markdown.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -415,7 +415,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 7.6 milliseconds.</code></pre>
+Successfully installed 1 package in 5.8 milliseconds.</code></pre>
 </div>
 <p>You can see if you have a package installed by looking in the
 <code>packages</code> tab (on the lower-right by default). You can also
@@ -452,7 +452,7 @@ happens.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Scroll through packages tab down to <code>tidyverse</code>. You can
 also type a few characters into the searchbox. The
@@ -578,10 +578,9 @@ with <code>```{r} and end with ```</code>.</p>
 <code>R</code>.</p>
 <p>To run a Chunk, click the small green play arrow on the right side of
 the chunk, or use the keyboard shortcut
-<strong><code>Ctrl</code></strong>+<strong><code>Alt</code></strong>+<code>**I</code>**
-on <code>Windows</code> and <code>Linux</code> (or
-<strong><code>Cmd</code></strong>+<strong><code>Option**</code>+</strong><code>I</code>**
-on <code>Mac</code>).</p>
+<strong><code>Ctrl+Alt+I</code></strong> on <code>Windows</code> and
+<code>Linux</code> (or <strong><code>Cmd+Option+I</code></strong> on
+<code>Mac</code>).</p>
 <div class="section level4">
 <h4 id="viewing-output">Viewing output<a class="anchor" aria-label="anchor" href="#viewing-output"></a></h4>
 <p>Once you execute a code chunk, the results, including plots or data
@@ -696,10 +695,9 @@ data. To load these, we will need to create a ‘code chunk’ at the top of
 our document (below the <code>YAML</code> header).</p>
 <p>A code chunk can be inserted by clicking
 <code>Code \&gt; Insert Chunk</code>, or by using the keyboard shortcuts
-<strong><code>Ctrl</code></strong>+<strong><code>Alt</code></strong>+<strong><code>I</code></strong>
-on <code>Windows</code> and <code>Linux</code>, and
-<strong><code>Cmd</code></strong>+<strong><code>Option</code></strong>+<strong><code>I</code></strong>
-on <code>Mac</code>.</p>
+<strong><code>Ctrl+Alt+I</code></strong> on <code>Windows</code> and
+<code>Linux</code>, and <strong><code>Cmd+Option+I</code></strong> on
+<code>Mac</code>.</p>
 <p>The syntax of a code chunk is:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -756,10 +754,9 @@ the naming rules).</p>
 <p>We will learn more about this code later!</p>
 <p>To see the output, run the code chunk with the green triangle in the
 top right corner of the the chunk, or with the keyboard shortcuts:
-<strong><code>Ctrl</code></strong>+<strong><code>Alt</code></strong>+<strong><code>C</code></strong>
-on <code>Windows</code> and <code>Linux</code>, or
-<strong><code>Cmd</code></strong>+<strong><code>Option</code></strong>+<strong><code>C</code></strong>
-on <code>Mac</code>.</p>
+<strong><code>Ctrl+Alt+C</code></strong> on <code>Windows</code> and
+<code>Linux</code>, or <strong><code>Cmd+Option+C</code></strong> on
+<code>Mac</code>.</p>
 <p>To make sure the table is formatted nicely in our output document, we
 will need to use the <code>kable()</code> function from the
 <strong><code>knitr</code></strong> package. The <code>kable()</code>
@@ -973,7 +970,7 @@ the table, and see what each option does to the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.
@@ -998,7 +995,7 @@ backticks. In-line <code>R</code> code uses one backtick
 (<code>`r`</code>), whereas code chunks use three backticks
 (<code>```r```</code>).</p>
 <p>For example, today’s date is <code>`r Sys.Date()`</code>, will be
-rendered as: today’s date is 2026-03-18.<br>
+rendered as: today’s date is 2026-03-19.<br>
 The code will display today’s date in the output document (well,
 technically the date the document was last knitted or previewed).</p>
 <p>The best way to use in-line R code, is to minimize the amount of code
@@ -1125,13 +1122,14 @@ formatting buttons generally seen in text editors (e.g., bold and italic
 buttons). The toolbar is accessible by using the settings dropdown menu
 (next to the <code>Preview</code> dropdown menu) to select
 <code>Use Visual Editor</code>, also accessible through the shortcut
-<code>Crtl+Shift+F4</code>. From here, clicking <code>Insert</code>
-allows <code>Citation</code> to be selected (shortcut:
-<code>Crtl+Shift+F8</code>). For example, searching
-<code>10.1007/978-3-319-24277-4</code> in <code>From DOI</code> and
-inserting will provide the citation for <code>ggplot2</code>
-[<code>@wickham2016</code>]. This will also save the citation(s) in
-‘references.bib’ in the current working directory. Visit the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link"><code>R Studio website</code></a>
+<strong><code>Crtl+Shift+F4</code></strong>. From here, clicking
+<code>Insert</code> allows <code>Citation</code> to be selected
+(shortcut: <strong><code>Crtl+Shift+F8</code></strong>). For example,
+searching <code>10.1007/978-3-319-24277-4</code> in
+<code>From DOI</code> and inserting will provide the citation for
+<code>ggplot2</code> [<code>@wickham2016</code>]. This will also save
+the citation(s) in ‘references.bib’ in the current working directory.
+Visit the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link"><code>R Studio website</code></a>
 for more information. Tip: obtaining citation information from relevant
 packages can be done by using <code>citation("package")</code>.</p>
 </div>
@@ -1225,8 +1223,8 @@ document</li>
   "url": "https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html",
   "identifier": "https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html",
   "dateCreated": "2026-02-09",
-  "dateModified": "2026-03-18",
-  "datePublished": "2026-03-18"
+  "dateModified": "2026-03-19",
+  "datePublished": "2026-03-19"
 }
 
   </script><script>
