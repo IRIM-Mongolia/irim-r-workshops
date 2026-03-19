@@ -409,7 +409,7 @@ packages we will use in these workshops.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>You can walk through this analogy if you want, or skip over it if you
 don’t find it useful.</p>
@@ -422,7 +422,7 @@ don’t find it useful.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Your new pedantic collaborator… </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You’re working on a project when your advisor suggests that you begin
 working with one of their long-time collaborators. According to your
@@ -675,11 +675,7 @@ setting the working directory.</p>
 reproducibility of our work. Go to your menu bar, then click
 <code>Tools → Global Options</code> to open up the <code>Options</code>
 window.</p>
-<p><img src="../fig/rstudio_settings.png" class="figure">{alt=“Screenshot of the RStudio
-Global Options, with "Restore .RData into workspace at
-startup”unchecked, and "Save workspace to .RData on exit”set to
-"Never”.“}</p>
-<p>Make sure your settings match those highlighted in yellow. We don’t
+<figure><img src="../fig/rstudio_settings.png" alt="Screenshot of RStudio Global Options with Restore .RData into workspace at startup unchecked and Save workspace to .RData on exit set to Never" class="figure mx-auto d-block"></figure><p>Make sure your settings match those highlighted in yellow. We don’t
 want <code>RStudio</code> to store the current status of our R session
 and reload it the next time we start<code>R</code>. This might sound
 convenient, but for the sake of reproducibility, we want to start with a
@@ -697,7 +693,7 @@ we need, other than “raw materials” like data.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>If you are teaching remotely and sharing only the
 <code>RStudio</code> window, the new windows that pop up while creating
@@ -742,8 +738,7 @@ documents you might produce.</p>
 current directory. You should be in the directory for the project you
 just made, in our case <code>intro_r</code>. You shouldn’t see any
 folders in here yet.</p>
-<p><img src="../fig/files_pane.png" class="figure">{alt=RStudio Files pane.”}</p>
-<p>Next, click the <strong><code>New Folder</code></strong> button, and
+<figure><img src="../fig/files_pane.png" alt="RStudio Files pane." class="figure mx-auto d-block"></figure><p>Next, click the <strong><code>New Folder</code></strong> button, and
 type in <code>scripts</code> to generate your <code>scripts</code>
 folder. It should appear in the Files list now. It’s worth noting that
 the <strong><code>Files</code></strong> pane helps you create, find, and
@@ -1016,7 +1011,7 @@ happens.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Scroll through packages tab down to <code>tidyverse</code>. You can
 also type a few characters into the searchbox. The
@@ -1636,7 +1631,7 @@ the table, and see what each option does to the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.

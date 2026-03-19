@@ -288,7 +288,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Learners' Reference</h1>
-        <p>Last updated on 2026-03-18 |
+        <p>Last updated on 2026-03-19 |
 
         <a href="https://github.com/kathrynnapier/irim-r-workshops/edit/main/learners/reference.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -307,8 +307,136 @@ populated as we work through the workshops.</p>
 <section><h2 class="section-heading" id="workshop-introduction-to-r">Workshop – Introduction to <code>R</code>
 <a class="anchor" aria-label="anchor" href="#workshop-introduction-to-r"></a></h2>
 <hr class="half-width"><ul><li>
-<code>install.packages()</code> # install R packages to your
-computer</li>
+<code>install.packages()</code> # install <code>R</code> packages to
+your computer</li>
+</ul></section><section><h2 class="section-heading" id="workshop-introduction-to-r-packagesmarkdownandnotebooks-library-loadrpackages-in-eachr-session">Workshop – Introduction to R
+Packages<code>,</code>Markdown<code>and</code>Notebooks<code>-</code>library()<code># load</code>R<code>packages in each</code>R`
+session<a class="anchor" aria-label="anchor" href="#workshop-introduction-to-r-packagesmarkdownandnotebooks-library-loadrpackages-in-eachr-session"></a></h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="workshop-starting-with-data">Workshop – Starting with Data<a class="anchor" aria-label="anchor" href="#workshop-starting-with-data"></a></h2>
+<hr class="half-width"><ul><li>
+<code>&lt;-</code> # assignment arrow assigns inputs to a named
+object</li>
+<li>
+<code>read_csv()</code> # import data in .<code>csv</code> files
+into <code>R</code> (<code>readr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>class()</code> # check the class of an object</li>
+<li>
+<code>dim()</code> # returns a vector with the dimensions of the
+object</li>
+<li>
+<code>nrow()</code> # returns the number of rows</li>
+<li>
+<code>ncol()</code> # returns the number of columns</li>
+<li>
+<code>head()</code> # shows the first 6 rows</li>
+<li>
+<code>tail()</code> # shows the last 6 rows</li>
+<li>
+<code>names()</code> # returns the column names</li>
+<li>
+<code>str()</code> # structure of the object and information about
+the class, length and content of each column</li>
+<li>
+<code>summary()</code> # summary statistics for each column</li>
+<li>
+<code>glimpse()</code> # returns the number of columns and rows of a
+tibble, the names and class of each column, and previews as many values
+will fit on the screen (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>c()</code> # combine values into a vector or list</li>
+<li>
+<code>factor()</code> # encode a vector as a factor</li>
+<li>
+<code>levels(0</code> # provides access to the levels attribute of a
+variable</li>
+<li>
+<code>nlevels()</code> # provides number of levels of a factor</li>
+<li>
+<code>as.character()</code> # create or coerce objects of type
+character</li>
+<li>
+<code>as.numeric()</code> # create or coerce objects of type
+numeric</li>
+<li>
+<code>as.factor()</code> # encode a vector as a factor</li>
+<li>
+<code>plot()</code> # create a generic X-Y plot</li>
+<li>
+<code>day()</code> # extract day value from a date
+(<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>month()</code> # extract month value from a date
+(<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>year()</code> # extract year value from a date
+(<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>day()</code> # extract day value from a date
+(<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>as_date()</code> # convert an object to a date or date-time
+(<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>mdy()</code>, <code>ymd()</code>, <code>dmy()</code> # parse
+dates (<code>lubridate</code>, part of <code>tidyverse</code>)</li>
+</ul></section><section><h2 class="section-heading" id="workshop-manipulating-data-with-dplyr-and-tidyr">Workshop – Manipulating Data with <code>dplyr</code> and
+<code>tidyr</code>
+<a class="anchor" aria-label="anchor" href="#workshop-manipulating-data-with-dplyr-and-tidyr"></a></h2>
+<hr class="half-width"><ul><li>
+<code>select()</code> # subset columns (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>filter()</code> # subset rows on conditions
+(<code>dplyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>mutate()</code> # create new columns by using information from
+other columns (<code>dplyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>group_by()</code> and <code>summarize()</code> # create
+summary statistics on grouped data (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>arrange()</code> # sort results (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>count()</code> # count discrete values (<code>dplyr</code>,
+part of <code>tidyverse</code>)</li>
+<li>
+<code>%&gt;%</code> # a pipe, take the output of one function and
+send it directly to the next (<code>tidyverse</code>)</li>
+<li>
+<code>filter()</code> # filter rows (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>select()</code> # seclect columns (<code>dplyr</code>, part of
+<code>tidyverse</code>)</li>
+<li>
+<code>mutate()</code> # create, modify, and delete columns
+(<code>dplyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>distinct()</code> # keep distinct/unique rows
+(<code>dplyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>sample_n()</code> # sample n rows from a table
+(<code>dplyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>pivot_wider()</code> # pivot data from long to wide
+(<code>tidyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>pivot_longer()</code> # pivot data from wide to long
+(<code>tidyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>separate_longer_delim()</code> # split a string into rows
+(<code>tidyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>replace_na()</code> # replace NAs with specified values
+(<code>tidyr</code>, part of <code>tidyverse</code>)</li>
+<li>
+<code>write_csv()</code> # export data in .<code>csv</code> format
+(<code>readr</code>, part of <code>tidyverse</code>)</li>
 </ul></section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/index.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -369,7 +497,7 @@ computer</li>
   "url": "https://irim-mongolia.github.io/irim-r-workshops/instructor/reference.html",
   "identifier": "https://irim-mongolia.github.io/irim-r-workshops/instructor/reference.html",
   "dateCreated": "2026-02-09",
-  "dateModified": "2026-03-18",
+  "dateModified": "2026-03-19",
   "datePublished": "2026-03-19"
 }
 
