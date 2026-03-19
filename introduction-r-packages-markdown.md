@@ -88,7 +88,7 @@ These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/re
 
 # Installing packages --------------------------------------------------------
 - Installing tidyverse 2.0.0 ...                OK [linked from cache]
-Successfully installed 1 package in 7.6 milliseconds.
+Successfully installed 1 package in 5.8 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -249,7 +249,7 @@ To insert a Chunk, click the small arrow next to the `Insert` button in
 the editor toolbar and select `R`.
 
 To run a Chunk, click the small green play arrow on the right side of
-the chunk, or use the keyboard shortcut **`Ctrl`**+**`Alt`**+`**I`** on `Windows` and `Linux` (or **`Cmd`**+**`Option**`+**`I`** on `Mac`).
+the chunk, or use the keyboard shortcut **`Ctrl+Alt+I`** on `Windows` and `Linux` (or **`Cmd+Option+I`** on `Mac`).
 
 #### Viewing output
 
@@ -384,8 +384,8 @@ will need to create a 'code chunk' at the top of our document (below the
 `YAML` header).
 
 A code chunk can be inserted by clicking `Code \> Insert Chunk`, or by
-using the keyboard shortcuts **`Ctrl`**+**`Alt`**+**`I`**
-on `Windows` and `Linux`, and **`Cmd`**+**`Option`**+**`I`**
+using the keyboard shortcuts **`Ctrl+Alt+I`**
+on `Windows` and `Linux`, and **`Cmd+Option+I`**
 on `Mac`.
 
 The syntax of a code chunk is:
@@ -441,8 +441,8 @@ We will learn more about this code later!
 
 To see the output, run the code chunk with the green triangle in the top
 right corner of the the chunk, or with the keyboard shortcuts:
-**`Ctrl`**+**`Alt`**+**`C`** on `Windows` and `Linux`, or
-**`Cmd`**+**`Option`**+**`C`** on `Mac`.
+**`Ctrl+Alt+C`** on `Windows` and `Linux`, or
+**`Cmd+Option+C`** on `Mac`.
 
 To make sure the table is formatted nicely in our output document, we
 will need to use the `kable()` function from the **`knitr`** package. The
@@ -547,7 +547,7 @@ is the number of backticks. In-line `R` code uses one backtick
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-03-18.\
+rendered as: today's date is 2026-03-19.\
 The code will display today's date in the output document (well,
 technically the date the document was last knitted or previewed).
 
@@ -671,8 +671,8 @@ editor toolbar. The editor toolbar includes commonly seen formatting
 buttons generally seen in text editors (e.g., bold and italic buttons).
 The toolbar is accessible by using the settings dropdown menu (next to
 the `Preview` dropdown menu) to select `Use Visual Editor`, also
-accessible through the shortcut `Crtl+Shift+F4`. From here, clicking
-`Insert` allows `Citation` to be selected (shortcut: `Crtl+Shift+F8`).
+accessible through the shortcut **`Crtl+Shift+F4`**. From here, clicking
+`Insert` allows `Citation` to be selected (shortcut: **`Crtl+Shift+F8`**).
 For example, searching `10.1007/978-3-319-24277-4` in `From DOI` and
 inserting will provide the citation for `ggplot2` [`@wickham2016`]. This
 will also save the citation(s) in 'references.bib' in the current

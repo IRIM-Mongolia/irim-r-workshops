@@ -238,8 +238,8 @@ backslashes are not used.)
 ## Assigning objects
 
 In `R`, we can **assign** inputs to a named **object**. We do this using
-the **assignment arrow** `<-`, **`Alt`**+**`-`** (`Windows` and `Linux`) or
-**`Option`**+**`-`**(`Mac`).What we are doing here is taking the result of
+the **assignment arrow** `<-`, **`Alt+-`** (`Windows` and `Linux`) or
+**`Option+-`** (`Mac`).What we are doing here is taking the result of
 the code on the right side of the arrow (reading in the csv file), and
 assigning it to an object whose name is on the left side of the arrow
 (`interviews`).

@@ -106,7 +106,7 @@ We will use the `RStudio` integrated development environment (`IDE`) to write co
 In the above screenshot, we can see 4 "panes" in the default layout:
 
 -   Top-Left: the **`Source`** pane that displays scripts and other files.
-    -   If you only have 3 panes, and the Console pane is in the top left, press **`Shift`**+**`Cmd`**+**`N`** (`Mac`) or **`Shift`**+**`Ctrl`**+**`N`** (`Windows` or `Linux`) to open a blank `R` script, which should make the `Source` pane appear.
+    -   If you only have 3 panes, and the Console pane is in the top left, press **`Shift+Cmd+N`** (`Mac`) or **`Shift+Ctrl+N`** (`Windows` or `Linux`) to open a blank `R` script, which should make the `Source` pane appear.
 -   Top-Right: the **`Environment/History`** pane, which shows all the objects in your current R session (`Environment`) and your command history (`History`)
     -   there are some other tabs here, including `Connections`, `Build`, `Tutorial`, and possibly `Git`
     -   we won't cover any of the other tabs, but `RStudio` has lots of other useful features
@@ -195,10 +195,10 @@ An additional benefit of scripts is that you can leave **comments** for yourself
 
 #### Script
 
--   You can make a new`R` script by clicking `File → New File → R Script`, clicking the green `+` button in the top left corner of `RStudio`, or pressing **`Shift`**+**`Cmd`**+**`N`** (`Mac`) or **`Shift`**+**`Ctrl`**+**`N`** (`Windows` and `Linux`). It will be unsaved, and called `Untitled1`
+-   You can make a new`R` script by clicking `File → New File → R Script`, clicking the green `+` button in the top left corner of `RStudio`, or pressing **`Shift+Cmd+N`** (`Mac`) or **`Shift+Ctrl+N`** (`Windows` and `Linux`). It will be unsaved, and called `Untitled1`
 -   If you type out lines of `R` code in a script, you can send them to the `R` console to be evaluated
-    -   **`Cmd`**+**`Enter`** (`Mac`) or **`Ctrl`**+**`Enter`** (`Windows` and `Linux`) will run the line of code that your cursor is on
-    -   If you highlight multiple lines of code, you can run all of them by pressing **`Cmd`**+**`Enter`** (`Mac`) or **`Ctrl`**+**`Enter`** (`Windows` and `Linux`)
+    -   **`Cmd+Enter`** (`Mac`) or **`Ctrl+Enter`** (`Windows` and `Linux`) will run the line of code that your cursor is on
+    -   If you highlight multiple lines of code, you can run all of them by pressing **`Cmd+Enter`** (`Mac`) or **`Ctrl+Enter`** (`Windows` and `Linux`)
     -   By preserving commands in a script, you can edit and rerun them quickly, save them for later, and share them with others
     -   You can leave comments for yourself by starting a line with a `#`
 
@@ -206,7 +206,7 @@ An additional benefit of scripts is that you can leave **comments** for yourself
 
 Let's try running some code in the console and in a script. First, click down in the Console pane, and type out `1+1`. Hit **`Enter`** to run the code. You should see your code echoed, and then the value of `2` returned.
 
-Now click into your blank script, and type out `1+1`. With your cursor on that line, hit **`Cmd`**+**`Enter`** (`Mac`) or **`Ctrl`**+**`Enter`** (`Windows` and `Linux`) to run the code. You will see that your code was sent from the script to the console, where it returned a value of `2`, just like when you ran your code directly in the console.
+Now click into your blank script, and type out `1+1`. With your cursor on that line, hit **`Cmd+Enter`** (`Mac`) or **`Ctrl+Enter`** (`Windows` and `Linux`) to run the code. You will see that your code was sent from the script to the console, where it returned a value of `2`, just like when you ran your code directly in the console.
 
 ::: keypoints
 -   `R` is a programming language and software used to run commands in that language
