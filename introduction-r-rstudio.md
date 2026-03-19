@@ -138,7 +138,7 @@ One of the benefits to using RStudio Projects is that they automatically set the
 
 There are a few settings we will need to adjust to improve the reproducibility of our work. Go to your menu bar, then click `Tools → Global Options` to open up the `Options` window.
 
-![](fig/rstudio_settings.png){alt="Screenshot of the RStudio Global Options, with \"Restore .RData into workspace at startup"unchecked, and \"Save workspace to .RData on exit"set to \"Never"\."}
+![](fig/rstudio_settings.png){alt="Screenshot of RStudio Global Options with Restore .RData into workspace at startup unchecked and Save workspace to .RData on exit set to Never"}
 
 Make sure your settings match those highlighted in yellow. We don't want `RStudio` to store the current status of our R session and reload it the next time we start`R`. This might sound convenient, but for the sake of reproducibility, we want to start with a clean, empty R session every time we work. That means that we have to record everything we do into scripts, save any data we need into files, and store outputs like images as files. We want to get used to everything we generate in a single `R` session being *disposable*. We want our scripts to be able to regenerate things we need, other than "raw materials" like data.
 
@@ -170,7 +170,7 @@ Within our project folder (`intro_r`), we first have a `scripts` folder to hold 
 
 Let's start making our new script folder. Go to the **`Files`** pane (bottom right), and check the current directory. You should be in the directory for the project you just made, in our case `intro_r`. You shouldn't see any folders in here yet.
 
-![](fig/files_pane.png){alt=RStudio Files pane."}
+![](fig/files_pane.png){alt="RStudio Files pane."}
 
 Next, click the **`New Folder`** button, and type in `scripts` to generate your `scripts` folder. It should appear in the Files list now. It's worth noting that the **`Files`** pane helps you create, find, and open files, but moving through your files won't change where the **working directory** of your project is.
 
