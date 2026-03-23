@@ -1,106 +1,32 @@
-R-ecology-lesson was written by:
-François Michonneau
-Tracy Teal
-Auriel Fournier
-Brian Seok
-Adam Obeng
-Aleksandra Natalia Pawlik
-Ana Costa Conrado
-Kara Woo
-Philip Lijnzaad
-Ted Hart
-Ethan P White
-Ben Marwick
-Ben Bolker
-Kari L Jordan
-Jaime Ashander
-Harriet Dashnow
-Kate Hertweck
-Sergio Martínez Cuesta
-Erin Alison Becker
-Stéphane Guillou
-Alexey Shiklomanov
-David Klinges
-Gabriel J. Odom
-Martin Jean
-K. A. S. Mislan
-Kayla Johnson
-Najko Jahn
-Sara Mannheimer
-Steve Pederson
-Alex Pletzer
-Anne Fouilloux
-Callin Switzer
-Christie Bahlai
-Daijiang Li
-Dan Kerchner
-Francisco Rodriguez-Sanchez
-Gede Primahadi Wijaya Rajeg
-Hao Ye
-Hugo Tavares
-Katrin Leinweber
-Kayla Peck
-Mauro Luciano Lepore
-Stacey Hancock
-Thomas Sandmann
-Toby Hodges
-Katrin Tirok
-Martin Jean
-Alistair Bailey
-Achaz von Hardenberg
-Allison Theobold
-April Wright
-Arindam Basu
-Carolina Johnson
-Carolyn Voter
-Catherine Hulshof
-Daina Bouquin
-Danielle Quinn
-Darya Vanichkina
-Earle Wilson
-Eli Strauss
-Ellen Bledsoe
-Emilia Gan
-Dmytro Fishman
-Fred Boehm
-Gergana Daskalova
-Hugo Tavares
-Jake Kaupp
-Jillian Dunic
-Jonathan Keane
-Joseph Stachelek
-Joshua R. Herr
-Justin Millar
-Katie Lotterhos
-Karen Cranston
-Kenan Direk
-Kristian Tylén
-Kyriakos Chatzidimitriou
-Lachlan Deer
-Leszek Tarkowski
-Marco Chiapello
-Marie-Helene Burle
-Markus Ankenbrand
-Max Czapanskiy
-Melissa Moreno
-Michael Culshaw-Maurer
-Michael Koontz
-Michael Weisner
-Myfanwy Johnston
-Nick Carchedi
-Olivia Rata Burge
-Paul Harrison
-Peter Humburg
-Richard Pauloo
-Ryan Peek
-Robin Elahi
-Sandra Cortijo
-sfn_brt
-Shivshankar Umashankar
-Shubhang Goswami
-Sumedh
-Scott Yanco
-Tara Webster
-Taylor Reiter
-Will Pearse
-Ye Li
+# IRIM R Workshops: Introduction to R
+# Authors and Contributors
+
+## Lesson Adaptation
+
+Kathryn Napier
+  Independent Research Institute of Mongolia (IRIM)
+  https://github.com/kathrynnapier
+
+Kathryn Napier adapted and developed this workshop series for IRIM, combining
+and modifying material from the two Carpentries source lessons listed below.
+
+
+## Source Lesson 1: Data Analysis and Visualization in R for Ecologists
+
+Original lesson: https://datacarpentry.github.io/R-ecology-lesson/
+Repository:      https://github.com/datacarpentry/R-ecology-lesson
+
+Authors - see Zenodo record https://doi.org/10.5281/zenodo.1250065
+
+## Source Lesson 2: R for Social Scientists
+
+Original lesson: https://datacarpentry.github.io/r-socialsci/
+Repository:      https://github.com/datacarpentry/r-socialsci
+
+Authors - see Zenodo record https://doi.org/10.5281/zenodo.597005
+
+## The Carpentries
+
+Both source lessons are part of the Data Carpentry curriculum, maintained by
+The Carpentries (https://carpentries.org). Carpentries lessons are licensed
+under the Creative Commons Attribution (CC BY 4.0) licence.
