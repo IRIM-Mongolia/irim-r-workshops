@@ -2,6 +2,7 @@
 "CITATION.Rmd" "98c744817354e3830f876dfc7fa90a5a" "site/built/CITATION.md" "2026-03-18"
 "CODE_OF_CONDUCT.md" "ee42ccc02a38bfdb396be319bef30d61" "site/built/CODE_OF_CONDUCT.md" "2026-03-18"
 "LICENSE.md" "4593e1c8e5f6a6cb7f60655f2ea329e3" "site/built/LICENSE.md" "2026-03-18"
+"MAINTAINERS.md" "9fe464a9ac728ae55c81656b2beb22d9" "site/built/MAINTAINERS.md" "2026-03-23"
 "config.yaml" "a1820c64f4b4642240d925a94970e417" "site/built/config.yaml" "2026-03-18"
 "index.md" "a69af706d545e58529a780cd6ed5ecd6" "site/built/index.md" "2026-03-18"
 "episodes/introduction-r-rstudio.Rmd" "3df10cad38665ec8c80bae72235ff605" "site/built/introduction-r-rstudio.md" "2026-03-19"
