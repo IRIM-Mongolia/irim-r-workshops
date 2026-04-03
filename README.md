@@ -1,6 +1,6 @@
 # *IRIM R Workshops: Introduction to `R`*
 
-This is an introduction to `R designed for` participants with no programming experience. The workshop starts with information about the R programming language and the RStudio interface.
+This is an introduction to `R` designed for participants with no programming experience. The workshop starts with information about the `R` programming language and the `RStudio` interface.
 
 The workshops contain material adapted from from several [Carpentries](https://carpentries.org/) resources, including:
 
