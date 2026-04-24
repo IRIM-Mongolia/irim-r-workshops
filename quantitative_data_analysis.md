@@ -25,13 +25,13 @@ editor_options:
 -   How can I run multiple tests at once?
 :::
 
-## Other Materials
+## Other materials
 
-[See Workshop 5 Slides here]()
+[See Workshop 5 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
 
-<!-- [See Workshop 5 recording here]() -->
+[See Workshop 5 recording here - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
-## Dataset overview
+## Dataset Overview
 
 This workshop uses a generated (made-up) dataset containing 1005
 responses to a survey on flexible working and work-life balance, with a
@@ -41,136 +41,151 @@ The schema is included in the following table.
 
 **Flexible working and work-life balance survey data schema**
 
-+-----------------+------------+---------------+-------------------------+
-| Section         | Variable   | Type          | Description             |
-+=================+============+===============+=========================+
-| A               | A1 -       | Factor (male, | What is your gender?    |
-| (Demographics)  | Gender     | female)       |                         |
-+-----------------+------------+---------------+-------------------------+
-|                 | A2 - Age   | Ordered       | What is your age?       |
-|                 | Group      | Factor        |                         |
-|                 |            | (18-34,       |                         |
-|                 |            | 35-54, 55+)   |                         |
-+-----------------+------------+---------------+-------------------------+
-|                 | A3 -       | Ordered       | What is your highest    |
-|                 | Education  | Factor        | level of education?     |
-|                 |            | (primary,     |                         |
-|                 |            | secondary,    |                         |
-|                 |            | tertiary or   |                         |
-|                 |            | higher)       |                         |
-+-----------------+------------+---------------+-------------------------+
-|                 | A4 -       | Ordered       | What is your annual     |
-|                 | Income     | Factor        | income?                 |
-|                 |            |               |                         |
-|                 |            | (low, middle, |                         |
-|                 |            | high)         |                         |
-+-----------------+------------+---------------+-------------------------+
-|                 | A5 -       | Factor        | What is your region of  |
-|                 | Region     | (region 1, 2, | residence?              |
-|                 |            | 3)            |                         |
-+-----------------+------------+---------------+-------------------------+
-|                 | A6 - Area  | Factor        | Is your region of       |
-|                 | Type       | (rural,       | residence urban or      |
-|                 |            | urban)        | rural?                  |
-+-----------------+------------+---------------+-------------------------+
-| B (Policy       | B1         | Character     | What should be the main |
-| Views)          |            |               | goal of flexible        |
-|                 |            |               | working policies?       |
-|                 |            |               | (Select up to 3)        |
-+-----------------+------------+---------------+-------------------------+
-|                 | B1_1       | Logical       | Improve employee        |
-|                 |            |               | wellbeing & work-life   |
-|                 |            |               | balance                 |
-+-----------------+------------+---------------+-------------------------+
-|                 | B1_2       | Logical       | Boost productivity &    |
-|                 |            |               | business performance    |
-+-----------------+------------+---------------+-------------------------+
-|                 | B1_3       | Logical       | Attract & retain top    |
-|                 |            |               | talent                  |
-+-----------------+------------+---------------+-------------------------+
-|                 | B1_4       | Logical       | Reduce costs & office   |
-|                 |            |               | overhead                |
-+-----------------+------------+---------------+-------------------------+
-|                 | B1_5       | Logical       | Support diversity,      |
-|                 |            |               | equity & inclusion      |
-+-----------------+------------+---------------+-------------------------+
-| B (Policy       | B2         | Character     | Who should benefit most |
-| Views)          |            |               | from flexible working   |
-|                 |            |               | arrangements (Select up |
-|                 |            |               | to 3)                   |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_1       | Logical       | All employees equally,  |
-|                 |            |               | regardless of role or   |
-|                 |            |               | seniority               |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_2       | Logical       | Parents and caregivers  |
-|                 |            |               | with dependants         |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_3       | Logical       | Employees with          |
-|                 |            |               | disabilities or chronic |
-|                 |            |               | health conditions       |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_4       | Logical       | Junior/entry-level      |
-|                 |            |               | employees building      |
-|                 |            |               | their careers           |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_5       | Logical       | Senior/experienced      |
-|                 |            |               | employees with proven   |
-|                 |            |               | track records           |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_6       | Logical       | Employees with long     |
-|                 |            |               | commutes or remote      |
-|                 |            |               | locations               |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_7       | Logical       | Employees from          |
-|                 |            |               | underrepresented or     |
-|                 |            |               | marginalised groups     |
-+-----------------+------------+---------------+-------------------------+
-|                 | B2_8       | Logical       | High performers and     |
-|                 |            |               | those meeting targets   |
-|                 |            |               | consistently            |
-+-----------------+------------+---------------+-------------------------+
-| C (Likert       | C1         | Integer (1-5) | How satisfied are you   |
-| Scales)         |            |               | with your current       |
-|                 |            |               | flexible working        |
-|                 |            |               | arrangements (1 least   |
-|                 |            |               | satisfied, 5 most       |
-|                 |            |               | satisifed)              |
-+-----------------+------------+---------------+-------------------------+
-|                 | C2         | Integer (1-5) | To what extent do       |
-|                 |            |               | flexible working        |
-|                 |            |               | options improve your    |
-|                 |            |               | work-life balance? (1   |
-|                 |            |               | very little, 5 very     |
-|                 |            |               | much)                   |
-+-----------------+------------+---------------+-------------------------+
-|                 | C3         | Integer (1-5) | How strongly do you     |
-|                 |            |               | agree that your         |
-|                 |            |               | employer supports       |
-|                 |            |               | flexible working in     |
-|                 |            |               | practice (1 very        |
-|                 |            |               | little, 5 very much)    |
-+-----------------+------------+---------------+-------------------------+
-| D (Con tinuous) | D1         | Numeric       | What is your commute    |
-|                 |            |               | time to work in         |
-|                 |            |               | minutes?                |
-+-----------------+------------+---------------+-------------------------+
-| D (Con tinuous) | D2         | Numeric       | What is your commute    |
-|                 |            |               | distance in km?         |
-+-----------------+------------+---------------+-------------------------+
-| E (O utcomes)   | E1         | Ordered       | How satisfied are you   |
-|                 |            | Factor        | with your current work  |
-|                 |            |               | life balance? (strongly |
-|                 |            |               | dissatisfied,           |
-|                 |            |               | dissatisfied, neutral,  |
-|                 |            |               | satisfied, strongly     |
-|                 |            |               | satisfied)              |
-+-----------------+------------+---------------+-------------------------+
-| E               | E2         | Free text     | What makes you most     |
-|                 |            |               | satisfied in your       |
-|                 |            |               | personal life? (free    |
-|                 |            |               | text)                   |
-+-----------------+------------+---------------+-------------------------+
++--------------+--------------+--------------+---------------------+
+| Section      | Variable     | Type         | Description         |
++==============+==============+==============+=====================+
+| A            | A1 - Gender  | Factor       | What is your        |
+| (D           |              | (male,       | gender?             |
+| emographics) |              | female)      |                     |
++--------------+--------------+--------------+---------------------+
+|              | A2 - Age     | Ordered      | What is your age?   |
+|              | Group        | Factor       |                     |
+|              |              | (18-34,      |                     |
+|              |              | 35-54, 55+)  |                     |
++--------------+--------------+--------------+---------------------+
+|              | A3 -         | Ordered      | What is your        |
+|              | Education    | Factor       | highest level of    |
+|              |              | (primary,    | education?          |
+|              |              | secondary,   |                     |
+|              |              | tertiary or  |                     |
+|              |              | higher)      |                     |
++--------------+--------------+--------------+---------------------+
+|              | A4 - Income  | Ordered      | What is your annual |
+|              |              | Factor       | income?             |
+|              |              |              |                     |
+|              |              | (low,        |                     |
+|              |              | middle,      |                     |
+|              |              | high)        |                     |
++--------------+--------------+--------------+---------------------+
+|              | A5 - Region  | Factor       | What is your region |
+|              |              | (region 1,   | of residence?       |
+|              |              | 2, 3)        |                     |
++--------------+--------------+--------------+---------------------+
+|              | A6 - Area    | Factor       | Is your region of   |
+|              | Type         | (rural,      | residence urban or  |
+|              |              | urban)       | rural?              |
++--------------+--------------+--------------+---------------------+
+| B (Policy    | B1           | Character    | What should be the  |
+| Views)       |              |              | main goal of        |
+|              |              |              | flexible working    |
+|              |              |              | policies? (Select   |
+|              |              |              | up to 3)            |
++--------------+--------------+--------------+---------------------+
+|              | B1_1         | Logical      | Improve employee    |
+|              |              |              | wellbeing &         |
+|              |              |              | work-life balance   |
++--------------+--------------+--------------+---------------------+
+|              | B1_2         | Logical      | Boost productivity  |
+|              |              |              | & business          |
+|              |              |              | performance         |
++--------------+--------------+--------------+---------------------+
+|              | B1_3         | Logical      | Attract & retain    |
+|              |              |              | top talent          |
++--------------+--------------+--------------+---------------------+
+|              | B1_4         | Logical      | Reduce costs &      |
+|              |              |              | office overhead     |
++--------------+--------------+--------------+---------------------+
+|              | B1_5         | Logical      | Support diversity,  |
+|              |              |              | equity & inclusion  |
++--------------+--------------+--------------+---------------------+
+| B (Policy    | B2           | Character    | Who should benefit  |
+| Views)       |              |              | most from flexible  |
+|              |              |              | working             |
+|              |              |              | arrangements        |
+|              |              |              | (Select up to 3)    |
++--------------+--------------+--------------+---------------------+
+|              | B2_1         | Logical      | All employees       |
+|              |              |              | equally, regardless |
+|              |              |              | of role or          |
+|              |              |              | seniority           |
++--------------+--------------+--------------+---------------------+
+|              | B2_2         | Logical      | Parents and         |
+|              |              |              | caregivers with     |
+|              |              |              | dependants          |
++--------------+--------------+--------------+---------------------+
+|              | B2_3         | Logical      | Employees with      |
+|              |              |              | disabilities or     |
+|              |              |              | chronic health      |
+|              |              |              | conditions          |
++--------------+--------------+--------------+---------------------+
+|              | B2_4         | Logical      | Junior/entry-level  |
+|              |              |              | employees building  |
+|              |              |              | their careers       |
++--------------+--------------+--------------+---------------------+
+|              | B2_5         | Logical      | Senior/experienced  |
+|              |              |              | employees with      |
+|              |              |              | proven track        |
+|              |              |              | records             |
++--------------+--------------+--------------+---------------------+
+|              | B2_6         | Logical      | Employees with long |
+|              |              |              | commutes or remote  |
+|              |              |              | locations           |
++--------------+--------------+--------------+---------------------+
+|              | B2_7         | Logical      | Employees from      |
+|              |              |              | underrepresented or |
+|              |              |              | marginalised groups |
++--------------+--------------+--------------+---------------------+
+|              | B2_8         | Logical      | High performers and |
+|              |              |              | those meeting       |
+|              |              |              | targets             |
+|              |              |              | consistently        |
++--------------+--------------+--------------+---------------------+
+| C (Likert    | C1           | Integer      | How satisfied are   |
+| Scales)      |              | (1-5)        | you with your       |
+|              |              |              | current flexible    |
+|              |              |              | working             |
+|              |              |              | arrangements (1     |
+|              |              |              | least satisfied, 5  |
+|              |              |              | most satisifed)     |
++--------------+--------------+--------------+---------------------+
+|              | C2           | Integer      | To what extent do   |
+|              |              | (1-5)        | flexible working    |
+|              |              |              | options improve     |
+|              |              |              | your work-life      |
+|              |              |              | balance? (1 very    |
+|              |              |              | little, 5 very      |
+|              |              |              | much)               |
++--------------+--------------+--------------+---------------------+
+|              | C3           | Integer      | How strongly do you |
+|              |              | (1-5)        | agree that your     |
+|              |              |              | employer supports   |
+|              |              |              | flexible working in |
+|              |              |              | practice (1 very    |
+|              |              |              | little, 5 very      |
+|              |              |              | much)               |
++--------------+--------------+--------------+---------------------+
+| D (Con       | D1           | Numeric      | What is your        |
+| tinuous)     |              |              | commute time to     |
+|              |              |              | work in minutes?    |
++--------------+--------------+--------------+---------------------+
+| D (Con       | D2           | Numeric      | What is your        |
+| tinuous)     |              |              | commute distance in |
+|              |              |              | km?                 |
++--------------+--------------+--------------+---------------------+
+| E (O         | E1           | Ordered      | How satisfied are   |
+| utcomes)     |              | Factor       | you with your       |
+|              |              |              | current work life   |
+|              |              |              | balance? (strongly  |
+|              |              |              | dissatisfied,       |
+|              |              |              | dissatisfied,       |
+|              |              |              | neutral, satisfied, |
+|              |              |              | strongly satisfied) |
++--------------+--------------+--------------+---------------------+
+| E            | E2           | Free text    | What makes you most |
+|              |              |              | satisfied in your   |
+|              |              |              | personal life?      |
+|              |              |              | (free text)         |
++--------------+--------------+--------------+---------------------+
 
 ## Set up
 
@@ -204,18 +219,6 @@ for (pkg in c("tidyverse", "here", "gtsummary")) {
 ```
 
 ``` output
-Loading required namespace: tidyverse
-```
-
-``` output
-Loading required namespace: here
-```
-
-``` output
-Loading required namespace: gtsummary
-```
-
-``` output
 - Querying repositories for available source packages ... Done!
 The following package(s) will be installed:
 - bigD       [0.3.1]
@@ -230,66 +233,40 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m bitops 1.0-9                             [11 kB in 0.24s]
-[32m✔[0m reactR 0.6.1                             [712 kB in 0.25s]
-[32m✔[0m reactable 0.4.5                          [981 kB in 0.25s]
-[32m✔[0m bigD 0.3.1                               [1.3 MB in 0.26s]
-[32m✔[0m juicyjuice 0.1.0                         [1.1 MB in 0.26s]
-[32m✔[0m cards 0.7.1                              [321 kB in 0.26s]
-[32m✔[0m gtsummary 2.5.0                          [935 kB in 0.27s]
-[32m✔[0m cardx 0.3.2                              [200 kB in 0.27s]
-[32m✔[0m gt 1.3.0                                 [3.4 MB in 0.28s]
-Successfully downloaded 9 packages in 0.6 seconds.
+[32m✔[0m bitops 1.0-9                             [11 kB in 0.25s]
+[32m✔[0m cardx 0.3.2                              [200 kB in 0.31s]
+[32m✔[0m juicyjuice 0.1.0                         [1.1 MB in 0.31s]
+[32m✔[0m reactR 0.6.1                             [712 kB in 0.32s]
+[32m✔[0m cards 0.7.1                              [321 kB in 0.33s]
+[32m✔[0m gtsummary 2.5.0                          [935 kB in 0.33s]
+[32m✔[0m reactable 0.4.5                          [981 kB in 0.34s]
+[32m✔[0m bigD 0.3.1                               [1.3 MB in 0.36s]
+[32m✔[0m gt 1.3.0                                 [3.4 MB in 0.37s]
+Successfully downloaded 9 packages in 0.64 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m juicyjuice 0.1.0                         [built from source in 5.7s]
-[32m✔[0m bitops 1.0-9                             [built from source in 8.0s]
-[32m✔[0m reactR 0.6.1                             [built from source in 7.8s]
-[32m✔[0m cards 0.7.1                              [built from source in 23s]
-[32m✔[0m reactable 0.4.5                          [built from source in 9.3s]
-[32m✔[0m bigD 0.3.1                               [built from source in 27s]
-[32m✔[0m cardx 0.3.2                              [built from source in 11s]
-[32m✔[0m gt 1.3.0                                 [built from source in 22s]
-[32m✔[0m gtsummary 2.5.0                          [built from source in 10s]
-Successfully installed 9 packages in 60 seconds.
+[32m✔[0m juicyjuice 0.1.0                         [built from source in 5.5s]
+[32m✔[0m bitops 1.0-9                             [built from source in 7.0s]
+[32m✔[0m reactR 0.6.1                             [built from source in 5.7s]
+[32m✔[0m reactable 0.4.5                          [built from source in 6.5s]
+[32m✔[0m cards 0.7.1                              [built from source in 20s]
+[32m✔[0m bigD 0.3.1                               [built from source in 25s]
+[32m✔[0m cardx 0.3.2                              [built from source in 9.2s]
+[32m✔[0m gt 1.3.0                                 [built from source in 19s]
+[32m✔[0m gtsummary 2.5.0                          [built from source in 8.9s]
+Successfully installed 9 packages in 53 seconds.
 ```
 
 ``` r
 library(tidyverse)
-```
-
-``` output
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.1     ✔ readr     2.2.0
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.2     ✔ tibble    3.3.1
-✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.1     
-```
-
-``` output
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-```
-
-``` r
 library(here)
-```
-
-``` output
-here() starts at /__w/irim-r-workshops/irim-r-workshops/site/built
-```
-
-``` r
 library(gtsummary)
 ```
 
 Then, download the the generated survey dataset using the following
 code:
 
-`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", "data/raw/generated_survey_data.csv", mode = "wb")`
+`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", here("data/raw/generated_survey_data.csv"), mode = "wb")`
 
 Then, read in the survey csv file and preview the data.
 
@@ -475,7 +452,7 @@ tibble [1,005 × 28] (S3: tbl_df/tbl/data.frame)
 
 We have one more column `E1` to convert to a factor. If we're not sure
 of the levels we need to set, we can use `unique` to extract the unique
-responses from the column. You can use the `$` operator to subsest the
+responses from the column. You can use the `$` operator to subset the
 column, or double brackets `[["colname"]]`.
 
 
@@ -528,9 +505,8 @@ levels(survey[["E1"]])
 [4] "Satisfied"             "Strongly satisfied"   
 ```
 
-## Analysis
 
-### Exploratory data analysis
+## Exploratory data analysis
 
 Before running any statistical tests, it is important to carry out some
 exploratory data analysis (EDA) to understand the structure and quality
@@ -541,7 +517,7 @@ types, identify missing values, spot unexpected categories or data entry
 errors, and understand the distribution of responses across key
 variables.
 
-For categorical variables like those in this survey data, frequency
+For categorical variables like those in the survey data, frequency
 tables and proportion summaries reveal how respondents are spread across
 groups, which is important, as some tests (like chi-square) require
 minimum cell counts to be valid.
@@ -595,23 +571,23 @@ survey %>%
   )
 ```
 
-<!--html_preserve--><div id="lwkhbffmhi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lwkhbffmhi table {
+<!--html_preserve--><div id="cyqufpunty" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cyqufpunty table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lwkhbffmhi thead, #lwkhbffmhi tbody, #lwkhbffmhi tfoot, #lwkhbffmhi tr, #lwkhbffmhi td, #lwkhbffmhi th {
+#cyqufpunty thead, #cyqufpunty tbody, #cyqufpunty tfoot, #cyqufpunty tr, #cyqufpunty td, #cyqufpunty th {
   border-style: none;
 }
 
-#lwkhbffmhi p {
+#cyqufpunty p {
   margin: 0;
   padding: 0;
 }
 
-#lwkhbffmhi .gt_table {
+#cyqufpunty .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -637,12 +613,12 @@ survey %>%
   border-left-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_caption {
+#cyqufpunty .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lwkhbffmhi .gt_title {
+#cyqufpunty .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -654,7 +630,7 @@ survey %>%
   border-bottom-width: 0;
 }
 
-#lwkhbffmhi .gt_subtitle {
+#cyqufpunty .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -666,7 +642,7 @@ survey %>%
   border-top-width: 0;
 }
 
-#lwkhbffmhi .gt_heading {
+#cyqufpunty .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -678,13 +654,13 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_bottom_border {
+#cyqufpunty .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_col_headings {
+#cyqufpunty .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -699,7 +675,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_col_heading {
+#cyqufpunty .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -719,7 +695,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#lwkhbffmhi .gt_column_spanner_outer {
+#cyqufpunty .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -731,15 +707,15 @@ survey %>%
   padding-right: 4px;
 }
 
-#lwkhbffmhi .gt_column_spanner_outer:first-child {
+#cyqufpunty .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lwkhbffmhi .gt_column_spanner_outer:last-child {
+#cyqufpunty .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lwkhbffmhi .gt_column_spanner {
+#cyqufpunty .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -751,11 +727,11 @@ survey %>%
   width: 100%;
 }
 
-#lwkhbffmhi .gt_spanner_row {
+#cyqufpunty .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lwkhbffmhi .gt_group_heading {
+#cyqufpunty .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -781,7 +757,7 @@ survey %>%
   text-align: left;
 }
 
-#lwkhbffmhi .gt_empty_group_heading {
+#cyqufpunty .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -796,15 +772,15 @@ survey %>%
   vertical-align: middle;
 }
 
-#lwkhbffmhi .gt_from_md > :first-child {
+#cyqufpunty .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lwkhbffmhi .gt_from_md > :last-child {
+#cyqufpunty .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lwkhbffmhi .gt_row {
+#cyqufpunty .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -823,7 +799,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#lwkhbffmhi .gt_stub {
+#cyqufpunty .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -836,7 +812,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#lwkhbffmhi .gt_stub_row_group {
+#cyqufpunty .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -850,15 +826,15 @@ survey %>%
   vertical-align: top;
 }
 
-#lwkhbffmhi .gt_row_group_first td {
+#cyqufpunty .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lwkhbffmhi .gt_row_group_first th {
+#cyqufpunty .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lwkhbffmhi .gt_summary_row {
+#cyqufpunty .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -868,16 +844,16 @@ survey %>%
   padding-right: 5px;
 }
 
-#lwkhbffmhi .gt_first_summary_row {
+#cyqufpunty .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_first_summary_row.thick {
+#cyqufpunty .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lwkhbffmhi .gt_last_summary_row {
+#cyqufpunty .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -887,7 +863,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_grand_summary_row {
+#cyqufpunty .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -897,7 +873,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#lwkhbffmhi .gt_first_grand_summary_row {
+#cyqufpunty .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -907,7 +883,7 @@ survey %>%
   border-top-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_last_grand_summary_row_top {
+#cyqufpunty .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -917,11 +893,11 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_striped {
+#cyqufpunty .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lwkhbffmhi .gt_table_body {
+#cyqufpunty .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -930,7 +906,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_footnotes {
+#cyqufpunty .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -944,7 +920,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_footnote {
+#cyqufpunty .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -953,7 +929,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#lwkhbffmhi .gt_sourcenotes {
+#cyqufpunty .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -967,7 +943,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#lwkhbffmhi .gt_sourcenote {
+#cyqufpunty .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -975,72 +951,72 @@ survey %>%
   padding-right: 5px;
 }
 
-#lwkhbffmhi .gt_left {
+#cyqufpunty .gt_left {
   text-align: left;
 }
 
-#lwkhbffmhi .gt_center {
+#cyqufpunty .gt_center {
   text-align: center;
 }
 
-#lwkhbffmhi .gt_right {
+#cyqufpunty .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lwkhbffmhi .gt_font_normal {
+#cyqufpunty .gt_font_normal {
   font-weight: normal;
 }
 
-#lwkhbffmhi .gt_font_bold {
+#cyqufpunty .gt_font_bold {
   font-weight: bold;
 }
 
-#lwkhbffmhi .gt_font_italic {
+#cyqufpunty .gt_font_italic {
   font-style: italic;
 }
 
-#lwkhbffmhi .gt_super {
+#cyqufpunty .gt_super {
   font-size: 65%;
 }
 
-#lwkhbffmhi .gt_footnote_marks {
+#cyqufpunty .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lwkhbffmhi .gt_asterisk {
+#cyqufpunty .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lwkhbffmhi .gt_indent_1 {
+#cyqufpunty .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lwkhbffmhi .gt_indent_2 {
+#cyqufpunty .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lwkhbffmhi .gt_indent_3 {
+#cyqufpunty .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lwkhbffmhi .gt_indent_4 {
+#cyqufpunty .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lwkhbffmhi .gt_indent_5 {
+#cyqufpunty .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lwkhbffmhi .katex-display {
+#cyqufpunty .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lwkhbffmhi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cyqufpunty div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1119,7 +1095,7 @@ survey %>%
 </table>
 </div><!--/html_preserve-->
 
-## Breakdown by demographics
+### Breakdown by demographics
 
 We can also use the `tbl_summary()` function to automatically detects
 variable types and calculate appropriate statistics; in this case,
@@ -1145,23 +1121,23 @@ survey %>%
   bold_labels()
 ```
 
-<!--html_preserve--><div id="icojqawcdd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#icojqawcdd table {
+<!--html_preserve--><div id="wvnltdgyzj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wvnltdgyzj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#icojqawcdd thead, #icojqawcdd tbody, #icojqawcdd tfoot, #icojqawcdd tr, #icojqawcdd td, #icojqawcdd th {
+#wvnltdgyzj thead, #wvnltdgyzj tbody, #wvnltdgyzj tfoot, #wvnltdgyzj tr, #wvnltdgyzj td, #wvnltdgyzj th {
   border-style: none;
 }
 
-#icojqawcdd p {
+#wvnltdgyzj p {
   margin: 0;
   padding: 0;
 }
 
-#icojqawcdd .gt_table {
+#wvnltdgyzj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1187,12 +1163,12 @@ survey %>%
   border-left-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_caption {
+#wvnltdgyzj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#icojqawcdd .gt_title {
+#wvnltdgyzj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1204,7 +1180,7 @@ survey %>%
   border-bottom-width: 0;
 }
 
-#icojqawcdd .gt_subtitle {
+#wvnltdgyzj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1216,7 +1192,7 @@ survey %>%
   border-top-width: 0;
 }
 
-#icojqawcdd .gt_heading {
+#wvnltdgyzj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1228,13 +1204,13 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_bottom_border {
+#wvnltdgyzj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_col_headings {
+#wvnltdgyzj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1249,7 +1225,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_col_heading {
+#wvnltdgyzj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1269,7 +1245,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#icojqawcdd .gt_column_spanner_outer {
+#wvnltdgyzj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1281,15 +1257,15 @@ survey %>%
   padding-right: 4px;
 }
 
-#icojqawcdd .gt_column_spanner_outer:first-child {
+#wvnltdgyzj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#icojqawcdd .gt_column_spanner_outer:last-child {
+#wvnltdgyzj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#icojqawcdd .gt_column_spanner {
+#wvnltdgyzj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1301,11 +1277,11 @@ survey %>%
   width: 100%;
 }
 
-#icojqawcdd .gt_spanner_row {
+#wvnltdgyzj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#icojqawcdd .gt_group_heading {
+#wvnltdgyzj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1331,7 +1307,7 @@ survey %>%
   text-align: left;
 }
 
-#icojqawcdd .gt_empty_group_heading {
+#wvnltdgyzj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1346,15 +1322,15 @@ survey %>%
   vertical-align: middle;
 }
 
-#icojqawcdd .gt_from_md > :first-child {
+#wvnltdgyzj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#icojqawcdd .gt_from_md > :last-child {
+#wvnltdgyzj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#icojqawcdd .gt_row {
+#wvnltdgyzj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1373,7 +1349,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#icojqawcdd .gt_stub {
+#wvnltdgyzj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1386,7 +1362,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#icojqawcdd .gt_stub_row_group {
+#wvnltdgyzj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1400,15 +1376,15 @@ survey %>%
   vertical-align: top;
 }
 
-#icojqawcdd .gt_row_group_first td {
+#wvnltdgyzj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#icojqawcdd .gt_row_group_first th {
+#wvnltdgyzj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#icojqawcdd .gt_summary_row {
+#wvnltdgyzj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1418,16 +1394,16 @@ survey %>%
   padding-right: 5px;
 }
 
-#icojqawcdd .gt_first_summary_row {
+#wvnltdgyzj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_first_summary_row.thick {
+#wvnltdgyzj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#icojqawcdd .gt_last_summary_row {
+#wvnltdgyzj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1437,7 +1413,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_grand_summary_row {
+#wvnltdgyzj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1447,7 +1423,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#icojqawcdd .gt_first_grand_summary_row {
+#wvnltdgyzj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1457,7 +1433,7 @@ survey %>%
   border-top-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_last_grand_summary_row_top {
+#wvnltdgyzj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1467,11 +1443,11 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_striped {
+#wvnltdgyzj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#icojqawcdd .gt_table_body {
+#wvnltdgyzj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1480,7 +1456,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_footnotes {
+#wvnltdgyzj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1494,7 +1470,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_footnote {
+#wvnltdgyzj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1503,7 +1479,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#icojqawcdd .gt_sourcenotes {
+#wvnltdgyzj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1517,7 +1493,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#icojqawcdd .gt_sourcenote {
+#wvnltdgyzj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1525,72 +1501,72 @@ survey %>%
   padding-right: 5px;
 }
 
-#icojqawcdd .gt_left {
+#wvnltdgyzj .gt_left {
   text-align: left;
 }
 
-#icojqawcdd .gt_center {
+#wvnltdgyzj .gt_center {
   text-align: center;
 }
 
-#icojqawcdd .gt_right {
+#wvnltdgyzj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#icojqawcdd .gt_font_normal {
+#wvnltdgyzj .gt_font_normal {
   font-weight: normal;
 }
 
-#icojqawcdd .gt_font_bold {
+#wvnltdgyzj .gt_font_bold {
   font-weight: bold;
 }
 
-#icojqawcdd .gt_font_italic {
+#wvnltdgyzj .gt_font_italic {
   font-style: italic;
 }
 
-#icojqawcdd .gt_super {
+#wvnltdgyzj .gt_super {
   font-size: 65%;
 }
 
-#icojqawcdd .gt_footnote_marks {
+#wvnltdgyzj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#icojqawcdd .gt_asterisk {
+#wvnltdgyzj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#icojqawcdd .gt_indent_1 {
+#wvnltdgyzj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#icojqawcdd .gt_indent_2 {
+#wvnltdgyzj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#icojqawcdd .gt_indent_3 {
+#wvnltdgyzj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#icojqawcdd .gt_indent_4 {
+#wvnltdgyzj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#icojqawcdd .gt_indent_5 {
+#wvnltdgyzj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#icojqawcdd .katex-display {
+#wvnltdgyzj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#icojqawcdd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wvnltdgyzj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1780,7 +1756,9 @@ N = 422</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 </table>
 </div><!--/html_preserve-->
 
-We can also look at the mean and standard deviation of our continuous variables, stratified by demographics. We'll look at variables `D1` and `D2` by age group, `A2`.
+We can also look at the mean and standard deviation of our continuous
+variables, stratified by demographics. We'll look at variables `D1` and
+`D2` by age group, `A2`.
 
 
 ``` r
@@ -1804,23 +1782,23 @@ survey %>%
   bold_labels()
 ```
 
-<!--html_preserve--><div id="eprjvumema" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eprjvumema table {
+<!--html_preserve--><div id="kfkgmsaeay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kfkgmsaeay table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eprjvumema thead, #eprjvumema tbody, #eprjvumema tfoot, #eprjvumema tr, #eprjvumema td, #eprjvumema th {
+#kfkgmsaeay thead, #kfkgmsaeay tbody, #kfkgmsaeay tfoot, #kfkgmsaeay tr, #kfkgmsaeay td, #kfkgmsaeay th {
   border-style: none;
 }
 
-#eprjvumema p {
+#kfkgmsaeay p {
   margin: 0;
   padding: 0;
 }
 
-#eprjvumema .gt_table {
+#kfkgmsaeay .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1846,12 +1824,12 @@ survey %>%
   border-left-color: #D3D3D3;
 }
 
-#eprjvumema .gt_caption {
+#kfkgmsaeay .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eprjvumema .gt_title {
+#kfkgmsaeay .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1863,7 +1841,7 @@ survey %>%
   border-bottom-width: 0;
 }
 
-#eprjvumema .gt_subtitle {
+#kfkgmsaeay .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1875,7 +1853,7 @@ survey %>%
   border-top-width: 0;
 }
 
-#eprjvumema .gt_heading {
+#kfkgmsaeay .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1887,13 +1865,13 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#eprjvumema .gt_bottom_border {
+#kfkgmsaeay .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eprjvumema .gt_col_headings {
+#kfkgmsaeay .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1908,7 +1886,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#eprjvumema .gt_col_heading {
+#kfkgmsaeay .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1928,7 +1906,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#eprjvumema .gt_column_spanner_outer {
+#kfkgmsaeay .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1940,15 +1918,15 @@ survey %>%
   padding-right: 4px;
 }
 
-#eprjvumema .gt_column_spanner_outer:first-child {
+#kfkgmsaeay .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eprjvumema .gt_column_spanner_outer:last-child {
+#kfkgmsaeay .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eprjvumema .gt_column_spanner {
+#kfkgmsaeay .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1960,11 +1938,11 @@ survey %>%
   width: 100%;
 }
 
-#eprjvumema .gt_spanner_row {
+#kfkgmsaeay .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eprjvumema .gt_group_heading {
+#kfkgmsaeay .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1990,7 +1968,7 @@ survey %>%
   text-align: left;
 }
 
-#eprjvumema .gt_empty_group_heading {
+#kfkgmsaeay .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2005,15 +1983,15 @@ survey %>%
   vertical-align: middle;
 }
 
-#eprjvumema .gt_from_md > :first-child {
+#kfkgmsaeay .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eprjvumema .gt_from_md > :last-child {
+#kfkgmsaeay .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eprjvumema .gt_row {
+#kfkgmsaeay .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2032,7 +2010,7 @@ survey %>%
   overflow-x: hidden;
 }
 
-#eprjvumema .gt_stub {
+#kfkgmsaeay .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2045,7 +2023,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#eprjvumema .gt_stub_row_group {
+#kfkgmsaeay .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2059,15 +2037,15 @@ survey %>%
   vertical-align: top;
 }
 
-#eprjvumema .gt_row_group_first td {
+#kfkgmsaeay .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eprjvumema .gt_row_group_first th {
+#kfkgmsaeay .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eprjvumema .gt_summary_row {
+#kfkgmsaeay .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2077,16 +2055,16 @@ survey %>%
   padding-right: 5px;
 }
 
-#eprjvumema .gt_first_summary_row {
+#kfkgmsaeay .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eprjvumema .gt_first_summary_row.thick {
+#kfkgmsaeay .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eprjvumema .gt_last_summary_row {
+#kfkgmsaeay .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2096,7 +2074,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#eprjvumema .gt_grand_summary_row {
+#kfkgmsaeay .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2106,7 +2084,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#eprjvumema .gt_first_grand_summary_row {
+#kfkgmsaeay .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2116,7 +2094,7 @@ survey %>%
   border-top-color: #D3D3D3;
 }
 
-#eprjvumema .gt_last_grand_summary_row_top {
+#kfkgmsaeay .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2126,11 +2104,11 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#eprjvumema .gt_striped {
+#kfkgmsaeay .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eprjvumema .gt_table_body {
+#kfkgmsaeay .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2139,7 +2117,7 @@ survey %>%
   border-bottom-color: #D3D3D3;
 }
 
-#eprjvumema .gt_footnotes {
+#kfkgmsaeay .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2153,7 +2131,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#eprjvumema .gt_footnote {
+#kfkgmsaeay .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2162,7 +2140,7 @@ survey %>%
   padding-right: 5px;
 }
 
-#eprjvumema .gt_sourcenotes {
+#kfkgmsaeay .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2176,7 +2154,7 @@ survey %>%
   border-right-color: #D3D3D3;
 }
 
-#eprjvumema .gt_sourcenote {
+#kfkgmsaeay .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2184,72 +2162,72 @@ survey %>%
   padding-right: 5px;
 }
 
-#eprjvumema .gt_left {
+#kfkgmsaeay .gt_left {
   text-align: left;
 }
 
-#eprjvumema .gt_center {
+#kfkgmsaeay .gt_center {
   text-align: center;
 }
 
-#eprjvumema .gt_right {
+#kfkgmsaeay .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eprjvumema .gt_font_normal {
+#kfkgmsaeay .gt_font_normal {
   font-weight: normal;
 }
 
-#eprjvumema .gt_font_bold {
+#kfkgmsaeay .gt_font_bold {
   font-weight: bold;
 }
 
-#eprjvumema .gt_font_italic {
+#kfkgmsaeay .gt_font_italic {
   font-style: italic;
 }
 
-#eprjvumema .gt_super {
+#kfkgmsaeay .gt_super {
   font-size: 65%;
 }
 
-#eprjvumema .gt_footnote_marks {
+#kfkgmsaeay .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eprjvumema .gt_asterisk {
+#kfkgmsaeay .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eprjvumema .gt_indent_1 {
+#kfkgmsaeay .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eprjvumema .gt_indent_2 {
+#kfkgmsaeay .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eprjvumema .gt_indent_3 {
+#kfkgmsaeay .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eprjvumema .gt_indent_4 {
+#kfkgmsaeay .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eprjvumema .gt_indent_5 {
+#kfkgmsaeay .gt_indent_5 {
   text-indent: 25px;
 }
 
-#eprjvumema .katex-display {
+#kfkgmsaeay .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#eprjvumema div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kfkgmsaeay div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2293,14 +2271,27 @@ N = 92</span><span class="gt_footnote_marks" style="white-space:nowrap;font-styl
 </table>
 </div><!--/html_preserve-->
 
-
 ::: callout
 ## Statistical tests used by `gtsummary`
-When`add_p()` is called, `gtsummary` automatically selects a statistical test based on the variable type and the number of groups being compared. It defaults to conservative non-parametric tests for continuous variables. Specifically, for continuous variables with two groups it applies a Wilcoxon rank-sum test, and with three or more groups it applies a Kruskal-Wallis test. 
 
-For categorical and logical variables, it uses a chi-square test, switching automatically to Fisher's exact test when expected cell counts are too small (typically when any cell has an expected count below 5). 
- 
-These defaults can be overridden using the test argument in add_p(). For example, specifying `test = list(all_continuous() ~ "aov")` to use ANOVA instead of Kruskal-Wallis. 
+When`add_p()` is called, `gtsummary` automatically selects a statistical
+test based on the variable type and the number of groups being compared.
+It defaults to conservative non-parametric tests for continuous
+variables. Specifically, for continuous variables with two groups it
+applies a Wilcoxon rank-sum test, and with three or more groups it
+applies a Kruskal-Wallis test.
 
-The choice of whether to accept the default or override it should be guided by checking your distributions first. If continuous variables are approximately normally distributed and sample sizes are adequate, parametric tests (t-test, ANOVA) are appropriate and will generally be more statistically powerful than their non-parametric equivalents.
+For categorical and logical variables, it uses a chi-square test,
+switching automatically to Fisher's exact test when expected cell counts
+are too small (typically when any cell has an expected count below 5).
+
+These defaults can be overridden using the test argument in add_p(). For
+example, specifying `test = list(all_continuous() ~ "aov")` to use ANOVA
+instead of Kruskal-Wallis.
+
+The choice of whether to accept the default or override it should be
+guided by checking your distributions first. If continuous variables are
+approximately normally distributed and sample sizes are adequate,
+parametric tests (t-test, ANOVA) are appropriate and will generally be
+more statistically powerful than their non-parametric equivalents.
 :::

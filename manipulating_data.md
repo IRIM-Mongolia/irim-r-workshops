@@ -97,7 +97,11 @@ and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.htm
 
 [See Workshop 4 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQD8TzzpZnW6Q7_8n7MCaM-EAXYeMs7SyqgNyvh2i4HUo8c?e=JyHKD1)
 
-<!-- [See Workshop 4 recording here]() -->
+[See Workshop 4 recording here - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDkmkWGY20ARIQzA0qRPEnaAaQnI801tCFurStStFfWBzo?e=Mmfg4Y)
+
+[See Workshop 4 recording here - 3](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQAzc8QauYdwSoHTK76gRRhMATR5n4uO6RN5lRC1GXFVJTI?e=LmUhIm)
+
+[See Workshop 4 recording here - 4](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCC2bdCedjkQ6bmkVszrLNdAfQiYwCSs57_N9asmfFuhaE?e=IASbXj)
 
 ## Set up
 
@@ -988,16 +992,16 @@ interviews %>%
 # A tibble: 10 × 4
    key_ID village  interview_date      instanceID                               
     <dbl> <chr>    <dttm>              <chr>                                    
- 1     61 Chirodzo 2016-11-16 00:00:00 uuid:2401cf50-8859-44d9-bd14-1bf9128766f2
- 2     48 Chirodzo 2016-11-16 00:00:00 uuid:e180899c-7614-49eb-a97c-40ed013a38a2
- 3     46 Chirodzo 2016-11-17 00:00:00 uuid:35f297e0-aa5d-4149-9b7b-4965004cfc37
- 4     59 Chirodzo 2016-11-16 00:00:00 uuid:1936db62-5732-45dc-98ff-9b3ac7a22518
- 5    199 Chirodzo 2017-06-04 00:00:00 uuid:ffc83162-ff24-4a87-8709-eff17abc0b3b
- 6     37 Chirodzo 2016-11-17 00:00:00 uuid:408c6c93-d723-45ef-8dee-1b1bd3fe20cd
- 7     56 Chirodzo 2016-11-16 00:00:00 uuid:973c4ac6-f887-48e7-aeaf-4476f2cfab76
- 8     52 Chirodzo 2016-11-16 00:00:00 uuid:6db55cb4-a853-4000-9555-757b7fae2bcf
- 9     35 Chirodzo 2016-11-17 00:00:00 uuid:ff7496e7-984a-47d3-a8a1-13618b5683ce
-10    192 Chirodzo 2017-06-03 00:00:00 uuid:f94409a6-e461-4e4c-a6fb-0072d3d58b00
+ 1     57 Chirodzo 2016-11-16 00:00:00 uuid:a7184e55-0615-492d-9835-8f44f3b03a71
+ 2     10 Chirodzo 2016-12-16 00:00:00 uuid:8f4e49bc-da81-4356-ae34-e0d794a23721
+ 3     53 Chirodzo 2016-11-16 00:00:00 uuid:cc7f75c5-d13e-43f3-97e5-4f4c03cb4b12
+ 4     34 Chirodzo 2016-11-17 00:00:00 uuid:14c78c45-a7cc-4b2a-b765-17c82b43feb4
+ 5     59 Chirodzo 2016-11-16 00:00:00 uuid:1936db62-5732-45dc-98ff-9b3ac7a22518
+ 6     65 Chirodzo 2016-11-16 00:00:00 uuid:143f7478-0126-4fbc-86e0-5d324339206b
+ 7    199 Chirodzo 2017-06-04 00:00:00 uuid:ffc83162-ff24-4a87-8709-eff17abc0b3b
+ 8     51 Chirodzo 2016-11-16 00:00:00 uuid:18ac8e77-bdaf-47ab-85a2-e4c947c9d3ce
+ 9    192 Chirodzo 2017-06-03 00:00:00 uuid:f94409a6-e461-4e4c-a6fb-0072d3d58b00
+10    200 Chirodzo 2017-06-04 00:00:00 uuid:aa77a0d7-7142-41c8-b494-483a5b68d8a7
 ```
 
 We notice that the layout or format of the `interviews` data is in a
