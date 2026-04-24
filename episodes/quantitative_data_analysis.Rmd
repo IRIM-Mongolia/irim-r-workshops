@@ -322,11 +322,11 @@ Let's investigate the proportion of missing data `NA` in our columns.
 
 ```{r}
 survey %>% 
-  summarise(across(everything(), ~ sum(is.na(.)))) |>
+  summarise(across(everything(), ~ sum(is.na(.)))) %>% 
   pivot_longer(everything(),
                names_to  = "variable",
                values_to = "n_missing") %>% 
-  mutate(pct_missing = round(n_missing / nrow(survey) * 100, 1)) |>
+  mutate(pct_missing = round(n_missing / nrow(survey) * 100, 1))  %>% 
   filter(n_missing > 0) %>% 
   arrange(desc(n_missing))
 ```
@@ -382,38 +382,37 @@ survey %>%
   bold_labels()
 ```
 
-## Chi-Square Tests
+We can also look at the mean and standard deviation of our continuous variables, stratified by demographics. We'll look at variables `D1` and `D2` by age group, `A2`.
 
-A chi-square test examines whether there is a statistically significant
-association between two categorical variables. It compares the
-frequencies you actually observe in your data against the frequencies
-you would expect to see if the two variables were completely independent
-of each other.
+```{r}
+survey %>% 
+  select(A2, D1, D2) %>% 
+  tbl_summary(
+    by        = A2,
+    statistic = list(
+      all_categorical() ~ "{n} ({p}%)",
+      all_continuous()  ~ "{mean} ({sd})"        # mean and standard deviation
+    ),
+    digits  = all_continuous() ~ 1,
+    missing = "ifany",
+    label   = list(
+      D1 ~ "Commute time (minutes)",
+      D2 ~ "Commute distance (km)"
+    )
+  ) %>% 
+  add_p() %>%     
+  add_overall() %>% 
+  bold_labels()
+```
 
-Chi-square tests are ideal for this dataset when both variables are
-categorical (factors or logical). For example, we might ask:
-
-**Is there an association between gender and which flexible working
-policy goal a respondent selected?**
 
 ::: callout
-## When to use a Chi-Square Test
+## Statistical tests used by `gtsummary`
+When`add_p()` is called, `gtsummary` automatically selects a statistical test based on the variable type and the number of groups being compared. It defaults to conservative non-parametric tests for continuous variables. Specifically, for continuous variables with two groups it applies a Wilcoxon rank-sum test, and with three or more groups it applies a Kruskal-Wallis test. 
 
-Both variables are categorical (nominal or ordinal). You are testing
-association, not causation. Each cell in your contingency table should
-have an expected frequency of at least 5. Your sample size is reasonably
-large (n \> 30 as a general guide).
+For categorical and logical variables, it uses a chi-square test, switching automatically to Fisher's exact test when expected cell counts are too small (typically when any cell has an expected count below 5). 
+ 
+These defaults can be overridden using the test argument in add_p(). For example, specifying `test = list(all_continuous() ~ "aov")` to use ANOVA instead of Kruskal-Wallis. 
+
+The choice of whether to accept the default or override it should be guided by checking your distributions first. If continuous variables are approximately normally distributed and sample sizes are adequate, parametric tests (t-test, ANOVA) are appropriate and will generally be more statistically powerful than their non-parametric equivalents.
 :::
-
-### Key Assumptions
-
--   Observations are independent (each respondent appears only once)
--   Variables are categorical
--   Expected cell counts are \>= 5 in at least 80% of cells
--   No cell has an expected count of zero
-
-### Example Research Question
-
-Is there a significant association between area type (Rural vs Urban,
-variable A6) and whether respondents selected 'Improve employee
-wellbeing & work-life balance' as a policy goal (B1_1)?
