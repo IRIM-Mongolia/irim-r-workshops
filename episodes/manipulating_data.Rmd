@@ -97,7 +97,11 @@ cheatsheet`](https://rstudio.github.io/cheatsheets/html/data-transformation.html
 
 [Workshop 4 слайдыг эндээс үзнэ үү](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQD8TzzpZnW6Q7_8n7MCaM-EAAXYeMs7SyqgNyvh2i4HUo8c?e=JyHKD1)
 
-<!-- [Зөвлөгөөний 4-р бичлэгийг эндээс үзнэ үү]() -->
+[Зөвлөгөөний 4-р бичлэгийг эндээс үзнэ үү - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDkmkWGY20ARIQzA0qRPEnaAaQnI801tCFurStStFfWBzo?e=Mmfg4Y)
+
+[Зөвлөгөөний 4-р бичлэгийг эндээс үзнэ үү - 3](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQAzc8QauYdwSoHTK76gRRhMATR5n4uO6RN5lRC1GXFVJTI?e=LmUhIm)
+
+[Зөвлөгөөний 4-р бичлэгийг эндээс үзнэ үү - 4](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCC2bdCedjkQ6bmkVszrLNdAfQiYwCSs57_N9asmfFuhaE?e=IASbXj)
 
 ## Тохируулах
 
