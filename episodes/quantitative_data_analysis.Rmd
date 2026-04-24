@@ -27,9 +27,9 @@ editor_options:
 
 ## Бусад материал
 
-[Зөвлөгөөний 5 слайдыг эндээс үзнэ үү]()
+[Workshop 5 слайдыг эндээс үзнэ үү](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
 
-<!-- [5-р семинарын бичлэгийг эндээс үзнэ үү]() -->
+[5-р семинарын бичлэгийг эндээс үзнэ үү - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
 ## Өгөгдлийн багцын тойм
 
@@ -41,136 +41,151 @@ editor_options:
 
 **Ажил, ажил амьдралын тэнцвэрт байдлын судалгааны уян хатан схем**
 
-+----------------+------------+---------------+-----------------------------------+
-| Section         | Variable   | Type          | Description             |
-+=================+============+===============+==========================+
-| A               | A1 -       | Factor (male, | What is your gender?    |
-| (Demographics)  | Gender     | female)       |                         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | A2 - Age   | Ordered       | What is your age?       |
-|                 | Group      | Factor        |                         |
-|                 |            | (18-34,       |                         |
-|                 |            | 35-54, 55+)   |                         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | A3 -       | Ordered       | What is your highest    |
-|                 | Education  | Factor        | level of education?     |
-|                 |            | (primary,     |                         |
-|                 |            | secondary,    |                         |
-|                 |            | tertiary or   |                         |
-|                 |            | higher)       |                         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | A4 -       | Ordered       | What is your annual     |
-|                 | Income     | Factor        | income?                 |
-|                 |            |               |                         |
-|                 |            | (low, middle, |                         |
-|                 |            | high)         |                         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | A5 -       | Factor        | What is your region of  |
-|                 | Region     | (region 1, 2, | residence?              |
-|                 |            | 3)            |                         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | A6 - Area  | Factor        | Is your region of       |
-|                 | Type       | (rural,       | residence urban or      |
-|                 |            | urban)        | rural?                  |
-+----------------+------------+---------------+-----------------------------------+
-| B (Policy       | B1         | Character     | What should be the main |
-| Views)          |            |               | goal of flexible        |
-|                 |            |               | working policies?       |
-|                 |            |               | (Select up to 3)        |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B1_1       | Logical       | Improve employee        |
-|                 |            |               | wellbeing & work-life   |
-|                 |            |               | balance                 |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B1_2       | Logical       | Boost productivity &    |
-|                 |            |               | business performance    |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B1_3       | Logical       | Attract & retain top    |
-|                 |            |               | talent                  |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B1_4       | Logical       | Reduce costs & office   |
-|                 |            |               | overhead                |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B1_5       | Logical       | Support diversity,      |
-|                 |            |               | equity & inclusion      |
-+----------------+------------+---------------+-----------------------------------+
-| B (Policy       | B2         | Character     | Who should benefit most |
-| Views)          |            |               | from flexible working   |
-|                 |            |               | arrangements (Select up |
-|                 |            |               | to 3)                   |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_1       | Logical       | All employees equally,  |
-|                 |            |               | regardless of role or   |
-|                 |            |               | seniority               |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_2       | Logical       | Parents and caregivers  |
-|                 |            |               | with dependants         |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_3       | Logical       | Employees with          |
-|                 |            |               | disabilities or chronic |
-|                 |            |               | health conditions       |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_4       | Logical       | Junior/entry-level      |
-|                 |            |               | employees building      |
-|                 |            |               | their careers           |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_5       | Logical       | Senior/experienced      |
-|                 |            |               | employees with proven   |
-|                 |            |               | track records           |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_6       | Logical       | Employees with long     |
-|                 |            |               | commutes or remote      |
-|                 |            |               | locations               |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_7       | Logical       | Employees from          |
-|                 |            |               | underrepresented or     |
-|                 |            |               | marginalised groups     |
-+----------------+------------+---------------+-----------------------------------+
-|                 | B2_8       | Logical       | High performers and     |
-|                 |            |               | those meeting targets   |
-|                 |            |               | consistently            |
-+----------------+------------+---------------+-----------------------------------+
-| C (Likert       | C1         | Integer (1-5) | How satisfied are you   |
-| Scales)         |            |               | with your current       |
-|                 |            |               | flexible working        |
-|                 |            |               | arrangements (1 least   |
-|                 |            |               | satisfied, 5 most       |
-|                 |            |               | satisifed)              |
-+----------------+------------+---------------+-----------------------------------+
-|                 | C2         | Integer (1-5) | To what extent do       |
-|                 |            |               | flexible working        |
-|                 |            |               | options improve your    |
-|                 |            |               | work-life balance? (1   |
-|                 |            |               | very little, 5 very     |
-|                 |            |               | much)                   |
-+----------------+------------+---------------+-----------------------------------+
-|                 | C3         | Integer (1-5) | How strongly do you     |
-|                 |            |               | agree that your         |
-|                 |            |               | employer supports       |
-|                 |            |               | flexible working in     |
-|                 |            |               | practice (1 very        |
-|                 |            |               | little, 5 very much)    |
-+----------------+------------+---------------+-----------------------------------+
-| D (Con tinuous) | D1         | Numeric       | What is your commute    |
-|                 |            |               | time to work in         |
-|                 |            |               | minutes?                |
-+----------------+------------+---------------+-----------------------------------+
-| D (Con tinuous) | D2         | Numeric       | What is your commute    |
-|                 |            |               | distance in km?         |
-+----------------+------------+---------------+-----------------------------------+
-| E (O utcomes)   | E1         | Ordered       | How satisfied are you   |
-|                 |            | Factor        | with your current work  |
-|                 |            |               | life balance? (strongly |
-|                 |            |               | dissatisfied,           |
-|                 |            |               | dissatisfied, neutral,  |
-|                 |            |               | satisfied, strongly     |
-|                 |            |               | satisfied)              |
-+----------------+------------+---------------+-----------------------------------+
-| E               | E2         | Free text     | What makes you most     |
-|                 |            |               | satisfied in your       |
-|                 |            |               | personal life? (free    |
-|                 |            |               | text)                   |
-+----------------+------------+---------------+-----------------------------------+
++--------------+--------------+--------------+--------------------+
+| Section      | Variable     | Type         | Description         |
++=============+===============+===============+======================+
+| A            | A1 - Gender  | Factor       | What is your        |
+| (D           |              | (male,       | gender?             |
+| emographics) |              | female)      |                     |
++--------------+--------------+--------------+--------------------+
+|              | A2 - Age     | Ordered      | What is your age?   |
+|              | Group        | Factor       |                     |
+|              |              | (18-34,      |                     |
+|              |              | 35-54, 55+)  |                     |
++--------------+--------------+--------------+--------------------+
+|              | A3 -         | Ordered      | What is your        |
+|              | Education    | Factor       | highest level of    |
+|              |              | (primary,    | education?          |
+|              |              | secondary,   |                     |
+|              |              | tertiary or  |                     |
+|              |              | higher)      |                     |
++--------------+--------------+--------------+--------------------+
+|              | A4 - Income  | Ordered      | What is your annual |
+|              |              | Factor       | income?             |
+|              |              |              |                     |
+|              |              | (low,        |                     |
+|              |              | middle,      |                     |
+|              |              | high)        |                     |
++--------------+--------------+--------------+--------------------+
+|              | A5 - Region  | Factor       | What is your region |
+|              |              | (region 1,   | of residence?       |
+|              |              | 2, 3)        |                     |
++--------------+--------------+--------------+--------------------+
+|              | A6 - Area    | Factor       | Is your region of   |
+|              | Type         | (rural,      | residence urban or  |
+|              |              | urban)       | rural?              |
++--------------+--------------+--------------+--------------------+
+| B (Policy    | B1           | Character    | What should be the  |
+| Views)       |              |              | main goal of        |
+|              |              |              | flexible working    |
+|              |              |              | policies? (Select   |
+|              |              |              | up to 3)            |
++--------------+--------------+--------------+--------------------+
+|              | B1_1         | Logical      | Improve employee    |
+|              |              |              | wellbeing &         |
+|              |              |              | work-life balance   |
++--------------+--------------+--------------+--------------------+
+|              | B1_2         | Logical      | Boost productivity  |
+|              |              |              | & business          |
+|              |              |              | performance         |
++--------------+--------------+--------------+--------------------+
+|              | B1_3         | Logical      | Attract & retain    |
+|              |              |              | top talent          |
++--------------+--------------+--------------+--------------------+
+|              | B1_4         | Logical      | Reduce costs &      |
+|              |              |              | office overhead     |
++--------------+--------------+--------------+--------------------+
+|              | B1_5         | Logical      | Support diversity,  |
+|              |              |              | equity & inclusion  |
++--------------+--------------+--------------+--------------------+
+| B (Policy    | B2           | Character    | Who should benefit  |
+| Views)       |              |              | most from flexible  |
+|              |              |              | working             |
+|              |              |              | arrangements        |
+|              |              |              | (Select up to 3)    |
++--------------+--------------+--------------+--------------------+
+|              | B2_1         | Logical      | All employees       |
+|              |              |              | equally, regardless |
+|              |              |              | of role or          |
+|              |              |              | seniority           |
++--------------+--------------+--------------+--------------------+
+|              | B2_2         | Logical      | Parents and         |
+|              |              |              | caregivers with     |
+|              |              |              | dependants          |
++--------------+--------------+--------------+--------------------+
+|              | B2_3         | Logical      | Employees with      |
+|              |              |              | disabilities or     |
+|              |              |              | chronic health      |
+|              |              |              | conditions          |
++--------------+--------------+--------------+--------------------+
+|              | B2_4         | Logical      | Junior/entry-level  |
+|              |              |              | employees building  |
+|              |              |              | their careers       |
++--------------+--------------+--------------+--------------------+
+|              | B2_5         | Logical      | Senior/experienced  |
+|              |              |              | employees with      |
+|              |              |              | proven track        |
+|              |              |              | records             |
++--------------+--------------+--------------+--------------------+
+|              | B2_6         | Logical      | Employees with long |
+|              |              |              | commutes or remote  |
+|              |              |              | locations           |
++--------------+--------------+--------------+--------------------+
+|              | B2_7         | Logical      | Employees from      |
+|              |              |              | underrepresented or |
+|              |              |              | marginalised groups |
++--------------+--------------+--------------+--------------------+
+|              | B2_8         | Logical      | High performers and |
+|              |              |              | those meeting       |
+|              |              |              | targets             |
+|              |              |              | consistently        |
++--------------+--------------+--------------+--------------------+
+| C (Likert    | C1           | Integer      | How satisfied are   |
+| Scales)      |              | (1-5)        | you with your       |
+|              |              |              | current flexible    |
+|              |              |              | working             |
+|              |              |              | arrangements (1     |
+|              |              |              | least satisfied, 5  |
+|              |              |              | most satisifed)     |
++--------------+--------------+--------------+--------------------+
+|              | C2           | Integer      | To what extent do   |
+|              |              | (1-5)        | flexible working    |
+|              |              |              | options improve     |
+|              |              |              | your work-life      |
+|              |              |              | balance? (1 very    |
+|              |              |              | little, 5 very      |
+|              |              |              | much)               |
++--------------+--------------+--------------+--------------------+
+|              | C3           | Integer      | How strongly do you |
+|              |              | (1-5)        | agree that your     |
+|              |              |              | employer supports   |
+|              |              |              | flexible working in |
+|              |              |              | practice (1 very    |
+|              |              |              | little, 5 very      |
+|              |              |              | much)               |
++--------------+--------------+--------------+--------------------+
+| D (Con       | D1           | Numeric      | What is your        |
+| tinuous)     |              |              | commute time to     |
+|              |              |              | work in minutes?    |
++--------------+--------------+--------------+--------------------+
+| D (Con       | D2           | Numeric      | What is your        |
+| tinuous)     |              |              | commute distance in |
+|              |              |              | km?                 |
++--------------+--------------+--------------+--------------------+
+| E (O         | E1           | Ordered      | How satisfied are   |
+| utcomes)     |              | Factor       | you with your       |
+|              |              |              | current work life   |
+|              |              |              | balance? (strongly  |
+|              |              |              | dissatisfied,       |
+|              |              |              | dissatisfied,       |
+|              |              |              | neutral, satisfied, |
+|              |              |              | strongly satisfied) |
++--------------+--------------+--------------+--------------------+
+| E            | E2           | Free text    | What makes you most |
+|              |              |              | satisfied in your   |
+|              |              |              | personal life?      |
+|              |              |              | (free text)         |
++--------------+--------------+--------------+--------------------+
 
 ## Тохируулах
 
@@ -196,7 +211,7 @@ workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudi
 `gtsummary` багцыг анх удаа ашиглаж байгаа тул ийм байх шаардлагатай
 суулгасан.
 
-```{r}
+```{r  eval=TRUE, message=FALSE, purl=FALSE}
 for (pkg in c("tidyverse", "here", "gtsummary")) {
   if (!requireNamespace(pkg)) install.packages(pkg)
 }
@@ -210,11 +225,11 @@ library(gtsummary)
 Дараа нь үүсгэсэн судалгааны өгөгдлийн багцыг дараахыг ашиглан татаж авна уу
 код:
 
-`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", "data/raw/generated_survey_data.csv", mode = "wb")`
+`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", here("data/raw/generated_survey_data.csv"), mode = "wb")`
 
 Дараа нь судалгааны csv файлыг уншиж, өгөгдлийг урьдчилан харна уу.
 
-```{r}
+```{r read-data}
 
 survey <- read_csv(here("data", "raw", "generated_survey_data.csv"))
                    
@@ -237,7 +252,7 @@ str(survey)
 
 Бид А хэсгийн хүн ам зүйн мэдээллээс эхэлнэ.
 
-```{r}
+```{r convert-factors-A}
 survey <- survey %>% 
   mutate(
     A1 = factor(A1,
@@ -269,7 +284,7 @@ str(survey)
 
 Бидэнд хүчин зүйл рүү хөрвүүлэх өөр нэг `E1` багана байна. Хэрэв бид итгэлгүй байвал
 Бид тохируулах шаардлагатай түвшингүүдээс `unique`-г ашиглан өвөрмөцийг гаргаж авах боломжтой
-баганын хариултууд. Та `$` операторыг ашиглаж болно
+баганын хариултууд. Та `$` операторыг дэд тохируулах боломжтой
 багана, эсвэл давхар хаалт `[["colname"]]`.
 
 ```{r unique}
@@ -281,7 +296,7 @@ unique(survey[["E1"]])
 
 Одоо `E1`-г эрэмбэлсэн хүчин зүйл рүү хөрвүүлье.
 
-```{r}
+```{r convert-factors-E}
 
 survey <- survey %>% 
   mutate(E1 = factor(E1,
@@ -292,17 +307,16 @@ survey <- survey %>%
 
 `E1` баганыг шалгана уу.
 
-```{r}
+```{r class}
 class(survey[["E1"]])
 ```
 
-```{r}
+```{r levels}
 levels(survey[["E1"]])
 ```
 
-## Шинжилгээ
 
-### Хайгуулын мэдээллийн дүн шинжилгээ
+## Хайгуулын мэдээллийн дүн шинжилгээ
 
 Статистикийн аливаа туршилтыг явуулахын өмнө зарим зүйлийг хийх нь чухал юм
 бүтэц, чанарыг ойлгохын тулд хайгуулын мэдээллийн шинжилгээ (EDA).
@@ -313,14 +327,14 @@ EDA нь хувьсагчдыг зөв уншсан эсэхийг шалгах�
 алдаа, хариултын түлхүүрийн хуваарилалтыг ойлгох
 хувьсагч.
 
-Энэ судалгааны өгөгдөлд байгаа зэрэг ангилалын хувьсагчдын хувьд давтамж
+Судалгааны өгөгдөлд байгаа зэрэг категори хувьсагчдын хувьд давтамж
 Хүснэгтүүд болон пропорциональ тоймууд нь судалгаанд оролцогчид хэрхэн тархаж байгааг харуулж байна
 бүлгүүд, энэ нь зарим тест (хи-квадрат гэх мэт) шаарддаг тул чухал юм
 хамгийн бага эсийн тоо хүчинтэй байх.
 
 Баганууддаа байхгүй `NA` өгөгдлийн эзлэх хувийг судалж үзье.
 
-```{r}
+```{r summarise-missing}
 survey %>% 
   summarise(across(everything(), ~ sum(is.na(.)))) %>% 
   pivot_longer(everything(),
@@ -345,7 +359,7 @@ survey %>%
 Судалгаанд хамрагдагсдыг насны бүлгүүдэд хэрхэн хуваарилах зэрэг хэв маяг,
 орлогын түвшин, бүс нутаг.
 
-```{r}
+```{r frequency}
 # Overall frequency table for all factor columns
 survey %>% 
     select(where(is.factor)) %>% 
@@ -357,7 +371,7 @@ survey %>%
 
 ```
 
-## Хүн ам зүйгээр задаргаа
+### Хүн ам зүйгээр задаргаа
 
 Бид мөн автоматаар илрүүлэхийн тулд `tbl_summary()` функцийг ашиглаж болно
 хувьсагчийн төрлүүд, зохих статистикийг тооцоолох; энэ тохиолдолд,
@@ -368,7 +382,7 @@ survey %>%
 аль хувьсагч статистик ач холбогдолтой болохыг хурдан тодорхойлох
 илүү нарийвчилсан дүн шинжилгээ хийхээс өмнө хүйсийн ялгаа.
 
-```{r}
+```{r demographic-freq}
 # Breakdown by demographic
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
@@ -382,9 +396,11 @@ survey %>%
   bold_labels()
 ```
 
-Мөн бид хүн ам зүйгээр ангилсан тасралтгүй хувьсагчдын дундаж болон стандарт хазайлтыг харж болно. Бид `D1` болон `D2` хувьсагчдыг `A2` гэсэн насны бүлгээр харна.
+Бид мөн бидний үргэлжилсэн дундаж ба стандарт хазайлтыг харж болно
+хувьсагчдыг хүн ам зүйгээр нь ангилсан. Бид `D1` болон хувьсагчдыг харна
+`D2` насны бүлэг, `A2`.
 
-```{r}
+```{r demographic-contin}
 survey %>% 
   select(A2, D1, D2) %>% 
   tbl_summary(
@@ -405,14 +421,27 @@ survey %>%
   bold_labels()
 ```
 
-
 ::: callout
 ## `gtsummary`-н ашигладаг статистик тест
-`add_p()`-г дуудах үед `gtsummary` нь хувьсагчийн төрөл болон харьцуулж буй бүлгийн тоонд үндэслэн статистикийн тестийг автоматаар сонгоно. Энэ нь үргэлжилсэн хувьсагчдын хувьд параметрийн бус консерватив тестүүдийг анхдагчаар нь тохируулдаг. Тодруулбал, хоёр бүлэгтэй тасралтгүй хувьсагчдын хувьд Wilcoxon зэрэглэлийн нийлбэрийн тест, гурав ба түүнээс дээш бүлэгтэй бол Крускал-Уоллис тестийг ашигладаг.
 
-Категорийн болон логик хувьсагчдын хувьд энэ нь хи-квадрат тестийг ашигладаг бөгөөд хүлээгдэж буй эсийн тоо хэт бага байх үед (ихэвчлэн аль ч нүдэнд хүлээгдэж буй тоо 5-аас доош байвал) Фишерийн яг тест рүү автоматаар шилжинэ.
- 
-add_p() дээрх туршилтын аргументыг ашиглан эдгээр анхдагч утгыг дарж болно. Жишээлбэл, Kruskal-Wallis-ийн оронд ANOVA-г ашиглахын тулд `test = list(all_continuous() ~ "aov")`-г зааж өгсөн.
+`add_p()`-г дуудах үед `gtsummary` автоматаар статистикийг сонгоно
+хувьсагчийн төрөл болон харьцуулж буй бүлгүүдийн тоонд суурилсан тест.
+Энэ нь үргэлжилсэн параметрийн бус консерватив туршилтыг анхдагч болгож өгдөг
+хувьсагч. Тодруулбал, хоёр бүлэгтэй тасралтгүй хувьсагчдын хувьд
+Wilcoxon зэрэглэлийн нийлбэр тестийг ашигладаг бөгөөд гурав ба түүнээс дээш бүлэгтэй
+Kruskal-Wallis тестийг ашигладаг.
 
-Өгөгдмөл тохиргоог хүлээн зөвшөөрөх үү, эсвэл хүчингүй болгох уу гэдгээ сонгохдоо эхлээд түгээлтүүдээ шалгах хэрэгтэй. Үргэлжилсэн хувьсагчид ойролцоогоор хэвийн тархалттай, түүврийн хэмжээ хангалттай байвал параметрийн тестүүд (t-тест, ANOVA) тохиромжтой бөгөөд ерөнхийдөө параметрийн бус эквивалентаас статистикийн хувьд илүү хүчтэй байх болно.
+Ангилал ба логик хувьсагчдын хувьд хи-квадрат тестийг ашигладаг.
+Хүлээгдэж буй эсийн тоо гарах үед Фишерийн яг тест рүү автоматаар шилжих
+хэтэрхий жижиг байна (ихэвчлэн аль ч нүдэнд хүлээгдэж буй тоо 5-аас доош байвал).
+
+add_p() дээрх туршилтын аргументыг ашиглан эдгээр анхдагч утгыг дарж болно. Учир нь
+Жишээ нь, ANOVA-г ашиглахын тулд `test = list(all_continuous() ~ "aov")`-г зааж өгнө
+Крускал-Уоллисийн оронд.
+
+Өгөгдмөлийг хүлээн авах уу, эсвэл хүчингүй болгох уу гэсэн сонголт байх ёстой
+эхлээд түгээлтээ шалгах замаар удирдана. Үргэлжилсэн хувьсагчид байвал
+ойролцоогоор хэвийн тархсан, түүврийн хэмжээ хангалттай,
+параметрийн тестүүд (t-test, ANOVA) тохиромжтой бөгөөд ерөнхийдөө байх болно
+параметрийн бус эквивалентуудаас статистикийн хувьд илүү хүчтэй.
 :::
