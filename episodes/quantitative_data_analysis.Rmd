@@ -1,0 +1,419 @@
+---
+title: Quantitative Data Analysis in R
+teaching: 60
+exercises: 30
+source: Rmd
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+::: objectives
+-   Read in data and ensure variables have the correct data type
+-   Perform exploratory data analysis
+-   Identify the correct statistical test for a given variable type and
+    research question
+-   Run chi-square tests, t-tests, and one-way ANOVAs in R Notebooks
+-   Interpret p-values, test statistics, and effect sizes in context
+-   Write clear explanatory text in R Notebooks to document analytical
+    decisions
+-   Recognise the assumptions underlying each test and check them in R
+:::
+
+::: questions
+-   What statistical tests should I use?
+-   How can I run multiple tests at once?
+:::
+
+## Other Materials
+
+[See Workshop 5 Slides here]()
+
+<!-- [See Workshop 5 recording here]() -->
+
+## Dataset overview
+
+This workshop uses a generated (made-up) dataset containing 1005
+responses to a survey on flexible working and work-life balance, with a
+number of different data types.
+
+The schema is included in the following table.
+
+**Flexible working and work-life balance survey data schema**
+
++-----------------+------------+---------------+-------------------------+
+| Section         | Variable   | Type          | Description             |
++=================+============+===============+=========================+
+| A               | A1 -       | Factor (male, | What is your gender?    |
+| (Demographics)  | Gender     | female)       |                         |
++-----------------+------------+---------------+-------------------------+
+|                 | A2 - Age   | Ordered       | What is your age?       |
+|                 | Group      | Factor        |                         |
+|                 |            | (18-34,       |                         |
+|                 |            | 35-54, 55+)   |                         |
++-----------------+------------+---------------+-------------------------+
+|                 | A3 -       | Ordered       | What is your highest    |
+|                 | Education  | Factor        | level of education?     |
+|                 |            | (primary,     |                         |
+|                 |            | secondary,    |                         |
+|                 |            | tertiary or   |                         |
+|                 |            | higher)       |                         |
++-----------------+------------+---------------+-------------------------+
+|                 | A4 -       | Ordered       | What is your annual     |
+|                 | Income     | Factor        | income?                 |
+|                 |            |               |                         |
+|                 |            | (low, middle, |                         |
+|                 |            | high)         |                         |
++-----------------+------------+---------------+-------------------------+
+|                 | A5 -       | Factor        | What is your region of  |
+|                 | Region     | (region 1, 2, | residence?              |
+|                 |            | 3)            |                         |
++-----------------+------------+---------------+-------------------------+
+|                 | A6 - Area  | Factor        | Is your region of       |
+|                 | Type       | (rural,       | residence urban or      |
+|                 |            | urban)        | rural?                  |
++-----------------+------------+---------------+-------------------------+
+| B (Policy       | B1         | Character     | What should be the main |
+| Views)          |            |               | goal of flexible        |
+|                 |            |               | working policies?       |
+|                 |            |               | (Select up to 3)        |
++-----------------+------------+---------------+-------------------------+
+|                 | B1_1       | Logical       | Improve employee        |
+|                 |            |               | wellbeing & work-life   |
+|                 |            |               | balance                 |
++-----------------+------------+---------------+-------------------------+
+|                 | B1_2       | Logical       | Boost productivity &    |
+|                 |            |               | business performance    |
++-----------------+------------+---------------+-------------------------+
+|                 | B1_3       | Logical       | Attract & retain top    |
+|                 |            |               | talent                  |
++-----------------+------------+---------------+-------------------------+
+|                 | B1_4       | Logical       | Reduce costs & office   |
+|                 |            |               | overhead                |
++-----------------+------------+---------------+-------------------------+
+|                 | B1_5       | Logical       | Support diversity,      |
+|                 |            |               | equity & inclusion      |
++-----------------+------------+---------------+-------------------------+
+| B (Policy       | B2         | Character     | Who should benefit most |
+| Views)          |            |               | from flexible working   |
+|                 |            |               | arrangements (Select up |
+|                 |            |               | to 3)                   |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_1       | Logical       | All employees equally,  |
+|                 |            |               | regardless of role or   |
+|                 |            |               | seniority               |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_2       | Logical       | Parents and caregivers  |
+|                 |            |               | with dependants         |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_3       | Logical       | Employees with          |
+|                 |            |               | disabilities or chronic |
+|                 |            |               | health conditions       |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_4       | Logical       | Junior/entry-level      |
+|                 |            |               | employees building      |
+|                 |            |               | their careers           |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_5       | Logical       | Senior/experienced      |
+|                 |            |               | employees with proven   |
+|                 |            |               | track records           |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_6       | Logical       | Employees with long     |
+|                 |            |               | commutes or remote      |
+|                 |            |               | locations               |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_7       | Logical       | Employees from          |
+|                 |            |               | underrepresented or     |
+|                 |            |               | marginalised groups     |
++-----------------+------------+---------------+-------------------------+
+|                 | B2_8       | Logical       | High performers and     |
+|                 |            |               | those meeting targets   |
+|                 |            |               | consistently            |
++-----------------+------------+---------------+-------------------------+
+| C (Likert       | C1         | Integer (1-5) | How satisfied are you   |
+| Scales)         |            |               | with your current       |
+|                 |            |               | flexible working        |
+|                 |            |               | arrangements (1 least   |
+|                 |            |               | satisfied, 5 most       |
+|                 |            |               | satisifed)              |
++-----------------+------------+---------------+-------------------------+
+|                 | C2         | Integer (1-5) | To what extent do       |
+|                 |            |               | flexible working        |
+|                 |            |               | options improve your    |
+|                 |            |               | work-life balance? (1   |
+|                 |            |               | very little, 5 very     |
+|                 |            |               | much)                   |
++-----------------+------------+---------------+-------------------------+
+|                 | C3         | Integer (1-5) | How strongly do you     |
+|                 |            |               | agree that your         |
+|                 |            |               | employer supports       |
+|                 |            |               | flexible working in     |
+|                 |            |               | practice (1 very        |
+|                 |            |               | little, 5 very much)    |
++-----------------+------------+---------------+-------------------------+
+| D (Con tinuous) | D1         | Numeric       | What is your commute    |
+|                 |            |               | time to work in         |
+|                 |            |               | minutes?                |
++-----------------+------------+---------------+-------------------------+
+| D (Con tinuous) | D2         | Numeric       | What is your commute    |
+|                 |            |               | distance in km?         |
++-----------------+------------+---------------+-------------------------+
+| E (O utcomes)   | E1         | Ordered       | How satisfied are you   |
+|                 |            | Factor        | with your current work  |
+|                 |            |               | life balance? (strongly |
+|                 |            |               | dissatisfied,           |
+|                 |            |               | dissatisfied, neutral,  |
+|                 |            |               | satisfied, strongly     |
+|                 |            |               | satisfied)              |
++-----------------+------------+---------------+-------------------------+
+| E               | E2         | Free text     | What makes you most     |
+|                 |            |               | satisfied in your       |
+|                 |            |               | personal life? (free    |
+|                 |            |               | text)                   |
++-----------------+------------+---------------+-------------------------+
+
+## Set up
+
+Start by opening up your `RStudio` project that you created in a
+[previous
+workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudio.html#getting-set-up-in-rstudio),
+called `intro_r`, in a new session. Ensure your `global environment` is
+empty! You can also 'sweep' your `global environment` by clicking the
+`broom` icon.
+
+![](fig/empty_env.png){alt="Screenshot of RStudio showing the empty global environment."}
+
+Open a new `R Notebook`: `Click File -> New File -> R Notebook`. Save
+your `R Notebook` with a filename that makes sense, such as
+`quantitative_analysis.Rmd`, in the `scripts` folder.
+
+When you open a new `R Notebook`, some explanatory text is provided.
+This can be deleted so you can enter your own text and code.
+
+### Load packages and download data
+
+Download packages (if needed) and load libraries. We'll be using the
+`gtsummary` package for the first time, so this will need to be
+installed.
+
+```{r}
+for (pkg in c("tidyverse", "here", "gtsummary")) {
+  if (!requireNamespace(pkg)) install.packages(pkg)
+}
+
+library(tidyverse)
+library(here)
+library(gtsummary)
+
+```
+
+Then, download the the generated survey dataset using the following
+code:
+
+`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", "data/raw/generated_survey_data.csv", mode = "wb")`
+
+Then, read in the survey csv file and preview the data.
+
+```{r}
+
+survey <- read_csv(here("data", "raw", "generated_survey_data.csv"))
+                   
+survey # preview the data
+
+```
+
+Let's inspect the dataframe and see how R classified the data types.
+
+```{r inspect-str}
+
+str(survey)
+
+```
+
+From the information available in our data schema, we know that we have
+several columns that will need to be converted to factors before we can
+proceed with our analysis. We'll use `mutate` and `factor` to convert
+the columns as needed.
+
+We'll start with the Demographic data in section A.
+
+```{r}
+survey <- survey %>% 
+  mutate(
+    A1 = factor(A1,
+                levels = c("female", "male")),
+    A2 = factor(A2,
+                levels = c("18-34", "35-54", "55+"),
+                ordered = TRUE),
+    A3 = factor(A3,
+                levels = c("primary", "secondary", "tertiary or higher"),
+                ordered = TRUE),
+    A4 = factor(A4,
+                levels = c("low", "middle", "high"),
+                ordered = TRUE),
+    A5 = factor(A5,
+                levels = c("region1", "region2", "region3")),
+    A6 = factor(A6,
+                levels = c("Rural", "Urban"))
+  )
+
+```
+
+Let's take a quick look at the dataframe.
+
+```{r inspect2}
+
+str(survey)
+
+```
+
+We have one more column `E1` to convert to a factor. If we're not sure
+of the levels we need to set, we can use `unique` to extract the unique
+responses from the column. You can use the `$` operator to subsest the
+column, or double brackets `[["colname"]]`.
+
+```{r unique}
+
+unique(survey$E1)
+unique(survey[["E1"]])
+
+```
+
+Now let's convert `E1` to an ordered factor.
+
+```{r}
+
+survey <- survey %>% 
+  mutate(E1 = factor(E1,
+                     levels = c("Strongly dissatisfied", "Dissatisfied", "Neutral", "Satisfied", "Strongly satisfied"),
+                     ordered = TRUE))
+
+```
+
+And check column `E1`.
+
+```{r}
+class(survey[["E1"]])
+```
+
+```{r}
+levels(survey[["E1"]])
+```
+
+## Analysis
+
+### Exploratory data analysis
+
+Before running any statistical tests, it is important to carry out some
+exploratory data analysis (EDA) to understand the structure and quality
+of your data.
+
+EDA helps you check that variables have been read in with the correct
+types, identify missing values, spot unexpected categories or data entry
+errors, and understand the distribution of responses across key
+variables.
+
+For categorical variables like those in this survey data, frequency
+tables and proportion summaries reveal how respondents are spread across
+groups, which is important, as some tests (like chi-square) require
+minimum cell counts to be valid.
+
+Let's investigate the proportion of missing data `NA` in our columns.
+
+```{r}
+survey %>% 
+  summarise(across(everything(), ~ sum(is.na(.)))) |>
+  pivot_longer(everything(),
+               names_to  = "variable",
+               values_to = "n_missing") %>% 
+  mutate(pct_missing = round(n_missing / nrow(survey) * 100, 1)) |>
+  filter(n_missing > 0) %>% 
+  arrange(desc(n_missing))
+```
+
+### Frequency tables and proportions for categorical responses
+
+Before stratifying by any grouping variable, it is useful to first
+examine the overall distribution of responses across all categorical
+variables in the dataset.
+
+We'll use the function `tbl_summary()` from the `gtsummary` package to
+produce a single frequency table covering every factor column,
+displaying counts and column percentages for each response category.
+
+This gives us a quick snapshot of sample composition and response
+patterns, such as how respondents are distributed across age groups,
+income levels, and regions.
+
+```{r}
+# Overall frequency table for all factor columns
+survey %>% 
+    select(where(is.factor)) %>% 
+
+  tbl_summary(
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),  # count and proportion
+    missing   = "ifany"                                   # show missing if present
+  )
+
+```
+
+## Breakdown by demographics
+
+We can also use the `tbl_summary()` function to automatically detects
+variable types and calculate appropriate statistics; in this case,
+counts and column percentages for categorical and logical variables.
+
+Adding `add_p()` runs a chi-square test (or Fisher's exact test where
+cell counts are small) for each variable automatically, allowing us to
+quickly identify which variables show statistically significant
+differences by gender before conducting more detailed analysis.
+
+```{r}
+# Breakdown by demographic
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by        = A1,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing   = "ifany"
+  ) %>% 
+  add_p() %>%                         # adds chi-square/Fisher's automatically
+  add_overall() %>%                   # adds total column
+  bold_labels()
+```
+
+## Chi-Square Tests
+
+A chi-square test examines whether there is a statistically significant
+association between two categorical variables. It compares the
+frequencies you actually observe in your data against the frequencies
+you would expect to see if the two variables were completely independent
+of each other.
+
+Chi-square tests are ideal for this dataset when both variables are
+categorical (factors or logical). For example, we might ask:
+
+**Is there an association between gender and which flexible working
+policy goal a respondent selected?**
+
+::: callout
+## When to use a Chi-Square Test
+
+Both variables are categorical (nominal or ordinal). You are testing
+association, not causation. Each cell in your contingency table should
+have an expected frequency of at least 5. Your sample size is reasonably
+large (n \> 30 as a general guide).
+:::
+
+### Key Assumptions
+
+-   Observations are independent (each respondent appears only once)
+-   Variables are categorical
+-   Expected cell counts are \>= 5 in at least 80% of cells
+-   No cell has an expected count of zero
+
+### Example Research Question
+
+Is there a significant association between area type (Rural vs Urban,
+variable A6) and whether respondents selected 'Improve employee
+wellbeing & work-life balance' as a policy goal (B1_1)?
