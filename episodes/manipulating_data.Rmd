@@ -97,7 +97,11 @@ and [`lesson 04-tidyr`](https://datacarpentry.github.io/r-socialsci/04-tidyr.htm
 
 [See Workshop 4 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQD8TzzpZnW6Q7_8n7MCaM-EAXYeMs7SyqgNyvh2i4HUo8c?e=JyHKD1)
 
-<!-- [See Workshop 4 recording here]() -->
+[See Workshop 4 recording here - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDkmkWGY20ARIQzA0qRPEnaAaQnI801tCFurStStFfWBzo?e=Mmfg4Y)
+
+[See Workshop 4 recording here - 3](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQAzc8QauYdwSoHTK76gRRhMATR5n4uO6RN5lRC1GXFVJTI?e=LmUhIm)
+
+[See Workshop 4 recording here - 4](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQCC2bdCedjkQ6bmkVszrLNdAfQiYwCSs57_N9asmfFuhaE?e=IASbXj)
 
 ## Set up
 
