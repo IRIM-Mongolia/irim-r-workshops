@@ -27,165 +27,54 @@ editor_options:
 
 ## Бусад материал
 
-[Workshop 5 слайдыг эндээс үзнэ үү](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
+[Зөвлөгөөний 5 слайдыг үзнэ үү
+энд](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
 
-[5-р семинарын бичлэгийг эндээс үзнэ үү - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
+[5-р семинарын бичлэгийг эндээс үзнэ үү -
+1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
 ## Өгөгдлийн багцын тойм
 
-Энэ семинар нь 1005 агуулсан үүсгэсэн (бүтээсэн) өгөгдлийн багцыг ашигладаг
-Ажлын болон ажил амьдралын уян хатан тэнцвэртэй байдлын талаарх санал асуулгын хариу, a
+Энэхүү семинар нь 1005 агуулсан үүсгэсэн (бүтээсэн) өгөгдлийн багцыг ашигладаг
+Ажлын болон ажил амьдралын уян хатан тэнцвэртэй байдлын талаархи санал асуулгын хариу, a
 өөр өөр төрлийн өгөгдлийн тоо.
 
 Схемийг дараах хүснэгтэд оруулсан болно.
 
 **Ажил, ажил амьдралын тэнцвэрт байдлын судалгааны уян хатан схем**
 
-+--------------+--------------+--------------+--------------------+
-| Section      | Variable     | Type         | Description         |
-+=============+===============+===============+======================+
-| A            | A1 - Gender  | Factor       | What is your        |
-| (D           |              | (male,       | gender?             |
-| emographics) |              | female)      |                     |
-+--------------+--------------+--------------+--------------------+
-|              | A2 - Age     | Ordered      | What is your age?   |
-|              | Group        | Factor       |                     |
-|              |              | (18-34,      |                     |
-|              |              | 35-54, 55+)  |                     |
-+--------------+--------------+--------------+--------------------+
-|              | A3 -         | Ordered      | What is your        |
-|              | Education    | Factor       | highest level of    |
-|              |              | (primary,    | education?          |
-|              |              | secondary,   |                     |
-|              |              | tertiary or  |                     |
-|              |              | higher)      |                     |
-+--------------+--------------+--------------+--------------------+
-|              | A4 - Income  | Ordered      | What is your annual |
-|              |              | Factor       | income?             |
-|              |              |              |                     |
-|              |              | (low,        |                     |
-|              |              | middle,      |                     |
-|              |              | high)        |                     |
-+--------------+--------------+--------------+--------------------+
-|              | A5 - Region  | Factor       | What is your region |
-|              |              | (region 1,   | of residence?       |
-|              |              | 2, 3)        |                     |
-+--------------+--------------+--------------+--------------------+
-|              | A6 - Area    | Factor       | Is your region of   |
-|              | Type         | (rural,      | residence urban or  |
-|              |              | urban)       | rural?              |
-+--------------+--------------+--------------+--------------------+
-| B (Policy    | B1           | Character    | What should be the  |
-| Views)       |              |              | main goal of        |
-|              |              |              | flexible working    |
-|              |              |              | policies? (Select   |
-|              |              |              | up to 3)            |
-+--------------+--------------+--------------+--------------------+
-|              | B1_1         | Logical      | Improve employee    |
-|              |              |              | wellbeing &         |
-|              |              |              | work-life balance   |
-+--------------+--------------+--------------+--------------------+
-|              | B1_2         | Logical      | Boost productivity  |
-|              |              |              | & business          |
-|              |              |              | performance         |
-+--------------+--------------+--------------+--------------------+
-|              | B1_3         | Logical      | Attract & retain    |
-|              |              |              | top talent          |
-+--------------+--------------+--------------+--------------------+
-|              | B1_4         | Logical      | Reduce costs &      |
-|              |              |              | office overhead     |
-+--------------+--------------+--------------+--------------------+
-|              | B1_5         | Logical      | Support diversity,  |
-|              |              |              | equity & inclusion  |
-+--------------+--------------+--------------+--------------------+
-| B (Policy    | B2           | Character    | Who should benefit  |
-| Views)       |              |              | most from flexible  |
-|              |              |              | working             |
-|              |              |              | arrangements        |
-|              |              |              | (Select up to 3)    |
-+--------------+--------------+--------------+--------------------+
-|              | B2_1         | Logical      | All employees       |
-|              |              |              | equally, regardless |
-|              |              |              | of role or          |
-|              |              |              | seniority           |
-+--------------+--------------+--------------+--------------------+
-|              | B2_2         | Logical      | Parents and         |
-|              |              |              | caregivers with     |
-|              |              |              | dependants          |
-+--------------+--------------+--------------+--------------------+
-|              | B2_3         | Logical      | Employees with      |
-|              |              |              | disabilities or     |
-|              |              |              | chronic health      |
-|              |              |              | conditions          |
-+--------------+--------------+--------------+--------------------+
-|              | B2_4         | Logical      | Junior/entry-level  |
-|              |              |              | employees building  |
-|              |              |              | their careers       |
-+--------------+--------------+--------------+--------------------+
-|              | B2_5         | Logical      | Senior/experienced  |
-|              |              |              | employees with      |
-|              |              |              | proven track        |
-|              |              |              | records             |
-+--------------+--------------+--------------+--------------------+
-|              | B2_6         | Logical      | Employees with long |
-|              |              |              | commutes or remote  |
-|              |              |              | locations           |
-+--------------+--------------+--------------+--------------------+
-|              | B2_7         | Logical      | Employees from      |
-|              |              |              | underrepresented or |
-|              |              |              | marginalised groups |
-+--------------+--------------+--------------+--------------------+
-|              | B2_8         | Logical      | High performers and |
-|              |              |              | those meeting       |
-|              |              |              | targets             |
-|              |              |              | consistently        |
-+--------------+--------------+--------------+--------------------+
-| C (Likert    | C1           | Integer      | How satisfied are   |
-| Scales)      |              | (1-5)        | you with your       |
-|              |              |              | current flexible    |
-|              |              |              | working             |
-|              |              |              | arrangements (1     |
-|              |              |              | least satisfied, 5  |
-|              |              |              | most satisifed)     |
-+--------------+--------------+--------------+--------------------+
-|              | C2           | Integer      | To what extent do   |
-|              |              | (1-5)        | flexible working    |
-|              |              |              | options improve     |
-|              |              |              | your work-life      |
-|              |              |              | balance? (1 very    |
-|              |              |              | little, 5 very      |
-|              |              |              | much)               |
-+--------------+--------------+--------------+--------------------+
-|              | C3           | Integer      | How strongly do you |
-|              |              | (1-5)        | agree that your     |
-|              |              |              | employer supports   |
-|              |              |              | flexible working in |
-|              |              |              | practice (1 very    |
-|              |              |              | little, 5 very      |
-|              |              |              | much)               |
-+--------------+--------------+--------------+--------------------+
-| D (Con       | D1           | Numeric      | What is your        |
-| tinuous)     |              |              | commute time to     |
-|              |              |              | work in minutes?    |
-+--------------+--------------+--------------+--------------------+
-| D (Con       | D2           | Numeric      | What is your        |
-| tinuous)     |              |              | commute distance in |
-|              |              |              | km?                 |
-+--------------+--------------+--------------+--------------------+
-| E (O         | E1           | Ordered      | How satisfied are   |
-| utcomes)     |              | Factor       | you with your       |
-|              |              |              | current work life   |
-|              |              |              | balance? (strongly  |
-|              |              |              | dissatisfied,       |
-|              |              |              | dissatisfied,       |
-|              |              |              | neutral, satisfied, |
-|              |              |              | strongly satisfied) |
-+--------------+--------------+--------------+--------------------+
-| E            | E2           | Free text    | What makes you most |
-|              |              |              | satisfied in your   |
-|              |              |              | personal life?      |
-|              |              |              | (free text)         |
-+--------------+--------------+--------------+--------------------+
+| Section | Variable | Type | Description |
+|---|---|---|---|
+| **A (Demographics)** | A1 – Gender | Factor (male, female) | What is your gender? |
+| | A2 – Age Group | Ordered Factor (18–34, 35–54, 55+) | What is your age? |
+| | A3 – Education | Ordered Factor (primary, secondary, tertiary+) | What is your highest level of education? |
+| | A4 – Income | Ordered Factor (low, middle, high) | What is your annual income? |
+| | A5 – Region | Factor (region 1, 2, 3) | What is your region of residence? |
+| | A6 – Area Type | Factor (rural, urban) | Is your region of residence urban or rural? |
+| **B (Policy Views)** | B1 | Character | What should be the main goal of flexible working policies? (Select up to 3) |
+| | B1_1 | Logical | Improve employee wellbeing & work-life balance |
+| | B1_2 | Logical | Boost productivity & business performance |
+| | B1_3 | Logical | Attract & retain top talent |
+| | B1_4 | Logical | Reduce costs & office overhead |
+| | B1_5 | Logical | Support diversity, equity & inclusion |
+| | B2 | Character | Who should benefit most from flexible working arrangements? (Select up to 3) |
+| | B2_1 | Logical | All employees equally, regardless of role or seniority |
+| | B2_2 | Logical | Parents and caregivers with dependants |
+| | B2_3 | Logical | Employees with disabilities or chronic health conditions |
+| | B2_4 | Logical | Junior/entry-level employees building their careers |
+| | B2_5 | Logical | Senior/experienced employees with proven track records |
+| | B2_6 | Logical | Employees with long commutes or remote locations |
+| | B2_7 | Logical | Employees from underrepresented or marginalised groups |
+| | B2_8 | Logical | High performers and those meeting targets consistently |
+| **C (Satisfaction)** | C1 | Integer (1–5) | How satisfied are you with your current flexible working arrangements? (1 = least satisfied, 5 = most satisfied) |
+| | C2 | Integer (1–5) | To what extent do flexible working options improve your work-life balance? (1 = very little, 5 = very much) |
+| | C3 | Integer (1–5) | How strongly do you agree that your employer supports flexible working in practice? (1 = very little, 5 = very much) |
+| **D (Commute)** | D1 | Numeric | What is your commute time to work in minutes? |
+| | D2 | Numeric | What is your commute distance in km? |
+| **E (Outcomes)** | E1 | Ordered Factor (strongly dissatisfied → strongly satisfied) | How satisfied are you with your current work-life balance? |
+| | E2 | Free text | What makes you most satisfied in your personal life? |
+
+
 
 ## Тохируулах
 
@@ -202,7 +91,7 @@ workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudi
 гэх мэт утга учиртай файлын нэрээр таны `R Notebook`
 `quantitative_analysis.Rmd`, `scripts` фолдерт.
 
-Та шинэ `R Notebook` нээх үед зарим тайлбар текстийг өгсөн болно.
+Та шинэ `R Notebook`-г нээхэд зарим тайлбар текст гарч ирнэ.
 Үүнийг устгаж болох тул та өөрийн текст болон кодыг оруулах боломжтой.
 
 ### Багцуудыг ачаалж, өгөгдлийг татаж авах
@@ -212,13 +101,18 @@ workshop](https://irim-mongolia.github.io/irim-r-workshops/introduction-r-rstudi
 суулгасан.
 
 ```{r  eval=TRUE, message=FALSE, purl=FALSE}
-for (pkg in c("tidyverse", "here", "gtsummary")) {
+for (pkg in c("tidyverse", "here", "gtsummary", "scales", "corrplot", "rcompanion")) {
   if (!requireNamespace(pkg)) install.packages(pkg)
 }
 
 library(tidyverse)
 library(here)
-library(gtsummary)
+library(gtsummary) # summary tables
+library(scales) # percent formatting for axes
+library(corrplot) # correlation plots
+library(rcompanion)  # Cramér's V effect size
+library(epitools) # odds ratios for 2×2 tables
+
 
 ```
 
@@ -315,7 +209,6 @@ class(survey[["E1"]])
 levels(survey[["E1"]])
 ```
 
-
 ## Хайгуулын мэдээллийн дүн шинжилгээ
 
 Статистикийн аливаа туршилтыг явуулахын өмнө зарим зүйлийг хийх нь чухал юм
@@ -328,7 +221,7 @@ EDA нь хувьсагчдыг зөв уншсан эсэхийг шалгах�
 хувьсагч.
 
 Судалгааны өгөгдөлд байгаа зэрэг категори хувьсагчдын хувьд давтамж
-Хүснэгтүүд болон пропорциональ тоймууд нь судалгаанд оролцогчид хэрхэн тархаж байгааг харуулж байна
+Хүснэгтүүд болон пропорциональ тоймууд нь судалгаанд оролцогчид хэрхэн тархсаныг харуулдаг
 бүлгүүд, энэ нь зарим тест (хи-квадрат гэх мэт) шаарддаг тул чухал юм
 хамгийн бага эсийн тоо хүчинтэй байх.
 
@@ -347,8 +240,8 @@ survey %>%
 
 ### Ангилал хариултын давтамжийн хүснэгт ба харьцаа
 
-Ямар нэгэн бүлэглэх хувьсагчаар ангилахаас өмнө эхлээд хийх нь ашигтай
-бүх ангиллын хариултуудын ерөнхий хуваарилалтыг шалгана уу
+Аливаа бүлэглэх хувьсагчаар ангилахаас өмнө эхлээд хийх нь ашигтай
+бүх ангиллын хариултуудын ерөнхий хуваарилалтыг шалгана
 өгөгдлийн багц дахь хувьсагчид.
 
 Бид `gtsummary` багцаас `tbl_summary()` функцийг ашиглана
@@ -362,78 +255,128 @@ survey %>%
 ```{r frequency}
 # Overall frequency table for all factor columns
 survey %>% 
-    select(where(is.factor)) %>% 
-
+  select(where(is.factor)) %>% 
   tbl_summary(
-    statistic = list(all_categorical() ~ "{n} ({p}%)"),  # count and proportion
-    missing   = "ifany"                                   # show missing if present
+    statistic = list(all_categorical() ~ "{n} ({p}%)"), # count and proportion
+    missing = "ifany" # show missing if present
   )
 
 ```
 
-### Хүн ам зүйгээр задаргаа
 
-Бид мөн автоматаар илрүүлэхийн тулд `tbl_summary()` функцийг ашиглаж болно
-хувьсагчийн төрлүүд, зохих статистикийг тооцоолох; энэ тохиолдолд,
-категори болон логик хувьсагчдын тоо, баганын хувь.
+Судалгааны мэдээлэлд бага зэрэг эмэгтэйчүүд дийлэнх хувийг эзэлж байгаа бөгөөд насны хувьд арай бага байна. Хүйс, насаар нь ангилсан хожмын үр дүнг тайлбарлахдаа бид үүнийг санаж байх ёстой.
 
-`add_p()`-ыг нэмснээр хи-квадрат тест (эсвэл Фишерийн яг тест) ажилладаг.
-эсийн тоо бага байна) хувьсагч бүрийн хувьд автоматаар хийх боломжийг бидэнд олгодог
-аль хувьсагч статистик ач холбогдолтой болохыг хурдан тодорхойлох
+#### Хүн ам зүйгээр задаргаа
+
+Мөн бид `add_p()`-ийг ашиглан статистик тест нэмэхийн тулд `tbl_summary()` функцийг ашиглаж болно.
+
+`add_p()`-ыг нэмснээр хи-квадрат тест (эсвэл Фишерийн яг тест)-ийг ажиллуулдаг.
+эсийн тоо бага байна) ангиллын хувьсагч бүрийн хувьд автоматаар ямар хувьсагч статистикийн ач холбогдолтой болохыг хурдан тодорхойлох боломжийг олгодог.
 илүү нарийвчилсан дүн шинжилгээ хийхээс өмнө хүйсийн ялгаа.
 
+Бид "А"-аар эхэлсэн бүх хүн ам зүйн багана, "B1" болон "B2" асуултуудын олон сонголттой баганыг сонгоно.
+
 ```{r demographic-freq}
-# Breakdown by demographic
+# Breakdown by demographics (section A)
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
-    by        = A1,
+    by = A1,
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
-    missing   = "ifany"
+    missing = "ifany"
   ) %>% 
-  add_p() %>%                         # adds chi-square/Fisher's automatically
-  add_overall() %>%                   # adds total column
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
   bold_labels()
 ```
+
+Бид `for loop`-г ашиглан хүн ам зүйн багана тус бүрээр ангилсан хураангуй хүснэгтүүдийг үүсгэхийн тулд энэ кодыг өргөжүүлж болно.  Бид "A"-аар эхэлсэн хүн ам зүйн бүх багана, "B1" ба "B2" асуултын олон сонголттой багана, "E1" баганыг сонгоно.
+
+```{r}
+demo_vars <- survey %>%
+  select(starts_with("A")) %>% # names of all demographic columns
+  names()
+
+tables_list <- list()  # initialise empty list first
+
+for (by_var in demo_vars) { 
+  row_vars <- survey %>%
+    # choose which columns
+    select(starts_with("A"), matches("_\\d+$"), "E1") %>%
+    select(-all_of(by_var)) %>% # drop from ROWS only, not from data
+    names()
+  
+  tables_list[[by_var]] <- survey %>%
+    tbl_summary(
+      by        = all_of(by_var), # by_var still exists in survey
+      include   = all_of(row_vars), # controls what appears as rows
+      statistic = list(all_categorical() ~ "{n} ({p}%)"),
+      missing   = "ifany"
+    ) %>%
+    add_p() %>%
+    add_overall() %>%
+    bold_labels() %>%
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
+}
+
+walk(tables_list, print) # prints all summary tables
+
+
+```
+
+`A1` багана, хүйсээр ангилахдаа статистикийн зарим ялгаа байгааг бид харж байна. Бид удахгүй эдгээрийг илүү нарийвчлан судлах болно.
+
 
 Бид мөн бидний үргэлжилсэн дундаж ба стандарт хазайлтыг харж болно
-хувьсагчдыг хүн ам зүйгээр нь ангилсан. Бид `D1` болон хувьсагчдыг харна
-`D2` насны бүлэг, `A2`.
+хувьсагчдыг хүн ам зүйгээр нь ангилсан. `D1` болон `D2` тасралтгүй хувьсагчдын хувьд хүн ам зүйн бүх хувьсагчдыг тоймлон харцгаая. Бид энэ кодыг ашиглан цөөн хэдэн өөрчлөлт хийх болно- бид зөвхөн `D1` ба `D2` хувьсагчийн үр дүнг харуулах ба `all_continuous` статистикийг ашиглана.
 
 ```{r demographic-contin}
-survey %>% 
-  select(A2, D1, D2) %>% 
-  tbl_summary(
-    by        = A2,
-    statistic = list(
-      all_categorical() ~ "{n} ({p}%)",
-      all_continuous()  ~ "{mean} ({sd})"        # mean and standard deviation
-    ),
-    digits  = all_continuous() ~ 1,
-    missing = "ifany",
-    label   = list(
-      D1 ~ "Commute time (minutes)",
-      D2 ~ "Commute distance (km)"
-    )
-  ) %>% 
-  add_p() %>%     
-  add_overall() %>% 
-  bold_labels()
+
+tables_cont_list <- list() # initialise empty list first
+
+for (by_var in demo_vars) {
+  
+  tables_cont_list[[by_var]] <- survey %>%
+    tbl_summary(
+      by      = all_of(by_var),
+      include = c(D1, D2), # only these two rows
+      statistic = list(
+        all_continuous() ~ "{mean} ({sd})"
+      ),
+      digits = all_continuous() ~ 1,
+      missing = "ifany",
+      label = list(
+        D1 ~ "D1 Commute time (minutes)",
+        D2 ~ "D2 Commute distance (km)"
+      )
+    ) %>%
+    add_p() %>%
+    add_overall() %>%
+    bold_labels() %>%
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
+}
+
+walk(tables_cont_list, print)
+
+
 ```
+
+`A2`, насны бүлэг баганаар ангилах үед статистикийн зарим ялгаа байгааг бид харж байна. Бид удахгүй эдгээрийг илүү нарийвчлан судлах болно.
+
 
 ::: callout
 ## `gtsummary`-н ашигладаг статистик тест
 
 `add_p()`-г дуудах үед `gtsummary` автоматаар статистикийг сонгоно
 хувьсагчийн төрөл болон харьцуулж буй бүлгүүдийн тоонд суурилсан тест.
-Энэ нь үргэлжилсэн параметрийн бус консерватив туршилтыг анхдагч болгож өгдөг
+Энэ нь үргэлжилсэн параметрийн бус консерватив туршилтуудыг анхдагчаар хийдэг
 хувьсагч. Тодруулбал, хоёр бүлэгтэй тасралтгүй хувьсагчдын хувьд
 Wilcoxon зэрэглэлийн нийлбэр тестийг ашигладаг бөгөөд гурав ба түүнээс дээш бүлэгтэй
 Kruskal-Wallis тестийг ашигладаг.
 
 Ангилал ба логик хувьсагчдын хувьд хи-квадрат тестийг ашигладаг.
 Хүлээгдэж буй эсийн тоо гарах үед Фишерийн яг тест рүү автоматаар шилжих
-хэтэрхий жижиг байна (ихэвчлэн аль ч нүдэнд хүлээгдэж буй тоо 5-аас доош байвал).
+хэт жижиг байна (ихэвчлэн аль ч нүдэнд хүлээгдэж буй тоо 5-аас доош байвал).
 
 add_p() дээрх туршилтын аргументыг ашиглан эдгээр анхдагч утгыг дарж болно. Учир нь
 Жишээ нь, ANOVA-г ашиглахын тулд `test = list(all_continuous() ~ "aov")`-г зааж өгнө
@@ -445,3 +388,201 @@ add_p() дээрх туршилтын аргументыг ашиглан эдг
 параметрийн тестүүд (t-test, ANOVA) тохиромжтой бөгөөд ерөнхийдөө байх болно
 параметрийн бус эквивалентуудаас статистикийн хувьд илүү хүчтэй.
 :::
+
+## Олон сонголттой өгөгдөлд дүн шинжилгээ хийх
+
+### Пропорц
+
+`B1` болон `B2` асуултууд нь хариулагчдад нэгээс олон хариулт сонгох боломжийг олгосон (3 хүртэл). Сонголт бүрийг өөрийн логикийн баганад хуурамчаар кодолсон (`TRUE` = сонгосон, `FALSE` = сонгогдоогүй). Түүхий `B1` болон `B2` баганууд нь анхны хариултын мөрүүдийг агуулж байгаа бөгөөд дүн шинжилгээ хийхэд үл тоомсорлож болно.
+
+**хувилбар бүрийг сонгосон санал асуулгад оролцогчдын эзлэх хувийн жинг** авч эхэлцгээе.
+
+
+```{r multiselect-B1}
+survey %>%
+  select(starts_with("B1_")) %>%
+  summarise(across(everything(), mean)) %>%
+  pivot_longer(everything(),
+               names_to  = "option",
+               values_to = "proportion") %>%
+  ggplot(aes(x = reorder(option, proportion), y = proportion)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = percent(proportion, accuracy = 1)),
+            hjust = -0.15, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(labels = percent, limits = c(0, 0.7)) +
+  labs(title = "B1: Proportion of respondents selecting each option",
+       x = NULL, y = "% selecting") +
+  theme_minimal(base_size = 12)
+```
+
+`reorder()` дуудлага нь бааруудыг хамгийн багаас хамгийн өндөр хувь хүртэл эрэмбэлж, сонголтуудыг алдар нэрээр нь эрэмблэхэд хялбар болгодог. `B1_1` нь хамгийн түгээмэл сонгосон сонголт бөгөөд `B1_2` нь хамгийн бага сонголт бөгөөд бид хи-квадрат тестийг удахгүй хийх үед судлах нь зүйтэй.
+
+Одоо `B2`-ын илэрцийг зуръя.
+
+```{r multiselect-B2}
+survey %>%
+  select(starts_with("B2_")) %>%
+  summarise(across(everything(), mean)) %>%
+  pivot_longer(everything(),
+               names_to  = "option",
+               values_to = "proportion") %>%
+  ggplot(aes(x = reorder(option, proportion), y = proportion)) +
+  geom_col(fill = "coral") +
+  geom_text(aes(label = percent(proportion, accuracy = 1)),
+            hjust = -0.15, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(labels = percent, limits = c(0, 0.6)) +
+  labs(title = "B2: Proportion of respondents selecting each option",
+       x = NULL, y = "% selecting") +
+  theme_minimal(base_size = 12)
+
+```
+
+`B2_6` нь хамгийн түгээмэл сонголт бөгөөд хамгийн бага нь `B2_2` юм.
+ 
+### Корреляцийн матриц
+Корреляцийн матриц нь олон хариулттай (олон сонголттой) асуултуудтай ажиллахад хэрэгтэй оношлогооны хэрэгсэл юм. Хэдийгээр логикийн багана бүр бүтцийн хувьд бие даасан байдаг (харилцагч аль нэг хувилбарыг сонгоход саад учруулах логик дүрэм байхгүй гэсэн үг) боловч практикт санал асуулгад оролцогчдын сонголтууд ихэвчлэн нэг дор цуглардаг.
+
+Бид `B1` болон `B2` сонголтын бүх баганын хос phi коэффициентийг (0/1 өгөгдөлд хэрэглэсэн Пирсон корреляци) нэгэн зэрэг харуулахын тулд `corrplot` багцын хамаарлын графикийг ашиглаж болно.
+
+Өнгөний өнгө нь чиглэлийг заадаг: цэнхэр нүд нь хоёр сонголтыг хамт сонгох хандлагатай байдаг бол улаан эс нь нэг сонголтыг сонгох нь нөгөөг нь сонгохгүй байхтай холбоотой гэсэн үг юм. Өнгөний эрч хүч нь хүчийг кодлодог; бараан сүүдэр нь илүү хүчтэй холбоог, цайвар сүүдэр нь тэгтэй ойролцоо харилцааг илтгэнэ.
+
+Практик удирдамжийн хувьд 0.3-аас дээш үнэмлэхүй утга бүхий коэффициентүүдийг тэмдэглэх нь зүйтэй бөгөөд 0.6-аас дээш утгууд нь хоёр сонголт ижил үндсэн давуу талыг илэрхийлж, нэгтгэж болзошгүйг харуулж байна.
+
+Энэ алхам нь `B` хэсгийн баганыг бие даасан таамаглагч гэж үздэг аливаа шинжилгээний өмнө үргэлж байх ёстой, учир нь хүчтэй хамтарсан сонгон шалгаруулах загвар нь судлахгүй бол үр дүнг гажуудуулж болзошгүй.
+
+`B1_*` баганад `corrplot`-г кодчилъё. Сануулахад, сонголтууд нь:
+
+**Асуулт В1:** Уян хатан ажиллах бодлогын гол зорилго нь юу байх ёстой вэ? (3 хүртэл сонгоно уу)
+- B1_1: Ажилчдын сайн сайхан байдал, ажил амьдралын тэнцвэрийг сайжруулах
+- B1_2: Бүтээмж, бизнесийн гүйцэтгэлийг нэмэгдүүлэх
+- B1_3: Шилдэг авъяас чадварыг өөртөө татах, хадгалах
+- B1_4: Зардал, оффисын зардлыг бууруулна
+- B1_5: Олон талт байдал, тэгш байдал, оролцоог дэмжинэ
+
+ 
+```{r}
+
+survey %>%
+  select(starts_with("B1_")) %>%
+  mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
+  cor(method = "pearson") %>%                    # phi coefficient for binary vars
+  corrplot(method = "color", type = "upper",
+           addCoef.col = "black", tl.col = "black")
+```
+
+Энэ `B1_1` болон `B1_3`-ын асуултууд нь *0.38*-ын коэффиценттэй бага зэргийн эерэг хамаарлыг харуулж байгаа бөгөөд энэ нь хариулагчид эдгээр хоёр сонголтыг хамтран сонгох магадлал өндөр, харин `B1_1` болон `B1_5` болон `B1_3` ба ОРОН ЭХЛЭГЧ6 нь сөрөг утгатай хариулах магадлалтайг харуулж байна. Энэ хоёр сонголтыг хамтад нь сонгохгүй байх. Коэффицентүүд нь бүгд 0.6-аас бага боловч бид эдгээр холбоог санаж байх болно.
+
+
+Одоо `B2_*` баганад `corrplot`-г кодчилъё.. Сануулахад дараах сонголтууд байсан.
+
+**Асуулт В2:** Уян хатан ажиллах нь хэнд хамгийн их ашиг тустай байх ёстой вэ?
+(3 хүртэл сонгоно уу)
+
+- B2_1: Бүх ажилчид албан тушаал, албан тушаалаас үл хамааран адил тэгш эрхтэй
+- В2_2: Асран хамгаалагчидтай эцэг эх, асран хамгаалагчид
+- B2_3: Хөгжлийн бэрхшээлтэй эсвэл эрүүл мэндийн архаг өвчтэй ажилчид
+- B2_4: Бага/анхны түвшний ажилтнууд карьераа бүтээдэг
+- B2_5: Туршлага сайтай, ахлах/туршлагатай ажилчид
+- B2_6: Ажилдаа удаан явдаг эсвэл алслагдсан байршилтай ажилчид
+- B2_7: Бага төлөөлөлтэй эсвэл гадуурхагдсан бүлгийн ажилтнууд
+- B2_8: Өндөр гүйцэтгэлтэй, зорилтоо тогтмол биелүүлдэг хүмүүс
+
+ 
+```{r}
+
+survey %>%
+  select(starts_with("B2_")) %>%
+  mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
+  cor(method = "pearson") %>%                    # phi coefficient for binary vars
+  corrplot(method = "color", type = "upper",
+           addCoef.col = "black", tl.col = "black")
+```
+
+Дахин хэлэхэд, ямар ч коэффициент > 0.6 байхгүй, гэхдээ бид > 0.3 коэффициентийг анхаарч үзэх болно.
+
+## Бие даасан байдлын хи-квадрат тестүүд
+
+Хараат бус байдлын **хи-квадрат тест** (χ²) нь хоёр категориал хувьсагч хоорондоо холбоотой эсэхийг, эсвэл пропорцын ажиглагдсан ялгаа нь тохиолдлоос шалтгаалсан эсэхийг шалгадаг.
+
+::: callout
+## Хи-квадрат тестийг хэзээ хэрэглэх вэ
+
+Хоёр хувьсагч хоёулаа категори (нэрлэсэн эсвэл дараалсан) байна. Та туршилт хийж байна
+холбоо, учир шалтгааны холбоо биш. Таны болзошгүй байдлын хүснэгтийн нүд бүр байх ёстой
+хамгийн багадаа 5 давтамжтай байх. Таны түүврийн хэмжээ боломжийн байна
+том (ерөнхий гарын авлага болгон n \> 30).
+:::
+
+### Хи-квадрат тест хэзээ тохиромжтой вэ?
+
+Бие даасан байдлын хи-квадрат тест нь дараахь тохиолдолд хамаарна.
+
+1. Ажиглалт нь бие даасан: хариулагч бүр яг нэг эгнээнд хувь нэмэр оруулдаг.
+2. Хоёр хувьсагч хоёулаа категори (нэрлэсэн эсвэл дараалсан) байна.
+3. Болзошгүй байдлын хүснэгтийн нүд тус бүрийн **хүлээгдэж буй** тоо 5-аас багагүй байна. Хүлээгдэж буй тоонууд бага байх тусам тест найдваргүй болно.
+
+Бид 3-р таамаглалыг шалгах замаар тест бүрээр тодорхой шалгах болно
+`chisq.test()$expected`.
+
+### Эффектийн хэмжээ: Cramér's V
+
+p-утга нь зөвхөн холбоо байгаа эсэхийг хэлж өгдөг; Энэ нь хэр хүчтэй болохыг бидэнд хэлэхгүй. **Крамерын V** нь хи-квадрат тестийн стандарт эффектийн хэмжээ юм. Энэ нь 0 (холбоо байхгүй) -ээс 1 (төгс холбоо) хооронд хэлбэлздэг бөгөөд өөр өөр хэмжээтэй хүснэгтүүдтэй харьцуулах боломжтой.
+
+| Cramér's V | Interpretation |
+|------------|----------------|
+| 0.1        | Small effect   |
+| 0.3        | Medium effect  |
+| 0.5        | Large effect   |
+
+Бид үүнийг `rcompanion` багцаас `cramerV()` ашиглан тооцоолдог.
+
+
+Энэ **Судалгааны асуултад хариулахын тулд Хи-квадрат тестийг ашиглацгаая:** Эрэгтэй, эмэгтэй хүмүүс В1 асуултын 1-р сонголтыг адилхан сонгох боломжтой юу?
+
+`B1_1` нь ҮНЭН/ХУДАЛ гэж кодлогдсон тул хүснэгтлэхийн өмнө үүнийг хүчин зүйл болгон хөрвүүлдэг.
+
+```{r chisq-B1-A1}
+
+tbl_B1_A1 <- table(survey$B1_1, survey$A1)
+tbl_B1_A1
+
+chi4 <- chisq.test(tbl_B1_A1)
+chi4
+chi4$expected   # for a 2×2 table, four cells
+cramerV(tbl_B1_A1)
+```
+
+2×2-ийн болзошгүй нөхцөл байдлын хүснэгтийн хувьд бид мөн илэрхийлэхийн тулд **модболын харьцаа**-г тооцоолж болно
+холбоог илүү ойлгомжтой байдлаар: B1_1-г сонгох магадлал
+нэг хүйс нь нөгөөтэйгөө холбоотой.
+
+```{r oddsratio-B1-A1}
+oddsratio(tbl_B1_A1)$measure
+```
+
+1 магадлалын харьцаа нь хоёр бүлгийн хувьд ижил магадлалыг илэрхийлнэ. 1-ээс дээш утга нь
+эхний эгнээний бүлэг илүү өндөр магадлалтай; 1-ээс доош утга нь магадлал багатай гэсэн үг.
+
+
+```{r}
+b1_vars <- survey %>%
+  select(starts_with("B1_")) %>%
+  names()
+
+results_B1_A1 <- tibble(b1_var = b1_vars) %>%
+  rowwise() %>%
+  mutate(
+    n_cells_low = sum(chisq.test(table(survey[[b1_var]], survey[["A1"]]))$expected < 5),
+    chi_p       = chisq.test(table(survey[[b1_var]], survey[["A1"]]))$p.value,
+    cramers_v   = cramerV(table(survey[[b1_var]], survey[["A1"]]))
+  ) %>%
+  ungroup() %>%
+  arrange(chi_p) %>%
+  mutate(across(c(chi_p, cramers_v), ~round(., 4)))
+
+results_B1_A1
+```
+
+
