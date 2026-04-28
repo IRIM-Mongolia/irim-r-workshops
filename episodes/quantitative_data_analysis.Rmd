@@ -12,7 +12,7 @@ editor_options:
 -   Read in data and ensure variables have the correct data type
 -   Perform exploratory data analysis
 -   Identify the correct statistical test for a given variable type and research question
--   Run chi-square tests, t-tests, and one-way ANOVAs in R Notebooks
+-   Run Chi-square tests, t-tests, and one-way ANOVAs in R Notebooks
 -   Interpret p-values, test statistics, and effect sizes in context
 -   Write clear explanatory text in R Notebooks to document analytical
     decisions
@@ -117,7 +117,12 @@ library(epitools) # odds ratios for 2×2 tables
 Then, download the the generated survey dataset using the following
 code:
 
-`download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", here("data/raw/generated_survey_data.csv"), mode = "wb")`
+```{r download, eval=FALSE}
+
+download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/raw/generated_survey_data.csv", here("data/raw/generated_survey_data.csv"), mode = "wb")
+
+```
+
 
 Then, read in the survey csv file and preview the data.
 
@@ -231,7 +236,7 @@ variables.
 
 For categorical variables like those in the survey data, frequency
 tables and proportion summaries reveal how respondents are spread across
-groups, which is important, as some tests (like chi-square) require
+groups, which is important, as some tests (like Chi-square) require
 minimum cell counts to be valid.
 
 Let's investigate the proportion of missing data `NA` in our columns.
@@ -279,7 +284,7 @@ The survey data has a slightly female-majority, with a younger age distribution.
 
 We can also use the `tbl_summary()` function to add statistical tests by using `add_p()`.
 
-Adding `add_p()` runs a chi-square test (or Fisher's exact test where
+Adding `add_p()` runs a Chi-square test (or Fisher's exact test where
 cell counts are small) for each categorical variable automatically, allowing us to quickly identify which variables show statistically significant
 differences by gender before conducting more detailed analysis.
 
@@ -294,7 +299,7 @@ survey %>%
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
   bold_labels()
 ```
@@ -343,22 +348,24 @@ survey %>%
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels() %>% 
+  modify_caption(glue::glue("**Stratified by A1**"))
 ```
 
 ```{r B1_A2, echo=FALSE}
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
-    by = A1,
+    by = A2,
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A2**"))
 ```
 
 ```{r B1_A3, echo=FALSE}
@@ -369,9 +376,11 @@ survey %>%
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A3**"))
+
 ```
 
 ```{r B1_A4, echo=FALSE}
@@ -382,9 +391,10 @@ survey %>%
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A4**"))
 ```
 
 ```{r B1_A5, echo=FALSE}
@@ -395,9 +405,10 @@ survey %>%
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A5**"))
 ```
 
 
@@ -405,13 +416,14 @@ survey %>%
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
-    by = A5,
+    by = A6,
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
     missing = "ifany"
   ) %>% 
-  add_p() %>% # adds chi-square/Fisher's automatically
+  add_p() %>% # adds Chi-square/Fisher's automatically
   add_overall() %>% # adds total column
-  bold_labels()
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A6**"))
 ```
 
 
@@ -466,7 +478,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A1**"))
 ```
 
 ```{r A2-cont,  echo=FALSE}
@@ -486,7 +499,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A2**"))
 ```
 
 ```{r A3-cont,  echo=FALSE}
@@ -506,7 +520,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A3**"))
 ```
 
 ```{r A4-cont,  echo=FALSE}
@@ -526,7 +541,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A4**"))
 ```
 
 ```{r A5-cont,  echo=FALSE}
@@ -546,7 +562,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A5**"))
 ```
 
 ```{r A6-cont,  echo=FALSE}
@@ -566,7 +583,8 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels() 
+  bold_labels()  %>% 
+  modify_caption(glue::glue("**Stratified by A6**"))
 ```
 
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
@@ -582,7 +600,7 @@ variables. Specifically, for continuous variables with two groups it
 applies a Wilcoxon rank-sum test, and with three or more groups it
 applies a Kruskal-Wallis test.
 
-For categorical and logical variables, it uses a chi-square test,
+For categorical and logical variables, it uses a Chi-square test,
 switching automatically to Fisher's exact test when expected cell counts
 are too small (typically when any cell has an expected count below 5).
 
@@ -623,7 +641,7 @@ survey %>%
   theme_minimal(base_size = 12)
 ```
 
-The `reorder()` call sorts the bars from lowest to highest proportion, making it easy to rank options by popularity. `B1_1` is the most commonly selected option and `B1_2` the least- a difference worth investigating when we run chi-square tests shortly.
+The `reorder()` call sorts the bars from lowest to highest proportion, making it easy to rank options by popularity. `B1_1` is the most commonly selected option and `B1_2` the least- a difference worth investigating when we run Chi-square tests shortly.
 
 Let's now plot the results for `B2`.
 
@@ -785,8 +803,6 @@ When writing up Chi-square results for a report, include the following:
 
 An example sentence:
 
-"There was a statistically significant association between age group and the selection of   'Improve employee wellbeing & work-life balance', χ²(1) = 377.63, p-value < 0.001. Cramér's V = 0.615, indicating a large effect. 
-
 "Age group was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
 
 Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
@@ -835,7 +851,7 @@ results_B1_A1
 
 ::: callout
 ## Multiple comparisons
-Running multiple chi-square tests simultaneously inflates the probability of
+Running multiple Chi-square tests simultaneously inflates the probability of
 at least one false positive. To address this, we apply the **Benjamini-Hochberg
 False Discovery Rate (FDR)** correction using p.adjust(method = "fdr"), which
 controls the expected proportion of false positives among significant results.
@@ -880,7 +896,7 @@ results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
 results_B1_A1_fdr
 ```
 
-Our reporting would now include the fact that the p-value was correctd.
+Our reporting would now include the fact that the p-value was corrected.
 "After FDR correction, age group remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (Cramér's V = 0.615).
 
 Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
@@ -888,7 +904,7 @@ Older employees had substantially lower odds of selecting this priority compared
 
 ### When Chi-square assumptions fail — Fisher's exact test
 
-If any expected cell count falls below 5, the chi-square approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
+If any expected cell count falls below 5, the Chi-square approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
 
 ```{r fisher-A5-A3}
 tbl_A5_A2 <- table(survey$A5, survey$A2)
@@ -903,7 +919,7 @@ fisher.test(tbl_A5_A2,
             B = 10000)   # B = number of Monte Carlo replicates
 ```
 
-The Monte Carlo p-value is based on 10,000 random permutations of the table and is a reliable substitute for the asymptotic chi-square approximation when cell counts are small.
+The Monte Carlo p-value is based on 10,000 random permutations of the table and is a reliable substitute for the asymptotic Chi-square approximation when cell counts are small.
 
 For 2X2 tables, just use the Fisher's Exact Test with no simulation. Again, our expected cell counts are > 5, so this is just a demonstration.
 
@@ -935,7 +951,7 @@ cells contribute most to the result; that is, where the observed count differs
 most from what we would expect under independence.
 
 A standardised residual beyond ±2 (roughly corresponding to a two-tailed
-p < 0.05) flags a cell that is "doing more than its share" of the chi-square
+p < 0.05) flags a cell that is "doing more than its share" of the Chi-square
 statistic.
 
 ```{r chisq-E1-A2}
@@ -984,4 +1000,4 @@ often. Cells with residuals beyond ±2 are where the association is "happening".
 
 Example results sentence:
 
-"Overall satisfaction differed significantly across age groups (χ²(8) = 58.52, p < 0.001), though the association was small in magnitude (Cramér's V = 0.171). Satisfaction tended to increase with age: older employees (55+) were more likely than expected to report being satisfied (residual = 2.72) or strongly satisfied (residual = 3.01), while younger employees (18-34) were substantially more likely than expected to report strong dissatisfaction (residual = 6.07) and less likely to report satisfaction (residual = −3.26) or strong satisfaction (residual = −2.35). Employees aged 35–54 showed little deviation from expected counts, with only a modest tendency toward neutrality (residual = 2.19)."
+"Overall satisfaction with work life balance differed significantly across age groups (χ²(8) = 58.52, p < 0.001), though the association was small in magnitude (Cramér's V = 0.171). Satisfaction tended to increase with age: older employees (55+) were more likely than expected to report being satisfied (residual = 2.72) or strongly satisfied (residual = 3.01), while younger employees (18-34) were substantially more likely than expected to report strong dissatisfaction (residual = 6.07) and less likely to report satisfaction (residual = −3.26) or strong satisfaction (residual = −2.35). Employees aged 35–54 showed little deviation from expected counts, with only a modest tendency toward neutrality (residual = 2.19)."
