@@ -16,8 +16,7 @@ editor_options:
 ::: objectives
 -   Read in data and ensure variables have the correct data type
 -   Perform exploratory data analysis
--   Identify the correct statistical test for a given variable type and
-    research question
+-   Identify the correct statistical test for a given variable type and research question
 -   Run chi-square tests, t-tests, and one-way ANOVAs in R Notebooks
 -   Interpret p-values, test statistics, and effect sizes in context
 -   Write clear explanatory text in R Notebooks to document analytical
@@ -295,14 +294,16 @@ survey %>%
   bold_labels()
 ```
 
-We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions "B1" and "B2", and column "E1".
+We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions `B1` and `B2`, and column `E1`.
 
 ```{r}
 demo_vars <- survey %>%
   select(starts_with("A")) %>% # names of all demographic columns
   names()
 
-tables_list <- list()  # initialise empty list first
+demo_vars <- survey %>%
+  select(starts_with("A")) %>% # names of all demographic columns
+  names()
 
 for (by_var in demo_vars) { 
   row_vars <- survey %>%
@@ -311,26 +312,24 @@ for (by_var in demo_vars) {
     select(-all_of(by_var)) %>% # drop from ROWS only, not from data
     names()
   
-  tables_list[[by_var]] <- survey %>%
+  tbl <- survey %>%
     tbl_summary(
-      by        = all_of(by_var), # by_var still exists in survey
-      include   = all_of(row_vars), # controls what appears as rows
+      by = all_of(by_var),
+      include = all_of(row_vars),
       statistic = list(all_categorical() ~ "{n} ({p}%)"),
-      missing   = "ifany"
+      missing = "ifany"
     ) %>%
     add_p() %>%
     add_overall() %>%
     bold_labels() %>%
     modify_caption(glue::glue("**Stratified by {by_var}**"))
+  
+  print(tbl)   # use print(), not walk()
+  cat("\n\n")  # force separation between tables
 }
-
-walk(tables_list, print) # prints all summary tables
-
-
 ```
 
 We can see that there are some statistical differences when stratifying by column `A1`, gender. We'll explore these in more detail shortly.
-
 
 We can also look at the mean and standard deviation of our continuous
 variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`.
@@ -343,7 +342,7 @@ for (by_var in demo_vars) {
   
   tables_cont_list[[by_var]] <- survey %>%
     tbl_summary(
-      by      = all_of(by_var),
+      by = all_of(by_var),
       include = c(D1, D2), # only these two rows
       statistic = list(
         all_continuous() ~ "{mean} ({sd})"
@@ -401,7 +400,6 @@ more statistically powerful than their non-parametric equivalents.
 Questions `B1` and `B2` allowed respondents to select more than one answer (up to 3). Each option has been dummy-coded into its own boolean column (`TRUE` = selected, `FALSE` = not selected). The raw `B1` and `B2` columns contain the original response strings and can be ignored for analysis.
 
 Let's start by looking at the **proportion of respondents who selected each option**.
-
 
 ```{r multiselect-B1}
 survey %>%
@@ -468,7 +466,6 @@ Let's code a `corrplot` for `B1_*` columns. As a reminder, the options were:
 
  
 ```{r}
-
 survey %>%
   select(starts_with("B1_")) %>%
   mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
@@ -479,8 +476,7 @@ survey %>%
 
 This `corrplot` demonstrates that questions `B1_1` and `B1_3` show a mild positive correlation, with a co-efficient of *0.38*, meaning respondents may be more likely to co-select these two options, while `B1_1` and `B1_5` and `B1_3` and `B1_5` show a mild negative correlation, meaning respondents may be more likely to not co-select these two options. The coefficients are all less than 0.6, but we'll keep these associations in mind.
 
-
-Now let's code a `corrplot` for `B2_*` columns.. As a reminder, the options were:
+Now let's code a `corrplot` for `B2_*` columns. As a reminder, the options were:
 
 **Question B2:** Who should benefit most from flexible working?
 (Select up to 3) 
@@ -592,7 +588,9 @@ An example sentence:
 Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
 ::: 
 
-We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the resulsts out in an easy to read table.
+We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the results out in an easy to read table.
+
+### Test 2: A boolean B-item × Gender (All B1_* × A1)
 
 ```{r}
 # Select all B1_ columns
@@ -713,14 +711,14 @@ fisher.test(tbl_A1_B1_1)
 
 ```
 
-::::::::::::::::::::::::::::::::::::: callout
+::: callout
 
 **Interpreting a 2×3 table**
 
 A significant Chi-square result tells us that the overall pattern of income
 differs between urban and rural areas. It does **not** tell us which specific income category drives the difference. To find that, examine the standardised residuals (see Test 3 below).
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 
 ### Test 3: Satisfaction × Age group (E1 × A2), with standardised residuals
