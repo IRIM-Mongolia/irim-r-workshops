@@ -353,7 +353,7 @@ We can see that there are some statistical differences when stratifying by colum
 We can also look at the mean and standard deviation of our continuous
 variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`.
 
-```{r demographic-contin results='asis'}
+```{r demographic-contin}
 
 tables_cont_list <- list() # initialise empty list first
 
@@ -384,27 +384,27 @@ for (by_var in demo_vars) {
 
 ```
 
-```{r print-1,  echo=FALSE}
+```{r print1,  echo=FALSE}
 print(tables_cont_list[[1]])
 ```
 
-```{r print-2,  echo=FALSE}
+```{r print2,  echo=FALSE}
 print(tables_cont_list[[2]])
 ```
 
-```{r print-3, echo=FALSE}
+```{r print3, echo=FALSE}
 print(tables_cont_list[[3]])
 ```
 
-```{r print-4,  echo=FALSE}
+```{r print4,  echo=FALSE}
 print(tables_cont_list[[4]])
 ```
 
-```{r print-5,  echo=FALSE}
+```{r print5,  echo=FALSE}
 print(tables_cont_list[[5]])
 ```
 
-```{r print-6,  echo=FALSE}
+```{r print6,  echo=FALSE}
 print(tables_cont_list[[6]])
 ```
 
