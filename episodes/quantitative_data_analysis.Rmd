@@ -27,9 +27,11 @@ editor_options:
 
 ## Other materials
 
-[See Workshop 5 Slides here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
+[See Workshop 5 Slides
+here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf12Ac_tkOYCOrSG-ls8oE8Qcro?e=0kUTeI)
 
-[See Workshop 5 recording here - 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
+[See Workshop 5 recording here -
+1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
 ## Dataset Overview
 
@@ -39,153 +41,40 @@ number of different data types.
 
 The schema is included in the following table.
 
-**Flexible working and work-life balance survey data schema**
+**Flexible working and work-life balance survey data schema** 
 
-+--------------+--------------+--------------+---------------------+
-| Section      | Variable     | Type         | Description         |
-+==============+==============+==============+=====================+
-| A            | A1 - Gender  | Factor       | What is your        |
-| (D           |              | (male,       | gender?             |
-| emographics) |              | female)      |                     |
-+--------------+--------------+--------------+---------------------+
-|              | A2 - Age     | Ordered      | What is your age?   |
-|              | Group        | Factor       |                     |
-|              |              | (18-34,      |                     |
-|              |              | 35-54, 55+)  |                     |
-+--------------+--------------+--------------+---------------------+
-|              | A3 -         | Ordered      | What is your        |
-|              | Education    | Factor       | highest level of    |
-|              |              | (primary,    | education?          |
-|              |              | secondary,   |                     |
-|              |              | tertiary or  |                     |
-|              |              | higher)      |                     |
-+--------------+--------------+--------------+---------------------+
-|              | A4 - Income  | Ordered      | What is your annual |
-|              |              | Factor       | income?             |
-|              |              |              |                     |
-|              |              | (low,        |                     |
-|              |              | middle,      |                     |
-|              |              | high)        |                     |
-+--------------+--------------+--------------+---------------------+
-|              | A5 - Region  | Factor       | What is your region |
-|              |              | (region 1,   | of residence?       |
-|              |              | 2, 3)        |                     |
-+--------------+--------------+--------------+---------------------+
-|              | A6 - Area    | Factor       | Is your region of   |
-|              | Type         | (rural,      | residence urban or  |
-|              |              | urban)       | rural?              |
-+--------------+--------------+--------------+---------------------+
-| B (Policy    | B1           | Character    | What should be the  |
-| Views)       |              |              | main goal of        |
-|              |              |              | flexible working    |
-|              |              |              | policies? (Select   |
-|              |              |              | up to 3)            |
-+--------------+--------------+--------------+---------------------+
-|              | B1_1         | Logical      | Improve employee    |
-|              |              |              | wellbeing &         |
-|              |              |              | work-life balance   |
-+--------------+--------------+--------------+---------------------+
-|              | B1_2         | Logical      | Boost productivity  |
-|              |              |              | & business          |
-|              |              |              | performance         |
-+--------------+--------------+--------------+---------------------+
-|              | B1_3         | Logical      | Attract & retain    |
-|              |              |              | top talent          |
-+--------------+--------------+--------------+---------------------+
-|              | B1_4         | Logical      | Reduce costs &      |
-|              |              |              | office overhead     |
-+--------------+--------------+--------------+---------------------+
-|              | B1_5         | Logical      | Support diversity,  |
-|              |              |              | equity & inclusion  |
-+--------------+--------------+--------------+---------------------+
-| B (Policy    | B2           | Character    | Who should benefit  |
-| Views)       |              |              | most from flexible  |
-|              |              |              | working             |
-|              |              |              | arrangements        |
-|              |              |              | (Select up to 3)    |
-+--------------+--------------+--------------+---------------------+
-|              | B2_1         | Logical      | All employees       |
-|              |              |              | equally, regardless |
-|              |              |              | of role or          |
-|              |              |              | seniority           |
-+--------------+--------------+--------------+---------------------+
-|              | B2_2         | Logical      | Parents and         |
-|              |              |              | caregivers with     |
-|              |              |              | dependants          |
-+--------------+--------------+--------------+---------------------+
-|              | B2_3         | Logical      | Employees with      |
-|              |              |              | disabilities or     |
-|              |              |              | chronic health      |
-|              |              |              | conditions          |
-+--------------+--------------+--------------+---------------------+
-|              | B2_4         | Logical      | Junior/entry-level  |
-|              |              |              | employees building  |
-|              |              |              | their careers       |
-+--------------+--------------+--------------+---------------------+
-|              | B2_5         | Logical      | Senior/experienced  |
-|              |              |              | employees with      |
-|              |              |              | proven track        |
-|              |              |              | records             |
-+--------------+--------------+--------------+---------------------+
-|              | B2_6         | Logical      | Employees with long |
-|              |              |              | commutes or remote  |
-|              |              |              | locations           |
-+--------------+--------------+--------------+---------------------+
-|              | B2_7         | Logical      | Employees from      |
-|              |              |              | underrepresented or |
-|              |              |              | marginalised groups |
-+--------------+--------------+--------------+---------------------+
-|              | B2_8         | Logical      | High performers and |
-|              |              |              | those meeting       |
-|              |              |              | targets             |
-|              |              |              | consistently        |
-+--------------+--------------+--------------+---------------------+
-| C (Likert    | C1           | Integer      | How satisfied are   |
-| Scales)      |              | (1-5)        | you with your       |
-|              |              |              | current flexible    |
-|              |              |              | working             |
-|              |              |              | arrangements (1     |
-|              |              |              | least satisfied, 5  |
-|              |              |              | most satisifed)     |
-+--------------+--------------+--------------+---------------------+
-|              | C2           | Integer      | To what extent do   |
-|              |              | (1-5)        | flexible working    |
-|              |              |              | options improve     |
-|              |              |              | your work-life      |
-|              |              |              | balance? (1 very    |
-|              |              |              | little, 5 very      |
-|              |              |              | much)               |
-+--------------+--------------+--------------+---------------------+
-|              | C3           | Integer      | How strongly do you |
-|              |              | (1-5)        | agree that your     |
-|              |              |              | employer supports   |
-|              |              |              | flexible working in |
-|              |              |              | practice (1 very    |
-|              |              |              | little, 5 very      |
-|              |              |              | much)               |
-+--------------+--------------+--------------+---------------------+
-| D (Con       | D1           | Numeric      | What is your        |
-| tinuous)     |              |              | commute time to     |
-|              |              |              | work in minutes?    |
-+--------------+--------------+--------------+---------------------+
-| D (Con       | D2           | Numeric      | What is your        |
-| tinuous)     |              |              | commute distance in |
-|              |              |              | km?                 |
-+--------------+--------------+--------------+---------------------+
-| E (O         | E1           | Ordered      | How satisfied are   |
-| utcomes)     |              | Factor       | you with your       |
-|              |              |              | current work life   |
-|              |              |              | balance? (strongly  |
-|              |              |              | dissatisfied,       |
-|              |              |              | dissatisfied,       |
-|              |              |              | neutral, satisfied, |
-|              |              |              | strongly satisfied) |
-+--------------+--------------+--------------+---------------------+
-| E            | E2           | Free text    | What makes you most |
-|              |              |              | satisfied in your   |
-|              |              |              | personal life?      |
-|              |              |              | (free text)         |
-+--------------+--------------+--------------+---------------------+
+| Section | Variable | Type | Description |
+|---|---|---|---|
+| **A (Demographics)** | A1 – Gender | Factor (male, female) | What is your gender? |
+| | A2 – Age Group | Ordered Factor (18–34, 35–54, 55+) | What is your age? |
+| | A3 – Education | Ordered Factor (primary, secondary, tertiary+) | What is your highest level of education? |
+| | A4 – Income | Ordered Factor (low, middle, high) | What is your annual income? |
+| | A5 – Region | Factor (region 1, 2, 3) | What is your region of residence? |
+| | A6 – Area Type | Factor (rural, urban) | Is your region of residence urban or rural? |
+| **B (Policy Views)** | B1 | Character | What should be the main goal of flexible working policies? (Select up to 3) |
+| | B1_1 | Logical | Improve employee wellbeing & work-life balance |
+| | B1_2 | Logical | Boost productivity & business performance |
+| | B1_3 | Logical | Attract & retain top talent |
+| | B1_4 | Logical | Reduce costs & office overhead |
+| | B1_5 | Logical | Support diversity, equity & inclusion |
+| | B2 | Character | Who should benefit most from flexible working arrangements? (Select up to 3) |
+| | B2_1 | Logical | All employees equally, regardless of role or seniority |
+| | B2_2 | Logical | Parents and caregivers with dependants |
+| | B2_3 | Logical | Employees with disabilities or chronic health conditions |
+| | B2_4 | Logical | Junior/entry-level employees building their careers |
+| | B2_5 | Logical | Senior/experienced employees with proven track records |
+| | B2_6 | Logical | Employees with long commutes or remote locations |
+| | B2_7 | Logical | Employees from underrepresented or marginalised groups |
+| | B2_8 | Logical | High performers and those meeting targets consistently |
+| **C (Satisfaction)** | C1 | Integer (1–5) | How satisfied are you with your current flexible working arrangements? (1 = least satisfied, 5 = most satisfied) |
+| | C2 | Integer (1–5) | To what extent do flexible working options improve your work-life balance? (1 = very little, 5 = very much) |
+| | C3 | Integer (1–5) | How strongly do you agree that your employer supports flexible working in practice? (1 = very little, 5 = very much) |
+| **D (Commute)** | D1 | Numeric | What is your commute time to work in minutes? |
+| | D2 | Numeric | What is your commute distance in km? |
+| **E (Outcomes)** | E1 | Ordered Factor (strongly dissatisfied → strongly satisfied) | How satisfied are you with your current work-life balance? |
+| | E2 | Free text | What makes you most satisfied in your personal life? |
+
+
 
 ## Set up
 
@@ -212,13 +101,18 @@ Download packages (if needed) and load libraries. We'll be using the
 installed.
 
 ```{r  eval=TRUE, message=FALSE, purl=FALSE}
-for (pkg in c("tidyverse", "here", "gtsummary")) {
+for (pkg in c("tidyverse", "here", "gtsummary", "scales", "corrplot", "rcompanion")) {
   if (!requireNamespace(pkg)) install.packages(pkg)
 }
 
 library(tidyverse)
 library(here)
-library(gtsummary)
+library(gtsummary) # summary tables
+library(scales) # percent formatting for axes
+library(corrplot) # correlation plots
+library(rcompanion)  # Cramér's V effect size
+library(epitools) # odds ratios for 2×2 tables
+
 
 ```
 
@@ -315,7 +209,6 @@ class(survey[["E1"]])
 levels(survey[["E1"]])
 ```
 
-
 ## Exploratory data analysis
 
 Before running any statistical tests, it is important to carry out some
@@ -362,64 +255,114 @@ income levels, and regions.
 ```{r frequency}
 # Overall frequency table for all factor columns
 survey %>% 
-    select(where(is.factor)) %>% 
-
+  select(where(is.factor)) %>% 
   tbl_summary(
-    statistic = list(all_categorical() ~ "{n} ({p}%)"),  # count and proportion
-    missing   = "ifany"                                   # show missing if present
+    statistic = list(all_categorical() ~ "{n} ({p}%)"), # count and proportion
+    missing = "ifany" # show missing if present
   )
 
 ```
 
-### Breakdown by demographics
 
-We can also use the `tbl_summary()` function to automatically detects
-variable types and calculate appropriate statistics; in this case,
-counts and column percentages for categorical and logical variables.
+The survey data has a slightly female-majority, with a younger age distribution. We should keep this in mind when interpreting any later results that break down by gender and age.
+
+#### Breakdown by demographics
+
+We can also use the `tbl_summary()` function to add statistical tests by using `add_p()`.
 
 Adding `add_p()` runs a chi-square test (or Fisher's exact test where
-cell counts are small) for each variable automatically, allowing us to
-quickly identify which variables show statistically significant
+cell counts are small) for each categorical variable automatically, allowing us to quickly identify which variables show statistically significant
 differences by gender before conducting more detailed analysis.
 
+We'll select all of the demographics columns that start with "A", and the multi-select columns for questions "B1" and "B2".
+
 ```{r demographic-freq}
-# Breakdown by demographic
+# Breakdown by demographics (section A)
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
-    by        = A1,
+    by = A1,
     statistic = list(all_categorical() ~ "{n} ({p}%)"),
-    missing   = "ifany"
+    missing = "ifany"
   ) %>% 
-  add_p() %>%                         # adds chi-square/Fisher's automatically
-  add_overall() %>%                   # adds total column
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
   bold_labels()
 ```
+
+We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions "B1" and "B2", and column "E1".
+
+```{r}
+demo_vars <- survey %>%
+  select(starts_with("A")) %>% # names of all demographic columns
+  names()
+
+tables_list <- list()  # initialise empty list first
+
+for (by_var in demo_vars) { 
+  row_vars <- survey %>%
+    # choose which columns
+    select(starts_with("A"), matches("_\\d+$"), "E1") %>%
+    select(-all_of(by_var)) %>% # drop from ROWS only, not from data
+    names()
+  
+  tables_list[[by_var]] <- survey %>%
+    tbl_summary(
+      by        = all_of(by_var), # by_var still exists in survey
+      include   = all_of(row_vars), # controls what appears as rows
+      statistic = list(all_categorical() ~ "{n} ({p}%)"),
+      missing   = "ifany"
+    ) %>%
+    add_p() %>%
+    add_overall() %>%
+    bold_labels() %>%
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
+}
+
+walk(tables_list, print) # prints all summary tables
+
+
+```
+
+We can see that there are some statistical differences when stratifying by column `A1`, gender. We'll explore these in more detail shortly.
+
 
 We can also look at the mean and standard deviation of our continuous
-variables, stratified by demographics. We'll look at variables `D1` and
-`D2` by age group, `A2`.
+variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`.
 
 ```{r demographic-contin}
-survey %>% 
-  select(A2, D1, D2) %>% 
-  tbl_summary(
-    by        = A2,
-    statistic = list(
-      all_categorical() ~ "{n} ({p}%)",
-      all_continuous()  ~ "{mean} ({sd})"        # mean and standard deviation
-    ),
-    digits  = all_continuous() ~ 1,
-    missing = "ifany",
-    label   = list(
-      D1 ~ "Commute time (minutes)",
-      D2 ~ "Commute distance (km)"
-    )
-  ) %>% 
-  add_p() %>%     
-  add_overall() %>% 
-  bold_labels()
+
+tables_cont_list <- list() # initialise empty list first
+
+for (by_var in demo_vars) {
+  
+  tables_cont_list[[by_var]] <- survey %>%
+    tbl_summary(
+      by      = all_of(by_var),
+      include = c(D1, D2), # only these two rows
+      statistic = list(
+        all_continuous() ~ "{mean} ({sd})"
+      ),
+      digits = all_continuous() ~ 1,
+      missing = "ifany",
+      label = list(
+        D1 ~ "D1 Commute time (minutes)",
+        D2 ~ "D2 Commute distance (km)"
+      )
+    ) %>%
+    add_p() %>%
+    add_overall() %>%
+    bold_labels() %>%
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
+}
+
+walk(tables_cont_list, print)
+
+
 ```
+
+We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
+
 
 ::: callout
 ## Statistical tests used by `gtsummary`
@@ -445,3 +388,202 @@ approximately normally distributed and sample sizes are adequate,
 parametric tests (t-test, ANOVA) are appropriate and will generally be
 more statistically powerful than their non-parametric equivalents.
 :::
+
+## Analysing multi-select data
+
+### Proportions
+
+Questions `B1` and `B2` allowed respondents to select more than one answer (up to 3). Each option has been dummy-coded into its own boolean column (`TRUE` = selected, `FALSE` = not selected). The raw `B1` and `B2` columns contain the original response strings and can be ignored for analysis.
+
+Let's start by looking at the **proportion of respondents who selected each option**.
+
+
+```{r multiselect-B1}
+survey %>%
+  select(starts_with("B1_")) %>%
+  summarise(across(everything(), mean)) %>%
+  pivot_longer(everything(),
+               names_to  = "option",
+               values_to = "proportion") %>%
+  ggplot(aes(x = reorder(option, proportion), y = proportion)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = percent(proportion, accuracy = 1)),
+            hjust = -0.15, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(labels = percent, limits = c(0, 0.7)) +
+  labs(title = "B1: Proportion of respondents selecting each option",
+       x = NULL, y = "% selecting") +
+  theme_minimal(base_size = 12)
+```
+
+The `reorder()` call sorts the bars from lowest to highest proportion, making it easy to rank options by popularity. `B1_1` is the most commonly selected option and `B1_2` the least- a difference worth investigating when we run chi-square tests shortly.
+
+Let's now plot the results for `B2`.
+
+```{r multiselect-B2}
+survey %>%
+  select(starts_with("B2_")) %>%
+  summarise(across(everything(), mean)) %>%
+  pivot_longer(everything(),
+               names_to  = "option",
+               values_to = "proportion") %>%
+  ggplot(aes(x = reorder(option, proportion), y = proportion)) +
+  geom_col(fill = "coral") +
+  geom_text(aes(label = percent(proportion, accuracy = 1)),
+            hjust = -0.15, size = 3.5) +
+  coord_flip() +
+  scale_y_continuous(labels = percent, limits = c(0, 0.6)) +
+  labs(title = "B2: Proportion of respondents selecting each option",
+       x = NULL, y = "% selecting") +
+  theme_minimal(base_size = 12)
+
+```
+
+`B2_6` is the most commonly selected option and `B2_2` the least.
+ 
+### Correlation matrix 
+A correlation matrix is a useful diagnostic tool when working with multiple-response (multi-select) questions. Although each boolean column is structurally independent (meaning there is no logical rule preventing a respondent from selecting any combination of options), respondents' choices in practice often cluster together. 
+
+We can use a correlation plot from the `corrplot` package to visualise the pairwise phi coefficients (Pearson correlation applied to 0/1 data) for all `B1` and `B2` option columns simultaneously. 
+
+The colour hue indicates direction: blue cells mean two options tend to be co-selected, while red cells mean selecting one option is associated with not selecting the other. Colour intensity encodes strength; darker shades indicate stronger associations, paler shades near-zero relationships. 
+
+As a practical guide, coefficients with an absolute value above 0.3 are worth flagging, and values above 0.6 suggest two options may be capturing the same underlying preference and could potentially be combined.
+
+This step should always precede any analysis that treats the `B` section columns as independent predictors, since strong co-selection patterns can distort results if not investigated.
+
+Let's code a `corrplot` for `B1_*` columns. As a reminder, the options were:
+
+**Question B1:** What should be the main goal of flexible working policies? (Select up to 3) 
+- B1_1: Improve employee wellbeing & work-life balance
+- B1_2: Boost productivity & business performance
+- B1_3: Attract & retain top talent
+- B1_4: Reduce costs & office overhead
+- B1_5: Support diversity, equity & inclusion
+
+ 
+```{r}
+
+survey %>%
+  select(starts_with("B1_")) %>%
+  mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
+  cor(method = "pearson") %>%                    # phi coefficient for binary vars
+  corrplot(method = "color", type = "upper",
+           addCoef.col = "black", tl.col = "black")
+```
+
+This `corrplot` demonstrates that questions `B1_1` and `B1_3` show a mild positive correlation, with a co-efficient of *0.38*, meaning respondents may be more likely to co-select these two options, while `B1_1` and `B1_5` and `B1_3` and `B1_5` show a mild negative correlation, meaning respondents may be more likely to not co-select these two options. The coefficients are all less than 0.6, but we'll keep these associations in mind.
+
+
+Now let's code a `corrplot` for `B2_*` columns.. As a reminder, the options were:
+
+**Question B2:** Who should benefit most from flexible working?
+(Select up to 3) 
+
+- B2_1: All employees equally, regardless of role or seniority
+- B2_2: Parents and caregivers with dependants
+- B2_3: Employees with disabilities or chronic health conditions
+- B2_4: Junior/entry-level employees building their careers
+- B2_5: Senior/experienced employees with proven track records
+- B2_6: Employees with long commutes or remote locations
+- B2_7: Employees from underrepresented or marginalised groups
+- B2_8: High performers and those meeting targets consistently
+
+ 
+```{r}
+
+survey %>%
+  select(starts_with("B2_")) %>%
+  mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
+  cor(method = "pearson") %>%                    # phi coefficient for binary vars
+  corrplot(method = "color", type = "upper",
+           addCoef.col = "black", tl.col = "black")
+```
+
+Again, no coefficients are > 0.6, but we'll be mindful of any cofficients > 0.3.
+
+## Chi-square tests of independence
+
+The **chi-square test of independence** (χ²) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
+
+::: callout
+## When to use a Chi-Square Test
+
+Both variables are categorical (nominal or ordinal). You are testing
+association, not causation. Each cell in your contingency table should
+have an expected frequency of at least 5. Your sample size is reasonably
+large (n \> 30 as a general guide).
+:::
+
+### When is the Chi-square test appropriate?
+
+The Chi-square test of independence applies when:
+
+1. Observations are independent: each respondent contributes exactly one row.
+2. Both variables are categorical (nominal or ordinal).
+3. The **expected** count in each cell of the contingency table is at least 5. The test becomes unreliable with smaller expected counts.
+
+We will check assumption 3 explicitly for every test by examining
+`chisq.test()$expected`.
+
+### Effect size: Cramér's V
+
+A p-value only tells us whether an association exists; it does not tell us how strong it is. **Cramér's V** is the standard effect size for chi-square tests. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
+
+| Cramér's V | Interpretation |
+|------------|----------------|
+| 0.1        | Small effect   |
+| 0.3        | Medium effect  |
+| 0.5        | Large effect   |
+
+We compute it with `cramerV()` from the `rcompanion` package.
+
+
+Let's use the Chi-square test to answer this **Research question:** Are men and women equally likely to select option 1 of question B1?
+
+Because `B1_1` is coded as TRUE/FALSE, we convert it to a factor before tabulating.
+
+```{r chisq-B1-A1}
+
+tbl_B1_A1 <- table(survey$B1_1, survey$A1)
+tbl_B1_A1
+
+chi4 <- chisq.test(tbl_B1_A1)
+chi4
+chi4$expected   # for a 2×2 table, four cells
+cramerV(tbl_B1_A1)
+```
+
+For a 2×2 contingency table, we can also compute an **odds ratio** to express
+the association in a more interpretable way: the odds of selecting B1_1 for
+one gender relative to the other.
+
+```{r oddsratio-B1-A1}
+oddsratio(tbl_B1_A1)$measure
+```
+
+An odds ratio of 1 means equal odds for both groups. Values above 1 mean the
+first row group has higher odds; values below 1 mean lower odds.
+
+
+```{r}
+b1_vars <- survey %>%
+  select(starts_with("B1_")) %>%
+  names()
+
+results_B1_A1 <- tibble(b1_var = b1_vars) %>%
+  rowwise() %>%
+  mutate(
+    n_cells_low = sum(chisq.test(table(survey[[b1_var]], survey[["A1"]]))$expected < 5),
+    chi_p       = chisq.test(table(survey[[b1_var]], survey[["A1"]]))$p.value,
+    cramers_v   = cramerV(table(survey[[b1_var]], survey[["A1"]]))
+  ) %>%
+  ungroup() %>%
+  arrange(chi_p) %>%
+  mutate(across(c(chi_p, cramers_v), ~round(., 4)))
+
+results_B1_A1
+```
+
+
+
