@@ -129,6 +129,7 @@ survey # preview the data
 
 ```
 
+## Process data
 Let's inspect the dataframe and see how R classified the data types.
 
 ```{r inspect-str}
@@ -205,6 +206,16 @@ class(survey[["E1"]])
 
 ```{r levels}
 levels(survey[["E1"]])
+```
+
+### Export processed data
+Now that we've processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R.
+
+```{r eval=FALSE}
+saveRDS(survey, here("data", "cleaned", "generated_survey_data.rds"))
+
+# read back in - retains all factor levels, ordered factors, etc.
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
 ```
 
 ## Exploratory data analysis
@@ -288,10 +299,9 @@ survey %>%
   bold_labels()
 ```
 
-We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions `B1` and `B2`, and column `E1`.
+We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions `B1` and `B2`, and column `E1`. When running locally in RStudio, 6 tables will print out in the output.
 
-
-```{r demographic-all-freq}
+```{r demographic-all-freq, eval=FALSE}
 
 demo_vars <- survey %>%
   select(starts_with("A")) %>% # names of all demographic columns
@@ -300,65 +310,122 @@ demo_vars <- survey %>%
 tables_list <- list() # initialise empty list first
 
 for (by_var in demo_vars) {
-  row_vars <- survey %>% 
-    select(starts_with("A"), matches("_\\d+$"), "E1") %>% 
-    select(-all_of(by_var)) %>% 
+  row_vars <- survey %>%
+    select(starts_with("A"), matches("_\\d+$"), "E1") %>%
+    select(-all_of(by_var)) %>%
     names()
-  
+
   tables_list[[by_var]] <- survey %>%
     tbl_summary(
       by = all_of(by_var),
       include = all_of(row_vars),
       statistic = list(all_categorical() ~ "{n} ({p}%)"),
       missing = "ifany"
-    ) %>% 
-    add_p() %>% 
-    add_overall() %>% 
-    bold_labels() %>% 
+    ) %>%
+    add_p() %>%
+    add_overall() %>%
+    bold_labels() %>%
     modify_caption(glue::glue("**Stratified by {by_var}**"))
 }
 
-# uncomment out this code when running locally
-# walk(tables_list, print) # prints each table in the list
+walk(tables_list, print) # prints each table in the list
 
 
 ```
-```{r print-1,  echo=FALSE}
-print(tables_list[[1]])
+
+
+```{r B1_A1, echo=FALSE}
+# issues with rendering the for-loop output on the sandpaper website have led to this...
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A1,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
-```{r print-2,  echo=FALSE}
-print(tables_list[[2]])
+```{r B1_A2, echo=FALSE}
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A1,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
-```{r print-3, echo=FALSE}
-print(tables_list[[3]])
+```{r B1_A3, echo=FALSE}
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A3,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
-```{r print-4,  echo=FALSE}
-print(tables_list[[4]])
+```{r B1_A4, echo=FALSE}
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A4,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
-```{r print-5,  echo=FALSE}
-print(tables_list[[5]])
+```{r B1_A5, echo=FALSE}
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A5,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
-```{r print-6,  echo=FALSE}
-print(tables_list[[6]])
+
+```{r B1_A6, echo=FALSE}
+survey %>% 
+  select(starts_with("A"), matches("_\\d+$")) %>% 
+  tbl_summary(
+    by = A5,
+    statistic = list(all_categorical() ~ "{n} ({p}%)"),
+    missing = "ifany"
+  ) %>% 
+  add_p() %>% # adds chi-square/Fisher's automatically
+  add_overall() %>% # adds total column
+  bold_labels()
 ```
 
 
 We can see that there are some statistical differences when stratifying by column `A1`, gender. We'll explore these in more detail shortly.
 
 We can also look at the mean and standard deviation of our continuous
-variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`.
+variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`. When running locally in RStudio, 6 tables will print out in the output.
 
-```{r demographic-contin}
+```{r demographic-contin, eval=FALSE}
 
 tables_cont_list <- list() # initialise empty list first
 
 for (by_var in demo_vars) {
-  
+
   tables_cont_list[[by_var]] <- survey %>%
     tbl_summary(
       by = all_of(by_var),
@@ -378,36 +445,129 @@ for (by_var in demo_vars) {
     bold_labels() %>%
     modify_caption(glue::glue("**Stratified by {by_var}**"))
 }
-
-# uncomment out this code when running locally
-# walk(tables_cont_list, print) # prints each table in the list
+walk(tables_cont_list, print) # prints each table in the list
 
 ```
 
-```{r print1,  echo=FALSE}
-print(tables_cont_list[[1]])
+```{r A1-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A1,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
 
-```{r print2,  echo=FALSE}
-print(tables_cont_list[[2]])
+```{r A2-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A2,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
 
-```{r print3, echo=FALSE}
-print(tables_cont_list[[3]])
+```{r A3-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A3,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
 
-```{r print4,  echo=FALSE}
-print(tables_cont_list[[4]])
+```{r A4-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A4,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
 
-```{r print5,  echo=FALSE}
-print(tables_cont_list[[5]])
+```{r A5-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A5,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
 
-```{r print6,  echo=FALSE}
-print(tables_cont_list[[6]])
+```{r A6-cont,  echo=FALSE}
+survey %>%
+  tbl_summary(
+    by = A6,
+    include = c(D1, D2),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    digits = all_continuous() ~ 1,
+    missing = "ifany",
+    label = list(
+      D1 ~ "D1 Commute time (minutes)",
+      D2 ~ "D2 Commute distance (km)"
+    )
+  ) %>%
+  add_p() %>%
+  add_overall() %>%
+  bold_labels() 
 ```
-
 
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
 
