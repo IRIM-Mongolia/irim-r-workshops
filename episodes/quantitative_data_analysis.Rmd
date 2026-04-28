@@ -290,54 +290,79 @@ survey %>%
 
 We can expand this code further to use a `for loop` to generate summary tables stratified by each demographic column.  We'll select all of the demographics columns that start with "A", the multi-select columns for questions `B1` and `B2`, and column `E1`.
 
-```{r}
+
+```{r demographic-all-freq}
+
 demo_vars <- survey %>%
   select(starts_with("A")) %>% # names of all demographic columns
   names()
 
-for (by_var in demo_vars) { 
-  row_vars <- survey %>%
-    # choose which columns
-    select(starts_with("A"), matches("_\\d+$"), "E1") %>%
-    select(-all_of(by_var)) %>% # drop from ROWS only, not from data
+tables_list <- list() # initialise empty list first
+
+for (by_var in demo_vars) {
+  row_vars <- survey %>% 
+    select(starts_with("A"), matches("_\\d+$"), "E1") %>% 
+    select(-all_of(by_var)) %>% 
     names()
   
-  tbl <- survey %>%
+  tables_list[[by_var]] <- survey %>%
     tbl_summary(
       by = all_of(by_var),
       include = all_of(row_vars),
       statistic = list(all_categorical() ~ "{n} ({p}%)"),
       missing = "ifany"
-    ) %>%
-    add_p() %>%
-    add_overall() %>%
-    bold_labels() %>%
-    modify_caption(glue::glue("**Stratified by {by_var}**")) %>% 
-    # this code ensures the output renders on the website. Comment out the next 3 lines when running locally.
-    as_gt() %>%
-    gt::as_raw_html() %>%
-    cat()
-  
-  #uncomment the line below to print the output locally
-  print(tbl)
-  
-  cat("\n\n")
+    ) %>% 
+    add_p() %>% 
+    add_overall() %>% 
+    bold_labels() %>% 
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
 }
+
+# uncomment out this code when running locally
+# walk(tables_list, print) # prints each table in the list
+
+
 ```
+```{r print-1,  echo=FALSE}
+print(tables_list[[1]])
+```
+
+```{r print-2,  echo=FALSE}
+print(tables_list[[2]])
+```
+
+```{r print-3, echo=FALSE}
+print(tables_list[[3]])
+```
+
+```{r print-4,  echo=FALSE}
+print(tables_list[[4]])
+```
+
+```{r print-5,  echo=FALSE}
+print(tables_list[[5]])
+```
+
+```{r print-6,  echo=FALSE}
+print(tables_list[[6]])
+```
+
 
 We can see that there are some statistical differences when stratifying by column `A1`, gender. We'll explore these in more detail shortly.
 
 We can also look at the mean and standard deviation of our continuous
 variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`.
 
-```{r demographic-contin}
+```{r demographic-contin results='asis'}
+
+tables_cont_list <- list() # initialise empty list first
 
 for (by_var in demo_vars) {
   
-  survey %>%
+  tables_cont_list[[by_var]] <- survey %>%
     tbl_summary(
       by = all_of(by_var),
-      include = c(D1, D2),
+      include = c(D1, D2), # only these two rows
       statistic = list(
         all_continuous() ~ "{mean} ({sd})"
       ),
@@ -351,19 +376,38 @@ for (by_var in demo_vars) {
     add_p() %>%
     add_overall() %>%
     bold_labels() %>%
-    modify_caption(glue::glue("**Stratified by {by_var}**")) %>%
-     # this code ensures the output renders on the website. Comment out the next 3 lines when running locally.
-    as_gt() %>%
-    gt::as_raw_html() %>%
-    cat()
-  
-  #uncomment the line below to print the output locally
-  # print(tbl) 
-  
-  cat("\n\n")
+    modify_caption(glue::glue("**Stratified by {by_var}**"))
 }
 
+# uncomment out this code when running locally
+# walk(tables_cont_list, print) # prints each table in the list
+
 ```
+
+```{r print-1,  echo=FALSE}
+print(tables_cont_list[[1]])
+```
+
+```{r print-2,  echo=FALSE}
+print(tables_cont_list[[2]])
+```
+
+```{r print-3, echo=FALSE}
+print(tables_cont_list[[3]])
+```
+
+```{r print-4,  echo=FALSE}
+print(tables_cont_list[[4]])
+```
+
+```{r print-5,  echo=FALSE}
+print(tables_cont_list[[5]])
+```
+
+```{r print-6,  echo=FALSE}
+print(tables_cont_list[[6]])
+```
+
 
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
 
@@ -465,7 +509,7 @@ Let's code a `corrplot` for `B1_*` columns. As a reminder, the options were:
 - B1_5: Support diversity, equity & inclusion
 
  
-```{r}
+```{r corrplot}
 survey %>%
   select(starts_with("B1_")) %>%
   mutate(across(everything(), as.integer)) %>%   # TRUE/FALSE → 1/0
@@ -491,7 +535,7 @@ Now let's code a `corrplot` for `B2_*` columns. As a reminder, the options were:
 - B2_8: High performers and those meeting targets consistently
 
  
-```{r}
+```{r corrplot2}
 
 survey %>%
   select(starts_with("B2_")) %>%
@@ -592,7 +636,7 @@ We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*
 
 ### Test 2: A boolean B-item × Gender (All B1_* × A1)
 
-```{r}
+```{r test2}
 # Select all B1_ columns
 b1_vars <- survey %>%
   select(starts_with("B1_")) %>%
@@ -643,7 +687,7 @@ false positive and can be overly conservative when running many correlated tests
 
 Let's repeat our above analysis and include the **FDR correction**.
 
-```{r}
+```{r test2-fdr}
 results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
   rowwise() %>%
   mutate(
