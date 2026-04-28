@@ -1,4 +1,9 @@
 ---
+title: "R Notebook"
+output: html_notebook
+---
+
+---
 title: Quantitative Data Analysis in R
 teaching: 60
 exercises: 30
@@ -101,7 +106,7 @@ Download packages (if needed) and load libraries. We'll be using the
 installed.
 
 ```{r  eval=TRUE, message=FALSE, purl=FALSE}
-for (pkg in c("tidyverse", "here", "gtsummary", "scales", "corrplot", "rcompanion")) {
+for (pkg in c("tidyverse", "here", "gtsummary", "scales", "corrplot", "epitools", "rcompanion")) {
   if (!requireNamespace(pkg)) install.packages(pkg)
 }
 
@@ -500,19 +505,19 @@ survey %>%
            addCoef.col = "black", tl.col = "black")
 ```
 
-Again, no coefficients are > 0.6, but we'll be mindful of any cofficients > 0.3.
+Again, no coefficients are > 0.6, but we'll be mindful of any coefficients > 0.3.
 
 ## Chi-square tests of independence
 
-The **chi-square test of independence** (χ²) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
+The **Chi-square test of independence** (χ²) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
 
 ::: callout
 ## When to use a Chi-Square Test
 
-Both variables are categorical (nominal or ordinal). You are testing
-association, not causation. Each cell in your contingency table should
-have an expected frequency of at least 5. Your sample size is reasonably
-large (n \> 30 as a general guide).
+- Both variables are categorical (nominal or ordinal). 
+- You are testing association, not causation. 
+- Each cell in your contingency table should have an expected frequency of at least 5. 
+- Your sample size is reasonably large (n > 30 as a general guide).
 :::
 
 ### When is the Chi-square test appropriate?
@@ -521,14 +526,13 @@ The Chi-square test of independence applies when:
 
 1. Observations are independent: each respondent contributes exactly one row.
 2. Both variables are categorical (nominal or ordinal).
-3. The **expected** count in each cell of the contingency table is at least 5. The test becomes unreliable with smaller expected counts.
+3. The **expected** count in each cell of the contingency table is at least 5 (the test becomes unreliable with smaller expected counts).
 
-We will check assumption 3 explicitly for every test by examining
-`chisq.test()$expected`.
+We will check assumption 3 explicitly for every test by examining `chisq.test()$expected`.
 
 ### Effect size: Cramér's V
 
-A p-value only tells us whether an association exists; it does not tell us how strong it is. **Cramér's V** is the standard effect size for chi-square tests. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
+A p-value only tells us whether an association exists; it does not tell us how strong it is. **Cramér's V** is the standard effect size for Chi-square tests. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
 
 | Cramér's V | Interpretation |
 |------------|----------------|
@@ -538,6 +542,7 @@ A p-value only tells us whether an association exists; it does not tell us how s
 
 We compute it with `cramerV()` from the `rcompanion` package.
 
+### Test 1: A boolean B-item × Gender (B1_1 × A1)
 
 Let's use the Chi-square test to answer this **Research question:** Are men and women equally likely to select option 1 of question B1?
 
@@ -554,9 +559,7 @@ chi4$expected   # for a 2×2 table, four cells
 cramerV(tbl_B1_A1)
 ```
 
-For a 2×2 contingency table, we can also compute an **odds ratio** to express
-the association in a more interpretable way: the odds of selecting B1_1 for
-one gender relative to the other.
+For a 2×2 contingency table, we can also compute an **odds ratio** to express the association in a more interpretable way: the odds of selecting B1_1 for one gender relative to the other.
 
 ```{r oddsratio-B1-A1}
 oddsratio(tbl_B1_A1)$measure
@@ -566,7 +569,33 @@ An odds ratio of 1 means equal odds for both groups. Values above 1 mean the
 first row group has higher odds; values below 1 mean lower odds.
 
 
+::: Callout
+## Reporting checklist
+
+When writing up Chi-square results for a report, include the following:
+
+1. **The research question**: what association are you testing?
+2. **The contingency table**: row percentages to show the pattern
+3. **Test statistic and degrees of freedom**: χ²(df) = X.XX.
+4. **p-value**: exact value to three decimal places (or < .001)
+5. **Assumption check**: confirm expected counts ≥ 5 in all (or at least 80%) of cells
+6. **Effect size**: Cramér's V with interpretation (small / medium / large)
+7. **Odds ratio** if significant): identify the association
+7. **Standardised residuals** (if significant): identify which cells drive the association
+
+An example sentence:
+
+"There was a statistically significant association between age group and the selection of   'Improve employee wellbeing & work-life balance', χ²(1) = 377.63, p-value < 0.001. Cramér's V = 0.615, indicating a large effect. 
+
+"Age group was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
+
+Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
+::: 
+
+We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the resulsts out in an easy to read table.
+
 ```{r}
+# Select all B1_ columns
 b1_vars <- survey %>%
   select(starts_with("B1_")) %>%
   names()
@@ -574,16 +603,183 @@ b1_vars <- survey %>%
 results_B1_A1 <- tibble(b1_var = b1_vars) %>%
   rowwise() %>%
   mutate(
-    n_cells_low = sum(chisq.test(table(survey[[b1_var]], survey[["A1"]]))$expected < 5),
-    chi_p       = chisq.test(table(survey[[b1_var]], survey[["A1"]]))$p.value,
-    cramers_v   = cramerV(table(survey[[b1_var]], survey[["A1"]]))
+    tbl = list(table(survey[[b1_var]], survey[["A1"]])),
+    chi_test = list(chisq.test(tbl)),
+    n_cells_low = sum(chi_test$expected < 5),
+    chi_stat = chi_test$statistic,
+    chi_df = chi_test$parameter,
+    chi_p = chi_test$p.value,
+    cramers_v = cramerV(tbl),
+    or_result = list( # run Fishers test in the event any cells are < 5
+      tryCatch(
+        fisher.test(tbl)$conf.int |>
+          (function(ci) tibble(
+            or        = fisher.test(tbl)$estimate,
+            or_lower  = ci[1],
+            or_upper  = ci[2]
+          ))(),
+        error = function(e) tibble(or = NA_real_, or_lower = NA_real_, or_upper = NA_real_)
+      )
+    )
   ) %>%
+  unnest(or_result) %>%
   ungroup() %>%
+  select(-tbl, -chi_test) %>%
   arrange(chi_p) %>%
-  mutate(across(c(chi_p, cramers_v), ~round(., 4)))
+  mutate(across(c(chi_stat, chi_p, cramers_v, or, or_lower, or_upper), ~round(., 4)))
 
 results_B1_A1
 ```
 
+::: callout
+## Multiple comparisons
+Running multiple chi-square tests simultaneously inflates the probability of
+at least one false positive. To address this, we apply the **Benjamini-Hochberg
+False Discovery Rate (FDR)** correction using p.adjust(method = "fdr"), which
+controls the expected proportion of false positives among significant results.
+
+Unlike the Bonferroni correction, which controls the probability of any
+false positive and can be overly conservative when running many correlated tests, FDR offers a better balance between sensitivity and specificity, making it well suited to survey data where items tend to be correlated. Adjusted p-values are interpreted against the same α threshold of 0.05.
+
+:::
+
+Let's repeat our above analysis and include the **FDR correction**.
+
+```{r}
+results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
+  rowwise() %>%
+  mutate(
+    tbl = list(table(survey[[b1_var]], survey[["A1"]])),
+    chi_test = list(chisq.test(tbl)),
+    n_cells_low = sum(chi_test$expected < 5),
+    chi_stat = chi_test$statistic,
+    chi_df = chi_test$parameter,
+    chi_p = chi_test$p.value,
+    cramers_v = cramerV(tbl),
+    or_result = list(
+      tryCatch(
+        fisher.test(tbl)$conf.int |>
+          (function(ci) tibble(
+            or = fisher.test(tbl)$estimate,
+            or_lower = ci[1],
+            or_upper = ci[2]
+          ))(),
+        error = function(e) tibble(or = NA_real_, or_lower = NA_real_, or_upper = NA_real_)
+      )
+    )
+  ) %>%
+  unnest(or_result) %>%
+  ungroup() %>%
+  select(-tbl, -chi_test) %>%
+  mutate(chi_p_fdr = p.adjust(chi_p, method = "fdr")) %>%  # FDR correction across all tests
+  arrange(chi_p_fdr) %>%
+  mutate(across(c(chi_stat, chi_p, chi_p_fdr, cramers_v, or, or_lower, or_upper), ~round(., 4)))
+
+results_B1_A1_fdr
+```
+
+Our reporting would now include the fact that the p-value was correctd.
+"After FDR correction, age group remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (Cramér's V = 0.615).
+
+Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
 
 
+### When Chi-square assumptions fail — Fisher's exact test
+
+If any expected cell count falls below 5, the chi-square approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
+
+```{r fisher-A5-A3}
+tbl_A5_A2 <- table(survey$A5, survey$A2)
+chisq.test(tbl_A5_A2)$expected   # check first
+```
+
+If any expected count is below 5, switch to Fisher's exact test (not necessary in our case, but let's write the code anyway as a demonstration). For tables larger than 2×2, base R's exact computation is impractical, so we use a Monte Carlo simulation (`simulate.p.value = TRUE`).
+
+```{r fisher-test-monte}
+fisher.test(tbl_A5_A2,
+            simulate.p.value = TRUE,
+            B = 10000)   # B = number of Monte Carlo replicates
+```
+
+The Monte Carlo p-value is based on 10,000 random permutations of the table and is a reliable substitute for the asymptotic chi-square approximation when cell counts are small.
+
+For 2X2 tables, just use the Fisher's Exact Test with no simulation. Again, our expected cell counts are > 5, so this is just a demonstration.
+
+```{r fisher-test}
+tbl_A1_B1_1 <- table(survey$A1, survey$B1_1)
+chisq.test(tbl_A1_B1_1)$expected   # check first
+
+fisher.test(tbl_A1_B1_1)
+
+```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+**Interpreting a 2×3 table**
+
+A significant Chi-square result tells us that the overall pattern of income
+differs between urban and rural areas. It does **not** tell us which specific income category drives the difference. To find that, examine the standardised residuals (see Test 3 below).
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+### Test 3: Satisfaction × Age group (E1 × A2), with standardised residuals
+
+**Research question:** Does overall satisfaction (E1) vary across age groups (A2)?
+
+This test introduces a powerful diagnostic tool: **standardised residuals**.
+After a significant Chi-square test, standardised residuals tell us which
+cells contribute most to the result; that is, where the observed count differs
+most from what we would expect under independence.
+
+A standardised residual beyond ±2 (roughly corresponding to a two-tailed
+p < 0.05) flags a cell that is "doing more than its share" of the chi-square
+statistic.
+
+```{r chisq-E1-A2}
+# Note: 4 respondents have a missing E1 value; drop them with na.omit()
+df_E1 <- survey %>%
+  filter(!is.na(E1)) %>%
+  mutate(E1 = factor(E1, levels = c(
+    "Strongly dissatisfied", "Dissatisfied",
+    "Neutral", "Satisfied", "Strongly satisfied"
+  )))
+
+tbl_E1_A2 <- table(df_E1$E1, df_E1$A2)
+
+chi3 <- chisq.test(tbl_E1_A2)
+chi3
+chi3$expected   # check assumption
+cramerV(tbl_E1_A2)
+```
+
+Now examine the standardised residuals:
+
+```{r residuals-E1-A2}
+round(chi3$stdres, 2)
+```
+
+We can also visualise them using `corrplot`, which makes the pattern immediately
+apparent:
+
+```{r residuals-plot-E1-A2, fig.width=10}
+corrplot(chi3$stdres,
+         is.corr = FALSE,
+         method = "color",
+         col = colorRampPalette(c("royalblue", "white", "firebrick"))(200),
+         tl.col = "black",
+         tl.srt = 45,
+         tl.cex = 0.85,        # increase/decrease label size (default is 0.8)
+         cl.cex = 0.85,        # match colour legend text size
+         cl.ratio = 0.4,        # widens the legend bar giving labels more room
+         title = "Standardised residuals: E1 satisfaction × A2 age group",
+         mar = c(0, 0, 2, 0))
+```
+
+In this plot, red cells indicate that a combination is observed *more* often
+than expected under independence; blue cells indicate it is observed *less*
+often. Cells with residuals beyond ±2 are where the association is "happening".
+
+Example results sentence:
+
+"Overall satisfaction differed significantly across age groups (χ²(8) = 58.52, p < 0.001), though the association was small in magnitude (Cramér's V = 0.171). Satisfaction tended to increase with age: older employees (55+) were more likely than expected to report being satisfied (residual = 2.72) or strongly satisfied (residual = 3.01), while younger employees (18-34) were substantially more likely than expected to report strong dissatisfaction (residual = 6.07) and less likely to report satisfaction (residual = −3.26) or strong satisfaction (residual = −2.35). Employees aged 35–54 showed little deviation from expected counts, with only a modest tendency toward neutrality (residual = 2.19)."
