@@ -615,7 +615,7 @@ saveRDS(survey, here("data", "cleaned", "generated_survey_data.rds"))
 survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
 ```
 
-::: Callout
+::: callout
 ## File formats
 
 Many different file formats can be read into and written (exported) out of R, including `SPSS` files.
@@ -629,7 +629,7 @@ Some of the common file types, and their uses, are included in the table below.
 | `.csv` | `write_csv()` | `read_csv()` | No | Yes | Sharing data with non-R users |
 | `.parquet` | `arrow::write_parquet()` | `arrow::read_parquet()` | Mostly | Yes | Large datasets shared across languages |
 | `.sav` | `haven::write_sav()` | `haven::read_sav()` | Mostly | Yes (SPSS) | Sharing data with SPSS users |
-:::
+::: 
 
 
 ## Analysing multi-select data
@@ -804,7 +804,7 @@ An odds ratio of 1 means equal odds for both groups. Values above 1 mean the
 first row group has higher odds; values below 1 mean lower odds.
 
 
-::: Callout
+::: callout
 ## Reporting checklist
 
 When writing up Chi-square results for a report, include the following:
