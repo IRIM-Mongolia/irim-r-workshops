@@ -825,6 +825,8 @@ An example sentence:
 
 Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
 
+:::
+
 
 We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the results out in an easy to read table.
 
@@ -876,7 +878,6 @@ controls the expected proportion of false positives among significant results.
 
 Unlike the Bonferroni correction, which controls the probability of any
 false positive and can be overly conservative when running many correlated tests, FDR offers a better balance between sensitivity and specificity, making it well suited to survey data where items tend to be correlated. Adjusted p-values are interpreted against the same α threshold of 0.05.
-
 :::
 
 Let's repeat our above analysis and include the **FDR correction**.
