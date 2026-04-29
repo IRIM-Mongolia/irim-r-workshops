@@ -609,7 +609,7 @@ more statistically powerful than their non-parametric equivalents.
 Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
 
 ```{r eval=FALSE}
-saveRDS(survey, here("data", "cleaned", "generated_survey_data.rds"))
+saveRDS(survey, here("data", "cleaned", "generated_survey_data_clean.rds"))
 
 # read back in - retains all factor levels, ordered factors, etc.
 survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
@@ -629,6 +629,7 @@ Some of the common file types, and their uses, are included in the table below.
 | `.csv` | `write_csv()` | `read_csv()` | No | Yes | Sharing data with non-R users |
 | `.parquet` | `arrow::write_parquet()` | `arrow::read_parquet()` | Mostly | Yes | Large datasets shared across languages |
 | `.sav` | `haven::write_sav()` | `haven::read_sav()` | Mostly | Yes (SPSS) | Sharing data with SPSS users |
+
 ::: 
 
 
@@ -823,7 +824,7 @@ An example sentence:
 "Age group was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
 
 Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
-::: 
+
 
 We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the results out in an easy to read table.
 
