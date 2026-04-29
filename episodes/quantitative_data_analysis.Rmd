@@ -213,16 +213,6 @@ class(survey[["E1"]])
 levels(survey[["E1"]])
 ```
 
-### Export processed data
-Now that we've processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R.
-
-```{r eval=FALSE}
-saveRDS(survey, here("data", "cleaned", "generated_survey_data.rds"))
-
-# read back in - retains all factor levels, ordered factors, etc.
-survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
-```
-
 ## Exploratory data analysis
 
 Before running any statistical tests, it is important to carry out some
@@ -615,6 +605,33 @@ parametric tests (t-test, ANOVA) are appropriate and will generally be
 more statistically powerful than their non-parametric equivalents.
 :::
 
+## Export processed data
+Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
+
+```{r eval=FALSE}
+saveRDS(survey, here("data", "cleaned", "generated_survey_data.rds"))
+
+# read back in - retains all factor levels, ordered factors, etc.
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
+```
+
+::: Callout
+## File formats
+
+Many different file formats can be read into and written (exported) out of R, including `SPSS` files.
+
+Some of the common file types, and their uses, are included in the table below.
+
+| Format | Write | Read | Retains R types? | Readable outside R? | Best used for |
+|--------|-------|------|------------------|---------------------|---------------|
+| `.rds` | `saveRDS()` | `readRDS()` | Yes | No | Saving single R objects between sessions |
+| `.RData` | `save()` | `load()` | Yes | No | Saving multiple R objects at once |
+| `.csv` | `write_csv()` | `read_csv()` | No | Yes | Sharing data with non-R users |
+| `.parquet` | `arrow::write_parquet()` | `arrow::read_parquet()` | Mostly | Yes | Large datasets shared across languages |
+| `.sav` | `haven::write_sav()` | `haven::read_sav()` | Mostly | Yes (SPSS) | Sharing data with SPSS users |
+:::
+
+
 ## Analysing multi-select data
 
 ### Proportions
@@ -943,7 +960,7 @@ differs between urban and rural areas. It does **not** tell us which specific in
 
 ### Test 3: Satisfaction × Age group (E1 × A2), with standardised residuals
 
-**Research question:** Does overall satisfaction (E1) vary across age groups (A2)?
+**Research question:** Does overall satisfaction with work life balance (E1) vary across age groups (A2)?
 
 This test introduces a powerful diagnostic tool: **standardised residuals**.
 After a significant Chi-square test, standardised residuals tell us which
@@ -952,7 +969,7 @@ most from what we would expect under independence.
 
 A standardised residual beyond ±2 (roughly corresponding to a two-tailed
 p < 0.05) flags a cell that is "doing more than its share" of the Chi-square
-statistic.
+statistic- where the associations are the strongest.
 
 ```{r chisq-E1-A2}
 # Note: 4 respondents have a missing E1 value; drop them with na.omit()
