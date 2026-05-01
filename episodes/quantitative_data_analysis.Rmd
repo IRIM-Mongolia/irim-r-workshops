@@ -698,6 +698,7 @@ This step should always precede any analysis that treats the `B` section columns
 Let's code a `corrplot` for `B1_*` columns. As a reminder, the options were:
 
 **Question B1:** What should be the main goal of flexible working policies? (Select up to 3) 
+
 - B1_1: Improve employee wellbeing & work-life balance
 - B1_2: Boost productivity & business performance
 - B1_3: Attract & retain top talent
@@ -811,7 +812,16 @@ levels(survey[[A1]])
 
 ```
 
+The odds ratio of 18.08 is in the TRUE row, meaning TRUE has 18 times greater odds compared to FALSE, with male as the reference group for the column variable (as male is the first level).
 
+So the correct interpretation is:
+
+"With FALSE as the reference category and male as the reference group, the odds ratio of 18.08 means that the odds of selecting TRUE are 18 times greater for females than for males (95% CI [13.20, 25.04])."
+
+In other words the OR is comparing:
+
+Rows: TRUE vs FALSE (FALSE = reference)
+Columns: female vs male (male = reference, as confirmed by levels())
 
 ::: callout
 ## Reporting checklist
