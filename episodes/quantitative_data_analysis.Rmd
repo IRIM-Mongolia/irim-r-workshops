@@ -808,7 +808,7 @@ first row group has higher odds; values below 1 mean lower odds. The odds ratio 
 
 ```{r}
 
-levels(survey[[A1]])
+levels(survey[["A1"]])
 
 ```
 
@@ -821,7 +821,7 @@ So the correct interpretation is:
 In other words the OR is comparing:
 
 Rows: TRUE vs FALSE (FALSE = reference)
-Columns: female vs male (male = reference, as confirmed by levels())
+Columns: female vs male (male = reference, as confirmed by `levels()`)
 
 ::: callout
 ## Reporting checklist
