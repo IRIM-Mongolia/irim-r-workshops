@@ -154,7 +154,7 @@ We'll start with the Demographic data in section A.
 survey <- survey %>% 
   mutate(
     A1 = factor(A1,
-                levels = c("female", "male")),
+                levels = c("male", "female")),
     A2 = factor(A2,
                 levels = c("18-34", "35-54", "55+"),
                 ordered = TRUE),
@@ -770,11 +770,13 @@ We will check assumption 3 explicitly for every test by examining `chisq.test()$
 
 A p-value only tells us whether an association exists; it does not tell us how strong it is. **Cramér's V** is the standard effect size for Chi-square tests. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
 
-| Cramér's V | Interpretation |
-|------------|----------------|
-| 0.1        | Small effect   |
-| 0.3        | Medium effect  |
-| 0.5        | Large effect   |
+| Cramér's V | Interpretation      |
+|------------|---------------------|
+| 0          | No association      |
+| 0.1        | Small effect        |
+| 0.3        | Medium effect       |
+| 0.5        | Large effect        |
+| 1          | Perfect association |
 
 We compute it with `cramerV()` from the `rcompanion` package.
 
@@ -782,7 +784,6 @@ We compute it with `cramerV()` from the `rcompanion` package.
 
 Let's use the Chi-square test to answer this **Research question:** Are men and women equally likely to select option 1 of question B1?
 
-Because `B1_1` is coded as TRUE/FALSE, we convert it to a factor before tabulating.
 
 ```{r chisq-B1-A1}
 
@@ -802,7 +803,14 @@ oddsratio(tbl_B1_A1)$measure
 ```
 
 An odds ratio of 1 means equal odds for both groups. Values above 1 mean the
-first row group has higher odds; values below 1 mean lower odds.
+first row group has higher odds; values below 1 mean lower odds. The odds ratio is calculated relative to whichever factor level R treats as the reference level, which is determined by the factor level order. To check the factor level, use `levels()`.
+
+```{r}
+
+levels(survey[[A1]])
+
+```
+
 
 
 ::: callout
@@ -821,9 +829,9 @@ When writing up Chi-square results for a report, include the following:
 
 An example sentence:
 
-"Age group was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
+"Gender was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
 
-Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
+Female employees had substantially higher odds of selecting this priority compared to their male counterparts (OR = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
 
 :::
 
@@ -841,21 +849,23 @@ b1_vars <- survey %>%
 results_B1_A1 <- tibble(b1_var = b1_vars) %>%
   rowwise() %>%
   mutate(
-    tbl = list(table(survey[[b1_var]], survey[["A1"]])),
-    chi_test = list(chisq.test(tbl)),
+    tbl         = list(table(survey[[b1_var]], survey[["A1"]])),
+    chi_test    = list(chisq.test(tbl)),
     n_cells_low = sum(chi_test$expected < 5),
-    chi_stat = chi_test$statistic,
-    chi_df = chi_test$parameter,
-    chi_p = chi_test$p.value,
-    cramers_v = cramerV(tbl),
-    or_result = list( # run Fishers test in the event any cells are < 5
+    chi_stat    = chi_test$statistic,
+    chi_df      = chi_test$parameter,
+    chi_p       = chi_test$p.value,
+    cramers_v   = cramerV(tbl),
+    or_result   = list(
       tryCatch(
-        fisher.test(tbl)$conf.int |>
-          (function(ci) tibble(
-            or        = fisher.test(tbl)$estimate,
-            or_lower  = ci[1],
-            or_upper  = ci[2]
-          ))(),
+        {
+          or_out <- oddsratio(tbl)$measure
+          tibble(
+            or       = or_out[2, "estimate"],
+            or_lower = or_out[2, "lower"],
+            or_upper = or_out[2, "upper"]
+          )
+        },
         error = function(e) tibble(or = NA_real_, or_lower = NA_real_, or_upper = NA_real_)
       )
     )
@@ -863,8 +873,8 @@ results_B1_A1 <- tibble(b1_var = b1_vars) %>%
   unnest(or_result) %>%
   ungroup() %>%
   select(-tbl, -chi_test) %>%
-  arrange(chi_p) %>%
   mutate(across(c(chi_stat, chi_p, cramers_v, or, or_lower, or_upper), ~round(., 4)))
+
 
 results_B1_A1
 ```
@@ -886,21 +896,23 @@ Let's repeat our above analysis and include the **FDR correction**.
 results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
   rowwise() %>%
   mutate(
-    tbl = list(table(survey[[b1_var]], survey[["A1"]])),
-    chi_test = list(chisq.test(tbl)),
+    tbl         = list(table(survey[[b1_var]], survey[["A1"]])),
+    chi_test    = list(chisq.test(tbl)),
     n_cells_low = sum(chi_test$expected < 5),
-    chi_stat = chi_test$statistic,
-    chi_df = chi_test$parameter,
-    chi_p = chi_test$p.value,
-    cramers_v = cramerV(tbl),
-    or_result = list(
+    chi_stat    = chi_test$statistic,
+    chi_df      = chi_test$parameter,
+    chi_p       = chi_test$p.value,
+    cramers_v   = cramerV(tbl),
+    or_result   = list(
       tryCatch(
-        fisher.test(tbl)$conf.int |>
-          (function(ci) tibble(
-            or = fisher.test(tbl)$estimate,
-            or_lower = ci[1],
-            or_upper = ci[2]
-          ))(),
+        {
+          or_out <- oddsratio(tbl)$measure
+          tibble(
+            or       = or_out[2, "estimate"],
+            or_lower = or_out[2, "lower"],
+            or_upper = or_out[2, "upper"]
+          )
+        },
         error = function(e) tibble(or = NA_real_, or_lower = NA_real_, or_upper = NA_real_)
       )
     )
@@ -908,17 +920,19 @@ results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
   unnest(or_result) %>%
   ungroup() %>%
   select(-tbl, -chi_test) %>%
-  mutate(chi_p_fdr = p.adjust(chi_p, method = "fdr")) %>%  # FDR correction across all tests
+  mutate(chi_p_fdr = p.adjust(chi_p, method = "fdr")) %>% # Use FDR correction
   arrange(chi_p_fdr) %>%
   mutate(across(c(chi_stat, chi_p, chi_p_fdr, cramers_v, or, or_lower, or_upper), ~round(., 4)))
 
+
 results_B1_A1_fdr
+
 ```
 
 Our reporting would now include the fact that the p-value was corrected.
-"After FDR correction, age group remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (Cramér's V = 0.615).
+"After FDR correction, gender remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (Cramér's V = 0.615).
 
-Older employees had substantially lower odds of selecting this priority compared to their younger counterparts (OR = 0.055, 95% CI [0.040, 0.076]), indicating that older employees were approximately 18 times less likely to select this option than younger employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for younger employees."
+Female employees had substantially higher odds of selecting this priority compared to their male counterparts (OR = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
 
 
 ### When Chi-square assumptions fail — Fisher's exact test
