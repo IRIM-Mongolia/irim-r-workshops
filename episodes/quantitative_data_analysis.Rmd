@@ -790,9 +790,9 @@ Let's use the Chi-square test to answer this **Research question:** Are men and 
 tbl_B1_A1 <- table(survey$B1_1, survey$A1)
 tbl_B1_A1
 
-chi4 <- chisq.test(tbl_B1_A1)
-chi4
-chi4$expected   # for a 2×2 table, four cells
+chi1 <- chisq.test(tbl_B1_A1)
+chi1
+chi1$expected   # for a 2×2 table, four cells
 cramerV(tbl_B1_A1)
 ```
 
