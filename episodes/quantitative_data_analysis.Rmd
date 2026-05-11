@@ -135,6 +135,7 @@ survey # preview the data
 ```
 
 ## Process data
+
 Let's inspect the dataframe and see how R classified the data types.
 
 ```{r inspect-str}
@@ -581,7 +582,7 @@ We can see that there are some statistical differences when stratifying by colum
 
 
 ::: callout
-## Statistical tests used by `gtsummary`
+### Statistical tests used by `gtsummary`
 
 When`add_p()` is called, `gtsummary` automatically selects a statistical
 test based on the variable type and the number of groups being compared.
@@ -603,9 +604,11 @@ guided by checking your distributions first. If continuous variables are
 approximately normally distributed and sample sizes are adequate,
 parametric tests (t-test, ANOVA) are appropriate and will generally be
 more statistically powerful than their non-parametric equivalents.
+
 :::
 
 ## Export processed data
+
 Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
 
 ```{r eval=FALSE}
@@ -616,7 +619,7 @@ survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
 ```
 
 ::: callout
-## File formats
+### File formats
 
 Many different file formats can be read into and written (exported) out of R, including `SPSS` files.
 
@@ -685,6 +688,7 @@ survey %>%
 `B2_6` is the most commonly selected option and `B2_2` the least.
  
 ### Correlation matrix 
+
 A correlation matrix is a useful diagnostic tool when working with multiple-response (multi-select) questions. Although each boolean column is structurally independent (meaning there is no logical rule preventing a respondent from selecting any combination of options), respondents' choices in practice often cluster together. 
 
 We can use a correlation plot from the `corrplot` package to visualise the pairwise phi coefficients (Pearson correlation applied to 0/1 data) for all `B1` and `B2` option columns simultaneously. 
@@ -749,7 +753,7 @@ Again, no coefficients are > 0.6, but we'll be mindful of any coefficients > 0.3
 The **Chi-square test of independence** (χ²) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
 
 ::: callout
-## When to use a Chi-Square Test
+### When to use a Chi-Square Test
 
 - Both variables are categorical (nominal or ordinal). 
 - You are testing association, not causation. 
@@ -824,7 +828,7 @@ Rows: TRUE vs FALSE (FALSE = reference)
 Columns: female vs male (male = reference, as confirmed by `levels()`)
 
 ::: callout
-## Reporting checklist
+### Reporting checklist
 
 When writing up Chi-square results for a report, include the following:
 
@@ -890,7 +894,8 @@ results_B1_A1
 ```
 
 ::: callout
-## Multiple comparisons
+### Multiple comparisons
+
 Running multiple Chi-square tests simultaneously inflates the probability of
 at least one false positive. To address this, we apply the **Benjamini-Hochberg
 False Discovery Rate (FDR)** correction using p.adjust(method = "fdr"), which
@@ -945,7 +950,7 @@ Our reporting would now include the fact that the p-value was corrected.
 Female employees had substantially higher odds of selecting this priority compared to their male counterparts (OR = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
 
 
-### When Chi-square assumptions fail — Fisher's exact test
+## When Chi-square assumptions fail — Fisher's exact test
 
 If any expected cell count falls below 5, the Chi-square approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
 
@@ -984,7 +989,9 @@ differs between urban and rural areas. It does **not** tell us which specific in
 :::
 
 
-### Test 3: Satisfaction × Age group (E1 × A2), with standardised residuals
+##  Standardised residuals
+
+### Test 3: Satisfaction × Age group (E1 × A2)
 
 **Research question:** Does overall satisfaction with work life balance (E1) vary across age groups (A2)?
 
