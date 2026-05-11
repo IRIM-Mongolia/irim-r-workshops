@@ -3,9 +3,6 @@ title: Quantitative Data Analysis in R
 teaching: 60
 exercises: 30
 source: Rmd
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
 
 ::: objectives
