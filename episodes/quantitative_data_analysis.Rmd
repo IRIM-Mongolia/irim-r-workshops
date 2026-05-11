@@ -579,7 +579,7 @@ We can see that there are some statistical differences when stratifying by colum
 
 
 ::: callout
-### Statistical tests used by `gtsummary`
+## Statistical tests used by gtsummary
 
 When`add_p()` is called, `gtsummary` automatically selects a statistical
 test based on the variable type and the number of groups being compared.
@@ -616,7 +616,7 @@ survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
 ```
 
 ::: callout
-### File formats
+## File formats
 
 Many different file formats can be read into and written (exported) out of R, including `SPSS` files.
 
