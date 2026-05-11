@@ -450,6 +450,7 @@ walk(tables_cont_list, print) # prints each table in the list
 ```
 
 ```{r A1-cont,  echo=FALSE}
+print("**Stratified by A1**"))
 survey %>%
   tbl_summary(
     by = A1,
@@ -466,11 +467,11 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A1**"))
+  bold_labels()
 ```
 
 ```{r A2-cont,  echo=FALSE}
+print("**Stratified by A2**"))
 survey %>%
   tbl_summary(
     by = A2,
@@ -487,11 +488,11 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A2**"))
+  bold_labels() 
 ```
 
 ```{r A3-cont,  echo=FALSE}
+print("**Stratified by A3**"))
 survey %>%
   tbl_summary(
     by = A3,
@@ -508,11 +509,11 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A3**"))
+  bold_labels()
 ```
 
 ```{r A4-cont,  echo=FALSE}
+print("**Stratified by A4**"))
 survey %>%
   tbl_summary(
     by = A4,
@@ -529,11 +530,11 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A4**"))
+  bold_labels() 
 ```
 
 ```{r A5-cont,  echo=FALSE}
+print("**Stratified by A5**"))
 survey %>%
   tbl_summary(
     by = A5,
@@ -550,11 +551,11 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A5**"))
+  bold_labels()  
 ```
 
 ```{r A6-cont,  echo=FALSE}
+print("**Stratified by A6**"))
 survey %>%
   tbl_summary(
     by = A6,
@@ -571,15 +572,14 @@ survey %>%
   ) %>%
   add_p() %>%
   add_overall() %>%
-  bold_labels()  %>% 
-  modify_caption(glue::glue("**Stratified by A6**"))
+  bold_labels()  
 ```
 
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
 
 
 ::: callout
-## Statistical tests used by gtsummary
+## Statistical tests used by `gtsummary`
 
 When`add_p()` is called, `gtsummary` automatically selects a statistical
 test based on the variable type and the number of groups being compared.
