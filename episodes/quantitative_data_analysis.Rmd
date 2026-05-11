@@ -329,7 +329,7 @@ walk(tables_list, print) # prints each table in the list
 
 ```{r B1_A1, echo=FALSE}
 # issues with rendering the for-loop output on the sandpaper website have led to this...
-print("**Stratified by A1**")
+print("Stratified by A1")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -343,7 +343,7 @@ survey %>%
 ```
 
 ```{r B1_A2, echo=FALSE}
-print("**Stratified by A2**")
+print("Stratified by A2")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -357,7 +357,7 @@ survey %>%
 ```
 
 ```{r B1_A3, echo=FALSE}
-print("**Stratified by A3**")
+print("Stratified by A3")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -372,7 +372,7 @@ survey %>%
 ```
 
 ```{r B1_A4, echo=FALSE}
-print("**Stratified by A4**")
+print("Stratified by A4")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -386,7 +386,7 @@ survey %>%
 ```
 
 ```{r B1_A5, echo=FALSE}
-print("**Stratified by A5**")
+print("Stratified by A5")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -401,7 +401,7 @@ survey %>%
 
 
 ```{r B1_A6, echo=FALSE}
-print("**Stratified by A6**")
+print("Stratified by A6")
 survey %>% 
   select(starts_with("A"), matches("_\\d+$")) %>% 
   tbl_summary(
@@ -450,7 +450,7 @@ walk(tables_cont_list, print) # prints each table in the list
 ```
 
 ```{r A1-cont,  echo=FALSE}
-print("**Stratified by A1**")
+print("Stratified by A1")
 survey %>%
   tbl_summary(
     by = A1,
@@ -471,7 +471,7 @@ survey %>%
 ```
 
 ```{r A2-cont,  echo=FALSE}
-print("**Stratified by A2**")
+print("Stratified by A2")
 survey %>%
   tbl_summary(
     by = A2,
@@ -492,7 +492,7 @@ survey %>%
 ```
 
 ```{r A3-cont,  echo=FALSE}
-print("**Stratified by A3**")
+print("Stratified by A3")
 survey %>%
   tbl_summary(
     by = A3,
@@ -513,7 +513,7 @@ survey %>%
 ```
 
 ```{r A4-cont,  echo=FALSE}
-print("**Stratified by A4**")
+print("Stratified by A4")
 survey %>%
   tbl_summary(
     by = A4,
@@ -534,7 +534,7 @@ survey %>%
 ```
 
 ```{r A5-cont,  echo=FALSE}
-print("**Stratified by A5**")
+print("Stratified by A5")
 survey %>%
   tbl_summary(
     by = A5,
@@ -555,7 +555,7 @@ survey %>%
 ```
 
 ```{r A6-cont,  echo=FALSE}
-print("**Stratified by A6**")
+print("Stratified by A6")
 survey %>%
   tbl_summary(
     by = A6,
@@ -576,6 +576,18 @@ survey %>%
 ```
 
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
+
+
+## Export processed data
+
+Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
+
+```{r eval=FALSE}
+saveRDS(survey, here("data", "cleaned", "generated_survey_data_clean.rds"))
+
+# read back in - retains all factor levels, ordered factors, etc.
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
+```
 
 
 ::: callout
@@ -604,16 +616,7 @@ more statistically powerful than their non-parametric equivalents.
 
 :::
 
-## Export processed data
 
-Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
-
-```{r eval=FALSE}
-saveRDS(survey, here("data", "cleaned", "generated_survey_data_clean.rds"))
-
-# read back in - retains all factor levels, ordered factors, etc.
-survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
-```
 
 ::: callout
 ## File formats
