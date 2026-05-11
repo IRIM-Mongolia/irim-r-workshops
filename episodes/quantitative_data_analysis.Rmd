@@ -240,7 +240,7 @@ survey %>%
   arrange(desc(n_missing))
 ```
 
-### Frequency tables and proportions for categorical responses
+**Frequency tables and proportions for categorical responses**
 
 Before stratifying by any grouping variable, it is useful to first
 examine the overall distribution of responses across all categorical
@@ -633,7 +633,7 @@ Some of the common file types, and their uses, are included in the table below.
 | `.parquet` | `arrow::write_parquet()` | `arrow::read_parquet()` | Mostly | Yes | Large datasets shared across languages |
 | `.sav` | `haven::write_sav()` | `haven::read_sav()` | Mostly | Yes (SPSS) | Sharing data with SPSS users |
 
-::: 
+:::
 
 
 ## Analysing multi-select data
