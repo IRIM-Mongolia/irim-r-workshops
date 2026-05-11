@@ -1,0 +1,468 @@
+---
+title: "T-Tests and ANOVA in R"
+teaching: 75
+exercises: 30
+source: Rmd
+---
+
+::: objectives
+-   Distinguish between one-sample, independent-samples, and paired `t-tests`
+-   Run all three `t-test` variants in `R` and interpret their output
+-   Check `t-test` assumptions: normality and equal variances
+-   Understand when to use a `one-way` vs `two-way ANOVA`
+-   Run `one-way ANOVA` and follow up with post-hoc tests
+-   Run a `two-way ANOVA` to examine interaction effects
+-   Compute and interpret effect sizes: `Cohen's *d*` and η²
+-   Report results clearly in a reproducible `R Notebook`
+:::
+
+::: questions
+-   When should I use a `t-test` vs an `ANOVA`?
+-   How do I check whether my data meet the assumptions of these tests?
+-   What do I do after a significant `ANOVA` result?
+:::
+
+---
+
+## Overview
+
+This workshop covers the two most widely used parametric tests for comparing
+**means** of continuous variables:
+
+-   **`T-Tests`** compare the mean of one or two groups to a reference value or to each other.
+-   **`ANOVA`** (Analysis of Variance) compares means across **three or more groups** simultaneously.
+
+Both families of tests share a common logic: they ask whether the differences
+we observe between group means are larger than we would expect by chance alone.
+
+---
+
+<!--
+## Other materials
+
+[See Workshop 6 Slides
+here]()
+
+[See Workshop 6 recording here -
+1]()
+-->
+
+
+## Dataset overview
+
+This workshop uses a generated (made-up) dataset of **1,005 survey responses**
+on flexible working and work-life balance. The cleaned `.rds` file preserves
+all factor levels and ordered factors set in the [previous lesson 5. Quantitative Data Analysis in R](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
+
+**Survey schema (variables used in this workshop)**
+
+| Section | Variable | Type | Description |
+|---------|----------|------|-------------|
+| **A (Demographics)** | A1 – Gender | Factor (male, female) | What is your gender? |
+| | A2 – Age Group | Ordered Factor (18–34, 35–54, 55+) | What is your age? |
+| | A3 – Education | Ordered Factor (primary, secondary, tertiary+) | Highest level of education? |
+| | A4 – Income | Ordered Factor (low, middle, high) | Annual income level? |
+| | A6 – Area Type | Factor (Rural, Urban) | Urban or rural residence? |
+| **C (Satisfaction)** | C1 | Integer (1–5) | Satisfaction with flexible working arrangements |
+| | C2 | Integer (1–5) | Extent flex working improves work-life balance |
+| | C3 | Integer (1–5) | Employer support for flexible working in practice |
+| **D (Commute)** | D1 | Numeric | Commute time to work (minutes) |
+| | D2 | Numeric | Commute distance (km) |
+
+---
+
+::: callout
+## Likert scale data vs categorical data
+
+In practice, treating 5-point (1-5) Likert items such as variables `C1`, `C2` and `C3` as continuous is extremely common in the analysis or survey data (especially when sample sizes are large), because it unlocks parametric tests like t-tests and ANOVA that are more powerful than their ordinal alternatives.
+
+The key assumption is that the distance between points is meaningful and approximately equal: a 2 is "one unit more" than a 1, a 3 is "one unit more" than a 2, and so on. That equal-interval property allows you to compute a meaningful mean (e.g., "the average satisfaction was 3.09"), standard deviation, and differences between groups.
+
+Categorical variables such as `E1` uses labels: Strongly dissatisfied, Dissatisfied, Neutral, Satisfied, Strongly satisfied. These are ordered; we know Satisfied > Neutral, but there's no defensible claim that the gap between Neutral and Satisfied is the same size as the gap between Dissatisfied and Neutral. 
+
+Because the distances between categories are unknown, you can't take a meaningful mean. Saying "the average satisfaction was 3.2 on the Strongly dissatisfied–Strongly satisfied scale" doesn't make sense the way it does for a numbered scale. So `E1` is classified as an ordered factor and analysed with tests suited to ordinal or categorical data (Chi-square, ordinal regression, etc.).
+
+:::
+
+## Set up
+
+Start by opening your `intro_r` RStudio project and start a new R Notebook
+(`File → New File → R Notebook`). Save it as `t_tests_anova.Rmd` in
+your `scripts` folder. Ensure your `global environment` is empty! You can also `sweep’`your global environment by clicking the `broom` icon.
+
+When you open a new `R Notebook`, some explanatory text is provided. This can be deleted so you can enter your own text and code.
+
+### Load packages and data
+
+Download packages (if needed) and load libraries. We’ll be using the `rstatix`, `ggpubr`, `effectsize`, and `emmeans` packages for the first time, so they will need to be installed.
+
+```{r setup, message=FALSE}
+for (pkg in c("tidyverse", "here", "rstatix", "ggpubr", "effectsize", "emmeans")) {
+  if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
+}
+
+library(tidyverse)
+library(here)
+library(rstatix)    # tidy statistical tests
+library(ggpubr)     # publication-ready plots
+library(effectsize) # `Cohen's d`, eta-squared
+library(emmeans)    # estimated marginal means for `ANOVA`
+```
+
+Read in the cleaned survey data that was processed in the [previous workshop](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
+
+Download the data first if you need to.
+
+```{r dl-data, eval=FALSE}
+
+download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/blob/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("generated_survey_data_clean.rds"), mode = "wb")
+
+```
+
+```{r load-data}
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
+survey
+```
+
+---
+
+## Choosing the right test
+
+Before running any test, you need to answer three questions:
+
+1. **How many groups am I comparing?**
+   - One group vs a fixed value → `one-sample t-test`
+   - Two groups → `independent-samples` or `paired t-test`
+   - Three or more groups → `ANOVA`
+
+2. **Are the observations paired (matched)?**
+   - Paired (same respondent measured twice, or matched pairs) → `paired t-test`
+   - Independent (different respondents in each group) → `independent t-test` or `ANOVA`
+
+3. **Are the assumptions met?** (normality, equal variances)
+   - If not, consider non-parametric alternatives such as `Wilcoxon` or `Kruskal-Wallis`.
+
+| Research question | Test |
+|---|---|
+| Is mean satisfaction (C1) different from the scale midpoint of 3? | `One-sample t-test` |
+| Do men and women score differently on C1? | `Independent-samples t-test` |
+| Does satisfaction (C1) differ from work-life balance improvement (C2) within the same respondent? | `Paired t-test` |
+| Does commute time (D1) differ across three age groups? | `One-way ANOVA` |
+| Does satisfaction (C1) depend on both gender and income? | `Two-way ANOVA` |
+
+---
+
+## `T-Tests`
+
+### The `one-sample t-test`
+
+The **`one-sample t-test`** tests whether the mean of a single continuous
+variable differs significantly from a specified reference value (`mu` or `µ₀`).
+
+**Research question:** Is the mean satisfaction score for flexible working
+arrangements (C1) significantly different from the scale midpoint of 3?
+
+The scale midpoint of 3 represents a neutral response ("neither satisfied
+nor dissatisfied"). If the mean is significantly above or below 3, it
+indicates a consistent directional lean across the sample.
+
+#### Assumptions
+
+- Observations are independent (each row is one respondent). 
+- The variable is continuous (interval or ratio scale). 
+- The variable is approximately normally distributed *or* the sample is large (n > 30 by the Central Limit Theorem). With n = 1005, this is met. 
+
+#### Exploratory plot
+
+Always visualise your data before running a test to inspect the data.
+
+```{r onesamp-plot, fig.width=6, fig.height=4}
+survey %>%
+  ggplot(aes(x = C1)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", colour = "white") +
+  geom_vline(xintercept = 3, linetype = "dashed", colour = "red",
+             linewidth = 0.8) +
+  annotate("text", x = 3.15, y = 310, label = "µ₀ = 3", colour = "red",
+           hjust = 0, size = 4) +
+  labs(title = "Distribution of C1 (Satisfaction with Flexible Working)",
+       x = "C1 Score (1 = least, 5 = most satisfied)",
+       y = "Count") +
+  theme_minimal(base_size = 12)
+```
+
+The distribution looks roughly symmetric around 3, but the mean may differ
+slightly. Let us test this formally.
+
+#### Running the `t-test`
+
+```{r onesamp-ttest}
+t.test(survey$C1, mu = 3)
+```
+
+::: callout
+## Reading `t-test` output
+
+The output contains:
+
+- **t**: the test statistic. Larger absolute values suggest stronger evidence
+  against the null hypothesis H₀.
+- **df**: degrees of freedom (n − 1 for a one-sample test).
+- **p-value**: the probability of observing a t-statistic this extreme or more
+  extreme if H₀ (µ = 3) were true.
+- **95% confidence interval**: plausible range for the true population mean.
+- **sample estimates**: the observed sample mean.
+:::
+
+The result is **t(1004) = 2.08, p = 0.037**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95%
+confidence interval [3.004, 3.175] sits entirely above 3, confirming a small
+but statistically reliable positive lean.
+
+#### Effect size: `Cohen's *d*`
+
+`Cohen's *d*` measures how large a difference is in practical terms, not just whether it's statistically significant. It is expressed as the number of standard deviations separating the two group means.
+
+| Cohen's *d* | Interpretation |
+|-------------|----------------|
+| < 0.2 | Negligible / very small |
+| 0.2 | Small |
+| 0.5 | Medium |
+| 0.8 | Large |
+
+```{r onesamp-cohend}
+cohens_d(survey$C1, mu = 3)
+```
+
+Cohen's *d* < 0.1 indicates a **very small** effect. Statistical significance
+here is partly a consequence of the large sample size, not a practically
+important deviation. Always report effect sizes alongside p-values.
+
+An example sentence: 
+
+On average, respondents reported slightly higher than neutral satisfaction with their flexible working arrangements (mean score 3.09 out of 5). This positive lean is statistically reliable and unlikely to be a chance finding (t(1004) = 2.08, p = 0.037). We can be 95% confident the true average across the population falls between 3.00 and 3.18, meaning satisfaction is consistently, if only marginally, above the midpoint.
+
+However, the practical significance of this difference is negligible (`Cohen's *d*` < 0.01), meaning that while the result is statistically detectable, the deviation from neutral is too small to be meaningful in practice.
+
+
+---
+
+### The `independent-samples t-test`
+
+The **`independent-samples t-test`** (`unpaired t-test`) compares the means of
+a continuous variable across **two independent groups**. Let's investigate if there are differences between the satisfaction reported by men and women to the question `C1`.
+
+**Research question:** Do male and female respondents differ in their
+satisfaction with flexible working arrangements (C1)?
+
+#### Assumptions
+
+- The two groups are independent (a respondent appears in only one group). 
+- The continuous variable is approximately normally distributed within each group, *or* each group has n > 30 (both groups here are large). 
+- Equal variances (homoscedasticity): we will check this with `Levene's` test.
+
+#### Check equal variances
+
+`Levene's` test checks whether two or more groups have similar spread (variance) in their data, which is a required assumption for `t-tests` and `ANOVA`. If the test is non-significant (`p > 0.05`), the variances are similar enough to proceed with the standard test. If the test is significant (`p ≤ 0.05`), the groups have unequal spread and you should switch to `Welch's t-test` or `Welch's ANOVA`, which don't require equal variances
+
+```{r levene-A1-C1}
+survey %>%
+  levene_test(C1 ~ A1)
+```
+
+Levene's test produces `F` and `p` values. If `p > 0.05`, we retain the assumption of
+equal variances and use the classic Student's t-test. If `p ≤ 0.05`, variances
+are unequal and we use **Welch's t-test** (`var.equal = FALSE`), which does
+not assume equal variances. Note, `t.test` in `R` defaults to `Welch's t-test`. We can use the `Student's t-test` by including `var.equal = TRUE` when running the test.
+
+#### Exploratory plot
+
+We'll use a box-plot to plot the distribution of values for males and females.
+
+A boxplot displays the distribution of a continuous variable through five summary statistics. The box spans the interquartile range (IQR) (the middle 50% of the data) with a line inside marking the median. The whiskers extend to the smallest and largest values within 1.5 times the IQR from the box edges, and any points beyond the whiskers are plotted individually as outliers. You can also plot the mean value on the graph as well.
+
+```{r indsamp-plot, fig.width=6, fig.height=5}
+survey %>%
+  ggplot(aes(x = A1, y = C1, fill = A1)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  geom_jitter(width = 0.15, size = 0.7, alpha = 0.3, colour = "grey30") +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  labs(title = "C1 Satisfaction by Gender",
+       x = "Gender (A1)", y = "C1 Score") +
+  scale_fill_manual(values = c("steelblue", "coral")) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+The diamond shows the mean values of the to groups. From the boxplot, a clear difference between the two genders is visible.
+
+#### Running the test
+
+```{r indsamp-ttest}
+t.test(C1 ~ A1, data = survey, var.equal = TRUE) # when var.equal = FALSE, Welch's Tt-test is used
+```
+
+#### Summary statistics
+
+We can also produce a table of summary statistics to use in our reporting.
+```{r indsamp-summary}
+survey %>%
+  group_by(A1) %>%
+  summarise(
+    n = n(),
+    mean = round(mean(C1, na.rm = TRUE), 3),
+    sd = round(sd(C1, na.rm = TRUE), 3), # standard deviation
+    se = round(sd / sqrt(n), 3) # standard error
+  )
+```
+
+The result is **t(836) = −14.77, p < 0.001**. Female respondents score
+substantially higher on C1 (mean = 3.60) than male respondents (mean = 2.39).
+
+#### Effect size
+
+```{r indsamp-cohend}
+cohens_d(C1 ~ A1, data = survey)
+```
+
+`Cohen's *d*` = 0.94 is a **large effect**: the gender difference in
+satisfaction represents nearly one full standard deviation. This is
+substantively meaningful, not just statistically significant.
+
+::: callout
+## Reporting checklist for independent t-tests
+
+1. **Research question** and grouping variable
+2. **Group means and SDs**
+3. **Levene's test result** (and whether Welch or Student was used)
+4. **Test statistic and degrees of freedom**: *t*(df) = X.XX
+5. **p-value** (exact, or < .001)
+6. **95% confidence interval** on the difference
+7. **Cohen's *d*** with interpretation
+
+**Example sentence:**
+"Female respondents reported significantly higher satisfaction with their flexible
+working arrangements (mean = 3.60, sd = 1.28) compared to male respondents
+(mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(836) = −14.77, p < 0.001, 95% CI [−1.37, −1.04]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used.
+
+:::
+
+---
+
+### The paired t-test
+
+The **paired t-test** (also called the dependent-samples or repeated-measures
+t-test) compares means of **two related measurements**: either the same
+variable at two time points, or two variables measured on the same participants.
+
+**Research question:** Do respondents score C1 (satisfaction with flexible
+working arrangements) differently from C2 (extent flexible working improves
+work-life balance)?
+
+Both C1 and C2 are measured on the same 1-to-5 scale by the same respondents.
+A paired test correctly accounts for the correlation between these measurements
+within each person.
+
+#### Why not an independent t-test?
+
+Using an independent t-test here would ignore that both scores come from the
+same person. Pairing removes the between-person variance and gives a more
+precise and powerful test of the within-person difference.
+
+#### Assumptions
+
+- Observations are paired: each row contributes one value to both C1 and C2 (the same respondent answered both questions).
+- The differences between paired values (C2 − C1) are approximately normally distributed, or the sample is large enough for the Central Limit Theorem to apply (n = 1,005 here). 
+- The pairs are independent of each other: one respondent's answers do not influence another's.
+
+#### Exploratory plot
+
+We'll use a violin-plot to plot the distribution of values for responses to C1 and C2. A violin plot is used here because C1 and C2 are discrete 1–5 scale variables, meaning a boxplot alone would be misleading: with only five possible values, the box and whiskers can look identical between two variables even when their distributions are quite different. 
+
+The violin adds the full shape of the distribution, showing where responses cluster (wider = more respondents at that score), so you can immediately see whether responses pile up at the extremes or concentrate around the midpoint. The boxplot is layered on top to retain the familiar median and IQR summary, and the diamond marks the mean, giving you three layers of information in one plot.
+
+```{r paired-plot, fig.width=7, fig.height=5}
+survey %>%
+  select(C1, C2) %>%
+  pivot_longer(everything(), names_to = "Scale", values_to = "Score") %>%
+  ggplot(aes(x = Scale, y = Score, fill = Scale)) +
+  geom_violin(alpha = 0.5, trim = FALSE) +
+  geom_boxplot(width = 0.15, outlier.shape = NA, colour = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  labs(title = "C1 vs C2: Paired Satisfaction Scores",
+       x = NULL, y = "Score (1–5)") +
+  scale_fill_manual(values = c("steelblue", "coral")) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+#### Running the test
+
+Including the argument `paired = TRUE` ensures a `paired t-test` is run.
+```{r paired-ttest}
+t.test(survey$C1, survey$C2, paired = TRUE)
+```
+
+#### Summary
+
+```{r paired-summary}
+survey %>%
+  summarise(
+    mean_C1 = round(mean(C1, na.rm = TRUE), 3),
+    mean_C2 = round(mean(C2, na.rm = TRUE), 3),
+    mean_diff = round(mean(C2 - C1, na.rm = TRUE), 3),
+    sd_diff = round(sd(C2 - C1, na.rm = TRUE), 3)
+  )
+```
+
+The result is **t(1004) = −3.90, p < 0.001**. Respondents rate C2 (meam = 3.30) significantly higher than C1 (mean = 3.09) on average, with a mean difference of 0.21 points. While statistically significant, this is a small effect.
+
+#### Effect size
+
+For paired data, we'll use the `repeated_measures_d()` function from the `efectsize` package. It offers offers multiple standardisation methods (rm, av, z) that account for the dependency between measurements:
+
+- d (rm) — adjusts for the correlation between the paired scores, which typically produces a slightly larger effect size than standard `Cohen's d` because it accounts for the fact that paired measurements are not independent
+- d (av) — uses the average of the two standard deviations rather than the pooled SD, which is more appropriate when the two variables have different spreads
+- d (z) — standardises using the population SD, useful when comparing to external benchmarks
+
+```{r paired-cohend}
+repeated_measures_d(Pair(C1, C2) ~ 1, data = survey, method = "rm")
+```
+
+The `*d[rm]*` = -0.16 is a very small effect. Statistical significance
+here is partly a consequence of the large sample size, not a practically
+important deviation.
+
+---
+
+Example sentence:
+
+On average, respondents scored C2 slightly higher than C1 (mean C2 = 3.30 vs mean C1 = 3.09), a mean difference of 0.21 points. This difference is statistically significant (t(1004) = −3.90, p < 0.001, 95% CI [−0.31, −0.10]), indicating that respondents consistently perceive flexible working as improving their work-life balance to a slightly greater degree than they are satisfied with their current arrangements.
+
+However, the practical significance of this difference is small (`d[rm]`= -0.16), and the standard deviation of the within-person differences was wide (sd = 1.70), suggesting considerable variation in how individuals responded across the two questions. While the finding is reliable at the population level, the gap between the two scores is unlikely to be noticeable or meaningful in day-to-day terms.
+
+## One-Way ANOVA
+
+When you want to compare means across **three or more groups**, running
+multiple `t-tests` is not appropriate as it inflates the Type I error rate
+(false positive rate). A `one-way ANOVA` tests all group differences
+simultaneously with a single omnibus `F-test`.
+
+### The `F-statistic`
+
+The `F-statistic` is the ratio of **between-group variance** to
+**within-group variance**:
+
+$$F = \frac{\text{Mean Square Between}}{\text{Mean Square Within}}$$
+
+A large F indicates that the group means differ more than expected by
+chance. The `F-test` is omnibus; it tells us *that* at least one group
+differs, but not *which* groups. Post-hoc tests will answer the question of *which* group differs.
+
+::: callout
+## Omnibus tests
+An omnibus test is an overall test that asks whether there are any significant differences among a set of groups or variables, without specifying where those differences lie. In the context of `ANOVA`, the `F-test` is omnibus: a significant result tells you that at least one group mean differs from the others, but not which specific pairs are different. 
+
+Think of it as a first screening step: if the omnibus test is non-significant, you stop; if it is significant, you follow up with post-hoc tests (such as `Tukey HSD`) to pinpoint exactly where the differences are.
+
+:::
