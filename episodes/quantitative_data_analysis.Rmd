@@ -9,11 +9,11 @@ source: Rmd
 -   Read in data and ensure variables have the correct data type
 -   Perform exploratory data analysis
 -   Identify the correct statistical test for a given variable type and research question
--   Run Chi-square tests, t-tests, and one-way ANOVAs in R Notebooks
+-   Run `Chi-square tests`, `t-tests`, and `one-way ANOVAs` in `R` Notebooks
 -   Interpret p-values, test statistics, and effect sizes in context
--   Write clear explanatory text in R Notebooks to document analytical
+-   Write clear explanatory text in `R Notebooks` to document analytical
     decisions
--   Recognise the assumptions underlying each test and check them in R
+-   Recognise the assumptions underlying each test and check them in `R`
 :::
 
 ::: questions
@@ -224,7 +224,7 @@ variables.
 
 For categorical variables like those in the survey data, frequency
 tables and proportion summaries reveal how respondents are spread across
-groups, which is important, as some tests (like Chi-square) require
+groups, which is important, as some tests (like `Chi-square`) require
 minimum cell counts to be valid.
 
 Let's investigate the proportion of missing data `NA` in our columns.
@@ -268,7 +268,7 @@ survey %>%
 
 The survey data has a slightly female-majority, with a younger age distribution. We should keep this in mind when interpreting any later results that break down by gender and age.
 
-#### Breakdown by demographics
+**Breakdown by demographics**
 
 We can also use the `tbl_summary()` function to add statistical tests by using `add_p()`.
 
@@ -418,7 +418,7 @@ survey %>%
 We can see that there are some statistical differences when stratifying by column `A1`, gender. We'll explore these in more detail shortly.
 
 We can also look at the mean and standard deviation of our continuous
-variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`. When running locally in RStudio, 6 tables will print out in the output.
+variables, stratified by demographics. Let's loop through all demographic variables for continuous variables `D1` and`D2`. We'll make a few changes with this code- we'll only display results for the variables `D1` and`D2`, and we'll use the statistic `all_continuous`. When running locally in `RStudio`, 6 tables will print out in the output.
 
 ```{r demographic-contin, eval=FALSE}
 
@@ -600,18 +600,18 @@ variables. Specifically, for continuous variables with two groups it
 applies a Wilcoxon rank-sum test, and with three or more groups it
 applies a Kruskal-Wallis test.
 
-For categorical and logical variables, it uses a Chi-square test,
-switching automatically to Fisher's exact test when expected cell counts
+For categorical and logical variables, it uses a `Chi-square test`,
+switching automatically to `Fisher's exact test` when expected cell counts
 are too small (typically when any cell has an expected count below 5).
 
-These defaults can be overridden using the test argument in add_p(). For
-example, specifying `test = list(all_continuous() ~ "aov")` to use ANOVA
-instead of Kruskal-Wallis.
+These defaults can be overridden using the test argument in `add_p()`. For
+example, specifying `test = list(all_continuous() ~ "aov")` to use `ANOVA`
+instead of `Kruskal-Wallis`.
 
 The choice of whether to accept the default or override it should be
 guided by checking your distributions first. If continuous variables are
 approximately normally distributed and sample sizes are adequate,
-parametric tests (t-test, ANOVA) are appropriate and will generally be
+parametric tests (`t-test`, `ANOVA`) are appropriate and will generally be
 more statistically powerful than their non-parametric equivalents.
 
 :::
@@ -621,7 +621,7 @@ more statistically powerful than their non-parametric equivalents.
 ::: callout
 ## File formats
 
-Many different file formats can be read into and written (exported) out of R, including `SPSS` files.
+Many different file formats can be read into and written (exported) out of `R`, including `SPSS` files.
 
 Some of the common file types, and their uses, are included in the table below.
 
@@ -691,7 +691,7 @@ survey %>%
 
 A correlation matrix is a useful diagnostic tool when working with multiple-response (multi-select) questions. Although each boolean column is structurally independent (meaning there is no logical rule preventing a respondent from selecting any combination of options), respondents' choices in practice often cluster together. 
 
-We can use a correlation plot from the `corrplot` package to visualise the pairwise phi coefficients (Pearson correlation applied to 0/1 data) for all `B1` and `B2` option columns simultaneously. 
+We can use a correlation plot from the `corrplot` package to visualise the pairwise `phi` coefficients (`Pearson correlation` applied to 0/1 data) for all `B1` and `B2` option columns simultaneously. 
 
 The colour hue indicates direction: blue cells mean two options tend to be co-selected, while red cells mean selecting one option is associated with not selecting the other. Colour intensity encodes strength; darker shades indicate stronger associations, paler shades near-zero relationships. 
 
@@ -748,12 +748,12 @@ survey %>%
 
 Again, no coefficients are > 0.6, but we'll be mindful of any coefficients > 0.3.
 
-## Chi-square tests of independence
+## `Chi-square tests of independence`
 
-The **Chi-square test of independence** (χ²) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
+The **`Chi-square test of independence`** (`χ²`) tests whether two categorical variables are associated with each other, or whether any observed differences in proportions are plausibly due to chance.
 
 ::: callout
-### When to use a Chi-Square Test
+### When to use a `Chi-Square Test`
 
 - Both variables are categorical (nominal or ordinal). 
 - You are testing association, not causation. 
@@ -761,9 +761,9 @@ The **Chi-square test of independence** (χ²) tests whether two categorical var
 - Your sample size is reasonably large (n > 30 as a general guide).
 :::
 
-### When is the Chi-square test appropriate?
+### When is the `Chi-square test` appropriate?
 
-The Chi-square test of independence applies when:
+The `Chi-square test` of independence applies when:
 
 1. Observations are independent: each respondent contributes exactly one row.
 2. Both variables are categorical (nominal or ordinal).
@@ -771,9 +771,9 @@ The Chi-square test of independence applies when:
 
 We will check assumption 3 explicitly for every test by examining `chisq.test()$expected`.
 
-### Effect size: Cramér's V
+### Effect size: `Cramér's V`
 
-A p-value only tells us whether an association exists; it does not tell us how strong it is. **Cramér's V** is the standard effect size for Chi-square tests. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
+A p-value only tells us whether an association exists; it does not tell us how strong it is. **`Cramér's V`** is the standard effect size for `Chi-square tests`. It ranges from 0 (no association) to 1 (perfect association) and is comparable across tables of different sizes.
 
 | Cramér's V | Interpretation      |
 |------------|---------------------|
@@ -787,7 +787,7 @@ We compute it with `cramerV()` from the `rcompanion` package.
 
 ### Test 1: A boolean B-item × Gender (B1_1 × A1)
 
-Let's use the Chi-square test to answer this **Research question:** Are men and women equally likely to select option 1 of question B1?
+Let's use the `Chi-square test` to answer this **Research question:** Are men and women equally likely to select option 1 of question B1?
 
 
 ```{r chisq-B1-A1}
@@ -822,7 +822,7 @@ So the correct interpretation is:
 
 "With FALSE as the reference category and male as the reference group, the odds ratio of 18.08 means that the odds of selecting TRUE are 18 times greater for females than for males (95% CI [13.20, 25.04])."
 
-In other words the OR is comparing:
+In other words the `OR` is comparing:
 
 Rows: TRUE vs FALSE (FALSE = reference)
 Columns: female vs male (male = reference, as confirmed by `levels()`)
@@ -830,27 +830,27 @@ Columns: female vs male (male = reference, as confirmed by `levels()`)
 ::: callout
 ### Reporting checklist
 
-When writing up Chi-square results for a report, include the following:
+When writing up `Chi-square` results for a report, include the following:
 
 1. **The research question**: what association are you testing?
 2. **The contingency table**: row percentages to show the pattern
-3. **Test statistic and degrees of freedom**: χ²(df) = X.XX.
+3. **Test statistic and degrees of freedom**: `χ²(df)` = X.XX.
 4. **p-value**: exact value to three decimal places (or < .001)
 5. **Assumption check**: confirm expected counts ≥ 5 in all (or at least 80%) of cells
-6. **Effect size**: Cramér's V with interpretation (small / medium / large)
+6. **Effect size**: `Cramér's V` with interpretation (small / medium / large)
 7. **Odds ratio** if significant): identify the association
 7. **Standardised residuals** (if significant): identify which cells drive the association
 
 An example sentence:
 
-"Gender was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (Cramér's V = 0.615).
+"Gender was significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p < 0.001), with a large effect size (`Cramér's V` = 0.615).
 
-Female employees had substantially higher odds of selecting this priority compared to their male counterparts (OR = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
+Female employees had substantially higher odds of selecting this priority compared to their male counterparts (`OR` = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
 
 :::
 
 
-We can expand on this code to run Chi-square, Cramér's, and odd's for all `B1_*` columns, and report the results out in an easy to read table.
+We can expand on this code to run `Chi-square`,` Cramér's`, and odd's for all `B1_*` columns, and report the results out in an easy to read table.
 
 ### Test 2: A boolean B-item × Gender (All B1_* × A1)
 
@@ -896,16 +896,16 @@ results_B1_A1
 ::: callout
 ### Multiple comparisons
 
-Running multiple Chi-square tests simultaneously inflates the probability of
-at least one false positive. To address this, we apply the **Benjamini-Hochberg
-False Discovery Rate (FDR)** correction using p.adjust(method = "fdr"), which
+Running multiple `Chi-square tests` simultaneously inflates the probability of
+at least one false positive. To address this, we apply the **`Benjamini-Hochberg
+False Discovery Rate (FDR)`** correction using `p.adjust(method = "fdr")`, which
 controls the expected proportion of false positives among significant results.
 
-Unlike the Bonferroni correction, which controls the probability of any
-false positive and can be overly conservative when running many correlated tests, FDR offers a better balance between sensitivity and specificity, making it well suited to survey data where items tend to be correlated. Adjusted p-values are interpreted against the same α threshold of 0.05.
+Unlike the `Bonferroni correction`, which controls the probability of any
+false positive and can be overly conservative when running many correlated tests, `FDR` offers a better balance between sensitivity and specificity, making it well suited to survey data where items tend to be correlated. Adjusted p-values are interpreted against the same α threshold of 0.05.
 :::
 
-Let's repeat our above analysis and include the **FDR correction**.
+Let's repeat our above analysis and include the **`FDR correction`**.
 
 ```{r test2-fdr}
 results_B1_A1_fdr <- tibble(b1_var = b1_vars) %>%
@@ -945,21 +945,21 @@ results_B1_A1_fdr
 ```
 
 Our reporting would now include the fact that the p-value was corrected.
-"After FDR correction, gender remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (Cramér's V = 0.615).
+"After `FDR correction`, gender remained significantly associated with the selection of 'Improve employee wellbeing & work-life balance' as a main goal of flexible working policies (χ²(1) = 377.63, p_adj < 0.001), with a large effect size (`Cramér's V` = 0.615).
 
-Female employees had substantially higher odds of selecting this priority compared to their male counterparts (OR = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
+Female employees had substantially higher odds of selecting this priority compared to their male counterparts (`OR` = 18.08, 95% CI [13.20, 25.04]), indicating that female employees were approximately 18 times more likely to select this option than male employees. This strong and statistically robust difference suggests that improving employee wellbeing and work-life balance is a considerably more pressing concern for female employees."
 
 
-## When Chi-square assumptions fail — Fisher's exact test
+## When `Chi-square` assumptions fail: `Fisher's exact test`
 
-If any expected cell count falls below 5, the Chi-square approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
+If any expected cell count falls below 5, the `Chi-square` approximation becomes unreliable. This is most likely to happen with small subgroups, such as when we cross region (three levels, potentially unequal) with education (three levels) — some combinations may be rare.
 
 ```{r fisher-A5-A3}
 tbl_A5_A2 <- table(survey$A5, survey$A2)
 chisq.test(tbl_A5_A2)$expected   # check first
 ```
 
-If any expected count is below 5, switch to Fisher's exact test (not necessary in our case, but let's write the code anyway as a demonstration). For tables larger than 2×2, base R's exact computation is impractical, so we use a Monte Carlo simulation (`simulate.p.value = TRUE`).
+If any expected count is below 5, switch to `Fisher's exact test` (not necessary in our case, but let's write the code anyway as a demonstration). For tables larger than 2×2, base R's exact computation is impractical, so we use a `Monte Carlo` simulation (`simulate.p.value = TRUE`).
 
 ```{r fisher-test-monte}
 fisher.test(tbl_A5_A2,
@@ -967,9 +967,9 @@ fisher.test(tbl_A5_A2,
             B = 10000)   # B = number of Monte Carlo replicates
 ```
 
-The Monte Carlo p-value is based on 10,000 random permutations of the table and is a reliable substitute for the asymptotic Chi-square approximation when cell counts are small.
+The `Monte Carlo` p-value is based on 10,000 random permutations of the table and is a reliable substitute for the asymptotic `Chi-square` approximation when cell counts are small.
 
-For 2X2 tables, just use the Fisher's Exact Test with no simulation. Again, our expected cell counts are > 5, so this is just a demonstration.
+For 2X2 tables, just use the `Fisher's Exact Test` with no simulation. Again, our expected cell counts are > 5, so this is just a demonstration.
 
 ```{r fisher-test}
 tbl_A1_B1_1 <- table(survey$A1, survey$B1_1)
@@ -996,12 +996,12 @@ differs between urban and rural areas. It does **not** tell us which specific in
 **Research question:** Does overall satisfaction with work life balance (E1) vary across age groups (A2)?
 
 This test introduces a powerful diagnostic tool: **standardised residuals**.
-After a significant Chi-square test, standardised residuals tell us which
+After a significant `Chi-square test`, standardised residuals tell us which
 cells contribute most to the result; that is, where the observed count differs
 most from what we would expect under independence.
 
 A standardised residual beyond ±2 (roughly corresponding to a two-tailed
-p < 0.05) flags a cell that is "doing more than its share" of the Chi-square
+p < 0.05) flags a cell that is "doing more than its share" of the `Chi-square`
 statistic- where the associations are the strongest.
 
 ```{r chisq-E1-A2}
@@ -1050,4 +1050,4 @@ often. Cells with residuals beyond ±2 are where the association is "happening".
 
 Example results sentence:
 
-"Overall satisfaction with work life balance differed significantly across age groups (χ²(8) = 58.52, p < 0.001), though the association was small in magnitude (Cramér's V = 0.171). Satisfaction tended to increase with age: older employees (55+) were more likely than expected to report being satisfied (residual = 2.72) or strongly satisfied (residual = 3.01), while younger employees (18-34) were substantially more likely than expected to report strong dissatisfaction (residual = 6.07) and less likely to report satisfaction (residual = −3.26) or strong satisfaction (residual = −2.35). Employees aged 35–54 showed little deviation from expected counts, with only a modest tendency toward neutrality (residual = 2.19)."
+"Overall satisfaction with work life balance differed significantly across age groups (χ²(8) = 58.52, p < 0.001), though the association was small in magnitude (`Cramér's V` = 0.171). Satisfaction tended to increase with age: older employees (55+) were more likely than expected to report being satisfied (residual = 2.72) or strongly satisfied (residual = 3.01), while younger employees (18-34) were substantially more likely than expected to report strong dissatisfaction (residual = 6.07) and less likely to report satisfaction (residual = −3.26) or strong satisfaction (residual = −2.35). Employees aged 35–54 showed little deviation from expected counts, with only a modest tendency toward neutrality (residual = 2.19)."
