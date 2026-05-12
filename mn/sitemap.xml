@@ -52,6 +52,9 @@
     <loc>https://irim-mongolia.github.io/irim-r-workshops/instructor/starting-with-data.html</loc>
   </url>
   <url>
+    <loc>https://irim-mongolia.github.io/irim-r-workshops/instructor/t_tests_and_anova.html</loc>
+  </url>
+  <url>
     <loc>https://irim-mongolia.github.io/irim-r-workshops/introduction-r-packages-markdown.html</loc>
   </url>
   <url>
@@ -71,5 +74,8 @@
   </url>
   <url>
     <loc>https://irim-mongolia.github.io/irim-r-workshops/starting-with-data.html</loc>
+  </url>
+  <url>
+    <loc>https://irim-mongolia.github.io/irim-r-workshops/t_tests_and_anova.html</loc>
   </url>
 </urlset>
