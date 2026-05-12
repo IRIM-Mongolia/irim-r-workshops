@@ -210,6 +210,7 @@ The output contains:
 - **conf.low / conf.high**: the lower and upper bounds of the 95% confidence interval; the plausible range for the true population mean. If this interval does not include `mu` = x, the result is significant at p < 0.05.
 - **`mu`**: the reference value being tested against.
 - **alternative**: the direction of the test; "two.sided" means you are testing for any difference from `mu`, rather than specifically above or below it.
+
 :::
 
 The result is **t(1004) = 2.08, p = 0.0375**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95% confidence interval [3.005, 3.18] sits entirely above 3, confirming a small
@@ -358,7 +359,6 @@ survey %>%
 working arrangements (mean = 3.60, sd = 1.28) compared to male respondents
 (mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(1003) = 14.77, p < 0.001, 95% CI [1.05, 1.37]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
 
-:::
 
 ---
 
