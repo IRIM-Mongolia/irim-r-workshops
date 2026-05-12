@@ -9,7 +9,7 @@ source: Rmd
 -   Read in data and ensure variables have the correct data type
 -   Perform exploratory data analysis
 -   Identify the correct statistical test for a given variable type and research question
--   Run `Chi-square tests`, `t-tests`, and `one-way ANOVAs` in `R` Notebooks
+-   Run `Chi-square tests`and `Fisher's exact tests` in `R` Notebooks
 -   Interpret p-values, test statistics, and effect sizes in context
 -   Write clear explanatory text in `R Notebooks` to document analytical
     decisions
@@ -29,7 +29,7 @@ here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf1
 [See Workshop 5 recording here -
 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
-## Dataset Overview
+## Dataset overview
 
 This workshop uses a generated (made-up) dataset containing 1005
 responses to a survey on flexible working and work-life balance, with a
@@ -578,20 +578,8 @@ survey %>%
 We can see that there are some statistical differences when stratifying by column `A2`, age group. We'll explore these in more detail shortly.
 
 
-## Export processed data
-
-Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
-
-```{r eval=FALSE}
-saveRDS(survey, here("data", "cleaned", "generated_survey_data_clean.rds"))
-
-# read back in - retains all factor levels, ordered factors, etc.
-survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
-```
-
-
 ::: callout
-## Statistical tests used by `gtsummary`
+### Statistical tests used by `gtsummary`
 
 When`add_p()` is called, `gtsummary` automatically selects a statistical
 test based on the variable type and the number of groups being compared.
@@ -617,9 +605,21 @@ more statistically powerful than their non-parametric equivalents.
 :::
 
 
+## Export processed data
+
+Now that we've investigated the processed the data, we'll write it out into `.rds`, a file type that preserves everything we've done to process the data (factor levels and order, custom classes, attributes, column types). It's the best option when the data will only ever be used in R. 
+
+```{r eval=FALSE}
+saveRDS(survey, here("data", "cleaned", "generated_survey_data_clean.rds"))
+
+# read back in - retains all factor levels, ordered factors, etc.
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
+```
+
+
 
 ::: callout
-## File formats
+### File formats
 
 Many different file formats can be read into and written (exported) out of `R`, including `SPSS` files.
 

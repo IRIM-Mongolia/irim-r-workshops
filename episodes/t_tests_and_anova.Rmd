@@ -94,19 +94,17 @@ When you open a new `R Notebook`, some explanatory text is provided. This can be
 
 ### Load packages and data
 
-Download packages (if needed) and load libraries. We’ll be using the `rstatix`, `ggpubr`, `effectsize`, and `emmeans` packages for the first time, so they will need to be installed.
+Download packages (if needed) and load libraries. We’ll be using the `rstatix` and `effectsize` packages for the first time, so they will need to be installed.
 
 ```{r setup, message=FALSE}
-for (pkg in c("tidyverse", "here", "rstatix", "ggpubr", "effectsize", "emmeans")) {
+for (pkg in c("tidyverse", "here", "rstatix")) {
   if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
 }
 
 library(tidyverse)
 library(here)
-library(rstatix)    # tidy statistical tests
-library(ggpubr)     # publication-ready plots
-library(effectsize) # `Cohen's d`, eta-squared
-library(emmeans)    # estimated marginal means for `ANOVA`
+library(effectsize) # for repeated_measures_d
+library(rstatix) # tidy statistical tests
 ```
 
 Read in the cleaned survey data that was processed in the [previous workshop](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
@@ -115,7 +113,7 @@ Download the data first if you need to.
 
 ```{r dl-data, eval=FALSE}
 
-download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/blob/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("generated_survey_data_clean.rds"), mode = "wb")
+download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("data/cleaned/generated_survey_data_clean.rds"), mode = "wb")
 
 ```
 
@@ -195,8 +193,13 @@ slightly. Let us test this formally.
 
 #### Running the `t-test`
 
+We'll use the function `t_test` from the `rstatix` package, which works well with the `tidyverse`. 
+
+The `~ 1` means "no grouping variable". We are testing `C1` against a fixed value (`mu` = 3) rather than comparing it across groups.
+
 ```{r onesamp-ttest}
-t.test(survey$C1, mu = 3)
+survey %>% 
+  t_test(C1 ~ 1, mu = 3)
 ```
 
 ::: callout
@@ -204,20 +207,21 @@ t.test(survey$C1, mu = 3)
 
 The output contains:
 
-- **t**: the test statistic. Larger absolute values suggest stronger evidence
-  against the null hypothesis H₀.
-- **df**: degrees of freedom (n − 1 for a one-sample test).
-- **p-value**: the probability of observing a t-statistic this extreme or more
-  extreme if H₀ (µ = 3) were true.
-- **95% confidence interval**: plausible range for the true population mean.
-- **sample estimates**: the observed sample mean.
+- **estimate**: the observed sample mean of the data, this is the value being tested against `mu`.
+- **statistic**: the t-statistic. Larger absolute values suggest stronger evidence against H₀.
+- **df**: degrees of freedom (n − 1 for a one-sample test), used to determine the critical value of t.
+- **p**: the p-value/probability of observing a t-statistic this extreme or more extreme if H₀ (µ = 3) were true.
+- **conf.low / conf.high**: the lower and upper bounds of the 95% confidence interval; the plausible range for the true population mean. If this interval does not include `mu` = x, the result is significant at p < 0.05.
+- **`mu`**: the reference value being tested against.
+- **alternative**: the direction of the test; "two.sided" means you are testing for any difference from `mu`, rather than specifically above or below it.
 :::
 
-The result is **t(1004) = 2.08, p = 0.037**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95%
-confidence interval [3.004, 3.175] sits entirely above 3, confirming a small
+The result is **t(1004) = 2.08, p = 0.0375**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95% confidence interval [3.005, 3.18] sits entirely above 3, confirming a small
 but statistically reliable positive lean.
 
 #### Effect size: `Cohen's *d*`
+
+We'll use the function `cohens_d` from the `rstatix` package to compute the effect size for the t-test. `Cohen's d` is calculated as the difference between means or mean minus `mu` divided by the estimated standardized deviation.
 
 `Cohen's *d*` measures how large a difference is in practical terms, not just whether it's statistically significant. It is expressed as the number of standard deviations separating the two group means.
 
@@ -229,18 +233,19 @@ but statistically reliable positive lean.
 | 0.8 | Large |
 
 ```{r onesamp-cohend}
-cohens_d(survey$C1, mu = 3)
+survey %>%
+  cohens_d(C1 ~ 1, mu = 3)
 ```
 
-Cohen's *d* < 0.1 indicates a **very small** effect. Statistical significance
+`Cohen's *d*` < 0.1 indicates a **negligible** effect. Statistical significance
 here is partly a consequence of the large sample size, not a practically
 important deviation. Always report effect sizes alongside p-values.
 
 An example sentence: 
 
-On average, respondents reported slightly higher than neutral satisfaction with their flexible working arrangements (mean score 3.09 out of 5). This positive lean is statistically reliable and unlikely to be a chance finding (t(1004) = 2.08, p = 0.037). We can be 95% confident the true average across the population falls between 3.00 and 3.18, meaning satisfaction is consistently, if only marginally, above the midpoint.
+"On average, respondents reported slightly higher than neutral satisfaction with their flexible working arrangements (mean score 3.09 out of 5). This positive lean is statistically reliable and unlikely to be a chance finding (t(1004) = 2.08, p = 0.0375). We can be 95% confident the true average across the population falls between 3.005 and 3.18, meaning satisfaction is consistently, if only marginally, above the midpoint.
 
-However, the practical significance of this difference is negligible (`Cohen's *d*` < 0.01), meaning that while the result is statistically detectable, the deviation from neutral is too small to be meaningful in practice.
+However, the practical significance of this difference is negligible (`Cohen's *d*`= 0.07), meaning that while the result is statistically detectable, the deviation from neutral is too small to be meaningful in practice."
 
 
 ---
@@ -297,31 +302,25 @@ The diamond shows the mean values of the to groups. From the boxplot, a clear di
 
 #### Running the test
 
+Running the test is similar to the `one-sample t-test`, except we now include the grouping variable `A1`. The output is also similar, but with the addition of some new estimate columns:
+
+- **estimate**: the difference in means between the two groups (G1 - G1); this is the raw gap between the observed sample means of the two groups.
+- **estimate1**: the observed sample mean for the first group.
+- **estimate2**: the observed sample mean for the second group.
+
 ```{r indsamp-ttest}
-t.test(C1 ~ A1, data = survey, var.equal = TRUE) # when var.equal = FALSE, Welch's Tt-test is used
+survey %>% 
+  t_test(C1 ~ A1, var.equal = TRUE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
 ```
 
-#### Summary statistics
-
-We can also produce a table of summary statistics to use in our reporting.
-```{r indsamp-summary}
-survey %>%
-  group_by(A1) %>%
-  summarise(
-    n = n(),
-    mean = round(mean(C1, na.rm = TRUE), 3),
-    sd = round(sd(C1, na.rm = TRUE), 3), # standard deviation
-    se = round(sd / sqrt(n), 3) # standard error
-  )
-```
-
-The result is **t(836) = −14.77, p < 0.001**. Female respondents score
+The result is **t(1003) = 14.77, p < 0.001**. Female respondents score
 substantially higher on C1 (mean = 3.60) than male respondents (mean = 2.39).
 
 #### Effect size
 
 ```{r indsamp-cohend}
-cohens_d(C1 ~ A1, data = survey)
+survey %>%
+  cohens_d(C1 ~ A1)
 ```
 
 `Cohen's *d*` = 0.94 is a **large effect**: the gender difference in
@@ -339,10 +338,29 @@ substantively meaningful, not just statistically significant.
 6. **95% confidence interval** on the difference
 7. **Cohen's *d*** with interpretation
 
+:::
+
+
+#### Summary statistics
+
+Unfortunately, `t_test()` from `rstatix` doesn't include the standard deviation in its output by default, so we'll run the summary statistics separately. 
+
+```{r}
+# summary statistics including SD
+survey %>%
+  group_by(A1) %>%
+  summarise(
+    n = n(),
+    mean = round(mean(C1, na.rm = TRUE), 3),
+    sd = round(sd(C1, na.rm = TRUE), 3)
+  )
+```
+
+
 **Example sentence:**
 "Female respondents reported significantly higher satisfaction with their flexible
 working arrangements (mean = 3.60, sd = 1.28) compared to male respondents
-(mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(836) = −14.77, p < 0.001, 95% CI [−1.37, −1.04]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used.
+(mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(1003) = 14.77, p < 0.001, 95% CI [1.05, 1.37]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
 
 :::
 
@@ -398,12 +416,26 @@ survey %>%
 
 #### Running the test
 
+To run a `paired t-test` using `rstatix`, the data needs to be reshaped first to compare two continuous variables from the same respondent.
+
 Including the argument `paired = TRUE` ensures a `paired t-test` is run.
+
+```{r}
+survey %>%
+  select(C1, C2) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(c(C1, C2), names_to = "scale", values_to = "score") %>%
+  t_test(score ~ scale, paired = TRUE, detailed = TRUE)
+```
+
+Or, we can use the `t.test` function from the base `R` `stats` package (no need to load additional libraries, or reshape data).
+
+
 ```{r paired-ttest}
 t.test(survey$C1, survey$C2, paired = TRUE)
 ```
 
-#### Summary
+#### Summary statistics
 
 ```{r paired-summary}
 survey %>%
@@ -415,11 +447,17 @@ survey %>%
   )
 ```
 
-The result is **t(1004) = −3.90, p < 0.001**. Respondents rate C2 (meam = 3.30) significantly higher than C1 (mean = 3.09) on average, with a mean difference of 0.21 points. While statistically significant, this is a small effect.
+The result is **t(1004) = −3.90, p < 0.001**. Respondents rate C2 (mean = 3.30) significantly higher than C1 (mean = 3.09) on average, with a mean difference of -0.21 points. While statistically significant, this is a small effect.
 
 #### Effect size
 
-For paired data, we'll use the `repeated_measures_d()` function from the `efectsize` package. It offers offers multiple standardisation methods (rm, av, z) that account for the dependency between measurements:
+```{r}
+survey %>%
+  pivot_longer(c(C1, C2), names_to = "scale", values_to = "score") %>%
+  cohens_d(score ~ scale, paired = TRUE)
+```
+
+For paired data, we can also use the `repeated_measures_d()` function from the `efectsize` package. It offers offers multiple standardisation methods (rm, av, z) that account for the dependency between measurements, while the `cohens_d` function with `paired = TRUE` only has one option (the standard deviation of the differences as the standardiser, which is closest to d(rm) in the `effectsize` package, but not identical).
 
 - d (rm) — adjusts for the correlation between the paired scores, which typically produces a slightly larger effect size than standard `Cohen's d` because it accounts for the fact that paired measurements are not independent
 - d (av) — uses the average of the two standard deviations rather than the pooled SD, which is more appropriate when the two variables have different spreads
@@ -429,7 +467,7 @@ For paired data, we'll use the `repeated_measures_d()` function from the `efects
 repeated_measures_d(Pair(C1, C2) ~ 1, data = survey, method = "rm")
 ```
 
-The `*d[rm]*` = -0.16 is a very small effect. Statistical significance
+The `*d[rm]*` = -0.16 or *cohens d*  = -0.129 is a negligible effect. Statistical significance
 here is partly a consequence of the large sample size, not a practically
 important deviation.
 
@@ -441,28 +479,3 @@ On average, respondents scored C2 slightly higher than C1 (mean C2 = 3.30 vs mea
 
 However, the practical significance of this difference is small (`d[rm]`= -0.16), and the standard deviation of the within-person differences was wide (sd = 1.70), suggesting considerable variation in how individuals responded across the two questions. While the finding is reliable at the population level, the gap between the two scores is unlikely to be noticeable or meaningful in day-to-day terms.
 
-## One-Way ANOVA
-
-When you want to compare means across **three or more groups**, running
-multiple `t-tests` is not appropriate as it inflates the Type I error rate
-(false positive rate). A `one-way ANOVA` tests all group differences
-simultaneously with a single omnibus `F-test`.
-
-### The `F-statistic`
-
-The `F-statistic` is the ratio of **between-group variance** to
-**within-group variance**:
-
-$$F = \frac{\text{Mean Square Between}}{\text{Mean Square Within}}$$
-
-A large F indicates that the group means differ more than expected by
-chance. The `F-test` is omnibus; it tells us *that* at least one group
-differs, but not *which* groups. Post-hoc tests will answer the question of *which* group differs.
-
-::: callout
-## Omnibus tests
-An omnibus test is an overall test that asks whether there are any significant differences among a set of groups or variables, without specifying where those differences lie. In the context of `ANOVA`, the `F-test` is omnibus: a significant result tells you that at least one group mean differs from the others, but not which specific pairs are different. 
-
-Think of it as a first screening step: if the omnibus test is non-significant, you stop; if it is significant, you follow up with post-hoc tests (such as `Tukey HSD`) to pinpoint exactly where the differences are.
-
-:::
