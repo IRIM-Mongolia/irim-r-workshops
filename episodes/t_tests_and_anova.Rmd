@@ -1,5 +1,5 @@
 ---
-title: "T-Tests and ANOVA in R"
+title: "T-Tests in R"
 teaching: 75
 exercises: 30
 source: Rmd
@@ -9,24 +9,20 @@ source: Rmd
 -   Distinguish between one-sample, independent-samples, and paired `t-tests`
 -   Run all three `t-test` variants in `R` and interpret their output
 -   Check `t-test` assumptions: normality and equal variances
--   Understand when to use a `one-way` vs `two-way ANOVA`
--   Run `one-way ANOVA` and follow up with post-hoc tests
--   Run a `two-way ANOVA` to examine interaction effects
--   Compute and interpret effect sizes: `Cohen's *d*` and η²
+-   Compute and interpret effect sizes: `Cohen's *d*`
 -   Report results clearly in a reproducible `R Notebook`
 :::
 
 ::: questions
 -   When should I use a `t-test` vs an `ANOVA`?
 -   How do I check whether my data meet the assumptions of these tests?
--   What do I do after a significant `ANOVA` result?
 :::
 
 ---
 
 ## Overview
 
-This workshop covers the two most widely used parametric tests for comparing
+This workshop and the next will cover the two most widely used parametric tests for comparing
 **means** of continuous variables:
 
 -   **`T-Tests`** compare the mean of one or two groups to a reference value or to each other.
@@ -97,7 +93,7 @@ When you open a new `R Notebook`, some explanatory text is provided. This can be
 Download packages (if needed) and load libraries. We’ll be using the `rstatix` and `effectsize` packages for the first time, so they will need to be installed.
 
 ```{r setup, message=FALSE}
-for (pkg in c("tidyverse", "here", "rstatix")) {
+for (pkg in c("tidyverse", "here", "rstatix", "effectsize")) {
   if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
 }
 

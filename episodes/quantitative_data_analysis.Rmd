@@ -29,6 +29,10 @@ here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQAu_EPJ2JxWSKEWpe68tf1
 [See Workshop 5 recording here -
 1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQDDs6ewnFXFSZFVox-GZ6UrAc-0RSCVDCZGcEEp3_aZJbs?e=zdebp3)
 
+See Workshop 5 recording here -
+3](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQBKtAImgAyrTboVkJvlEbnyAYUqq9E9m7LOcf_qypficNs?e=m1qfu8)
+
+
 ## Dataset overview
 
 This workshop uses a generated (made-up) dataset containing 1005
