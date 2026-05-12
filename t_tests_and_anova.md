@@ -1,5 +1,5 @@
 ---
-title: "T-Tests and ANOVA in R"
+title: "T-Tests in R"
 teaching: 75
 exercises: 30
 source: Rmd
@@ -9,24 +9,20 @@ source: Rmd
 -   Distinguish between one-sample, independent-samples, and paired `t-tests`
 -   Run all three `t-test` variants in `R` and interpret their output
 -   Check `t-test` assumptions: normality and equal variances
--   Understand when to use a `one-way` vs `two-way ANOVA`
--   Run `one-way ANOVA` and follow up with post-hoc tests
--   Run a `two-way ANOVA` to examine interaction effects
--   Compute and interpret effect sizes: `Cohen's *d*` and η²
+-   Compute and interpret effect sizes: `Cohen's *d*`
 -   Report results clearly in a reproducible `R Notebook`
 :::
 
 ::: questions
 -   When should I use a `t-test` vs an `ANOVA`?
 -   How do I check whether my data meet the assumptions of these tests?
--   What do I do after a significant `ANOVA` result?
 :::
 
 ---
 
 ## Overview
 
-This workshop covers the two most widely used parametric tests for comparing
+This workshop and the next will cover the two most widely used parametric tests for comparing
 **means** of continuous variables:
 
 -   **`T-Tests`** compare the mean of one or two groups to a reference value or to each other.
@@ -94,23 +90,21 @@ When you open a new `R Notebook`, some explanatory text is provided. This can be
 
 ### Load packages and data
 
-Download packages (if needed) and load libraries. We’ll be using the `rstatix`, `ggpubr`, `effectsize`, and `emmeans` packages for the first time, so they will need to be installed.
+Download packages (if needed) and load libraries. We’ll be using the `rstatix` and `effectsize` packages for the first time, so they will need to be installed.
 
 
 ``` r
-for (pkg in c("tidyverse", "here", "rstatix", "ggpubr", "effectsize", "emmeans")) {
+for (pkg in c("tidyverse", "here", "rstatix", "effectsize")) {
   if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
 }
 ```
 
 ``` output
-- Querying repositories for available source packages ... Done!
 The following package(s) will be installed:
 - abind          [1.4-8]
 - car            [3.1-5]
 - carData        [3.0-6]
 - colorspace     [2.1-2]
-- corrplot       [0.95]
 - cowplot        [1.2.0]
 - Deriv          [4.2.0]
 - doBy           [4.7.1]
@@ -118,7 +112,6 @@ The following package(s) will be installed:
 - Formula        [1.2-5]
 - fracdiff       [1.5-4]
 - lme4           [2.0-1]
-- lmtest         [0.9-40]
 - MatrixModels   [0.5-4]
 - microbenchmark [1.5.0]
 - minqa          [1.2.8]
@@ -134,98 +127,65 @@ The following package(s) will be installed:
 - SparseM        [1.84-2]
 - timeDate       [4052.112]
 - urca           [1.3-4]
-- zoo            [1.8-15]
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m abind 1.4-8                              [22 kB in 0.4s]
-[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.41s]
-[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.41s]
-[32m✔[0m reformulas 0.4.4                         [85 kB in 0.41s]
-[32m✔[0m Formula 1.2-5                            [128 kB in 0.41s]
-[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.42s]
-[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.44s]
-[32m✔[0m forecast 9.0.2                           [591 kB in 0.44s]
-[32m✔[0m rstatix 0.7.3                            [417 kB in 0.45s]
-[32m✔[0m MatrixModels 0.5-4                       [25 kB in 45s]
-[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.46s]
-[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.47s]
-[32m✔[0m minqa 1.2.8                              [55 kB in 65s]
-[32m✔[0m Deriv 4.2.0                              [39 kB in 61s]
-[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.49s]
-[32m✔[0m corrplot 0.95                            [3.7 MB in 0.5s]
-[32m✔[0m zoo 1.8-15                               [806 kB in 87s]
+[32m✔[0m abind 1.4-8                              [22 kB in 0.45s]
+[32m✔[0m reformulas 0.4.4                         [85 kB in 0.45s]
+[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.45s]
+[32m✔[0m MatrixModels 0.5-4                       [25 kB in 0.45s]
+[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.46s]
+[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.46s]
+[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.46s]
+[32m✔[0m rstatix 0.7.3                            [417 kB in 0.47s]
+[32m✔[0m minqa 1.2.8                              [55 kB in 10s]
+[32m✔[0m forecast 9.0.2                           [591 kB in 0.47s]
+[32m✔[0m Formula 1.2-5                            [128 kB in 0.47s]
+[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.48s]
+[32m✔[0m SparseM 1.84-2                           [553 kB in 0.49s]
+[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.49s]
+[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.5s]
+[32m✔[0m fracdiff 1.5-4                           [60 kB in 35s]
 [32m✔[0m lme4 2.0-1                               [3.7 MB in 0.51s]
-[32m✔[0m car 3.1-5                                [379 kB in 76s]
-[32m✔[0m lmtest 0.9-40                            [230 kB in 65s]
-[32m✔[0m timeDate 4052.112                        [367 kB in 60s]
-[32m✔[0m fracdiff 1.5-4                           [60 kB in 52s]
-[32m✔[0m nloptr 2.2.1                             [2.3 MB in 0.12s]
-[32m✔[0m colorspace 2.1-2                         [2.1 MB in 0.12s]
-[32m✔[0m carData 3.0-6                            [996 kB in 82s]
-[32m✔[0m quantreg 6.1                             [925 kB in 56s]
-[32m✔[0m urca 1.3-4                               [681 kB in 0.11s]
-[32m✔[0m SparseM 1.84-2                           [553 kB in 0.55s]
-[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.61s]
-Successfully downloaded 29 packages in 0.92 seconds.
+[32m✔[0m nloptr 2.2.1                             [2.3 MB in 55s]
+[32m✔[0m car 3.1-5                                [379 kB in 53s]
+[32m✔[0m timeDate 4052.112                        [367 kB in 45s]
+[32m✔[0m Deriv 4.2.0                              [39 kB in 59s]
+[32m✔[0m quantreg 6.1                             [925 kB in 48s]
+[32m✔[0m urca 1.3-4                               [681 kB in 65s]
+[32m✔[0m carData 3.0-6                            [996 kB in 67s]
+[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.54s]
+[32m✔[0m colorspace 2.1-2                         [2.1 MB in 87s]
+Successfully downloaded 26 packages in 0.89 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m abind 1.4-8                              [built from source in 8.6s]
-[32m✔[0m carData 3.0-6                            [built from source in 10s]
-[32m✔[0m corrplot 0.95                            [built from source in 11s]
-[32m✔[0m Formula 1.2-5                            [built from source in 7.4s]
-[32m✔[0m Deriv 4.2.0                              [built from source in 15s]
+[32m✔[0m abind 1.4-8                              [built from source in 9.2s]
+[32m✔[0m carData 3.0-6                            [built from source in 11s]
+[32m✔[0m Formula 1.2-5                            [built from source in 7.8s]
+[32m✔[0m Deriv 4.2.0                              [built from source in 17s]
 [32m✔[0m fracdiff 1.5-4                           [built from source in 16s]
-[32m✔[0m colorspace 2.1-2                         [built from source in 37s]
+[32m✔[0m colorspace 2.1-2                         [built from source in 40s]
 [32m✔[0m microbenchmark 1.5.0                     [built from source in 16s]
-[32m✔[0m MatrixModels 0.5-4                       [built from source in 30s]
-[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 8.2s]
+[32m✔[0m MatrixModels 0.5-4                       [built from source in 32s]
 [32m✔[0m cowplot 1.2.0                            [built from source in 1.1m]
-[32m✔[0m minqa 1.2.8                              [built from source in 45s]
-[32m✔[0m SparseM 1.84-2                           [built from source in 53s]
-[32m✔[0m rbibutils 2.4.1                          [built from source in 1.5m]
+[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 8.1s]
+[32m✔[0m minqa 1.2.8                              [built from source in 47s]
+[32m✔[0m SparseM 1.84-2                           [built from source in 55s]
+[32m✔[0m rbibutils 2.4.1                          [built from source in 1.4m]
 [32m✔[0m nloptr 2.2.1                             [built from source in 2.2m]
-[32m✔[0m urca 1.3-4                               [built from source in 37s]
-[32m✔[0m timeDate 4052.112                        [built from source in 58s]
-[32m✔[0m zoo 1.8-15                               [built from source in 29s]
-[32m✔[0m Rdpack 2.6.6                             [built from source in 20s]
-[32m✔[0m lmtest 0.9-40                            [built from source in 16s]
-[32m✔[0m reformulas 0.4.4                         [built from source in 23s]
-[32m✔[0m RcppEigen 0.3.4.0.2                      [built from source in 3.0m]
-[32m✔[0m quantreg 6.1                             [built from source in 1.2m]
+[32m✔[0m urca 1.3-4                               [built from source in 38s]
+[32m✔[0m timeDate 4052.112                        [built from source in 1.0m]
+[32m✔[0m Rdpack 2.6.6                             [built from source in 21s]
+[32m✔[0m reformulas 0.4.4                         [built from source in 24s]
+[32m✔[0m quantreg 6.1                             [built from source in 1.1m]
+[32m✔[0m RcppEigen 0.3.4.0.2                      [built from source in 3.2m]
+[32m✔[0m forecast 9.0.2                           [built from source in 2.3m]
 [32m✔[0m lme4 2.0-1                               [built from source in 1.5m]
-[32m✔[0m forecast 9.0.2                           [built from source in 2.1m]
-[32m✔[0m doBy 4.7.1                               [built from source in 15s]
-[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.9s]
-[32m✔[0m car 3.1-5                                [built from source in 11s]
-[32m✔[0m rstatix 0.7.3                            [built from source in 6.0s]
-Successfully installed 29 packages in 390 seconds.
-The following package(s) will be installed:
-- ggpubr    [0.6.3]
-- ggrepel   [0.9.8]
-- ggsci     [5.0.0]
-- ggsignif  [0.6.4]
-- gridExtra [2.3]
-- polynom   [1.4-1]
-These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
-
-# Downloading packages -------------------------------------------------------
-[32m✔[0m ggrepel 0.9.8                            [152 kB in 0.39s]
-[32m✔[0m gridExtra 2.3                            [1.1 MB in 0.46s]
-[32m✔[0m polynom 1.4-1                            [335 kB in 0.48s]
-[32m✔[0m ggsignif 0.6.4                           [587 kB in 0.5s]
-[32m✔[0m ggpubr 0.6.3                             [1.7 MB in 0.56s]
-[32m✔[0m ggsci 5.0.0                              [2.2 MB in 0.61s]
-Successfully downloaded 6 packages in 0.92 seconds.
-
-# Installing packages --------------------------------------------------------
-[32m✔[0m gridExtra 2.3                            [built from source in 12s]
-[32m✔[0m polynom 1.4-1                            [built from source in 8.6s]
-[32m✔[0m ggsci 5.0.0                              [built from source in 26s]
-[32m✔[0m ggsignif 0.6.4                           [built from source in 37s]
-[32m✔[0m ggrepel 0.9.8                            [built from source in 43s]
-[32m✔[0m ggpubr 0.6.3                             [built from source in 13s]
-Successfully installed 6 packages in 57 seconds.
+[32m✔[0m doBy 4.7.1                               [built from source in 17s]
+[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.6s]
+[32m✔[0m car 3.1-5                                [built from source in 10s]
+[32m✔[0m rstatix 0.7.3                            [built from source in 6.1s]
+Successfully installed 26 packages in 380 seconds.
 The following package(s) will be installed:
 - bayestestR  [0.17.0]
 - datawizard  [1.3.1]
@@ -236,48 +196,29 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m datawizard 1.3.1                         [449 kB in 0.31s]
-[32m✔[0m effectsize 1.0.2                         [396 kB in 0.37s]
-[32m✔[0m performance 0.16.0                       [2.2 MB in 0.37s]
-[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.37s]
-[32m✔[0m parameters 0.29.0                        [690 kB in 0.39s]
-[32m✔[0m insight 1.5.0                            [1.1 MB in 0.4s]
-Successfully downloaded 6 packages in 0.7 seconds.
+[32m✔[0m datawizard 1.3.1                         [449 kB in 0.22s]
+[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.23s]
+[32m✔[0m parameters 0.29.0                        [690 kB in 0.24s]
+[32m✔[0m insight 1.5.0                            [1.1 MB in 0.24s]
+[32m✔[0m effectsize 1.0.2                         [396 kB in 0.25s]
+[32m✔[0m performance 0.16.0                       [2.2 MB in 0.25s]
+Successfully downloaded 6 packages in 0.51 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m insight 1.5.0                            [built from source in 17s]
+[32m✔[0m insight 1.5.0                            [built from source in 18s]
 [32m✔[0m datawizard 1.3.1                         [built from source in 7.1s]
-[32m✔[0m bayestestR 0.17.0                        [built from source in 7.4s]
-[32m✔[0m performance 0.16.0                       [built from source in 21s]
-[32m✔[0m parameters 0.29.0                        [built from source in 26s]
-[32m✔[0m effectsize 1.0.2                         [built from source in 5.2s]
+[32m✔[0m bayestestR 0.17.0                        [built from source in 7.3s]
+[32m✔[0m performance 0.16.0                       [built from source in 22s]
+[32m✔[0m parameters 0.29.0                        [built from source in 27s]
+[32m✔[0m effectsize 1.0.2                         [built from source in 5.1s]
 Successfully installed 6 packages in 64 seconds.
-The following package(s) will be installed:
-- emmeans      [2.0.3]
-- estimability [1.5.1]
-- mvtnorm      [1.3-7]
-These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
-
-# Downloading packages -------------------------------------------------------
-[32m✔[0m estimability 1.5.1                       [16 kB in 0.4s]
-[32m✔[0m mvtnorm 1.3-7                            [976 kB in 0.5s]
-[32m✔[0m emmeans 2.0.3                            [1.6 MB in 0.52s]
-Successfully downloaded 3 packages in 0.78 seconds.
-
-# Installing packages --------------------------------------------------------
-[32m✔[0m estimability 1.5.1                       [built from source in 2.8s]
-[32m✔[0m mvtnorm 1.3-7                            [built from source in 6.9s]
-[32m✔[0m emmeans 2.0.3                            [built from source in 8.6s]
-Successfully installed 3 packages in 16 seconds.
 ```
 
 ``` r
 library(tidyverse)
 library(here)
-library(rstatix)    # tidy statistical tests
-library(ggpubr)     # publication-ready plots
-library(effectsize) # `Cohen's d`, eta-squared
-library(emmeans)    # estimated marginal means for `ANOVA`
+library(effectsize) # for repeated_measures_d
+library(rstatix) # tidy statistical tests
 ```
 
 Read in the cleaned survey data that was processed in the [previous workshop](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
@@ -286,7 +227,7 @@ Download the data first if you need to.
 
 
 ``` r
-download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/blob/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("generated_survey_data_clean.rds"), mode = "wb")
+download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("data/cleaned/generated_survey_data_clean.rds"), mode = "wb")
 ```
 
 
@@ -389,23 +330,21 @@ slightly. Let us test this formally.
 
 #### Running the `t-test`
 
+We'll use the function `t_test` from the `rstatix` package, which works well with the `tidyverse`. 
+
+The `~ 1` means "no grouping variable". We are testing `C1` against a fixed value (`mu` = 3) rather than comparing it across groups.
+
 
 ``` r
-t.test(survey$C1, mu = 3)
+survey %>% 
+  t_test(C1 ~ 1, mu = 3)
 ```
 
 ``` output
-
-	One Sample t-test
-
-data:  survey$C1
-t = 2.0835, df = 1004, p-value = 0.03746
-alternative hypothesis: true mean is not equal to 3
-95 percent confidence interval:
- 3.005382 3.179692
-sample estimates:
-mean of x 
- 3.092537 
+# A tibble: 1 × 7
+  .y.   group1 group2         n statistic    df      p
+* <chr> <chr>  <chr>      <int>     <dbl> <dbl>  <dbl>
+1 C1    1      null model  1005      2.08  1004 0.0375
 ```
 
 ::: callout
@@ -413,20 +352,22 @@ mean of x
 
 The output contains:
 
-- **t**: the test statistic. Larger absolute values suggest stronger evidence
-  against the null hypothesis H₀.
-- **df**: degrees of freedom (n − 1 for a one-sample test).
-- **p-value**: the probability of observing a t-statistic this extreme or more
-  extreme if H₀ (µ = 3) were true.
-- **95% confidence interval**: plausible range for the true population mean.
-- **sample estimates**: the observed sample mean.
+- **estimate**: the observed sample mean of the data, this is the value being tested against `mu`.
+- **statistic**: the t-statistic. Larger absolute values suggest stronger evidence against H₀.
+- **df**: degrees of freedom (n − 1 for a one-sample test), used to determine the critical value of t.
+- **p**: the p-value/probability of observing a t-statistic this extreme or more extreme if H₀ (µ = 3) were true.
+- **conf.low / conf.high**: the lower and upper bounds of the 95% confidence interval; the plausible range for the true population mean. If this interval does not include `mu` = x, the result is significant at p < 0.05.
+- **`mu`**: the reference value being tested against.
+- **alternative**: the direction of the test; "two.sided" means you are testing for any difference from `mu`, rather than specifically above or below it.
+
 :::
 
-The result is **t(1004) = 2.08, p = 0.037**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95%
-confidence interval [3.004, 3.175] sits entirely above 3, confirming a small
+The result is **t(1004) = 2.08, p = 0.0375**. With p < 0.05, we reject the null hypothesis and conclude the mean C1 score is significantly different from 3. The 95% confidence interval [3.005, 3.18] sits entirely above 3, confirming a small
 but statistically reliable positive lean.
 
 #### Effect size: `Cohen's *d*`
+
+We'll use the function `cohens_d` from the `rstatix` package to compute the effect size for the t-test. `Cohen's d` is calculated as the difference between means or mean minus `mu` divided by the estimated standardized deviation.
 
 `Cohen's *d*` measures how large a difference is in practical terms, not just whether it's statistically significant. It is expressed as the number of standard deviations separating the two group means.
 
@@ -439,26 +380,26 @@ but statistically reliable positive lean.
 
 
 ``` r
-cohens_d(survey$C1, mu = 3)
+survey %>%
+  cohens_d(C1 ~ 1, mu = 3)
 ```
 
 ``` output
-Cohen's d |       95% CI
-------------------------
-0.07      | [0.00, 0.13]
-
-- Deviation from a difference of 3.
+# A tibble: 1 × 6
+  .y.   group1 group2     effsize     n magnitude 
+* <chr> <chr>  <chr>        <dbl> <int> <ord>     
+1 C1    1      null model  0.0657  1005 negligible
 ```
 
-Cohen's *d* < 0.1 indicates a **very small** effect. Statistical significance
+`Cohen's *d*` < 0.1 indicates a **negligible** effect. Statistical significance
 here is partly a consequence of the large sample size, not a practically
 important deviation. Always report effect sizes alongside p-values.
 
 An example sentence: 
 
-On average, respondents reported slightly higher than neutral satisfaction with their flexible working arrangements (mean score 3.09 out of 5). This positive lean is statistically reliable and unlikely to be a chance finding (t(1004) = 2.08, p = 0.037). We can be 95% confident the true average across the population falls between 3.00 and 3.18, meaning satisfaction is consistently, if only marginally, above the midpoint.
+"On average, respondents reported slightly higher than neutral satisfaction with their flexible working arrangements (mean score 3.09 out of 5). This positive lean is statistically reliable and unlikely to be a chance finding (t(1004) = 2.08, p = 0.0375). We can be 95% confident the true average across the population falls between 3.005 and 3.18, meaning satisfaction is consistently, if only marginally, above the midpoint.
 
-However, the practical significance of this difference is negligible (`Cohen's *d*` < 0.01), meaning that while the result is statistically detectable, the deviation from neutral is too small to be meaningful in practice.
+However, the practical significance of this difference is negligible (`Cohen's *d*`= 0.07), meaning that while the result is statistically detectable, the deviation from neutral is too small to be meaningful in practice."
 
 
 ---
@@ -526,64 +467,43 @@ The diamond shows the mean values of the to groups. From the boxplot, a clear di
 
 #### Running the test
 
+Running the test is similar to the `one-sample t-test`, except we now include the grouping variable `A1`. The output is also similar, but with the addition of some new estimate columns:
+
+- **estimate**: the difference in means between the two groups (G1 - G1); this is the raw gap between the observed sample means of the two groups.
+- **estimate1**: the observed sample mean for the first group.
+- **estimate2**: the observed sample mean for the second group.
+
 
 ``` r
-t.test(C1 ~ A1, data = survey, var.equal = TRUE) # when var.equal = FALSE, Welch's Tt-test is used
+survey %>% 
+  t_test(C1 ~ A1, var.equal = TRUE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
 ```
 
 ``` output
-
-	Two Sample t-test
-
-data:  C1 by A1
-t = 14.771, df = 1003, p-value < 2.2e-16
-alternative hypothesis: true difference in means between group female and group male is not equal to 0
-95 percent confidence interval:
- 1.045143 1.365382
-sample estimates:
-mean in group female   mean in group male 
-            3.598628             2.393365 
+# A tibble: 1 × 15
+  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic
+*    <dbl>     <dbl>     <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>
+1     1.21      3.60      2.39 C1    female male     583   422      14.8
+# ℹ 6 more variables: p <dbl>, df <dbl>, conf.low <dbl>, conf.high <dbl>,
+#   method <chr>, alternative <chr>
 ```
 
-#### Summary statistics
-
-We can also produce a table of summary statistics to use in our reporting.
-
-``` r
-survey %>%
-  group_by(A1) %>%
-  summarise(
-    n = n(),
-    mean = round(mean(C1, na.rm = TRUE), 3),
-    sd = round(sd(C1, na.rm = TRUE), 3), # standard deviation
-    se = round(sd / sqrt(n), 3) # standard error
-  )
-```
-
-``` output
-# A tibble: 2 × 5
-  A1         n  mean    sd    se
-  <fct>  <int> <dbl> <dbl> <dbl>
-1 female   583  3.60  1.28 0.053
-2 male     422  2.39  1.27 0.062
-```
-
-The result is **t(836) = −14.77, p < 0.001**. Female respondents score
+The result is **t(1003) = 14.77, p < 0.001**. Female respondents score
 substantially higher on C1 (mean = 3.60) than male respondents (mean = 2.39).
 
 #### Effect size
 
 
 ``` r
-cohens_d(C1 ~ A1, data = survey)
+survey %>%
+  cohens_d(C1 ~ A1)
 ```
 
 ``` output
-Cohen's d |       95% CI
-------------------------
-0.94      | [0.81, 1.08]
-
-- Estimated using pooled SD.
+# A tibble: 1 × 7
+  .y.   group1 group2 effsize    n1    n2 magnitude
+* <chr> <chr>  <chr>    <dbl> <int> <int> <ord>    
+1 C1    female male     0.944   583   422 large    
 ```
 
 `Cohen's *d*` = 0.94 is a **large effect**: the gender difference in
@@ -601,12 +521,39 @@ substantively meaningful, not just statistically significant.
 6. **95% confidence interval** on the difference
 7. **Cohen's *d*** with interpretation
 
+:::
+
+
+#### Summary statistics
+
+Unfortunately, `t_test()` from `rstatix` doesn't include the standard deviation in its output by default, so we'll run the summary statistics separately. 
+
+
+``` r
+# summary statistics including SD
+survey %>%
+  group_by(A1) %>%
+  summarise(
+    n = n(),
+    mean = round(mean(C1, na.rm = TRUE), 3),
+    sd = round(sd(C1, na.rm = TRUE), 3)
+  )
+```
+
+``` output
+# A tibble: 2 × 4
+  A1         n  mean    sd
+  <fct>  <int> <dbl> <dbl>
+1 female   583  3.60  1.28
+2 male     422  2.39  1.27
+```
+
+
 **Example sentence:**
 "Female respondents reported significantly higher satisfaction with their flexible
 working arrangements (mean = 3.60, sd = 1.28) compared to male respondents
-(mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(836) = −14.77, p < 0.001, 95% CI [−1.37, −1.04]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used.
+(mean = 2.39, sd = 1.28), a difference of 1.21 points on the 5-point scale. This gap is highly statistically significant (t(1003) = 14.77, p < 0.001, 95% CI [1.05, 1.37]) and represents a large practical effect (`Cohen's d` = 0.94). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
 
-:::
 
 ---
 
@@ -663,7 +610,30 @@ survey %>%
 
 #### Running the test
 
+To run a `paired t-test` using `rstatix`, the data needs to be reshaped first to compare two continuous variables from the same respondent.
+
 Including the argument `paired = TRUE` ensures a `paired t-test` is run.
+
+
+``` r
+survey %>%
+  select(C1, C2) %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(c(C1, C2), names_to = "scale", values_to = "score") %>%
+  t_test(score ~ scale, paired = TRUE, detailed = TRUE)
+```
+
+``` output
+# A tibble: 1 × 13
+  estimate .y.   group1 group2    n1    n2 statistic        p    df conf.low
+*    <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>    <dbl> <dbl>    <dbl>
+1   -0.209 score C1     C2      1005  1005     -3.90 0.000104  1004   -0.314
+# ℹ 3 more variables: conf.high <dbl>, method <chr>, alternative <chr>
+```
+
+Or, we can use the `t.test` function from the base `R` `stats` package (no need to load additional libraries, or reshape data).
+
+
 
 ``` r
 t.test(survey$C1, survey$C2, paired = TRUE)
@@ -683,7 +653,7 @@ mean difference
      -0.2089552 
 ```
 
-#### Summary
+#### Summary statistics
 
 
 ``` r
@@ -703,11 +673,25 @@ survey %>%
 1    3.09    3.30     0.209     1.7
 ```
 
-The result is **t(1004) = −3.90, p < 0.001**. Respondents rate C2 (meam = 3.30) significantly higher than C1 (mean = 3.09) on average, with a mean difference of 0.21 points. While statistically significant, this is a small effect.
+The result is **t(1004) = −3.90, p < 0.001**. Respondents rate C2 (mean = 3.30) significantly higher than C1 (mean = 3.09) on average, with a mean difference of -0.21 points. While statistically significant, this is a small effect.
 
 #### Effect size
 
-For paired data, we'll use the `repeated_measures_d()` function from the `efectsize` package. It offers offers multiple standardisation methods (rm, av, z) that account for the dependency between measurements:
+
+``` r
+survey %>%
+  pivot_longer(c(C1, C2), names_to = "scale", values_to = "score") %>%
+  cohens_d(score ~ scale, paired = TRUE)
+```
+
+``` output
+# A tibble: 1 × 7
+  .y.   group1 group2 effsize    n1    n2 magnitude 
+* <chr> <chr>  <chr>    <dbl> <int> <int> <ord>     
+1 score C1     C2      -0.123  1005  1005 negligible
+```
+
+For paired data, we can also use the `repeated_measures_d()` function from the `efectsize` package. It offers offers multiple standardisation methods (rm, av, z) that account for the dependency between measurements, while the `cohens_d` function with `paired = TRUE` only has one option (the standard deviation of the differences as the standardiser, which is closest to d(rm) in the `effectsize` package, but not identical).
 
 - d (rm) — adjusts for the correlation between the paired scores, which typically produces a slightly larger effect size than standard `Cohen's d` because it accounts for the fact that paired measurements are not independent
 - d (av) — uses the average of the two standard deviations rather than the pooled SD, which is more appropriate when the two variables have different spreads
@@ -726,7 +710,7 @@ d (rm) |         95% CI
 - Adjusted for small sample bias.
 ```
 
-The `*d[rm]*` = -0.16 is a very small effect. Statistical significance
+The `*d[rm]*` = -0.16 or *cohens d*  = -0.129 is a negligible effect. Statistical significance
 here is partly a consequence of the large sample size, not a practically
 important deviation.
 
@@ -738,28 +722,3 @@ On average, respondents scored C2 slightly higher than C1 (mean C2 = 3.30 vs mea
 
 However, the practical significance of this difference is small (`d[rm]`= -0.16), and the standard deviation of the within-person differences was wide (sd = 1.70), suggesting considerable variation in how individuals responded across the two questions. While the finding is reliable at the population level, the gap between the two scores is unlikely to be noticeable or meaningful in day-to-day terms.
 
-## One-Way ANOVA
-
-When you want to compare means across **three or more groups**, running
-multiple `t-tests` is not appropriate as it inflates the Type I error rate
-(false positive rate). A `one-way ANOVA` tests all group differences
-simultaneously with a single omnibus `F-test`.
-
-### The `F-statistic`
-
-The `F-statistic` is the ratio of **between-group variance** to
-**within-group variance**:
-
-$$F = \frac{\text{Mean Square Between}}{\text{Mean Square Within}}$$
-
-A large F indicates that the group means differ more than expected by
-chance. The `F-test` is omnibus; it tells us *that* at least one group
-differs, but not *which* groups. Post-hoc tests will answer the question of *which* group differs.
-
-::: callout
-## Omnibus tests
-An omnibus test is an overall test that asks whether there are any significant differences among a set of groups or variables, without specifying where those differences lie. In the context of `ANOVA`, the `F-test` is omnibus: a significant result tells you that at least one group mean differs from the others, but not which specific pairs are different. 
-
-Think of it as a first screening step: if the omnibus test is non-significant, you stop; if it is significant, you follow up with post-hoc tests (such as `Tukey HSD`) to pinpoint exactly where the differences are.
-
-:::
