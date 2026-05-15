@@ -1,7 +1,7 @@
 ---
-title: "T-Tests in R"
-teaching: 75
-exercises: 30
+title: "`T-Tests` in `R`"
+teaching: 90
+exercises: 0
 source: Rmd
 ---
 
@@ -33,12 +33,13 @@ we observe between group means are larger than we would expect by chance alone.
 
 ---
 
-<!--
+
 ## Other materials
 
 [See Workshop 6 Slides
-here]()
+here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQBrsx2yHgMEQ6N8dr8R26VKATj-H7BdrWOKM7BIDR_Pifg?e=GSAfHO)
 
+<!--
 [See Workshop 6 recording here -
 1]()
 -->
@@ -70,7 +71,7 @@ all factor levels and ordered factors set in the [previous lesson 5. Quantitativ
 ::: callout
 ## Likert scale data vs categorical data
 
-In practice, treating 5-point (1-5) Likert items such as variables `C1`, `C2` and `C3` as continuous is extremely common in the analysis or survey data (especially when sample sizes are large), because it unlocks parametric tests like t-tests and ANOVA that are more powerful than their ordinal alternatives.
+In practice, treating 5-point (1-5) `Likert` items such as variables `C1`, `C2` and `C3` as continuous is extremely common in the analysis or survey data (especially when sample sizes are large), because it unlocks parametric tests like `t-tests` and `ANOVA` that are more powerful than their ordinal alternatives.
 
 The key assumption is that the distance between points is meaningful and approximately equal: a 2 is "one unit more" than a 1, a 3 is "one unit more" than a 2, and so on. That equal-interval property allows you to compute a meaningful mean (e.g., "the average satisfaction was 3.09"), standard deviation, and differences between groups.
 
@@ -82,7 +83,7 @@ Because the distances between categories are unknown, you can't take a meaningfu
 
 ## Set up
 
-Start by opening your `intro_r` RStudio project and start a new R Notebook
+Start by opening your `intro_r` `RStudio` project and start a new `R Notebook`
 (`File → New File → R Notebook`). Save it as `t_tests_anova.Rmd` in
 your `scripts` folder. Ensure your `global environment` is empty! You can also `sweep’`your global environment by clicking the `broom` icon.
 
@@ -100,11 +101,13 @@ for (pkg in c("tidyverse", "here", "rstatix", "effectsize")) {
 ```
 
 ``` output
+- Querying repositories for available source packages ... Done!
 The following package(s) will be installed:
 - abind          [1.4-8]
 - car            [3.1-5]
 - carData        [3.0-6]
 - colorspace     [2.1-2]
+- corrplot       [0.95]
 - cowplot        [1.2.0]
 - Deriv          [4.2.0]
 - doBy           [4.7.1]
@@ -112,6 +115,7 @@ The following package(s) will be installed:
 - Formula        [1.2-5]
 - fracdiff       [1.5-4]
 - lme4           [2.0-1]
+- lmtest         [0.9-40]
 - MatrixModels   [0.5-4]
 - microbenchmark [1.5.0]
 - minqa          [1.2.8]
@@ -127,65 +131,72 @@ The following package(s) will be installed:
 - SparseM        [1.84-2]
 - timeDate       [4052.112]
 - urca           [1.3-4]
+- zoo            [1.8-15]
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m abind 1.4-8                              [22 kB in 0.45s]
-[32m✔[0m reformulas 0.4.4                         [85 kB in 0.45s]
-[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.45s]
-[32m✔[0m MatrixModels 0.5-4                       [25 kB in 0.45s]
-[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.46s]
-[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.46s]
-[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.46s]
-[32m✔[0m rstatix 0.7.3                            [417 kB in 0.47s]
-[32m✔[0m minqa 1.2.8                              [55 kB in 10s]
-[32m✔[0m forecast 9.0.2                           [591 kB in 0.47s]
-[32m✔[0m Formula 1.2-5                            [128 kB in 0.47s]
-[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.48s]
-[32m✔[0m SparseM 1.84-2                           [553 kB in 0.49s]
-[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.49s]
-[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.5s]
-[32m✔[0m fracdiff 1.5-4                           [60 kB in 35s]
-[32m✔[0m lme4 2.0-1                               [3.7 MB in 0.51s]
-[32m✔[0m nloptr 2.2.1                             [2.3 MB in 55s]
-[32m✔[0m car 3.1-5                                [379 kB in 53s]
+[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.38s]
+[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.38s]
+[32m✔[0m abind 1.4-8                              [22 kB in 0.38s]
+[32m✔[0m reformulas 0.4.4                         [85 kB in 0.38s]
+[32m✔[0m Formula 1.2-5                            [128 kB in 0.39s]
+[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.38s]
+[32m✔[0m MatrixModels 0.5-4                       [25 kB in 5.4s]
+[32m✔[0m rstatix 0.7.3                            [417 kB in 0.39s]
+[32m✔[0m minqa 1.2.8                              [55 kB in 6.8s]
+[32m✔[0m forecast 9.0.2                           [591 kB in 0.39s]
+[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.39s]
+[32m✔[0m SparseM 1.84-2                           [553 kB in 0.4s]
+[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.42s]
+[32m✔[0m colorspace 2.1-2                         [2.1 MB in 36s]
+[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.43s]
+[32m✔[0m Deriv 4.2.0                              [39 kB in 39s]
+[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.43s]
+[32m✔[0m lmtest 0.9-40                            [230 kB in 36s]
+[32m✔[0m corrplot 0.95                            [3.7 MB in 0.43s]
+[32m✔[0m zoo 1.8-15                               [806 kB in 46s]
+[32m✔[0m urca 1.3-4                               [681 kB in 40s]
 [32m✔[0m timeDate 4052.112                        [367 kB in 45s]
-[32m✔[0m Deriv 4.2.0                              [39 kB in 59s]
-[32m✔[0m quantreg 6.1                             [925 kB in 48s]
-[32m✔[0m urca 1.3-4                               [681 kB in 65s]
-[32m✔[0m carData 3.0-6                            [996 kB in 67s]
-[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.54s]
-[32m✔[0m colorspace 2.1-2                         [2.1 MB in 87s]
-Successfully downloaded 26 packages in 0.89 seconds.
+[32m✔[0m car 3.1-5                                [379 kB in 52s]
+[32m✔[0m carData 3.0-6                            [996 kB in 48s]
+[32m✔[0m fracdiff 1.5-4                           [60 kB in 45s]
+[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.45s]
+[32m✔[0m lme4 2.0-1                               [3.7 MB in 0.45s]
+[32m✔[0m nloptr 2.2.1                             [2.3 MB in 67s]
+[32m✔[0m quantreg 6.1                             [925 kB in 32s]
+Successfully downloaded 29 packages in 0.79 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m abind 1.4-8                              [built from source in 9.2s]
-[32m✔[0m carData 3.0-6                            [built from source in 11s]
-[32m✔[0m Formula 1.2-5                            [built from source in 7.8s]
-[32m✔[0m Deriv 4.2.0                              [built from source in 17s]
-[32m✔[0m fracdiff 1.5-4                           [built from source in 16s]
-[32m✔[0m colorspace 2.1-2                         [built from source in 40s]
-[32m✔[0m microbenchmark 1.5.0                     [built from source in 16s]
-[32m✔[0m MatrixModels 0.5-4                       [built from source in 32s]
-[32m✔[0m cowplot 1.2.0                            [built from source in 1.1m]
-[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 8.1s]
-[32m✔[0m minqa 1.2.8                              [built from source in 47s]
-[32m✔[0m SparseM 1.84-2                           [built from source in 55s]
-[32m✔[0m rbibutils 2.4.1                          [built from source in 1.4m]
+[32m✔[0m abind 1.4-8                              [built from source in 8.0s]
+[32m✔[0m carData 3.0-6                            [built from source in 10s]
+[32m✔[0m corrplot 0.95                            [built from source in 11s]
+[32m✔[0m Formula 1.2-5                            [built from source in 6.9s]
+[32m✔[0m Deriv 4.2.0                              [built from source in 14s]
+[32m✔[0m fracdiff 1.5-4                           [built from source in 15s]
+[32m✔[0m colorspace 2.1-2                         [built from source in 35s]
+[32m✔[0m microbenchmark 1.5.0                     [built from source in 15s]
+[32m✔[0m MatrixModels 0.5-4                       [built from source in 29s]
+[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 7.4s]
+[32m✔[0m cowplot 1.2.0                            [built from source in 60s]
+[32m✔[0m minqa 1.2.8                              [built from source in 41s]
+[32m✔[0m SparseM 1.84-2                           [built from source in 49s]
+[32m✔[0m rbibutils 2.4.1                          [built from source in 1.3m]
+[32m✔[0m urca 1.3-4                               [built from source in 31s]
 [32m✔[0m nloptr 2.2.1                             [built from source in 2.2m]
-[32m✔[0m urca 1.3-4                               [built from source in 38s]
-[32m✔[0m timeDate 4052.112                        [built from source in 1.0m]
-[32m✔[0m Rdpack 2.6.6                             [built from source in 21s]
-[32m✔[0m reformulas 0.4.4                         [built from source in 24s]
-[32m✔[0m quantreg 6.1                             [built from source in 1.1m]
-[32m✔[0m RcppEigen 0.3.4.0.2                      [built from source in 3.2m]
-[32m✔[0m forecast 9.0.2                           [built from source in 2.3m]
+[32m✔[0m timeDate 4052.112                        [built from source in 56s]
+[32m✔[0m zoo 1.8-15                               [built from source in 26s]
+[32m✔[0m Rdpack 2.6.6                             [built from source in 18s]
+[32m✔[0m lmtest 0.9-40                            [built from source in 15s]
+[32m✔[0m reformulas 0.4.4                         [built from source in 22s]
+[32m✔[0m quantreg 6.1                             [built from source in 1.0m]
+[32m✔[0m RcppEigen 0.3.4.0.2                      [built from source in 2.9m]
 [32m✔[0m lme4 2.0-1                               [built from source in 1.5m]
-[32m✔[0m doBy 4.7.1                               [built from source in 17s]
-[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.6s]
-[32m✔[0m car 3.1-5                                [built from source in 10s]
-[32m✔[0m rstatix 0.7.3                            [built from source in 6.1s]
-Successfully installed 26 packages in 380 seconds.
+[32m✔[0m forecast 9.0.2                           [built from source in 2.0m]
+[32m✔[0m doBy 4.7.1                               [built from source in 15s]
+[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.7s]
+[32m✔[0m car 3.1-5                                [built from source in 9.9s]
+[32m✔[0m rstatix 0.7.3                            [built from source in 5.8s]
+Successfully installed 29 packages in 370 seconds.
 The following package(s) will be installed:
 - bayestestR  [0.17.0]
 - datawizard  [1.3.1]
@@ -196,22 +207,22 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m datawizard 1.3.1                         [449 kB in 0.22s]
-[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.23s]
-[32m✔[0m parameters 0.29.0                        [690 kB in 0.24s]
-[32m✔[0m insight 1.5.0                            [1.1 MB in 0.24s]
-[32m✔[0m effectsize 1.0.2                         [396 kB in 0.25s]
-[32m✔[0m performance 0.16.0                       [2.2 MB in 0.25s]
-Successfully downloaded 6 packages in 0.51 seconds.
+[32m✔[0m datawizard 1.3.1                         [449 kB in 0.29s]
+[32m✔[0m insight 1.5.0                            [1.1 MB in 0.3s]
+[32m✔[0m parameters 0.29.0                        [690 kB in 0.3s]
+[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.31s]
+[32m✔[0m effectsize 1.0.2                         [396 kB in 0.32s]
+[32m✔[0m performance 0.16.0                       [2.2 MB in 0.35s]
+Successfully downloaded 6 packages in 0.62 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m insight 1.5.0                            [built from source in 18s]
-[32m✔[0m datawizard 1.3.1                         [built from source in 7.1s]
-[32m✔[0m bayestestR 0.17.0                        [built from source in 7.3s]
-[32m✔[0m performance 0.16.0                       [built from source in 22s]
-[32m✔[0m parameters 0.29.0                        [built from source in 27s]
-[32m✔[0m effectsize 1.0.2                         [built from source in 5.1s]
-Successfully installed 6 packages in 64 seconds.
+[32m✔[0m insight 1.5.0                            [built from source in 16s]
+[32m✔[0m datawizard 1.3.1                         [built from source in 6.6s]
+[32m✔[0m bayestestR 0.17.0                        [built from source in 6.9s]
+[32m✔[0m performance 0.16.0                       [built from source in 20s]
+[32m✔[0m parameters 0.29.0                        [built from source in 25s]
+[32m✔[0m effectsize 1.0.2                         [built from source in 4.9s]
+Successfully installed 6 packages in 60 seconds.
 ```
 
 ``` r
@@ -272,7 +283,7 @@ Before running any test, you need to answer three questions:
    - Independent (different respondents in each group) → `independent t-test` or `ANOVA`
 
 3. **Are the assumptions met?** (normality, equal variances)
-   - If not, consider non-parametric alternatives such as `Wilcoxon` or `Kruskal-Wallis`.
+   - If not, consider non-parametric alternatives such as `Wilcoxon` or `Mann-Whitney U-Test`.
 
 | Research question | Test |
 |---|---|
@@ -337,14 +348,15 @@ The `~ 1` means "no grouping variable". We are testing `C1` against a fixed valu
 
 ``` r
 survey %>% 
-  t_test(C1 ~ 1, mu = 3)
+  t_test(C1 ~ 1, mu = 3, detailed = TRUE)
 ```
 
 ``` output
-# A tibble: 1 × 7
-  .y.   group1 group2         n statistic    df      p
-* <chr> <chr>  <chr>      <int>     <dbl> <dbl>  <dbl>
-1 C1    1      null model  1005      2.08  1004 0.0375
+# A tibble: 1 × 12
+  estimate .y.   group1 group2       n statistic      p    df conf.low conf.high
+*    <dbl> <chr> <chr>  <chr>    <int>     <dbl>  <dbl> <dbl>    <dbl>     <dbl>
+1     3.09 C1    1      null mo…  1005      2.08 0.0375  1004     3.01      3.18
+# ℹ 2 more variables: method <chr>, alternative <chr>
 ```
 
 ::: callout
@@ -438,7 +450,7 @@ survey %>%
 Levene's test produces `F` and `p` values. If `p > 0.05`, we retain the assumption of
 equal variances and use the classic Student's t-test. If `p ≤ 0.05`, variances
 are unequal and we use **Welch's t-test** (`var.equal = FALSE`), which does
-not assume equal variances. Note, `t.test` in `R` defaults to `Welch's t-test`. We can use the `Student's t-test` by including `var.equal = TRUE` when running the test.
+not assume equal variances. Note, `t.test` in `base R` and `t_test` in `rstatix` default to `Welch's t-test`. We can use the `Student's t-test` by including `var.equal = TRUE` when running the test.
 
 #### Exploratory plot
 
