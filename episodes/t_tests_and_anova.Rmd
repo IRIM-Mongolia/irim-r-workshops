@@ -1,7 +1,7 @@
 ---
-title: "T-Tests in R"
-teaching: 75
-exercises: 30
+title: "`T-Tests` in `R`"
+teaching: 90
+exercises: 0
 source: Rmd
 ---
 
@@ -33,12 +33,13 @@ we observe between group means are larger than we would expect by chance alone.
 
 ---
 
-<!--
+
 ## Other materials
 
 [See Workshop 6 Slides
-here]()
+here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQBrsx2yHgMEQ6N8dr8R26VKATj-H7BdrWOKM7BIDR_Pifg?e=GSAfHO)
 
+<!--
 [See Workshop 6 recording here -
 1]()
 -->
@@ -70,7 +71,7 @@ all factor levels and ordered factors set in the [previous lesson 5. Quantitativ
 ::: callout
 ## Likert scale data vs categorical data
 
-In practice, treating 5-point (1-5) Likert items such as variables `C1`, `C2` and `C3` as continuous is extremely common in the analysis or survey data (especially when sample sizes are large), because it unlocks parametric tests like t-tests and ANOVA that are more powerful than their ordinal alternatives.
+In practice, treating 5-point (1-5) `Likert` items such as variables `C1`, `C2` and `C3` as continuous is extremely common in the analysis or survey data (especially when sample sizes are large), because it unlocks parametric tests like `t-tests` and `ANOVA` that are more powerful than their ordinal alternatives.
 
 The key assumption is that the distance between points is meaningful and approximately equal: a 2 is "one unit more" than a 1, a 3 is "one unit more" than a 2, and so on. That equal-interval property allows you to compute a meaningful mean (e.g., "the average satisfaction was 3.09"), standard deviation, and differences between groups.
 
@@ -82,7 +83,7 @@ Because the distances between categories are unknown, you can't take a meaningfu
 
 ## Set up
 
-Start by opening your `intro_r` RStudio project and start a new R Notebook
+Start by opening your `intro_r` `RStudio` project and start a new `R Notebook`
 (`File → New File → R Notebook`). Save it as `t_tests_anova.Rmd` in
 your `scripts` folder. Ensure your `global environment` is empty! You can also `sweep’`your global environment by clicking the `broom` icon.
 
@@ -134,7 +135,7 @@ Before running any test, you need to answer three questions:
    - Independent (different respondents in each group) → `independent t-test` or `ANOVA`
 
 3. **Are the assumptions met?** (normality, equal variances)
-   - If not, consider non-parametric alternatives such as `Wilcoxon` or `Kruskal-Wallis`.
+   - If not, consider non-parametric alternatives such as `Wilcoxon` or `Mann-Whitney U-Test`.
 
 | Research question | Test |
 |---|---|
@@ -195,7 +196,7 @@ The `~ 1` means "no grouping variable". We are testing `C1` against a fixed valu
 
 ```{r onesamp-ttest}
 survey %>% 
-  t_test(C1 ~ 1, mu = 3)
+  t_test(C1 ~ 1, mu = 3, detailed = TRUE)
 ```
 
 ::: callout
@@ -273,7 +274,7 @@ survey %>%
 Levene's test produces `F` and `p` values. If `p > 0.05`, we retain the assumption of
 equal variances and use the classic Student's t-test. If `p ≤ 0.05`, variances
 are unequal and we use **Welch's t-test** (`var.equal = FALSE`), which does
-not assume equal variances. Note, `t.test` in `R` defaults to `Welch's t-test`. We can use the `Student's t-test` by including `var.equal = TRUE` when running the test.
+not assume equal variances. Note, `t.test` in `base R` and `t_test` in `rstatix` default to `Welch's t-test`. We can use the `Student's t-test` by including `var.equal = TRUE` when running the test.
 
 #### Exploratory plot
 
