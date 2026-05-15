@@ -535,12 +535,11 @@ survey %>%
   levene_test(D1 ~ A1)
 ```
 
-As p > 0.05, we retain the assumption of
-equal variances and use the classic Student's t-test. 
+As p < 0.05, variances are not equal, so we should use `Welch's t-test`. 
 
 ```{r exercise2-indsamp-ttest}
 survey %>% 
-  t_test(D1 ~ A1, var.equal = TRUE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
+  t_test(D1 ~ A1, var.equal = FALSE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
 ```
 
 ```{r exercise2-cohend}
@@ -559,6 +558,6 @@ survey %>%
   )
 ```
 
-"Female respondents reported slightly higher commute times to work (mean = 72.6 minutes, sd = 26.46) compared to male respondents (mean = 69.22, sd = 28.45), a difference of 3.53 minutes. This difference, while statistically significant (t(1003) = 2.02, p = 0.04, 95% CI [0.10, 6.96]), represents a negligible practical effect (`Cohen's d` = 0.13). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
+"Female respondents reported slightly higher commute times to work (mean = 72.6 minutes, sd = 26.46) compared to male respondents (mean = 69.22, sd = 28.45), a difference of 3.53 minutes. This difference, while statistically significant (t(867) = 2.0, p = 0.046, 95% CI [0.10, 6.96]), represents a negligible practical effect (`Cohen's d` = 0.13). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
 :::
 ::::
