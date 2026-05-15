@@ -476,3 +476,89 @@ On average, respondents scored C2 slightly higher than C1 (mean C2 = 3.30 vs mea
 
 However, the practical significance of this difference is small (`d[rm]`= -0.16), and the standard deviation of the within-person differences was wide (sd = 1.70), suggesting considerable variation in how individuals responded across the two questions. While the finding is reliable at the population level, the gap between the two scores is unlikely to be noticeable or meaningful in day-to-day terms.
 
+
+## Exercises
+
+:::: challenge
+##Exercise 1
+
+Test whether the mean of C3 (employer support for flexible working) is
+significantly different from 3 (the neutral point). Report the mean score, t-statistic, p-value, 95% CI, and `Cohen's *d*`. What do you conclude?
+
+::: solution
+
+## Solution
+
+```{r excercise1-plot, fig.width=6, fig.height=4}
+survey %>%
+  ggplot(aes(x = C3)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", colour = "white") +
+  geom_vline(xintercept = 3, linetype = "dashed", colour = "red",
+             linewidth = 0.8) +
+  annotate("text", x = 3.15, y = 310, label = "µ₀ = 3", colour = "red",
+           hjust = 0, size = 4) +
+  labs(title = "Distribution of C3 (Satisfaction with Employer's Support \n for Flexible Working)",
+       x = "C3 Score (1 = least, 5 = most satisfied)",
+       y = "Count") +
+  theme_minimal(base_size = 12)
+```
+
+
+```{r exercise1-ttest}
+survey %>% 
+  t_test(C3 ~ 1, mu = 3, detailed = TRUE)
+```
+
+```{r exercise1-cohend}
+survey %>%
+  cohens_d(C3 ~ 1, mu=3)
+```
+
+On average, respondents reported neutral satisfaction with their employer's support for flexible working arrangements (mean score 2.97 out of 5, t(1004) = -0.713, p = 0.476). We can be 95% confident the true average across the population falls between 2.88 and 3.06, meaning satisfaction is consistently, at the midpoint. This is also supported by the negligible effect reported by `Cohen's *d*` (-0.022).
+
+:::
+::::
+
+
+:::: challenge
+## Exercise 2
+
+Compare commute time in minutes (D1) between male and female respondents (A1).
+Check Levene's test, run the appropriate t-test, and compute `Cohen's *d*`.
+Is the difference practically meaningful?
+
+::: solution
+## Solution
+
+```{r exercise2-levene}
+survey %>%
+  levene_test(D1 ~ A1)
+```
+
+As p > 0.05, we retain the assumption of
+equal variances and use the classic Student's t-test. 
+
+```{r exercise2-indsamp-ttest}
+survey %>% 
+  t_test(D1 ~ A1, var.equal = TRUE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
+```
+
+```{r exercise2-cohend}
+survey %>%
+  cohens_d(D1 ~ A1)
+```
+
+```{r}
+# summary statistics including SD
+survey %>%
+  group_by(A1) %>%
+  summarise(
+    n = n(),
+    mean = round(mean(D1, na.rm = TRUE), 3),
+    sd = round(sd(D1, na.rm = TRUE), 3)
+  )
+```
+
+"Female respondents reported significantly higher commute times to work (mean = 72.6 minutes, sd = 26.46) compared to male respondents (mean = 69.22, sd = 28.45), a difference of 3.53 minutes. This difference, while statistically significant (t(1003) = 2.02, p = 0.04, 95% CI [0.10, 6.96]), represents a negligible practical effect (`Cohen's d` = 0.13). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
+:::
+::::
