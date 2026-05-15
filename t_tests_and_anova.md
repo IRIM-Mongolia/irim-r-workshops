@@ -135,68 +135,68 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.38s]
-[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.38s]
 [32m✔[0m abind 1.4-8                              [22 kB in 0.38s]
-[32m✔[0m reformulas 0.4.4                         [85 kB in 0.38s]
-[32m✔[0m Formula 1.2-5                            [128 kB in 0.39s]
-[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.38s]
-[32m✔[0m MatrixModels 0.5-4                       [25 kB in 5.4s]
-[32m✔[0m rstatix 0.7.3                            [417 kB in 0.39s]
-[32m✔[0m minqa 1.2.8                              [55 kB in 6.8s]
-[32m✔[0m forecast 9.0.2                           [591 kB in 0.39s]
-[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.39s]
-[32m✔[0m SparseM 1.84-2                           [553 kB in 0.4s]
-[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.42s]
-[32m✔[0m colorspace 2.1-2                         [2.1 MB in 36s]
-[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.43s]
-[32m✔[0m Deriv 4.2.0                              [39 kB in 39s]
-[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.43s]
-[32m✔[0m lmtest 0.9-40                            [230 kB in 36s]
-[32m✔[0m corrplot 0.95                            [3.7 MB in 0.43s]
-[32m✔[0m zoo 1.8-15                               [806 kB in 46s]
-[32m✔[0m urca 1.3-4                               [681 kB in 40s]
-[32m✔[0m timeDate 4052.112                        [367 kB in 45s]
-[32m✔[0m car 3.1-5                                [379 kB in 52s]
-[32m✔[0m carData 3.0-6                            [996 kB in 48s]
-[32m✔[0m fracdiff 1.5-4                           [60 kB in 45s]
-[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.45s]
-[32m✔[0m lme4 2.0-1                               [3.7 MB in 0.45s]
-[32m✔[0m nloptr 2.2.1                             [2.3 MB in 67s]
-[32m✔[0m quantreg 6.1                             [925 kB in 32s]
-Successfully downloaded 29 packages in 0.79 seconds.
+[32m✔[0m numDeriv 2016.8-1.1                      [76 kB in 0.4s]
+[32m✔[0m reformulas 0.4.4                         [85 kB in 0.4s]
+[32m✔[0m pbkrtest 0.5.5                           [77 kB in 0.41s]
+[32m✔[0m microbenchmark 1.5.0                     [62 kB in 0.42s]
+[32m✔[0m Formula 1.2-5                            [128 kB in 0.43s]
+[32m✔[0m Rdpack 2.6.6                             [379 kB in 0.45s]
+[32m✔[0m forecast 9.0.2                           [591 kB in 0.48s]
+[32m✔[0m rstatix 0.7.3                            [417 kB in 0.49s]
+[32m✔[0m rbibutils 2.4.1                          [1.2 MB in 0.5s]
+[32m✔[0m cowplot 1.2.0                            [1.6 MB in 0.52s]
+[32m✔[0m RcppEigen 0.3.4.0.2                      [1.8 MB in 0.53s]
+[32m✔[0m SparseM 1.84-2                           [553 kB in 0.53s]
+[32m✔[0m minqa 1.2.8                              [55 kB in 0.14s]
+[32m✔[0m Deriv 4.2.0                              [39 kB in 0.14s]
+[32m✔[0m lme4 2.0-1                               [3.7 MB in 0.56s]
+[32m✔[0m MatrixModels 0.5-4                       [25 kB in 0.19s]
+[32m✔[0m doBy 4.7.1                               [4.5 MB in 0.58s]
+[32m✔[0m corrplot 0.95                            [3.7 MB in 0.59s]
+[32m✔[0m zoo 1.8-15                               [806 kB in 0.17s]
+[32m✔[0m car 3.1-5                                [379 kB in 0.16s]
+[32m✔[0m colorspace 2.1-2                         [2.1 MB in 0.2s]
+[32m✔[0m timeDate 4052.112                        [367 kB in 93s]
+[32m✔[0m urca 1.3-4                               [681 kB in 0.13s]
+[32m✔[0m fracdiff 1.5-4                           [60 kB in 89s]
+[32m✔[0m carData 3.0-6                            [996 kB in 0.13s]
+[32m✔[0m nloptr 2.2.1                             [2.3 MB in 0.23s]
+[32m✔[0m lmtest 0.9-40                            [230 kB in 0.14s]
+[32m✔[0m quantreg 6.1                             [925 kB in 0.1s]
+Successfully downloaded 29 packages in 0.93 seconds.
 
 # Installing packages --------------------------------------------------------
-[32m✔[0m abind 1.4-8                              [built from source in 8.0s]
-[32m✔[0m carData 3.0-6                            [built from source in 10s]
-[32m✔[0m corrplot 0.95                            [built from source in 11s]
-[32m✔[0m Formula 1.2-5                            [built from source in 6.9s]
-[32m✔[0m Deriv 4.2.0                              [built from source in 14s]
+[32m✔[0m abind 1.4-8                              [built from source in 8.1s]
+[32m✔[0m carData 3.0-6                            [built from source in 9.5s]
+[32m✔[0m corrplot 0.95                            [built from source in 9.8s]
+[32m✔[0m Formula 1.2-5                            [built from source in 6.8s]
+[32m✔[0m Deriv 4.2.0                              [built from source in 13s]
 [32m✔[0m fracdiff 1.5-4                           [built from source in 15s]
-[32m✔[0m colorspace 2.1-2                         [built from source in 35s]
-[32m✔[0m microbenchmark 1.5.0                     [built from source in 15s]
-[32m✔[0m MatrixModels 0.5-4                       [built from source in 29s]
-[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 7.4s]
-[32m✔[0m cowplot 1.2.0                            [built from source in 60s]
-[32m✔[0m minqa 1.2.8                              [built from source in 41s]
-[32m✔[0m SparseM 1.84-2                           [built from source in 49s]
-[32m✔[0m rbibutils 2.4.1                          [built from source in 1.3m]
+[32m✔[0m colorspace 2.1-2                         [built from source in 36s]
+[32m✔[0m microbenchmark 1.5.0                     [built from source in 14s]
+[32m✔[0m MatrixModels 0.5-4                       [built from source in 28s]
+[32m✔[0m numDeriv 2016.8-1.1                      [built from source in 6.9s]
+[32m✔[0m cowplot 1.2.0                            [built from source in 58s]
+[32m✔[0m minqa 1.2.8                              [built from source in 47s]
+[32m✔[0m SparseM 1.84-2                           [built from source in 48s]
+[32m✔[0m rbibutils 2.4.1                          [built from source in 1.4m]
+[32m✔[0m nloptr 2.2.1                             [built from source in 2.0m]
 [32m✔[0m urca 1.3-4                               [built from source in 31s]
-[32m✔[0m nloptr 2.2.1                             [built from source in 2.2m]
-[32m✔[0m timeDate 4052.112                        [built from source in 56s]
+[32m✔[0m timeDate 4052.112                        [built from source in 54s]
 [32m✔[0m zoo 1.8-15                               [built from source in 26s]
-[32m✔[0m Rdpack 2.6.6                             [built from source in 18s]
+[32m✔[0m Rdpack 2.6.6                             [built from source in 17s]
 [32m✔[0m lmtest 0.9-40                            [built from source in 15s]
-[32m✔[0m reformulas 0.4.4                         [built from source in 22s]
-[32m✔[0m quantreg 6.1                             [built from source in 1.0m]
+[32m✔[0m reformulas 0.4.4                         [built from source in 21s]
+[32m✔[0m quantreg 6.1                             [built from source in 60s]
 [32m✔[0m RcppEigen 0.3.4.0.2                      [built from source in 2.9m]
-[32m✔[0m lme4 2.0-1                               [built from source in 1.5m]
-[32m✔[0m forecast 9.0.2                           [built from source in 2.0m]
-[32m✔[0m doBy 4.7.1                               [built from source in 15s]
-[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.7s]
-[32m✔[0m car 3.1-5                                [built from source in 9.9s]
-[32m✔[0m rstatix 0.7.3                            [built from source in 5.8s]
-Successfully installed 29 packages in 370 seconds.
+[32m✔[0m lme4 2.0-1                               [built from source in 1.4m]
+[32m✔[0m forecast 9.0.2                           [built from source in 1.9m]
+[32m✔[0m doBy 4.7.1                               [built from source in 14s]
+[32m✔[0m pbkrtest 0.5.5                           [built from source in 6.0s]
+[32m✔[0m car 3.1-5                                [built from source in 9.4s]
+[32m✔[0m rstatix 0.7.3                            [built from source in 5.5s]
+Successfully installed 29 packages in 360 seconds.
 The following package(s) will be installed:
 - bayestestR  [0.17.0]
 - datawizard  [1.3.1]
@@ -207,22 +207,22 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Downloading packages -------------------------------------------------------
-[32m✔[0m datawizard 1.3.1                         [449 kB in 0.29s]
-[32m✔[0m insight 1.5.0                            [1.1 MB in 0.3s]
-[32m✔[0m parameters 0.29.0                        [690 kB in 0.3s]
-[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.31s]
-[32m✔[0m effectsize 1.0.2                         [396 kB in 0.32s]
-[32m✔[0m performance 0.16.0                       [2.2 MB in 0.35s]
-Successfully downloaded 6 packages in 0.62 seconds.
+[32m✔[0m datawizard 1.3.1                         [449 kB in 0.48s]
+[32m✔[0m bayestestR 0.17.0                        [431 kB in 0.49s]
+[32m✔[0m parameters 0.29.0                        [690 kB in 0.51s]
+[32m✔[0m effectsize 1.0.2                         [396 kB in 0.53s]
+[32m✔[0m insight 1.5.0                            [1.1 MB in 0.54s]
+[32m✔[0m performance 0.16.0                       [2.2 MB in 0.56s]
+Successfully downloaded 6 packages in 0.83 seconds.
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m insight 1.5.0                            [built from source in 16s]
-[32m✔[0m datawizard 1.3.1                         [built from source in 6.6s]
-[32m✔[0m bayestestR 0.17.0                        [built from source in 6.9s]
-[32m✔[0m performance 0.16.0                       [built from source in 20s]
-[32m✔[0m parameters 0.29.0                        [built from source in 25s]
-[32m✔[0m effectsize 1.0.2                         [built from source in 4.9s]
-Successfully installed 6 packages in 60 seconds.
+[32m✔[0m datawizard 1.3.1                         [built from source in 6.4s]
+[32m✔[0m bayestestR 0.17.0                        [built from source in 6.7s]
+[32m✔[0m performance 0.16.0                       [built from source in 19s]
+[32m✔[0m parameters 0.29.0                        [built from source in 24s]
+[32m✔[0m effectsize 1.0.2                         [built from source in 4.7s]
+Successfully installed 6 packages in 58 seconds.
 ```
 
 ``` r
@@ -734,3 +734,144 @@ On average, respondents scored C2 slightly higher than C1 (mean C2 = 3.30 vs mea
 
 However, the practical significance of this difference is small (`d[rm]`= -0.16), and the standard deviation of the within-person differences was wide (sd = 1.70), suggesting considerable variation in how individuals responded across the two questions. While the finding is reliable at the population level, the gap between the two scores is unlikely to be noticeable or meaningful in day-to-day terms.
 
+
+## Exercises
+
+:::: challenge
+##Exercise 1
+
+Test whether the mean of C3 (employer support for flexible working) is
+significantly different from 3 (the neutral point). Report the mean score, t-statistic, p-value, 95% CI, and `Cohen's *d*`. What do you conclude?
+
+::: solution
+
+## Solution
+
+
+``` r
+survey %>%
+  ggplot(aes(x = C3)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", colour = "white") +
+  geom_vline(xintercept = 3, linetype = "dashed", colour = "red",
+             linewidth = 0.8) +
+  annotate("text", x = 3.15, y = 310, label = "µ₀ = 3", colour = "red",
+           hjust = 0, size = 4) +
+  labs(title = "Distribution of C3 (Satisfaction with Employer's Support \n for Flexible Working)",
+       x = "C3 Score (1 = least, 5 = most satisfied)",
+       y = "Count") +
+  theme_minimal(base_size = 12)
+```
+
+<img src="fig/t_tests_and_anova-rendered-excercise1-plot-1.png" alt="" style="display: block; margin: auto;" />
+
+
+
+``` r
+survey %>% 
+  t_test(C3 ~ 1, mu = 3, detailed = TRUE)
+```
+
+``` output
+# A tibble: 1 × 12
+  estimate .y.   group1 group2        n statistic     p    df conf.low conf.high
+*    <dbl> <chr> <chr>  <chr>     <int>     <dbl> <dbl> <dbl>    <dbl>     <dbl>
+1     2.97 C3    1      null mod…  1005    -0.713 0.476  1004     2.88      3.06
+# ℹ 2 more variables: method <chr>, alternative <chr>
+```
+
+
+``` r
+survey %>%
+  cohens_d(C3 ~ 1, mu=3)
+```
+
+``` output
+# A tibble: 1 × 6
+  .y.   group1 group2     effsize     n magnitude 
+* <chr> <chr>  <chr>        <dbl> <int> <ord>     
+1 C3    1      null model -0.0225  1005 negligible
+```
+
+On average, respondents reported neutral satisfaction with their employer's support for flexible working arrangements (mean score 2.97 out of 5, t(1004) = -0.713, p = 0.476). We can be 95% confident the true average across the population falls between 2.88 and 3.06, meaning satisfaction is consistently, at the midpoint. This is also supported by the negligible effect reported by `Cohen's *d*` (-0.022).
+
+:::
+::::
+
+
+:::: challenge
+## Exercise 2
+
+Compare commute time in minutes (D1) between male and female respondents (A1).
+Check Levene's test, run the appropriate t-test, and compute `Cohen's *d*`.
+Is the difference practically meaningful?
+
+::: solution
+## Solution
+
+
+``` r
+survey %>%
+  levene_test(D1 ~ A1)
+```
+
+``` output
+# A tibble: 1 × 4
+    df1   df2 statistic      p
+  <int> <int>     <dbl>  <dbl>
+1     1  1003      4.33 0.0376
+```
+
+As p > 0.05, we retain the assumption of
+equal variances and use the classic Student's t-test. 
+
+
+``` r
+survey %>% 
+  t_test(D1 ~ A1, var.equal = TRUE, detailed = TRUE) # when var.equal = FALSE, Welch's t-test is used
+```
+
+``` output
+# A tibble: 1 × 15
+  estimate estimate1 estimate2 .y.   group1 group2    n1    n2 statistic      p
+*    <dbl>     <dbl>     <dbl> <chr> <chr>  <chr>  <int> <int>     <dbl>  <dbl>
+1     3.53      72.8      69.2 D1    female male     583   422      2.02 0.0434
+# ℹ 5 more variables: df <dbl>, conf.low <dbl>, conf.high <dbl>, method <chr>,
+#   alternative <chr>
+```
+
+
+``` r
+survey %>%
+  cohens_d(D1 ~ A1)
+```
+
+``` output
+# A tibble: 1 × 7
+  .y.   group1 group2 effsize    n1    n2 magnitude 
+* <chr> <chr>  <chr>    <dbl> <int> <int> <ord>     
+1 D1    female male     0.128   583   422 negligible
+```
+
+
+``` r
+# summary statistics including SD
+survey %>%
+  group_by(A1) %>%
+  summarise(
+    n = n(),
+    mean = round(mean(D1, na.rm = TRUE), 3),
+    sd = round(sd(D1, na.rm = TRUE), 3)
+  )
+```
+
+``` output
+# A tibble: 2 × 4
+  A1         n  mean    sd
+  <fct>  <int> <dbl> <dbl>
+1 female   583  72.8  26.5
+2 male     422  69.2  28.5
+```
+
+"Female respondents reported significantly higher commute times to work (mean = 72.6 minutes, sd = 26.46) compared to male respondents (mean = 69.22, sd = 28.45), a difference of 3.53 minutes. This difference, while statistically significant (t(1003) = 2.02, p = 0.04, 95% CI [0.10, 6.96]), represents a negligible practical effect (`Cohen's d` = 0.13). `Levene's test` confirmed that the two groups had equal variance (p = 0.969), so the `Student's t-test` was used."
+:::
+::::
