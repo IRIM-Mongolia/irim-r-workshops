@@ -1,0 +1,852 @@
+---
+title: "`ANOVA` tests in `R`"
+teaching: 90
+exercises: 0
+source: Rmd
+---
+
+
+## Other materials
+
+<!--
+[See Workshop 7 Slides
+here]()
+
+[See Workshop 7 recording here -
+1]()
+-->
+
+
+## Dataset overview
+
+This workshop uses a generated (made-up) dataset of **1,005 survey responses**
+on flexible working and work-life balance. The cleaned `.rds` file preserves
+all factor levels and ordered factors set in the [previous lesson 5. Quantitative Data Analysis in R](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
+
+**Survey schema (variables used in this workshop)**
+
+| Section | Variable | Type | Description |
+|---------|----------|------|-------------|
+| **A (Demographics)** | A1 – Gender | Factor (male, female) | What is your gender? |
+| | A2 – Age Group | Ordered Factor (18–34, 35–54, 55+) | What is your age? |
+| | A3 – Education | Ordered Factor (primary, secondary, tertiary+) | Highest level of education? |
+| | A4 – Income | Ordered Factor (low, middle, high) | Annual income level? |
+| | A6 – Area Type | Factor (Rural, Urban) | Urban or rural residence? |
+| **C (Satisfaction)** | C1 | Integer (1–5) | Satisfaction with flexible working arrangements |
+| | C2 | Integer (1–5) | Extent flex working improves work-life balance |
+| | C3 | Integer (1–5) | Employer support for flexible working in practice |
+| **D (Commute)** | D1 | Numeric | Commute time to work (minutes) |
+| | D2 | Numeric | Commute distance (km) |
+
+---
+
+
+## Why ANOVA?
+
+When you want to compare means across **three or more groups**, running
+multiple `t-tests` is not appropriate. It inflates the Type I error rate
+(false positive rate) with every additional comparison. ANOVA tests all
+group differences simultaneously with a single omnibus `F-test`, keeping
+the error rate under control.
+
+### The `F-statistic`
+
+The `F-statistic` is the ratio of **between-group variance** to
+**within-group variance**:
+
+$$F = \frac{\text{Mean Square Between}}{\text{Mean Square Within}}$$
+
+A large $F$ indicates that the group means differ more than would be
+expected by chance alone. The `F-test` is omnibus: it tells you *that*
+at least one group differs, but not *which* groups. Post-hoc tests
+answer the question of *which* groups differ.
+
+::: callout
+## Omnibus tests
+
+An omnibus test is an overall test that asks whether there are any
+significant differences among a set of groups or variables, without
+specifying where those differences lie. In the context of `ANOVA`, the
+`F-test` is omnibus: a significant result tells you that at least one
+group mean differs from the others, but not which specific pairs are
+different.
+
+Think of it as a first screening step: if the omnibus test is
+non-significant, you stop; if it is significant, you follow up with
+post-hoc tests (such as `Tukey HSD`) to pinpoint exactly where the
+differences are.
+:::
+
+The type of ANOVA you choose depends on your study design. Use the
+questions below to find the right test.
+
+---
+
+
+## 1. How many independent variables (factors) do you have?
+
+- **One factor**, comparing means across 3+ groups → proceed to [Question 2](#q2)
+- **Two factors**, testing main effects and/or an interaction → `Two-way ANOVA`
+
+> **Example (one factor):** Does commute time (D1) differ across age groups
+(18–34, 35–54, 55+)?
+
+> **Example (two factors):** Does commute time (D1) differ across age group *and* gender — tests both main effects and their interaction.
+
+---
+
+## 2. Are the same participants measured more than once? {#q2}
+
+- **Yes**: same subjects in every condition (within-subjects design) → `Repeated Measures ANOVA`
+- **No**: different participants in each group (between-subjects design) → proceed to [Question 3](#q3)
+
+> Repeated measures controls for individual differences, increasing statistical power. Common in longitudinal studies, pre/post designs, and within-subject experiments.
+
+---
+
+## 3. Is homogeneity of variance met? {#q3}
+
+Check with **Levene's test**
+
+- **Yes**: variances are roughly equal across groups → `One-way ANOVA`
+- **No**: variances differ significantly across groups → `Welch's ANOVA`
+
+> Welch's ANOVA does not assume equal variances. It adjusts the degrees of freedom (Welch–Satterthwaite equation) to account for heteroscedasticity. It is often recommended as the default over classical one-way ANOVA, since it performs well even when variances *are* equal.
+
+---
+
+## 4. Do you have both within- and between-subjects factors?
+
+- **Yes**: one factor is within-subjects, another is between-subjects → `Mixed ANOVA`
+- **No**: all factors are the same type → stay with your choice above
+
+> **Example:** Measuring anxiety at three time points (*within*) across a treatment vs control group (*between*).
+
+---
+
+## 5. Check your assumptions
+
+### One-way & Two-way ANOVA
+
+| Assumption | How to check | If violated |
+|---|---|---|
+| Normality of residuals | Shapiro-Wilk test, Q-Q plot | Kruskal-Wallis (non-parametric) |
+| Homogeneity of variance | Levene's test | Use **Welch's ANOVA** |
+| Independence of observations | Study design | Reconsider design |
+
+### Welch's ANOVA
+
+| Assumption | How to check | If violated |
+|---|---|---|
+| Normality of residuals | Shapiro-Wilk test, Q-Q plot | Games-Howell post hoc is robust to mild violations |
+| Independence of observations | Study design | Reconsider design |
+
+> Welch's ANOVA **relaxes** the homogeneity of variance assumption; no Levene's test required beforehand.
+
+### Repeated Measures ANOVA
+
+| Assumption | How to check | If violated |
+|---|---|---|
+| Normality of residuals | Shapiro-Wilk, Q-Q plot | Friedman test (non-parametric) |
+| Sphericity | Mauchly's test | Apply **Greenhouse-Geisser** ε correction |
+| No extreme outliers | Boxplots per condition | Investigate and consider exclusion |
+
+> Sphericity is the most commonly overlooked assumption. If Mauchly's test is significant (*p* < .05), apply the Greenhouse-Geisser correction rather than abandoning the analysis.
+
+---
+
+## 6. Post-hoc tests after a significant result
+
+| Situation | Recommended test |
+|---|---|
+| One-way ANOVA, equal group sizes | Tukey HSD |
+| One-way ANOVA, unequal group sizes | Bonferroni correction |
+| Welch's ANOVA | **Games-Howell** (does not assume equal variances) |
+| Two-way ANOVA, interaction present | Simple effects analysis, then Bonferroni |
+| Repeated measures ANOVA | Pairwise comparisons with Bonferroni adjustment |
+| Mixed ANOVA | Separate Bonferroni-corrected comparisons per factor |
+
+---
+
+## 7. Non-parametric alternatives
+
+Use these when normality is not met and sample sizes are small.
+
+| Parametric test | Non-parametric alternative |
+|---|---|
+| One-way ANOVA | `kruskal.test()` — Kruskal-Wallis |
+| Repeated measures ANOVA | `friedman.test()` — Friedman test |
+| Two-way ANOVA | Aligned Ranks Transformation (`ARTool` package) |
+
+---
+
+## Summary table
+
+| Test | Factors | Design | Equal variances required? |
+|---|---|---|---|
+| One-way ANOVA | 1 | Between-subjects | Yes |
+| **Welch's ANOVA** | 1 | Between-subjects | **No** |
+| Two-way ANOVA | 2 | Between-subjects | Yes |
+| Repeated measures ANOVA | 1+ | Within-subjects | Yes (+ sphericity) |
+| Mixed ANOVA | 2+ | Within + between | Yes (+ sphericity) |
+| Kruskal-Wallis | 1 | Between-subjects | No (non-parametric) |
+| Friedman | 1 | Within-subjects | No (non-parametric) |
+
+
+
+## Dataset overview
+
+This workshop uses a generated (made-up) dataset of **1,005 survey responses**
+on flexible working and work-life balance. The cleaned `.rds` file preserves
+all factor levels and ordered factors set in the [previous lesson 5. Quantitative Data Analysis in R](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
+
+**Survey schema (variables used in this workshop)**
+
+| Section | Variable | Type | Description |
+|---------|----------|------|-------------|
+| **A (Demographics)** | A1 – Gender | Factor (male, female) | What is your gender? |
+| | A2 – Age Group | Ordered Factor (18–34, 35–54, 55+) | What is your age? |
+| | A3 – Education | Ordered Factor (primary, secondary, tertiary+) | Highest level of education? |
+| | A4 – Income | Ordered Factor (low, middle, high) | Annual income level? |
+| | A6 – Area Type | Factor (Rural, Urban) | Urban or rural residence? |
+| **C (Satisfaction)** | C1 | Integer (1–5) | Satisfaction with flexible working arrangements |
+| | C2 | Integer (1–5) | Extent flex working improves work-life balance |
+| | C3 | Integer (1–5) | Employer support for flexible working in practice |
+| **D (Commute)** | D1 | Numeric | Commute time to work (minutes) |
+| | D2 | Numeric | Commute distance (km) |
+
+---
+
+
+## Set up
+
+Start by opening your `intro_r` RStudio project and start a new R Notebook
+(`File → New File → R Notebook`). Save it as `anova.Rmd` in
+your `scripts` folder. Ensure your `global environment` is empty! You can also `sweep’`your global environment by clicking the `broom` icon.
+
+When you open a new `R Notebook`, some explanatory text is provided. This can be deleted so you can enter your own text and code.
+
+### Load packages and data
+
+Download packages (if needed) and load libraries. 
+
+```{r setup, message=FALSE}
+for (pkg in c("tidyverse", "here", "rstatix", "effectsize", "ggsignif", "emmeans")) {
+  if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
+}
+
+library(tidyverse)
+library(here)
+library(effectsize) # for repeated_measures_d
+library(rstatix) # tidy statistical tests
+library(ggsignif) # significance displayed on ggplots
+library(emmeans)
+```
+
+Read in the cleaned survey data that was processed in the [previous workshop](https://irim-mongolia.github.io/irim-r-workshops/quantitative_data_analysis.html).
+
+Download the data first if you need to.
+
+```{r dl-data, eval=FALSE}
+
+download.file("https://raw.githubusercontent.com/IRIM-Mongolia/irim-r-workshops/main/episodes/data/cleaned/generated_survey_data_clean.rds", here("data/cleaned/generated_survey_data_clean.rds"), mode = "wb")
+
+```
+
+```{r load-data}
+survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
+survey
+```
+
+
+## `One-way ANOVA` and `Welch's ANOVA` 
+**Test 2: **Research question:** Does commute time (D1) differ across level of education?
+(primary, secondary, tertiary or higher)?
+
+### Assumptions
+
+- Observations are independent. 
+- The continuous variable is approximately normally distributed within each group, *or* each group has n > 30. 
+- Equal variances across groups (check with `Levene's test`).
+
+### Exploratory plot
+
+We'll use a box plot to plot the distributions of the three age groups.
+
+```{r anova1-plot, fig.width=7, fig.height=5}
+survey %>%
+  group_by(A3) %>%
+  mutate(group_mean = mean(D1, na.rm = TRUE)) %>%
+  ggplot(aes(x = A3, y = D1, fill = A3)) +
+  geom_boxplot(alpha = 0.6, outlier.size = 0.8) +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  labs(title = "Commute Time (D1) by Education Level (A3)",
+       x = "Education", y = "Commute Time (minutes)") +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+Rspondents with a primary education appear to have slightly higher commute times, let's continue to see if the differences are statistically significant.
+
+### Check equal variances
+
+```{r anova1-levene}
+survey %>%
+  levene_test(D1 ~ A3)
+```
+
+
+A `Levene's test` p-value of > 0.05 means we accept the assumption of equal variances (homogeneity of variance) across groups. We can run the the standard `one-way ANOVA`.
+
+### Run the `one-way ANOVA`
+
+```{r}
+aov_d1_a3 <- survey %>% 
+  anova_test(D1 ~ A3, detailed = TRUE)
+aov_d1_a3
+```
+
+::: callout
+## Reading `one-way ANOVA` output
+
+The output contains:
+
+- **Effect**: the predictor variable being tested
+- **SSn (Sum of Squares Numerator)**: the variance in the dependent variable that is explained by the predictor group differences; this is the between-group variance
+- **SSd (Sum of Squares Denominator)**: the variance in the dependent variable that is not explained by the predictor group differences, i.e., the residual/error variance; this is the within-group variance
+- **DFn**: degrees of freedom for the numerator, equal to the number of groups minus one
+- **DFd**: degrees of freedom for the denominator, equal to the total sample size minus the number of groups
+- **F**: the F-statistic, calculated as (SSn/DFn) ÷ (SSd/DFd); a ratio of between-group to within-group variance; if it is small, it indicates group means are not meaningfully separated relative to within-group spread
+- **p**: the p-value
+- **p<.05**: a flag column that marks significant effects with an asterisk; if blank, confirms non-significance
+- **ges**: (Generalised Eta-Squared), the effect size estimate, representing the proportion of total variance in the dependent varible explained by the predictor. 
+
+
+| GES | Interpretation |
+|----|----------------|
+| 0.01 | Small |
+| 0.06 | Medium |
+| 0.14 | Large |
+| >0.14 | Very large |
+
+:::
+
+
+### Post-hoc tests: `Tukey HSD`
+
+After a significant `ANOVA`, the **Tukey Honest Significant Difference (HSD)**
+test compares all pairs of group means while controlling for the familywise
+error rate.
+
+Our `one-way ANOVA` above did not produce a significant result (p = 0.133), so the below code is just a demonstration of how to run a `tukey_hsd` test from the `rstatix` package.
+
+```{r anova1-tukey}
+survey %>% 
+  tukey_hsd(D1 ~ A3)
+```
+
+
+::: callout
+## Reporting checklist for `one-way ANOVA` (and `Welch's`)
+
+1. **Research question** and the grouping variable
+2. **Group means and SDs** 
+3. **Levene's test result** (assumption check)
+4. **F-statistic, degrees of freedom, p-value**: *F*(df_between, df_within) = X.XX
+5. **Post-hoc comparisons** (Tukey HSD) if significant
+6. **Effect size** (ges) with interpretation
+
+:::
+
+```{r anova1-summary}
+survey %>%
+  group_by(A3) %>%
+  summarise(
+    n    = n(),
+    mean = round(mean(D1, na.rm = TRUE), 1),
+    sd   = round(sd(D1, na.rm = TRUE), 1)
+  )
+```
+
+
+**Example sentence:**
+A one-way ANOVA was conducted to examine the effect of education level (A3) on daily commute time (D1) after equal variances were confirmed by `Levenes test`. The result was not statistically significant, F(2, 1002) = 2.019, p = 0.133, indicating that commute time did not differ meaningfully across highest education level (primary: mean = 76.3 minutes, std = 27.5; secondary: mean = 70.3 minutes, std = 27.6; tertiary or higher: 71.3 minutes, std = 27.0). 
+
+The generalised eta-squared value (ges = 0.004) confirmed a negligible effect size, with education level accounting for less than 1% of the variance in daily commute time, suggesting that education has no practical relationship with how long respondents commute each day.
+
+
+**Test 2: **Research question:** Does commute time (D1) differ across age groups
+(18–34, 35–54, 55+)?
+
+### Exploratory plot
+
+We'll use a box plot to plot the distributions of the three age groups.
+
+```{r anova1-plot, fig.width=7, fig.height=5}
+survey %>%
+  group_by(A2) %>%
+  mutate(group_mean = mean(D1, na.rm = TRUE)) %>%
+  ggplot(aes(x = A2, y = D1, fill = A2)) +
+  geom_boxplot(alpha = 0.6, outlier.size = 0.8) +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  labs(title = "Commute Time (D1) by Age Group (A2)",
+       x = "Age Group", y = "Commute Time (minutes)") +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+A clear pattern is visible: younger respondents appear to have longer commutes than older ones.
+
+### Check equal variances
+
+```{r anova1-levene}
+survey %>%
+  levene_test(D1 ~ A2)
+```
+
+A `Levene's test` p-value of < 0.05 means we reject the assumption of equal variances (homogeneity of variance) across groups. We will need to run `Welch's ANOVA` instead of the standard `one-way ANOVA`.
+
+### Run the `Welch's ANOVA`
+
+We'll use the `welch_anova_test` function from the `rstatix` package. 
+
+```{r anova1-run}
+
+# Welch's ANOVA
+waov_d1_a2 <- survey %>% welch_anova_test(D1 ~ A2)
+waov_d1_a2
+
+```
+
+::: callout
+## Reading `welch_anova_test` output
+
+The output contains:
+
+- **.y.**: the dependent variable being tested
+- **n**: total sample size across all groups
+- **statistic**: the F-statistic, representing the ratio of variance between groups to variance within groups; a larger value indicates greater separation between group means relative to within-group spread
+- **DFn**: degrees of freedom for the numerator, equal to the number of groups minus one
+- **DFd**: degrees of freedom for the denominator; in `Welch's ANOVA` this is a fractional value estimated using the `Welch-Satterthwaite` correction, rather than the standard n − k, to account for unequal variances across groups
+- **p**: the p-value, indicating the probability of observing an F-statistic this large by chance alone
+- **method**: confirms the test used
+
+:::
+
+### Summary statistics
+
+```{r wanova1-summary}
+survey %>%
+  group_by(A2) %>%
+  summarise(
+    n    = n(),
+    mean = round(mean(D1, na.rm = TRUE), 1),
+    sd   = round(sd(D1, na.rm = TRUE), 1)
+  )
+```
+
+The `Welch's ANOVA` is highly significant: **F(2, 263.11) = 695.1, p < 0.001**.
+The mean daily communte time decreases with age; 18–34: 89.8 min, 35–54: 58.9 min, 55+: 27.2 min. But the `F-test` alone cannot tell us whether all three pairwise differences are significant. We need a post-hoc test. For `Welch's ANOVA`, we can use the `Games-Howell` post-hoc test.
+
+### Post-hoc tests: `Games-Howell`
+
+```{r games_howell_test}
+# Post-hoc: Games-Howell (does not assume equal variances)
+survey %>% 
+  games_howell_test(D1 ~ A2)
+```
+
+::: callout
+## Reading `games_howell_test` output
+
+The output contains:
+- **y.**: the dependent variable
+- **group1 / group2**: the two groups being compared in each pairwise test
+- **estimate**: the mean difference between group1 and group2; negative values indicate group1 has a lower mean than group2
+- **conf.low / conf.high**: the lower and upper bounds of the 95% confidence interval around the mean difference; if none of the intervals cross zero, it confirms all differences are significant
+- **p.adj**: the adjusted p-value after correction for multiple comparisons
+- **p.adj.signif**: a significance stars label, providing a quick visual indicator of the strength of evidence
+
+:::
+
+### Effect size
+Unfortunately, the `Welch's ANOVA` output does not report the effect size, so we'll have to calculate the generalised eta-squared value. 
+
+```{r}
+# extract values from waov_d1_a2
+F_val <- waov_d1_a2$statistic
+DFn   <- waov_d1_a2$DFn
+DFd   <- waov_d1_a2$DFd
+
+eta_sq <- (F_val * DFn) / (F_val * DFn + DFd)
+round(eta_sq, 3)
+```
+
+The `Games-Howell` post-hoc test reveals that the mean commute times of all age groups are statistically significantly different from each other, and the ges value confirms the effct size is very large. Putting this all together:
+
+"A `Welch's one-way ANOVA` was conducted after after equal variances were not confirmed by `Levenes test`. The results revealed a statistically significant effect of age group on daily commute time, F(2, 263.11) = 695.1, p < 0.001, with mean commute times decreasing across age groups (18–34: mean = 89.8 minutes, std = 17.2; 35–54: mean = 58.9 minutes, std = 20.0; 55+: mean = 27.2 minutes, std = 16.4). 
+
+`Games-Howell` post-hoc tests indicated that all three pairwise comparisons were statistically significant (p < 0.001): 18–34 year-olds reported significantly longer daily commute times than both 35–54 year-olds (mean difference = 30.93 min, 95% CI [27.99, 33.87], p < 0.001) and those aged 55+ (mean difference = 62.60 min, 95% CI [58.15, 67.06], p < 0.001), and 35–54 year-olds reported significantly longer commute times than those aged 55+ (mean difference = 31.67 min, 95% CI [27.00, 36.34], p < 0.001).
+
+The generalised eta-squared value is very large (0.841), confirming that age group explains over 84% of the variance in commute time.
+
+
+### Plotting significant differences
+
+We can use the `geom_signif` function from the `ggsignif` package to plot the levels of significance directly on the graph:
+
+```{r}
+
+survey %>%
+  group_by(A2) %>%
+  mutate(group_mean = mean(D1, na.rm = TRUE)) %>%
+  ggplot(aes(x = A2, y = D1, fill = A2)) +
+  geom_boxplot(alpha = 0.6, outlier.size = 0.8) +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  geom_signif(
+    comparisons = list(c("18-34", "35-54"),
+                       c("35-54", "55+"),
+                       c("18-34", "55+")),
+    annotations = c("****", "****", "****"),
+    step_increase = 0.12,   # vertical spacing between brackets
+    tip_length    = 0.02,
+    textsize      = 4
+  ) +
+  labs(title = "Commute Time (D1) by Age Group (A2)",
+       x = "Age Group", y = "Commute Time (minutes)") +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+Or, we can use the `geom_text` function to label the groups.
+
+```{r}
+# Compact letter display data frame
+cld_labels <- data.frame(
+  A2    = factor(c("18-34", "35-54", "55+"), levels = c("18-34", "35-54", "55+")),
+  label = c("a", "b", "c"),
+  y     = c(145, 145, 145)   # adjust height to sit above the boxplot whiskers
+)
+
+survey %>%
+  group_by(A2) %>%
+  mutate(group_mean = mean(D1, na.rm = TRUE)) %>%
+  ggplot(aes(x = A2, y = D1, fill = A2)) +
+  geom_boxplot(alpha = 0.6, outlier.size = 0.8) +
+  stat_summary(fun = mean, geom = "point", shape = 18,
+               size = 4, colour = "black") +
+  geom_text(data = cld_labels, aes(x = A2, y = y, label = label),
+            inherit.aes = FALSE, size = 5, fontface = "bold") +
+  labs(title = "Commute Time (D1) by Age Group (A2)",
+       x = "Age Group", y = "Commute Time (minutes)") +
+  scale_fill_brewer(palette = "Blues") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+---
+
+::: callout
+## Failing to reject H₀ is a valid result
+
+A non-significant ANOVA does not mean "nothing happened"- it means the
+data provides insufficient evidence of a difference. Report it clearly,
+including the F-statistic and effect size. A small GES adds useful information:
+the predictor contributes essentially nothing to variance in the dependent variable.
+:::
+
+---
+
+## Two-Way ANOVA
+
+A **two-way ANOVA** extends the one-way design by including **two
+categorical factors** simultaneously. It allows us to test:
+
+1. The **main effect** of Factor A (holding Factor B constant)
+2. The **main effect** of Factor B (holding Factor A constant)
+3. The **interaction effect** of A × B: whether the effect of one factor
+   depends on the level of the other
+
+Interactions are the most interesting and often the most important result.
+An interaction means that a simple statement like "females are more satisfied"
+may be incomplete — the gender difference might be larger in some groups than others.
+
+**Research question:** Is commute time influenced by gender (A1), age group (A2), or their interaction?
+
+#### Exploratory plot
+
+```{r twoway-plot, fig.width=8, fig.height=5}
+survey %>%
+  group_by(A1, A2) %>%
+  summarise(
+    mean_D1 = mean(D1, na.rm = TRUE),
+    se_D1   = sd(D1, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = A2, y = mean_D1, colour = A1, group = A1)) +
+  geom_point(size = 4) +
+  geom_line(linewidth = 1) +
+  geom_errorbar(aes(ymin = mean_D1 - se_D1, ymax = mean_D1 + se_D1),
+                width = 0.1) +
+  labs(title = "Interaction Plot: Mean Commute Time by Gender and Age Group",
+       subtitle = "Error bars = ±1 SE",
+       x = "Age Group (A2)", y = "Mean D1 Score",
+       colour = "Gender (A1)") +
+  scale_colour_manual(values = c("steelblue", "coral")) +
+  theme_minimal(base_size = 12)
+```
+
+An **interaction plot** (also called a line-by-group plot) is the best
+diagnostic tool for a two-way ANOVA. **Parallel lines indicate no interaction**;
+lines that converge, cross, or diverge suggest an interaction effect.
+
+The lines here cross, and are parallel: Commute time decreasees with age, and there appears to be an interaction effect. 
+
+
+### Check eqal variances
+```{r}
+survey %>%
+  levene_test(D1 ~ A1 * A2)
+```
+
+Note, if group sizes are roughly equal, `two-way ANOVA` is considered robust to mild violations of homogeneity. We'll continue running the `two-way ANOVA`, but we'll note the violation.
+
+Let's check the group sizes:
+
+```{r}
+survey %>%
+  group_by(A1, A2) %>%
+  summarise(n = n())
+```
+Cell sizes are unequal, so we'll note this in the results. Type II sum of squares (used in the `two-way ANOVA) is the appropriate choice for unbalanced designs.
+
+#### Run the two-way ANOVA
+
+We'll use the `anova_test` function again here.
+
+```{r twoway-run}
+aov_d1_a1_a6 <- survey %>% 
+  anova_test(D1 ~ A1 * A2, detailed=TRUE)
+
+aov_d1_a1_a6
+```
+
+Results:
+
+-   **Gender (A1)**: F(1, 999) = 1.585, p =  0.208, ges = 0.002 (negligible effect)
+-   **Age group (A2)**: F(2, 999) = 612.163, p < 0.001, ges = 0.551 (large effect)
+-   **Interaction (A1 × A6)**: F(2, 999) = 3.611, p = 0.027, ges = 0.007 (medium effect)
+
+The dominant finding is the strong main effect of age group (confirmed in the earlier `Welch's ANOVA` test). The significant interaction suggests the effect of age on commute time is not identical for males and females, warranting further investigation with post-hoc tests or interaction plots. Gender alone plays no meaningful independent role in predicting commute time.
+
+Since the interaction (A1 × A2) is significant, the recommended post-hoc approach is to fit the equivalent linear model, and calculate the Estimated Marginal Means (also called least-squares means) using the `emmeans` package.
+
+
+
+```{r}
+# Fit the model
+model <- lm(D1 ~ A1 * A2, data = survey)
+
+# Get estimated marginal means
+emm <- emmeans(model, ~ A1 * A2)
+emm
+```
+This returns a mean, standard error, and confidence interval for each cell (each gender × age group combination), adjusted for the overall model structure.
+
+Next, we'll do the pairwise comparisons, with a Bonferroni correction.
+```{r}
+# All pairwise comparisons
+pairs(emm, adjust = "bonferroni")
+
+# Age comparisons within each gender (simple main effects)
+emmeans(model, pairwise ~ A2 | A1, adjust = "bonferroni")
+
+# Gender comparisons within each age group
+emmeans(model, pairwise ~ A1 | A2, adjust = "bonferroni")
+```
+
+
+To bring this all together:
+
+A `two-way ANOVA` was conducted to examine the effects of gender (A1) and age group (A2) on daily commute time (D1). Prior to analysis, `Levene's test` indicated a violation of the homogeneity of variance assumption; and cell sizes were unequal across the six gender × age group combinations (females: 18–34, n = 294; 35–54, n = 246; 55+, n = 43; males: 18–34, n = 203; 35–54, n = 170; 55+, n = 49), with the 55+ age group notably underrepresented relative to younger cohorts. This imbalance was considered when interpreting the results, and Type II sums of squares were used in the `ANOVA` to account for the unequal cell sizes.
+
+Results revealed no significant main effect of gender, F(1, 999) = 1.585, p = 0.208, ges = 0.002, indicating that male and female respondents did not differ meaningfully in commute time when considered independently. In contrast, age group exerted a large and highly significant main effect on commute time, F(2, 999) = 612.163, p < .001, ges = 0.551, accounting for 55% of the variance in daily commute time and corroborating the earlier Welch's ANOVA findings. A statistically significant but small interaction effect between gender and age group was also observed, F(2, 999) = 3.611, p = 0.027, ges = 0.007, suggesting that while the overall pattern of declining commute time with age holds for both genders, the magnitude of this relationship differs slightly between males and females.
+
+Given the significant interaction, follow-up analysis was conducted using estimated marginal means (emmeans) with Bonferroni correction. Estimated marginal means revealed a consistent pattern of declining commute time with age for both genders (females: 18–34, mean = 89.1 min, 95% CI [87.0, 91.2]; 35–54, mean = 60.7 min, 95% CI [58.4, 63.0]; 55+, mean = 29.8 min, 95% CI [24.3, 35.3]; males: 18–34, mean = 90.8 min, 95% CI [88.3, 93.4]; 35–54, mean = 56.2 min, 95% CI [53.4, 59.0]; 55+, mean = 24.9 min, 95% CI [19.8, 30.1]).
+
+Simple main effects confirmed that age group differences were significant for both females, F(2, 580) = 262.459, p < 0.001, and males, F(2, 419) = 379.216, p < 0.001, with all pairwise age comparisons reaching significance (all p < 0.001) within each gender. The decline in commute time across age groups was somewhat steeper for males (18–34 vs 55+: estimate = 65.9 min) than for females (18–34 vs 55+: estimate = 59.3 min), suggesting the age effect is more pronounced among male respondents.
+
+Examination of gender differences within each age group revealed that the interaction effect was localised to the 35–54 age group, where females reported significantly longer commute times than males (estimate = 4.52 min, t(999) = 2.473, p = .014). No significant gender differences were found in the 18–34 group (estimate = −1.72 min, t(999) = −1.028, p = .304) or the 55+ group (estimate = 4.90 min, t(999) = 1.279, p = 0.201), indicating that males and females commute for comparable durations at the youngest and oldest age groups. Taken together, these findings suggest that while age is the dominant predictor of daily commute time, the relationship between age and commute time differs subtly by gender, particularly in mid-life.
+
+::: callout
+## Two-way ANOVA: interpreting main effects when there is no interaction
+
+When the interaction term is non-significant, it is safe to
+interpret the main effects independently. If the interaction *were* significant,
+interpreting main effects in isolation would be misleading- you would first
+describe how the effect of one factor changes across levels of the other.
+:::
+
+---
+
+## Part 4: Multi-column analysis — across all satisfaction items
+
+So far we have tested one outcome variable at a time. In practice, we often
+want to apply the same test to multiple related columns simultaneously.
+Here we loop over all three satisfaction items (C1, C2, C3) and compare
+their means by gender (A1).
+
+### 4.1 Independent t-tests: all C variables by gender
+
+```{r multi-ttest}
+c_vars <- c("C1", "C2", "C3")
+
+results_C_gender <- map_dfr(c_vars, function(var) {
+  test_result <- t.test(survey[[var]] ~ survey$A1)
+
+  tibble(
+    variable   = var,
+    mean_female = test_result$estimate["mean in group female"],
+    mean_male   = test_result$estimate["mean in group male"],
+    t_stat     = round(test_result$statistic, 3),
+    df         = round(test_result$parameter, 1),
+    p_value    = round(test_result$p.value, 4),
+    ci_lower   = round(test_result$conf.int[1], 3),
+    ci_upper   = round(test_result$conf.int[2], 3)
+  )
+}) %>%
+  mutate(
+    p_adj       = round(p.adjust(p_value, method = "fdr"), 4),
+    significant = p_adj < 0.05
+  )
+
+results_C_gender
+```
+
+::: callout
+## Multiple comparisons correction
+
+When running the same test on multiple related variables, we apply the
+**Benjamini-Hochberg FDR correction** (`p.adjust(method = "fdr")`). This
+controls the expected proportion of false positives among all significant
+results, striking a better balance between sensitivity and specificity than
+the more conservative Bonferroni method.
+:::
+
+### 4.2 Add Cohen's *d* to the loop
+
+```{r multi-ttest-d}
+results_C_gender_d <- map_dfr(c_vars, function(var) {
+  d_result <- cohens_d(as.formula(paste(var, "~ A1")), data = survey)
+
+  tibble(
+    variable = var,
+    cohens_d = round(d_result$Cohens_d, 3),
+    magnitude = d_result$magnitude
+  )
+})
+
+left_join(results_C_gender, results_C_gender_d, by = "variable")
+```
+
+All three C variables show a significant gender difference after FDR
+correction, with large effect sizes for C1 and C2, and a medium effect for C3.
+
+### 4.3 One-way ANOVA: all C variables by age group (A2)
+
+```{r multi-anova}
+results_C_age <- map_dfr(c_vars, function(var) {
+  aov_result <- aov(as.formula(paste(var, "~ A2")), data = survey)
+  aov_sum    <- summary(aov_result)
+  eta        <- eta_squared(aov_result, partial = FALSE)
+
+  tibble(
+    variable   = var,
+    F_stat     = round(aov_sum[[1]][["F value"]][1], 3),
+    df_between = aov_sum[[1]][["Df"]][1],
+    df_within  = aov_sum[[1]][["Df"]][2],
+    p_value    = round(aov_sum[[1]][["Pr(>F)"]][1], 4),
+    eta_sq     = round(eta$Eta2, 4)
+  )
+}) %>%
+  mutate(
+    p_adj       = round(p.adjust(p_value, method = "fdr"), 4),
+    significant = p_adj < 0.05
+  )
+
+results_C_age
+```
+
+### 4.4 Visualise all effect sizes together
+
+```{r multi-effectsize-plot, fig.width=8, fig.height=5}
+# Combine Cohen's d (t-tests) and eta-squared (ANOVAs) in one summary figure
+bind_rows(
+  results_C_gender_d %>%
+    select(variable, effect_size = cohens_d) %>%
+    mutate(test = "t-test (gender), Cohen's d"),
+  results_C_age %>%
+    select(variable, effect_size = eta_sq) %>%
+    mutate(test = "ANOVA (age group), η²")
+) %>%
+  ggplot(aes(x = variable, y = effect_size, fill = test)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  labs(title = "Effect Sizes for Satisfaction Items (C1–C3)",
+       subtitle = "By gender (Cohen's d) and age group (η²)",
+       x = "Satisfaction Item", y = "Effect Size",
+       fill = "Test") +
+  scale_fill_manual(values = c("steelblue", "coral")) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+```
+
+Gender produces consistent large effects across all three satisfaction items.
+Age group effects are small to negligible.
+
+---
+
+## Summary
+
+| Test | When to use | Key function | Effect size |
+|------|-------------|--------------|-------------|
+| One-sample t-test | Compare one mean to a fixed value | `t.test(x, mu = …)` | Cohen's *d* |
+| Independent t-test | Compare means of two independent groups | `t.test(y ~ group)` | Cohen's *d* |
+| Paired t-test | Compare two related measurements | `t.test(x, y, paired = TRUE)` | Cohen's *d* |
+| One-way ANOVA | Compare means of ≥3 groups | `aov(y ~ group)` | η² |
+| Two-way ANOVA | Two factors ± interaction | `aov(y ~ A * B)` | η² (partial) |
+| Tukey HSD | Post-hoc after significant ANOVA | `TukeyHSD(aov_obj)` | — |
+
+**Assumption checking summary**
+
+| Assumption | Check with |
+|------------|------------|
+| Normality (small samples) | `shapiro_test()`, Q-Q plot |
+| Equal variances | `levene_test()` |
+| Independence | Study design (each respondent = one row) |
+
+---
+
+## Exercises
+
+::: challenge
+**Exercise 3 — One-way ANOVA with post-hoc**
+
+Run a one-way ANOVA to test whether C2 (work-life balance improvement)
+differs across income levels (A4). If significant, run Tukey HSD.
+Report F, p, η², and post-hoc results.
+:::
+
+::: challenge
+**Exercise 4 — Two-way ANOVA**
+
+Run a two-way ANOVA: `C1 ~ A3 * A6` (satisfaction by education level
+and area type). Draw an interaction plot first. Interpret the main effects
+and interaction term. Compute partial η² for each term.
+:::
+
