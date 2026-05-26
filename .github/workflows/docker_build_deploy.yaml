@@ -67,7 +67,6 @@ jobs:
         id: wb-vers
         if: steps.build-check.outputs.do-build == 'true'
         uses: carpentries/actions/container-version@main
-        continue-on-error: true
         with:
           WORKBENCH_TAG: ${{ vars.WORKBENCH_TAG }}
           renv-needed: ${{ steps.build-check.outputs.renv-needed }}
