@@ -84,13 +84,13 @@ jobs:
           echo "No valid SANDPAPER_WORKFLOW token or PAT from AWS found, cannot update workflows." >> $GITHUB_STEP_SUMMARY
         shell: bash
 
-      - name: Update Workflows
-        id: update
-        if: ${{ steps.validate-token.outputs.wf == 'true' }}
-        uses: carpentries/actions/update-workflows@main
-        with:
-          version: ${{ github.event.inputs.version || 'latest' }}
-          clean: ${{ github.event.inputs.clean || '.yaml' }}
+     # - name: Update Workflows
+     #   id: update
+     #   if: ${{ steps.validate-token.outputs.wf == 'true' }}
+     #   uses: carpentries/actions/update-workflows@main
+     #   with:
+     #     version: ${{ github.event.inputs.version || 'latest' }}
+     #     clean: ${{ github.event.inputs.clean || '.yaml' }}
 
       - name: Create Pull Request
         id: cpr
