@@ -89,8 +89,7 @@ jobs:
          if: ${{ steps.validate-token.outputs.wf == 'true' }}
         uses: carpentries/actions/update-workflows@main
          with:
-           version: v0.2.6
-           #${{ github.event.inputs.version || 'latest' }}
+           version: ${{ github.event.inputs.version || 'latest' }}
            clean: ${{ github.event.inputs.clean || '.yaml' }}
 
       - name: Create Pull Request
