@@ -727,7 +727,7 @@ describe how the effect of one factor changes across levels of the other.
 **Test 4: Research Question:** "Do gender (A1) and age group (A2) simultaneously affect satisfaction with flexible working (C1), work-life balance improvement (C2), and employer support (C3)?"
 
 ::: callout
-## `MANOVA` vs `t-tests`
+## `MANOVA` vs `t-tests`  
 In the [previous workshop 6.T-tests in R](https://irim-mongolia.github.io/irim-r-workshops/t_tests_and_anova.html)., we used a variety of `t-test` to investigate various research questions related to C1 and C2 survey responses.
 
 `MANOVA` was used here not to replace the earlier tests, but to answer a different and complementary research question: one about the combined effect of gender and age on the overall satisfaction profile across C1, C2, and C3 simultaneously. The earlier tests remain valid for their own specific research questions.
