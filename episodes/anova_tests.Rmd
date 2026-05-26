@@ -236,7 +236,7 @@ When you open a new `R Notebook`, some explanatory text is provided. This can be
 
 ### Load packages and data
 
-Download packages (if needed) and load libraries. 
+Download packages (if needed) and load libraries.  
 
 ```{r setup, message=FALSE}
 for (pkg in c("tidyverse", "here", "rstatix", "effectsize", "ggsignif", "emmeans")) {
