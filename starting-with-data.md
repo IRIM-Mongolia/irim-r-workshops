@@ -606,7 +606,7 @@ spc_tbl_ [131 × 14] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
   ..   months_lack_food = col_character(),
   ..   instanceID = col_character()
   .. )
- - attr(*, "problems")=<externalptr> 
+ - attr(*, "problems")=<pointer: 0x55b26c12d240> 
 ```
 
 We get quite a bit of useful information here. First, we are told that

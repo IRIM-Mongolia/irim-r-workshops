@@ -84,11 +84,11 @@ install.packages("tidyverse")
 ``` output
 The following package(s) will be installed:
 - tidyverse [2.0.0]
-These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
+These packages will be installed into "/__w/irim-r-workshops/irim-r-workshops/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.6/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m tidyverse 2.0.0                          [linked from cache]
-Successfully installed 1 package in 3.6 milliseconds.
+Successfully installed 1 package in 4.5 milliseconds.
 ```
 
 You can see if you have a package installed by looking in the `packages`
@@ -547,7 +547,7 @@ is the number of backticks. In-line `R` code uses one backtick
 (```` ```r``` ````).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be
-rendered as: today's date is 2026-04-23.\
+rendered as: today's date is 2026-05-27.\
 The code will display today's date in the output document (well,
 technically the date the document was last knitted or previewed).
 
