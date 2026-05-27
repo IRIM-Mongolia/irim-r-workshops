@@ -27,10 +27,8 @@ source: Rmd
 [See Workshop 7 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQBz78bURpO8SqoON5SqHJObAUO0CDwN0sCka84SLd4dGdY?e=UjpAZp)
 
-<!--
 [See Workshop 7 recording here -
-1]()
--->
+1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQAfaLW8aiYxSK0rGvRGkQs0AYMMo3cia0a4yGcwqjc03i8?e=4TZBZU)
 
 ---
 
