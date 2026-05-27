@@ -32,6 +32,8 @@ here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQBz78bURpO8SqoON5SqHJO
 1]()
 -->
 
+---
+
 ## Dataset overview
 
 This workshop uses a generated (made-up) dataset of **1,005 survey responses**
@@ -111,7 +113,6 @@ questions below to find the right test.
 
 **Example 3 (MANOVA):** Do gender and age group simultaneously affect satisfaction with flexible working (C1), work-life balance (C2), and employer support (C3)?
 
----
 
 ## 2. Are the same participants measured more than once? {#q2}
 
@@ -120,7 +121,6 @@ questions below to find the right test.
 
 Repeated measures controls for individual differences, increasing statistical power. Common in longitudinal studies, pre/post designs, and within-subject experiments.
 
----
 
 ## 3. Is homogeneity of variance met? {#q3}
 
@@ -131,7 +131,6 @@ Check with **Levene's test**
 
 `Welch's ANOVA` does not assume equal variances. It adjusts the degrees of freedom (`Welch–Satterthwaite` equation) to account for heteroscedasticity. It is often recommended as the default over classical `one-way ANOVA`, since it performs well even when variances *are* equal.
 
----
 
 ## 4. Do you have both within- and between-subjects factors?
 
@@ -140,7 +139,6 @@ Check with **Levene's test**
 
 **Example:** Measuring blood pressure at three time points (*within*) across a treatment vs control group (*between*).
 
----
 
 ## 5. Check your assumptions
 
@@ -183,7 +181,6 @@ Sphericity is the most commonly overlooked assumption. If `Mauchly's` test is si
 | No multicollinearity between DVs | Correlation matrix | DVs should be related but r < .90 |
 | Independence of observations | Study design | Reconsider design |
 
----
 
 ## 6. Post-hoc tests after a significant result
 
@@ -199,7 +196,6 @@ Sphericity is the most commonly overlooked assumption. If `Mauchly's` test is si
 | `Repeated measures ANOVA` | Pairwise comparisons with `Bonferroni` | Adjust within the within-subjects factor |
 | `Mixed ANOVA` | `emmeans` with `Bonferroni` per factor | Separate comparisons for between- and within-subjects factors |
 
----
 
 ## 7. Non-parametric alternatives
 
@@ -213,6 +209,7 @@ Use these when normality is not met and sample sizes are small.
 | `MANOVA` | `Adonis` (permutation-based; `vegan` package) |
 
 ---
+
 ## `ANOVA` Summary table
 
 | Test | Factors | Design | Equal variances required? | Recommended post-hoc | Notes |
@@ -227,6 +224,7 @@ Use these when normality is not met and sample sizes are small.
 | `Kruskal-Wallis` | 1 | Between-subjects | No (non-parametric) | Dunn test with `Bonferroni` | Use when normality or equal variance assumptions are severely violated |
 | `Friedman` | 1 | Within-subjects | No (non-parametric) | `Wilcoxon` signed-rank with `Bonferroni` | Non-parametric equivalent of `repeated measures ANOVA` |
 
+---
 
 ## Set up
 
@@ -268,6 +266,7 @@ survey <- readRDS(here("data", "cleaned", "generated_survey_data_clean.rds"))
 survey
 ```
 
+---
 
 ## `One-way ANOVA` and `Welch's ANOVA` 
 **Test 1: Research question:** Does commute time (D1) differ across level of education? (primary, secondary, tertiary or higher)?
@@ -509,7 +508,7 @@ The `Games-Howell` post-hoc test reveals that the mean commute times of all age 
 
 `Games-Howell` post-hoc tests indicated that all three pairwise comparisons were statistically significant (p < 0.001): 18–34 year-olds reported significantly longer daily commute times than both 35–54 year-olds (mean difference = 30.93 min, 95% CI [27.99, 33.87], p < 0.001) and those aged 55+ (mean difference = 62.60 min, 95% CI [58.15, 67.06], p < 0.001), and 35–54 year-olds reported significantly longer commute times than those aged 55+ (mean difference = 31.67 min, 95% CI [27.00, 36.34], p < 0.001).
 
-The generalised eta-squared value is very large (0.841), confirming that age group explains over 84% of the variance in commute time.
+The generalised eta-squared value is very large (0.841), confirming that age group explains over 84% of the variance in commute time."
 
 
 ### Plotting significant differences
