@@ -39,10 +39,9 @@ we observe between group means are larger than we would expect by chance alone.
 [See Workshop 6 Slides
 here](https://irimmn.sharepoint.com/:p:/s/IRIMRWorkshops/IQBrsx2yHgMEQ6N8dr8R26VKATj-H7BdrWOKM7BIDR_Pifg?e=GSAfHO)
 
-<!--
+
 [See Workshop 6 recording here -
-1]()
--->
+1](https://irimmn.sharepoint.com/:v:/s/IRIMRWorkshops/IQB30OYx1dIbRri90PDIZqGeAa6Mr02jpgF6htHwc-lSaQo?e=quDNRi)
 
 
 ## Dataset overview
