@@ -14,6 +14,8 @@ source: Rmd
 - Follow up a significant `MANOVA` with univariate `ANOVAs` per dependent variable
 - Accurately report results
 
+:::
+
 ::: questions
 - What `ANOVA` should I use?
 - How do I check whether my data meet the assumptions of these tests?
@@ -392,7 +394,7 @@ The generalised eta-squared value (ges = 0.004) confirmed a negligible effect si
 
 ### Summary statistics
 
-Let's start by looking at the sumary statistics
+Let's start by looking at the summary statistics
 ```{r wanova1-summary}
 survey %>%
   group_by(A2) %>%
@@ -465,7 +467,7 @@ The output contains:
 
 
 The `Welch's ANOVA` is highly significant: **F(2, 263.11) = 695.1, p < 0.001**.
-The mean daily communte time decreases with age; 18–34: 89.8 min, 35–54: 58.9 min, 55+: 27.2 min. But the `F-test` alone cannot tell us whether all three pairwise differences are significant. We need a post-hoc test. For `Welch's ANOVA`, we can use the `Games-Howell` post-hoc test.
+The mean daily commute time decreases with age; 18–34: 89.8 min, 35–54: 58.9 min, 55+: 27.2 min. But the `F-test` alone cannot tell us whether all three pairwise differences are significant. We need a post-hoc test. For `Welch's ANOVA`, we can use the `Games-Howell` post-hoc test.
 
 ### Post-hoc tests: `Games-Howell`
 
@@ -679,7 +681,8 @@ model <- lm(D1 ~ A1 * A2, data = survey)
 emm <- emmeans(model, ~ A1 * A2)
 emm
 ```
-Next, we'll do the pairwise comparisons, with a Bonferroni correction.
+
+Next, we'll do the pairwise comparisons, with a `Bonferroni` correction.
 ```{r}
 # All pairwise comparisons
 pairs(emm, adjust = "bonferroni")
@@ -690,6 +693,7 @@ emmeans(model, pairwise ~ A2 | A1, adjust = "bonferroni")
 # Gender comparisons within each age group
 emmeans(model, pairwise ~ A1 | A2, adjust = "bonferroni")
 ```
+
 To bring this all together:
 
 A `two-way ANOVA` was conducted to examine the effects of gender (A1) and age group (A2) on daily commute time (D1). Prior to analysis, `Levene's test` indicated a violation of the homogeneity of variance assumption; and cell sizes were unequal across the six gender × age group combinations (females: 18–34, n = 294; 35–54, n = 246; 55+, n = 43; males: 18–34, n = 203; 35–54, n = 170; 55+, n = 49), with the 55+ age group notably underrepresented relative to younger cohorts. This imbalance was considered when interpreting the results, and Type II sums of squares were used in the `ANOVA` to account for the unequal cell sizes.
@@ -700,7 +704,7 @@ Given the significant interaction, follow-up analysis was conducted using estima
 
 Simple main effects confirmed that age group differences were significant for both females, F(2, 580) = 262.459, p < 0.001, and males, F(2, 419) = 379.216, p < 0.001, with all pairwise age comparisons reaching significance (all p < 0.001) within each gender. The decline in commute time across age groups was somewhat steeper for males (18–34 vs 55+: estimate = 65.9 min) than for females (18–34 vs 55+: estimate = 59.3 min), suggesting the age effect is more pronounced among male respondents.
 
-Examination of gender differences within each age group revealed that the interaction effect was localised to the 35–54 age group, where females reported statistically significantly longer commute times than males (estimate = 4.52 min, t(999) = 2.473, p = .014). No significant gender differences were found in the 18–34 group (estimate = −1.72 min, t(999) = −1.028, p = .304) or the 55+ group (estimate = 4.90 min, t(999) = 1.279, p = 0.201), indicating that males and females commute for comparable durations at the youngest and oldest age groups. Taken together, these findings suggest that while age is the dominant predictor of daily commute time, the relationship between age and commute time differs subtly by gender, with a slight increase in commute times of 4.52 minutes for midlife females. 
+Examination of gender differences within each age group revealed that the interaction effect was localised to the 35–54 age group, where females reported statistically significantly longer commute times than males (estimate = 4.52 min, t(999) = 2.473, p = .014). No significant gender differences were found in the 18–34 group (estimate = −1.72 min, t(999) = −1.028, p = .304) or the 55+ group (estimate = 4.90 min, t(999) = 1.279, p = 0.201), indicating that males and females commute for comparable durations at the youngest and oldest age groups. Taken together, these findings suggest that while age is the dominant predictor of daily commute time, the relationship between age and commute time differs subtly by gender, with a slight increase in commute times of 4.52 minutes for midlife females."
 
 ::: callout
 ## Two-way ANOVA: interpreting main effects when there is no interaction
@@ -728,7 +732,7 @@ describe how the effect of one factor changes across levels of the other.
 
 ::: callout
 ## `MANOVA` vs `t-tests`  
-In the [previous workshop 6.T-tests in R](https://irim-mongolia.github.io/irim-r-workshops/t_tests_and_anova.html)., we used a variety of `t-test` to investigate various research questions related to C1 and C2 survey responses.
+In the [previous workshop 6. T-tests in R](https://irim-mongolia.github.io/irim-r-workshops/t_tests_and_anova.html)., we used a variety of `t-test` to investigate various research questions related to C1 and C2 survey responses.
 
 `MANOVA` was used here not to replace the earlier tests, but to answer a different and complementary research question: one about the combined effect of gender and age on the overall satisfaction profile across C1, C2, and C3 simultaneously. The earlier tests remain valid for their own specific research questions.
 :::
@@ -901,6 +905,7 @@ survey %>% anova_test(C2 ~ A1 * A2)
 ```{r}
 survey %>% anova_test(C3 ~ A1 * A2)
 ```
+
 - Gender (A1): F(1, 999) = 0.286, p = .593, ges = 0.000; non-significant, negligible effect
 - Age group: F(2, 999) = 0.230, p = .795, ges = 0.000; non-significant
 - Interaction: F(2, 999) = 0.859, p = .424, ges = 0.002; non-significant
@@ -908,7 +913,7 @@ survey %>% anova_test(C3 ~ A1 * A2)
 
 Putting all of the results together:
 
-A `one-way MANOVA` was conducted to examine the simultaneous effect of gender (A1) and age group (A2) on three satisfaction outcomes: satisfaction with flexible working arrangements (C1), work-life balance improvement (C2), and employer support (C3). Prior to analysis, assumptions were assessed. No multivariate outliers were identified via `Mahalanobis` distance. `Box's M` tests indicated homogeneity of covariance matrices across gender (p = 0.769) and age group (p = 0.721), confirming the assumption was met. Correlations among the dependent variables were low (C1–C2: r = .200; C1–C3: r = −.071; C2–C3: r = .022), indicating the variables were sufficiently independent to avoid multicollinearity while justifying a multivariate approach to control familywise error.
+"A `one-way MANOVA` was conducted to examine the simultaneous effect of gender (A1) and age group (A2) on three satisfaction outcomes: satisfaction with flexible working arrangements (C1), work-life balance improvement (C2), and employer support (C3). Prior to analysis, assumptions were assessed. No multivariate outliers were identified via `Mahalanobis` distance. `Box's M` tests indicated homogeneity of covariance matrices across gender (p = 0.769) and age group (p = 0.721), confirming the assumption was met. Correlations among the dependent variables were low (C1–C2: r = .200; C1–C3: r = −.071; C2–C3: r = .022), indicating the variables were sufficiently independent to avoid multicollinearity while justifying a multivariate approach to control familywise error.
 
 The overall `MANOVA` was statistically significant for gender, `Pillai's` Trace = 0.357, F(3, 997) = 184.44, p < 0.001, indicating that males and females differed significantly on the combined satisfaction outcome. Neither age group (`Pillai's` Trace = 0.004, F(6, 1996) = 0.749, p = 0.610), nor the gender × age group interaction )`Pillai's` Trace = 0.004, F(6, 1996) = 0.705, p = 0.646), reached statistical significance, with both effects showing negligible effect sizes.
 
@@ -916,14 +921,14 @@ Follow-up univariate `two-way ANOVAs` were conducted for each dependent variable
 
 In contrast, C3 (employer support) showed no significant effect of gender (F(1, 999) = 0.286, p = 0.593, ges = 0.000), age group (F(2, 999) = 0.230, p = 0.795), or their interaction (F(2, 999) = 0.859, p = 0.424), indicating that perceptions of employer support were uniformly moderate and consistent across all gender and age group combinations (overall range: mean = 2.87–3.04).
 
-As gender is a binary variable, no post-hoc pairwise comparisons were required for C1 or C2. The direction and magnitude of the gender difference is fully captured by the mean scores and the univariate F-tests. Taken together, these findings indicate that gender is a strong and consistent predictor of satisfaction with flexible working and perceived work-life balance benefits, while perceptions of employer support appear to be uniformly moderate and unrelated to either gender or age group in this sample.
+As gender is a binary variable, no post-hoc pairwise comparisons were required for C1 or C2. The direction and magnitude of the gender difference is fully captured by the mean scores and the univariate F-tests. Taken together, these findings indicate that gender is a strong and consistent predictor of satisfaction with flexible working and perceived work-life balance benefits, while perceptions of employer support appear to be uniformly moderate and unrelated to either gender or age group in this sample."
 
 ---
 
 ## Exercises
 
 :::: challenge
-**Exercise 1:** `One-way ANOVA`
+**Challenge 1:** `One-way ANOVA`
 
 Run a one-way ANOVA to test whether C2 (work-life balance improvement)
 differs across income levels (A4). If significant, run a post-hoc test.
@@ -968,7 +973,7 @@ A `one-way ANOVA` revealed a statistically significant but negligible effect of 
 ::::
 
 :::: challenge
-**Exercise 2:** `Two-way ANOVA`
+**Challenge 2 2:** `Two-way ANOVA`
 
 Run a `two-way ANOVA`: `C1 ~ A3 * A6` (satisfaction by education level
 and area type). Draw an interaction plot first. Interpret the main effects
