@@ -66,6 +66,7 @@ episodes:
 - manipulating_data.Rmd
 - quantitative_data_analysis.Rmd
 - t_tests_and_anova.Rmd
+- anova_tests.Rmd
 
 # Information for Learners
 learners:
